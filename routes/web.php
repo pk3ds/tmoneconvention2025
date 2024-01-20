@@ -36,9 +36,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('/.well-known/acme-challenge/{id}', function (string $id) {
-    return $id;
-});
-
 require __DIR__ . '/auth.php';
