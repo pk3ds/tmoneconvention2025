@@ -13,15 +13,7 @@ const navigation = [
 
 <template>
     <Head title="Welcome" />
-    <div
-        class="min-h-screen"
-        style="
-            background-image: url('/images/BG-TM-One-Plain.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        "
-    >
+    <div class="min-h-screen bg-tmone">
         <header class="bg-white dark:bg-cobalt-blue">
             <nav class="px-6 mx-auto max-w-7xl lg:px-8" aria-label="Top">
                 <div
