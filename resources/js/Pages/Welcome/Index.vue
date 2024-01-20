@@ -14,7 +14,7 @@ const navigation = [
 <template>
     <Head title="Welcome" />
     <div class="min-h-screen bg-tmone">
-        <header class="bg-white dark:bg-cobalt-blue">
+        <header class="bg-white">
             <nav class="px-6 mx-auto max-w-7xl lg:px-8" aria-label="Top">
                 <div
                     class="flex items-center justify-between w-full py-3 border-b border-indigo-500 lg:border-none"
@@ -23,13 +23,8 @@ const navigation = [
                         <Link href="#">
                             <span class="sr-only">TM ONE</span>
                             <img
-                                class="flex w-auto h-10 dark:hidden"
+                                class="w-auto h-10"
                                 src="/images/TM-One-Color.png"
-                                alt="TM ONE"
-                            />
-                            <img
-                                class="hidden w-auto h-10 dark:flex"
-                                src="/images/TM-One-White.png"
                                 alt="TM ONE"
                             />
                         </Link>
@@ -38,7 +33,7 @@ const navigation = [
                                 v-for="link in navigation"
                                 :key="link.name"
                                 :href="link.href"
-                                class="text-base font-medium text-ultramarine dark:text-white hover:text-cobalt-blue dark:hover:text-light-blue"
+                                class="text-base font-medium text-ultramarine hover:text-cobalt-blue"
                                 >{{ link.name }}</Link
                             >
                         </div>
@@ -47,13 +42,13 @@ const navigation = [
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
-                            class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md dark:text-ultramarine bg-ultramarine dark:bg-white hover:bg-cobalt-blue dark:hover:bg-light-blue"
+                            class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md bg-ultramarine hover:bg-cobalt-blue"
                             >Dashboard</Link
                         >
                         <Link
                             v-else
                             :href="route('login')"
-                            class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md dark:text-ultramarine bg-ultramarine dark:bg-white hover:bg-cobalt-blue dark:hover:bg-light-blue"
+                            class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md bg-ultramarine hover:bg-cobalt-blue"
                             >Login</Link
                         >
                     </div>
@@ -65,7 +60,7 @@ const navigation = [
                         v-for="link in navigation"
                         :key="link.name"
                         :href="link.href"
-                        class="text-base font-medium text-ultramarine dark:text-white hover:text-cobalt-blue dark:hover:light-blue"
+                        class="text-base font-medium text-ultramarine hover:text-cobalt-blue"
                         >{{ link.name }}</Link
                     >
                 </div>
