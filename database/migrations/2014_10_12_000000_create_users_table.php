@@ -15,10 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('staff_id')->unique();
+            $table->string('phone_no')->nullable();
+            $table->string('room_no')->nullable();
+            $table->string('transport_mode')->nullable();
+            $table->string('pickup_location')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
