@@ -20,7 +20,7 @@ Route::get('/', function () {
         'event' => [
             'card' => 'player',
             'title' => 'Welcome',
-            'image' => '/images/Design-01.jpg',
+            'image' => '/images/Banner-01.jpg',
             'description' => 'TM ONE Convention 2024',
         ]
     ]);

@@ -24,7 +24,7 @@ const navigation = [
                             <span class="sr-only">TM ONE</span>
                             <img
                                 class="w-auto h-10"
-                                src="/images/TM-One-Color.png"
+                                src="/images/Logo-Color.png"
                                 alt="TM ONE"
                             />
                         </Link>
@@ -113,7 +113,7 @@ const navigation = [
 
     <img
         class="fixed bottom-0 left-0 z-0 max-w-48"
-        src="/images/Chevron-06.png"
+        src="/images/Chevron-01.png"
         alt="TM ONE"
     />
 </template>

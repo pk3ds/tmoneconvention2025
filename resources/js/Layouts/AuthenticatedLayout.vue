@@ -25,12 +25,12 @@ const showingNavigationDropdown = ref(false);
                     <Link :href="route('/')">
                         <img
                             class="block w-auto text-gray-800 fill-current dark:hidden h-9 dark:text-gray-200"
-                            src="/images/TM-One-Color.png"
+                            src="/images/Logo-Color.png"
                             alt="TM ONE"
                         />
                         <img
                             class="hidden w-auto text-gray-800 fill-current dark:block h-9 dark:text-gray-200"
-                            src="/images/TM-One-White.png"
+                            src="/images/Logo-White.png"
                             alt="TM ONE"
                         />
                     </Link>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .bg-tmone {
-    background-image: url('../../public/images/BG-TM-ONE-Plain.jpg');
+    background-image: url('../../public/images/BG-01-Plain.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
