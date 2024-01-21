@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import Attire from "./Partials/Attire.vue";
 import DayOne from "./Partials/DayOne.vue";
 import DayTwo from "./Partials/DayTwo.vue";
 import Hero from "./Partials/Hero.vue";
@@ -86,6 +87,10 @@ const navigation = [
 
         <div class="relative z-10 pb-12">
             <DayTwo />
+        </div>
+
+        <div class="relative z-10 pb-12" id="attire">
+            <Attire />
         </div>
     </div>
 
