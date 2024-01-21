@@ -42,6 +42,7 @@ const navigation = [
                                 v-for="link in navigation"
                                 :key="link.name"
                                 :href="link.href"
+                                v-smooth-scroll
                                 class="text-base font-medium text-ultramarine hover:text-cobalt-blue"
                                 >{{ link.name }}</Link
                             >

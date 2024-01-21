@@ -9,10 +9,15 @@ import { Countdown } from "vue3-flip-countdown";
                 class="relative px-3 py-1 text-sm leading-6 text-gray-400 rounded-full ring-1 ring-white/10 hover:ring-white/20"
             >
                 Announcing our upcoming convention.
-                <Link href="#programme" class="font-semibold text-white"
-                    ><span class="absolute inset-0" aria-hidden="true" />Read
-                    more <span aria-hidden="true">&rarr;</span></Link
+                <Link
+                    href="#programme"
+                    class="font-semibold text-white"
+                    v-smooth-scroll
                 >
+                    <span class="absolute inset-0" aria-hidden="true" />
+                    Read more
+                    <span aria-hidden="true">&rarr;</span>
+                </Link>
             </div>
         </div>
         <div class="text-center">
