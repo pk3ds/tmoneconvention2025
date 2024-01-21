@@ -24,7 +24,7 @@ Route::get('/', function () {
             'description' => 'TM ONE Convention 2024',
         ]
     ]);
-});
+})->name('/');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

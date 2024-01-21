@@ -5,6 +5,12 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
+import { initFlowbite } from "flowbite";
+import { onMounted } from "vue";
+
+onMounted(() => {
+    initFlowbite();
+});
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -12,188 +18,108 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <nav
-                class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700"
-            >
-                <!-- Primary Navigation Menu -->
-                <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                            <!-- Logo -->
-                            <div class="flex items-center shrink-0">
-                                <Link :href="route('dashboard')">
-                                    <img
-                                        class="block w-auto text-gray-800 fill-current dark:hidden h-9 dark:text-gray-200"
-                                        src="/images/TM-One-Color.png"
-                                        alt="TM ONE"
-                                    />
-                                    <img
-                                        class="hidden w-auto text-gray-800 fill-current dark:block h-9 dark:text-gray-200"
-                                        src="/images/TM-One-White.png"
-                                        alt="TM ONE"
-                                    />
-                                </Link>
-                            </div>
-
-                            <!-- Navigation Links -->
-                            <div
-                                class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
-                            >
-                                <NavLink
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard')"
-                                >
-                                    Dashboard
-                                </NavLink>
-                            </div>
-                        </div>
-
-                        <div class="hidden sm:flex sm:items-center sm:ms-6">
-                            <!-- Settings Dropdown -->
-                            <div class="relative ms-3">
-                                <Dropdown align="right" width="48">
-                                    <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none"
-                                            >
-                                                {{ $page.props.auth.user.name }}
-
-                                                <svg
-                                                    class="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </template>
-
-                                    <template #content>
-                                        <DropdownLink
-                                            :href="route('profile.edit')"
-                                        >
-                                            Profile
-                                        </DropdownLink>
-                                        <DropdownLink
-                                            :href="route('logout')"
-                                            method="post"
-                                            as="button"
-                                        >
-                                            Log Out
-                                        </DropdownLink>
-                                    </template>
-                                </Dropdown>
-                            </div>
-                        </div>
-
-                        <!-- Hamburger -->
-                        <div class="flex items-center -me-2 sm:hidden">
-                            <button
-                                @click="
-                                    showingNavigationDropdown =
-                                        !showingNavigationDropdown
-                                "
-                                class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400"
-                            >
-                                <svg
-                                    class="w-6 h-6"
-                                    stroke="currentColor"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        :class="{
-                                            hidden: showingNavigationDropdown,
-                                            'inline-flex':
-                                                !showingNavigationDropdown,
-                                        }"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                    <path
-                                        :class="{
-                                            hidden: !showingNavigationDropdown,
-                                            'inline-flex':
-                                                showingNavigationDropdown,
-                                        }"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Responsive Navigation Menu -->
+            <nav class="bg-white border-gray-200 dark:bg-gray-800">
                 <div
-                    :class="{
-                        block: showingNavigationDropdown,
-                        hidden: !showingNavigationDropdown,
-                    }"
-                    class="sm:hidden"
+                    class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
                 >
-                    <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink
-                            :href="route('dashboard')"
-                            :active="route().current('dashboard')"
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
-                    </div>
-
-                    <!-- Responsive Settings Options -->
+                    <Link :href="route('/')">
+                        <img
+                            class="block w-auto text-gray-800 fill-current dark:hidden h-9 dark:text-gray-200"
+                            src="/images/TM-One-Color.png"
+                            alt="TM ONE"
+                        />
+                        <img
+                            class="hidden w-auto text-gray-800 fill-current dark:block h-9 dark:text-gray-200"
+                            src="/images/TM-One-White.png"
+                            alt="TM ONE"
+                        />
+                    </Link>
                     <div
-                        class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600"
+                        class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
                     >
-                        <div class="px-4">
-                            <div
-                                class="text-base font-medium text-gray-800 dark:text-gray-200"
+                        <button
+                            type="button"
+                            class="flex items-center text-sm md:me-0 dark:text-white"
+                            id="user-menu-button"
+                            aria-expanded="false"
+                            data-dropdown-toggle="user-dropdown"
+                            data-dropdown-placement="bottom"
+                        >
+                            <span class="sr-only">Open user menu</span>
+                            {{ $page.props.auth.user.name }}
+                            <svg
+                                class="ms-2 -me-0.5 h-4 w-4"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
                             >
-                                {{ $page.props.auth.user.name }}
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div
+                            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                            id="user-dropdown"
+                        >
+                            <div class="px-4 py-3">
+                                <span
+                                    class="block text-sm text-gray-900 dark:text-white"
+                                    >{{ $page.props.auth.user.name }}</span
+                                >
+                                <span
+                                    class="block text-sm text-gray-500 truncate dark:text-gray-400"
+                                    >{{ $page.props.auth.user.email }}</span
+                                >
                             </div>
-                            <div class="text-sm font-medium text-gray-500">
-                                {{ $page.props.auth.user.email }}
-                            </div>
+                            <ul class="py-2" aria-labelledby="user-menu-button">
+                                <li>
+                                    <Link
+                                        :href="route('profile.edit')"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        >Profile</Link
+                                    >
+                                </li>
+                                <li>
+                                    <Link
+                                        :href="route('logout')"
+                                        method="post"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        >Log out</Link
+                                    >
+                                </li>
+                            </ul>
                         </div>
-
-                        <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')">
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                :href="route('logout')"
-                                method="post"
-                                as="button"
+                        <button
+                            data-collapse-toggle="navbar-user"
+                            type="button"
+                            class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                            aria-controls="navbar-user"
+                            aria-expanded="false"
+                        >
+                            <span class="sr-only">Open main menu</span>
+                            <svg
+                                class="w-5 h-5"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 17 14"
                             >
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
+                                <path
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M1 1h15M1 7h15M1 13h15"
+                                />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </nav>
-
-            <!-- Page Heading -->
-            <header
-                class="bg-white shadow dark:bg-gray-800"
-                v-if="$slots.header"
-            >
-                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
 
             <!-- Page Content -->
             <main>
