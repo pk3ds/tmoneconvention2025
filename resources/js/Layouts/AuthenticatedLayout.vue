@@ -1,8 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
-import { onMounted } from "vue";
 
 onMounted(() => {
     initFlowbite();
