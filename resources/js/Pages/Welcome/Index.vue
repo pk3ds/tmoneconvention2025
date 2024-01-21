@@ -1,13 +1,20 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import { Countdown } from "vue3-flip-countdown";
+import DayOne from "./Partials/DayOne.vue";
+import DayTwo from "./Partials/DayTwo.vue";
+import Hero from "./Partials/Hero.vue";
 
+// FIXME confirm navigation items
 const navigation = [
-    { name: "Agenda", href: "#" },
-    { name: "Venue", href: "#" },
-    { name: "Speakers", href: "#" },
-    { name: "Booths", href: "#" },
-    { name: "BookDoc", href: "#" },
+    { name: "Venue", href: "#venue" },
+    { name: "Programme", href: "#programme" },
+    // { name: "PWRGAME", href: "#" },
+    { name: "Attire", href: "#attire" },
+    // { name: "Dinner", href: "#" },
+    // { name: "Online", href: "#" },
+    // { name: "Speakers", href: "#" },
+    // { name: "Stations", href: "#" },
+    // { name: "BookDoc", href: "#" },
 ];
 </script>
 
@@ -16,8 +23,9 @@ const navigation = [
     <div class="min-h-screen bg-tmone">
         <header class="bg-white">
             <nav class="px-6 mx-auto max-w-7xl lg:px-8" aria-label="Top">
+                <!-- FIXME justify between when enabling login -->
                 <div
-                    class="flex items-center justify-between w-full py-3 border-b border-indigo-500 lg:border-none"
+                    class="flex items-center justify-center w-full py-3 border-b border-indigo-500 lg:border-none"
                 >
                     <div class="flex items-center">
                         <Link href="#">
@@ -38,7 +46,8 @@ const navigation = [
                             >
                         </div>
                     </div>
-                    <div class="ml-10 space-x-4">
+                    <!-- FIXME enable login -->
+                    <!-- <div class="ml-10 space-x-4">
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
@@ -51,7 +60,7 @@ const navigation = [
                             class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md bg-ultramarine hover:bg-cobalt-blue"
                             >Login</Link
                         >
-                    </div>
+                    </div> -->
                 </div>
                 <div
                     class="flex flex-wrap justify-center py-4 gap-x-6 lg:hidden"
@@ -67,47 +76,16 @@ const navigation = [
             </nav>
         </header>
 
-        <div class="relative z-10 overflow-hidden isolate pt-14">
-            <div class="max-w-2xl py-12 mx-auto">
-                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <div
-                        class="relative px-3 py-1 text-sm leading-6 text-gray-400 rounded-full ring-1 ring-white/10 hover:ring-white/20"
-                    >
-                        Announcing our upcoming convention.
-                        <Link href="#" class="font-semibold text-white"
-                            ><span
-                                class="absolute inset-0"
-                                aria-hidden="true"
-                            />Read more
-                            <span aria-hidden="true">&rarr;</span></Link
-                        >
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img
-                        src="/images/Wording-02.png"
-                        alt="TM ONE CONVENTION 2024"
-                    />
-                    <Countdown
-                        class=""
-                        deadlineISO="2024-01-28 09:00:00"
-                        mainColor="#FFF"
-                        labelColor="#FFF"
-                    />
-                    <div class="flex items-center justify-center mt-10 gap-x-6">
-                        <Link
-                            href="#"
-                            class="rounded-md bg-accent-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-accent-orange/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-orange/80"
-                            >Get started</Link
-                        >
-                        <Link
-                            href="#"
-                            class="text-sm font-semibold leading-6 text-white"
-                            >Learn more <span aria-hidden="true">→</span></Link
-                        >
-                    </div>
-                </div>
-            </div>
+        <div class="relative z-10 overflow-hidden isolate" id="venue">
+            <Hero />
+        </div>
+
+        <div class="relative z-10 pb-12" id="programme">
+            <DayOne />
+        </div>
+
+        <div class="relative z-10 pb-12">
+            <DayTwo />
         </div>
     </div>
 
