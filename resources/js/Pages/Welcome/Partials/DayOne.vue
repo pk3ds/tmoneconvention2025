@@ -2,7 +2,6 @@
 <template>
     <div
         class="max-w-screen-md mx-auto bg-gray-50 dark:bg-gray-800 rounded-2xl"
-        id="programme"
     >
         <h2
             class="py-2 text-2xl leading-8 tracking-tight text-center text-white bg-ultramarine rounded-t-2xl"
