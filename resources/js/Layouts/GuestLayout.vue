@@ -1,20 +1,106 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Link } from '@inertiajs/vue3';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import { Link } from "@inertiajs/vue3";
+
+const particlesLoaded = async (container) => {
+    console.log("Particles container loaded", container);
+};
 </script>
 
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-        <div>
+    <div
+        class="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-light-blue"
+    >
+        <div class="z-10">
             <Link href="/">
-                <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
+                <ApplicationLogo class="w-20 h-20 text-gray-500 fill-current" />
             </Link>
         </div>
 
         <div
-            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg"
+            class="z-10 w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md dark:bg-gray-800 sm:rounded-lg"
         >
             <slot />
         </div>
+    </div>
+
+    <div class="-z-10">
+        <vue-particles
+            id="tsparticles"
+            :particlesLoaded="particlesLoaded"
+            :options="{
+                fpsLimit: 100,
+                interactivity: {
+                    detect_on: 'window',
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: 'push',
+                        },
+                        onHover: {
+                            enable: true,
+                            mode: 'repulse',
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        trail: {
+                            distance: 400,
+                            duration: 2,
+                            opacity: 0.2,
+                            size: 40,
+                        },
+                        push: {
+                            quantity: 4,
+                        },
+                        repulse: {
+                            distance: 100,
+                            duration: 0.4,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: '#1800E7',
+                    },
+                    links: {
+                        color: '#1800E7',
+                        distance: 150,
+                        enable: true,
+                        opacity: 0.2,
+                        width: 1,
+                    },
+                    collisions: {
+                        enable: true,
+                    },
+                    move: {
+                        direction: 'none',
+                        enable: true,
+                        outMode: 'bounce',
+                        random: false,
+                        speed: 1,
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 80,
+                    },
+                    opacity: {
+                        value: 0.2,
+                    },
+                    shape: {
+                        type: 'circle',
+                    },
+                    size: {
+                        random: true,
+                        value: 5,
+                    },
+                },
+                detectRetina: true,
+            }"
+        />
     </div>
 </template>
