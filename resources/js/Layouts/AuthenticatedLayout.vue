@@ -106,13 +106,8 @@ const showingNavigationDropdown = ref(false);
             >
                 <div id="drawer-navigation-label">
                     <img
-                        class="block w-auto text-gray-800 fill-current dark:hidden h-9 dark:text-gray-200"
-                        src="/images/Logo-Color.png"
-                        alt="TM ONE"
-                    />
-                    <img
-                        class="hidden w-auto text-gray-800 fill-current dark:block h-9 dark:text-gray-200"
-                        src="/images/Logo-White.png"
+                        class="w-auto rounded-lg bg-ultramarine"
+                        src="/images/Wording-02-No-Logo.png"
                         alt="TM ONE"
                     />
                 </div>
