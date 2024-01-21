@@ -61,13 +61,13 @@ const particlesLoaded = async (container) => {
                 },
                 particles: {
                     color: {
-                        value: '#1800E7',
+                        value: '#FF5E00',
                     },
                     links: {
-                        color: '#1800E7',
+                        color: '#FF5E00',
                         distance: 150,
                         enable: true,
-                        opacity: 0.2,
+                        opacity: 1,
                         width: 1,
                     },
                     collisions: {
@@ -86,7 +86,7 @@ const particlesLoaded = async (container) => {
                             enable: true,
                             area: 800,
                         },
-                        value: 80,
+                        value: 150,
                     },
                     opacity: {
                         value: 0.2,
