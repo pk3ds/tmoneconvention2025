@@ -98,7 +98,7 @@ onMounted(() => {
                                     'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
                                         route().current('attire'),
                                 }"
-                                >Attire</Link
+                                >Dress Code</Link
                             >
                         </li>
                     </ul>

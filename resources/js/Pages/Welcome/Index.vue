@@ -15,7 +15,7 @@ import { Head, Link } from "@inertiajs/vue3";
                         alt="TM ONE CONVENTION 2024"
                     />
                     <h1
-                        class="text-2xl font-bold tracking-tight text-white sm:text-4xl"
+                        class="my-6 text-2xl font-bold tracking-tight text-white sm:text-4xl"
                     >
                         Royale Chulan Seremban
                         <br />
@@ -23,13 +23,13 @@ import { Head, Link } from "@inertiajs/vue3";
                             29<sup>th</sup> - 30<sup>th</sup> January 2024
                         </span>
                     </h1>
-                    <p class="my-6 text-lg leading-8 text-gray-300">
+                    <!-- <p class="my-6 text-lg leading-8 text-gray-300">
                         "See you at the intersection of laughter and memories!"
-                    </p>
+                    </p> -->
 
                     <Countdown
                         class=""
-                        deadlineISO="2024-01-28 09:00:00"
+                        deadlineISO="2024-01-29 07:00:00"
                         mainColor="#FFF"
                         labelColor="#FFF"
                     />

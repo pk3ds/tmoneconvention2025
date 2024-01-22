@@ -217,7 +217,7 @@
                                     <h2
                                         class="text-2xl leading-8 tracking-tight text-gray-900 dark:text-white"
                                     >
-                                        Check-out, Lunch & Dhuhr Prayer
+                                        Check-out, Lunch & Zuhur Prayer
                                     </h2>
                                 </div>
                             </div>

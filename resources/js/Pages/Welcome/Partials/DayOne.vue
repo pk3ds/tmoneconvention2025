@@ -168,7 +168,7 @@
                                     <h2
                                         class="text-2xl leading-8 tracking-tight text-gray-900 dark:text-white"
                                     >
-                                        Lunch, Dhuhr Prayer & Check-in
+                                        Lunch, Zuhur Prayer & Check-in
                                     </h2>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                                     <h2
                                         class="text-2xl leading-8 tracking-tight text-gray-900 dark:text-white"
                                     >
-                                        Tea Break & Asr Prayer
+                                        Tea Break & Asar Prayer
                                     </h2>
                                 </div>
                             </div>
