@@ -106,7 +106,7 @@ const showingNavigationDropdown = ref(false);
                 <div id="drawer-navigation-label">
                     <img
                         class="w-auto rounded-lg bg-ultramarine"
-                        src="/images/Wording-02-No-Logo.png"
+                        src="/images/Wording-01.png"
                         alt="TM ONE"
                     />
                 </div>
