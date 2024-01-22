@@ -1,24 +1,6 @@
 <script setup>
 import SiteLayout from "@/Layouts/SiteLayout.vue";
 import { Head } from "@inertiajs/vue3";
-
-const posts = [
-    {
-        id: 1,
-        title: "Day 1 - YNIN Tshirt + Team Dress code",
-        imageUrl: "/images/Shirt-YNIN-White.png",
-    },
-    {
-        id: 2,
-        title: "Boost your conversion rate",
-        imageUrl: "/images/Shirt-YNIN-Navy.png",
-    },
-    {
-        id: 3,
-        title: "Day 2 - TM One T-shirt",
-        imageUrl: "/images/Shirt-TM-One.png",
-    },
-];
 </script>
 
 <template>
@@ -42,14 +24,14 @@ const posts = [
                         </p>
                     </div>
                     <div
-                        class="grid max-w-2xl grid-cols-1 gap-8 mx-auto mt-8 auto-rows-fr lg:mx-0 lg:max-w-none lg:grid-cols-3"
+                        class="grid max-w-2xl grid-cols-1 gap-8 mx-auto mt-8 auto-rows-fr lg:mx-0 lg:max-w-none lg:grid-cols-2"
                     >
                         <article
                             class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer dark:bg-navy-blue bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
                         >
                             <img
-                                src="/images/Shirt-YNIN-White.png"
-                                alt="YNIN White Shirt"
+                                src="/images/Attire-01.png"
+                                alt="Attire Day 1"
                                 class="absolute inset-0 object-cover w-full h-full -z-10"
                             />
                             <div
@@ -86,46 +68,8 @@ const posts = [
                             class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer dark:bg-navy-blue bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
                         >
                             <img
-                                src="/images/Shirt-YNIN-Navy.png"
-                                alt="YNIN Navy Shirt"
-                                class="absolute inset-0 object-cover w-full h-full -z-10"
-                            />
-                            <div
-                                class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"
-                            />
-                            <div
-                                class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"
-                            />
-                            <div
-                                class="flex flex-wrap items-center overflow-hidden text-sm leading-6 text-gray-300 gap-y-1"
-                            >
-                                <div class="flex items-center -ml-4 gap-x-4">
-                                    <svg
-                                        viewBox="0 0 2 2"
-                                        class="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50"
-                                    >
-                                        <circle cx="1" cy="1" r="1" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <h3
-                                class="mt-3 text-lg font-semibold leading-6 text-white"
-                            >
-                                <span>
-                                    <span class="absolute inset-0" />
-                                    Day 1<br />
-                                    YNIN T-shirt<br />
-                                    Team Dress code
-                                </span>
-                            </h3>
-                        </article>
-
-                        <article
-                            class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer dark:bg-navy-blue bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
-                        >
-                            <img
-                                src="/images/Shirt-TM-One.png"
-                                alt="TM One Shirt"
+                                src="/images/Attire-02.png"
+                                alt="Attire Day 2"
                                 class="absolute inset-0 object-cover w-full h-full -z-10"
                             />
                             <div
@@ -152,8 +96,9 @@ const posts = [
                                 <span>
                                     <span class="absolute inset-0" />
                                     Day 2<br />
+                                    Jacket <br />
                                     TM One T-shirt <br />
-                                    Jacket + Hijab (Blue/ Navy)
+                                    Hijab (Blue/ Navy)
                                 </span>
                             </h3>
                         </article>
