@@ -1,45 +1,114 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import Hero from "./Partials/Hero.vue";
+import { initFlowbite } from "flowbite";
+import { onMounted } from "vue";
+
+onMounted(() => {
+    initFlowbite();
+});
 </script>
 
 <template>
     <Head title="TM One Convention 2024" />
     <div class="min-h-screen bg-tmone">
-        <header class="bg-white">
-            <nav class="px-6 mx-auto max-w-7xl lg:px-8" aria-label="Top">
-                <!-- FIXME justify between when enabling login -->
-                <div class="flex items-center justify-center w-full py-3">
-                    <div class="flex items-center">
-                        <Link :href="route('/')">
-                            <span class="sr-only">TM ONE</span>
-                            <img
-                                class="w-auto h-10"
-                                src="/images/Logo-Color.png"
-                                alt="TM ONE"
+        <nav
+            class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 start-0"
+        >
+            <div
+                class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
+            >
+                <Link
+                    href="/"
+                    class="flex items-center space-x-3 rtl:space-x-reverse"
+                >
+                    <img
+                        src="/images/Logo-Color.png"
+                        class="h-8"
+                        alt="TM One"
+                    />
+                </Link>
+                <div
+                    class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
+                >
+                    <!-- FIXME enable login button -->
+                    <!-- <button
+                        type="button"
+                        class="px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-ultramarine hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-ultramarine dark:focus:ring-blue-800"
+                    >
+                        Get started
+                    </button> -->
+                    <button
+                        data-collapse-toggle="navbar-sticky"
+                        type="button"
+                        class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                        aria-controls="navbar-sticky"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Open main menu</span>
+                        <svg
+                            class="w-5 h-5"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 17 14"
+                        >
+                            <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15"
                             />
-                        </Link>
-                    </div>
-                    <!-- FIXME enable login -->
-                    <!-- <div class="ml-10 space-x-4">
-                        <Link
-                            v-if="$page.props.auth.user"
-                            :href="route('dashboard')"
-                            class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md bg-ultramarine hover:bg-cobalt-blue"
-                            >Dashboard</Link
-                        >
-                        <Link
-                            v-else
-                            :href="route('login')"
-                            class="inline-block px-4 py-2 text-base font-medium text-white border border-transparent rounded-md bg-ultramarine hover:bg-cobalt-blue"
-                            >Login</Link
-                        >
-                    </div> -->
+                        </svg>
+                    </button>
                 </div>
-            </nav>
-        </header>
+                <div
+                    class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                    id="navbar-sticky"
+                >
+                    <ul
+                        class="flex flex-col p-4 mt-4 font-medium text-gray-900 border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white"
+                    >
+                        <li>
+                            <Link
+                                href="#"
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
+                                :class="{
+                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
+                                        route().current('/'),
+                                }"
+                                >Home</Link
+                            >
+                        </li>
+                        <li>
+                            <Link
+                                href="#"
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
+                                :class="{
+                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
+                                        route().current('/programme'),
+                                }"
+                                >Programme</Link
+                            >
+                        </li>
+                        <li>
+                            <Link
+                                href="#"
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
+                                :class="{
+                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
+                                        route().current('/attire'),
+                                }"
+                                >Attire</Link
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <div class="relative z-10 overflow-hidden isolate" id="venue">
+        <div class="relative z-10 mt-8 overflow-hidden isolate" id="venue">
             <Hero />
         </div>
     </div>
