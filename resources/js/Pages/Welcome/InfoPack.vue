@@ -1,10 +1,12 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import Hero from "./Partials/Hero.vue";
+import Attire from "./Partials/Attire.vue";
+import DayOne from "./Partials/DayOne.vue";
+import DayTwo from "./Partials/DayTwo.vue";
 </script>
 
 <template>
-    <Head title="TM One Convention 2024" />
+    <Head title="Info Pack - TM One Convention 2024" />
     <div class="min-h-screen bg-tmone">
         <header class="bg-white">
             <nav class="px-6 mx-auto max-w-7xl lg:px-8" aria-label="Top">
@@ -39,8 +41,16 @@ import Hero from "./Partials/Hero.vue";
             </nav>
         </header>
 
-        <div class="relative z-10 overflow-hidden isolate" id="venue">
-            <Hero />
+        <div class="relative z-10 py-12" id="programme">
+            <DayOne />
+        </div>
+
+        <div class="relative z-10 pb-12">
+            <DayTwo />
+        </div>
+
+        <div class="relative z-10 pb-12" id="attire">
+            <Attire />
         </div>
     </div>
 

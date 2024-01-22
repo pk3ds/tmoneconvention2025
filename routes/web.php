@@ -19,12 +19,23 @@ Route::get('/', function () {
     return Inertia::render('Welcome/Index', [
         'event' => [
             'card' => 'player',
-            'title' => 'Welcome',
+            'title' => 'TM One Convention 2024',
             'image' => '/images/Banner-01.jpg',
             'description' => 'TM ONE Convention 2024',
         ]
     ]);
 })->name('/');
+
+Route::get('/info-pack', function () {
+    return Inertia::render('Welcome/InfoPack', [
+        'event' => [
+            'card' => 'player',
+            'title' => 'Info Pack',
+            'image' => '/images/Banner-01.jpg',
+            'description' => 'TM ONE Convention 2024 Info Pack',
+        ]
+    ]);
+})->name('info-pack');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
