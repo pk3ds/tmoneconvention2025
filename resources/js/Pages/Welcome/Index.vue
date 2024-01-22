@@ -1,121 +1,53 @@
 <script setup>
+import SiteLayout from "@/Layouts/SiteLayout.vue";
+import { Countdown } from "vue3-flip-countdown";
 import { Head, Link } from "@inertiajs/vue3";
-import Hero from "./Partials/Hero.vue";
-import { initFlowbite } from "flowbite";
-import { onMounted } from "vue";
-
-onMounted(() => {
-    initFlowbite();
-});
 </script>
 
 <template>
     <Head title="TM One Convention 2024" />
-    <div class="min-h-screen bg-tmone">
-        <nav
-            class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 start-0"
-        >
-            <div
-                class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
-            >
-                <Link
-                    href="/"
-                    class="flex items-center space-x-3 rtl:space-x-reverse"
-                >
+    <SiteLayout>
+        <div class="relative z-10 overflow-hidden isolate">
+            <div class="max-w-2xl py-12 mx-auto">
+                <div class="text-center">
                     <img
-                        src="/images/Logo-Color.png"
-                        class="h-8"
-                        alt="TM One"
+                        src="/images/Wording-01.png"
+                        alt="TM ONE CONVENTION 2024"
                     />
-                </Link>
-                <div
-                    class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
-                >
-                    <!-- FIXME enable login button -->
-                    <!-- <button
-                        type="button"
-                        class="px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-ultramarine hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-ultramarine dark:focus:ring-blue-800"
+                    <h1
+                        class="text-2xl font-bold tracking-tight text-white sm:text-4xl"
                     >
-                        Get started
-                    </button> -->
-                    <button
-                        data-collapse-toggle="navbar-sticky"
-                        type="button"
-                        class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                        aria-controls="navbar-sticky"
-                        aria-expanded="false"
-                    >
-                        <span class="sr-only">Open main menu</span>
-                        <svg
-                            class="w-5 h-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 17 14"
+                        Royale Chulan Seremban
+                        <br />
+                        <span class="text-lg text-white sm:text-2xl">
+                            29<sup>th</sup> - 30<sup>th</sup> January 2024
+                        </span>
+                    </h1>
+                    <p class="my-6 text-lg leading-8 text-gray-300">
+                        "See you at the intersection of laughter and memories!"
+                    </p>
+
+                    <Countdown
+                        class=""
+                        deadlineISO="2024-01-28 09:00:00"
+                        mainColor="#FFF"
+                        labelColor="#FFF"
+                    />
+                    <!-- FIXME enable links if required -->
+                    <div class="flex items-center justify-center mt-10 gap-x-6">
+                        <Link
+                            :href="route('programme')"
+                            class="rounded-md bg-accent-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-accent-orange/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-orange/80"
+                            >Learn more</Link
                         >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M1 1h15M1 7h15M1 13h15"
-                            />
-                        </svg>
-                    </button>
-                </div>
-                <div
-                    class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-                    id="navbar-sticky"
-                >
-                    <ul
-                        class="flex flex-col p-4 mt-4 font-medium text-gray-900 border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white"
-                    >
-                        <li>
-                            <Link
-                                href="#"
-                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
-                                :class="{
-                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
-                                        route().current('/'),
-                                }"
-                                >Home</Link
-                            >
-                        </li>
-                        <li>
-                            <Link
-                                href="#"
-                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
-                                :class="{
-                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
-                                        route().current('/programme'),
-                                }"
-                                >Programme</Link
-                            >
-                        </li>
-                        <li>
-                            <Link
-                                href="#"
-                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
-                                :class="{
-                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
-                                        route().current('/attire'),
-                                }"
-                                >Attire</Link
-                            >
-                        </li>
-                    </ul>
+                        <!-- <Link
+                    :href="route('programme')"
+                    class="text-sm font-semibold leading-6 text-white"
+                    >Learn more <span aria-hidden="true">→</span></Link
+                > -->
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <div class="relative z-10 mt-8 overflow-hidden isolate" id="venue">
-            <Hero />
         </div>
-    </div>
-
-    <img
-        class="fixed bottom-0 left-0 z-0 max-w-48"
-        src="/images/Chevron-01.png"
-        alt="TM ONE"
-    />
+    </SiteLayout>
 </template>

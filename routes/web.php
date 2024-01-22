@@ -26,16 +26,27 @@ Route::get('/', function () {
     ]);
 })->name('/');
 
-Route::get('/info-pack', function () {
-    return Inertia::render('Welcome/InfoPack', [
+Route::get('/programme', function () {
+    return Inertia::render('Welcome/Programme', [
         'event' => [
             'card' => 'player',
-            'title' => 'Info Pack',
+            'title' => 'Programme',
             'image' => '/images/Banner-01.jpg',
-            'description' => 'TM ONE Convention 2024 Info Pack',
+            'description' => 'TM ONE Convention 2024 Programme',
         ]
     ]);
-})->name('info-pack');
+})->name('programme');
+
+Route::get('/attire', function () {
+    return Inertia::render('Welcome/Attire', [
+        'event' => [
+            'card' => 'player',
+            'title' => 'Attire',
+            'image' => '/images/Banner-01.jpg',
+            'description' => 'TM ONE Convention 2024 Attire',
+        ]
+    ]);
+})->name('attire');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
