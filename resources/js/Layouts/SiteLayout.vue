@@ -1,31 +1,50 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 onMounted(() => {
     initFlowbite();
 });
+
+let showWhiteNavbar = ref(false);
+
+document.addEventListener("scroll", function () {
+    let topPosition = document.body.getBoundingClientRect().top;
+
+    if (topPosition < -50) {
+        showWhiteNavbar.value = true;
+    } else {
+        showWhiteNavbar.value = false;
+    }
+});
 </script>
 
 <template>
-    <div class="min-h-screen bg-tmone">
+    <div class="min-h-screen">
         <nav
-            class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 start-0"
+            class="fixed top-0 z-20 w-full start-0"
+            :class="{
+                'bg-white transition duration-300 ease-in': showWhiteNavbar,
+            }"
         >
             <div
                 class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
             >
-                <Link
-                    href="/"
-                    class="flex items-center space-x-3 rtl:space-x-reverse"
-                >
+                <span class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img
-                        src="/images/Logo-Color.png"
+                        v-if="showWhiteNavbar"
+                        src="/images/Logo-Wording-Color.png"
                         class="h-8"
                         alt="TM One"
                     />
-                </Link>
+                    <img
+                        v-if="!showWhiteNavbar"
+                        src="/images/Logo-Wording-White.png"
+                        class="h-8"
+                        alt="TM One"
+                    />
+                </span>
                 <div
                     class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
                 >
@@ -66,38 +85,30 @@ onMounted(() => {
                     id="navbar-sticky"
                 >
                     <ul
-                        class="flex flex-col p-4 mt-4 font-medium text-gray-900 border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white"
+                        class="flex flex-col p-4 mt-4 font-medium uppercase border border-gray-100 rounded-lg font-title text-cobalt-blue md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent"
+                        :class="{ 'md:text-white': !showWhiteNavbar }"
                     >
                         <li>
                             <Link
-                                href="/"
-                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
-                                :class="{
-                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
-                                        route().current('/'),
-                                }"
-                                >Home</Link
+                                href="#main"
+                                v-smooth-scroll
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent hover:text-accent-orange md:p-0"
+                                >Main</Link
                             >
                         </li>
                         <li>
                             <Link
-                                :href="route('programme')"
-                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
-                                :class="{
-                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
-                                        route().current('programme'),
-                                }"
-                                >Programme</Link
+                                href="#agenda"
+                                v-smooth-scroll
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent hover:text-accent-orange md:p-0"
+                                >Agenda</Link
                             >
                         </li>
                         <li>
                             <Link
-                                :href="route('attire')"
-                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ultramarine md:p-0"
-                                :class="{
-                                    'bg-ultramarine md:text-ultramarine text-white hover:text-gray-900':
-                                        route().current('attire'),
-                                }"
+                                href="#dress-code"
+                                v-smooth-scroll
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent hover:text-accent-orange md:p-0"
                                 >Dress Code</Link
                             >
                         </li>
@@ -106,7 +117,7 @@ onMounted(() => {
             </div>
         </nav>
 
-        <div class="mt-8">
+        <div>
             <slot />
         </div>
     </div>
