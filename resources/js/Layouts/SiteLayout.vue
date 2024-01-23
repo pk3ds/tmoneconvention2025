@@ -49,12 +49,13 @@ document.addEventListener("scroll", function () {
                     class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
                 >
                     <!-- FIXME enable login button -->
-                    <!-- <button
+                    <Link
+                        :href="route('login')"
                         type="button"
-                        class="px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-ultramarine hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-ultramarine dark:focus:ring-blue-800"
+                        class="flex px-4 py-3 text-sm font-medium text-center text-white uppercase font-title bg-accent-orange hover:bg-cobalt-blue focus:ring-4 focus:outline-none focus:ring-blue-300"
                     >
-                        Get started
-                    </button> -->
+                        Login
+                    </Link>
                     <button
                         data-collapse-toggle="navbar-sticky"
                         type="button"
