@@ -13,15 +13,15 @@ import { Countdown } from "vue3-flip-countdown";
         <div class="max-w-2xl py-12 mx-auto">
             <div class="text-center">
                 <h1
-                    class="text-2xl tracking-tight text-gray-900 uppercase font-title sm:text-4xl"
+                    class="my-6 text-2xl tracking-tight text-gray-900 uppercase font-title sm:text-4xl"
                 >
                     TM One Convention is back
                 </h1>
-                <p class="my-6 text-lg leading-8 text-gray-500">
+                <!-- <p class="my-6 text-lg leading-8 text-gray-500">
                     Be inspired by world class industry leaders and discover
                     what it takes to innovate and create human centred
                     technology to enable your next digital transformation.
-                </p>
+                </p> -->
                 <div class="flex items-center justify-center gap-x-6">
                     <Countdown
                         deadlineISO="2024-01-29 07:00:00"
