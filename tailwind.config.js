@@ -16,7 +16,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Roboto-Regular', ...defaultTheme.fontFamily.sans],
                 title: ['HKGroteskWide-Black'],
             },
         },
