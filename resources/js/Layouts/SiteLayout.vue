@@ -105,14 +105,14 @@ document.addEventListener("scroll", function () {
                                 >Countdown</Link
                             >
                         </li>
-                        <li>
+                        <!-- <li>
                             <Link
                                 href="#agenda"
                                 v-smooth-scroll
                                 class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent hover:text-accent-orange md:p-0"
                                 >Agenda</Link
                             >
-                        </li>
+                        </li> -->
                         <li>
                             <Link
                                 href="#dress-code"
