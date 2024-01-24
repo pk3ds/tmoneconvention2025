@@ -16,7 +16,7 @@ import { Head } from "@inertiajs/vue3";
             <Hero />
         </div>
 
-        <div class="relative z-10">
+        <div class="relative z-10" id="countdown">
             <Countdown />
         </div>
 
@@ -24,13 +24,13 @@ import { Head } from "@inertiajs/vue3";
             <Agenda />
         </div> -->
 
-        <div class="relative z-10 py-12" id="agenda">
+        <!-- <div class="relative z-10 py-12" id="agenda">
             <DayOne />
         </div>
 
         <div class="relative z-10 pb-12">
             <DayTwo />
-        </div>
+        </div> -->
 
         <div class="relative z-10 py-12" id="dress-code">
             <Attire />
