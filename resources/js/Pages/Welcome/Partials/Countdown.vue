@@ -17,7 +17,7 @@ import { Countdown } from "vue3-flip-countdown";
                 >
                     TM One Convention is back
                 </h1>
-                <p class="my-6 text-lg leading-8 text-gray-600">
+                <p class="my-6 text-lg leading-8 text-gray-500">
                     Be inspired by world class industry leaders and discover
                     what it takes to innovate and create human centred
                     technology to enable your next digital transformation.
@@ -27,6 +27,8 @@ import { Countdown } from "vue3-flip-countdown";
                         deadlineISO="2024-01-29 07:00:00"
                         mainColor="#FF5E00"
                         labelColor="#FF5E00"
+                        mainFlipBackgroundColor="#FFF"
+                        secondFlipBackgroundColor="#FFF"
                     />
                 </div>
             </div>

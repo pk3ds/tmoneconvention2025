@@ -1,18 +1,14 @@
 <script setup></script>
 <template>
-    <div
-        class="max-w-screen-xl py-8 mx-auto bg-gray-50 dark:bg-gray-800 rounded-2xl"
-    >
+    <div class="max-w-screen-xl py-8 mx-auto">
         <div class="px-6 mx-auto max-w-7xl lg:px-8">
             <div class="max-w-2xl mx-auto text-center">
                 <h2
-                    class="text-3xl font-bold tracking-tight text-ultramarine dark:text-light-blue sm:text-4xl"
+                    class="text-3xl font-bold tracking-tight uppercase text-cobalt-blue font-title sm:text-4xl"
                 >
                     Dress Code
                 </h2>
-                <p
-                    class="mt-2 text-lg leading-8 text-gray-500 dark:text-gray-400"
-                >
+                <p class="mt-2 text-lg leading-8 text-gray-500">
                     Please adhere to our attire guidelines.
                 </p>
             </div>
@@ -20,7 +16,7 @@
                 class="grid max-w-2xl grid-cols-1 gap-8 mx-auto mt-8 auto-rows-fr lg:mx-0 lg:max-w-none lg:grid-cols-2"
             >
                 <article
-                    class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer dark:bg-navy-blue bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
+                    class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
                 >
                     <img
                         src="/images/Attire-01.png"
@@ -56,7 +52,7 @@
                 </article>
 
                 <article
-                    class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer dark:bg-navy-blue bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
+                    class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
                 >
                     <img
                         src="/images/Attire-02.png"
