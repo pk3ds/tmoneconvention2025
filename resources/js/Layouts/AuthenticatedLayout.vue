@@ -1,13 +1,11 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
 
 onMounted(() => {
     initFlowbite();
 });
-
-const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
@@ -104,11 +102,17 @@ const showingNavigationDropdown = ref(false);
                 aria-labelledby="drawer-navigation-label"
             >
                 <div id="drawer-navigation-label">
-                    <img
-                        class="w-auto rounded-lg bg-ultramarine"
-                        src="/images/Wording-01.png"
-                        alt="TM ONE"
-                    />
+                    <Link
+                        href="/"
+                        data-drawer-hide="drawer-navigation"
+                        aria-controls="drawer-navigation"
+                    >
+                        <img
+                            class="w-auto rounded-lg bg-ultramarine"
+                            src="/images/Wording-01.png"
+                            alt="TM ONE"
+                        />
+                    </Link>
                 </div>
                 <button
                     type="button"
@@ -211,10 +215,10 @@ const showingNavigationDropdown = ref(false);
                         </li> -->
                         <li>
                             <Link
-                                :href="route('/')"
+                                :href="route('users.index')"
                                 :class="{
                                     'bg-gray-100 dark:bg-gray-600':
-                                        route().current('/'),
+                                        route().current('users.index'),
                                 }"
                                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
                             >
