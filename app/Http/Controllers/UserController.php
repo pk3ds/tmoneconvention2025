@@ -87,7 +87,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return Inertia::render('Users/Edit', [
+            'roles' => $roles,
+            'user' => $user->load('roles'),
+        ]);
     }
 
     /**
@@ -95,7 +99,28 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class . ',staff_id,' . $user->id,
+            'phone_no' => 'required|string|max:255|unique:' . User::class . ',phone_no,' . $user->id,
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class . ',email,' . $user->id,
+            'role' => 'required|exists:roles,name',
+            'password' => ['nullable', 'confirmed', Password::defaults()],
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'staff_id' => $request->staff_id,
+            'phone_no' => $request->phone_no,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : Hash::make('password'),
+        ]);
+
+        if ($request->role) {
+            $user->syncRoles($request->role);
+        }
+
+        return redirect(route('users.index'))->with('success', 'User ' . $user->name . ' updated successfully');
     }
 
     /**

@@ -215,7 +215,12 @@ const search = () => {
                                                 class="py-4 pl-3 pr-4 text-sm font-medium text-right sm:pr-0"
                                             >
                                                 <Link
-                                                    href="#"
+                                                    :href="
+                                                        route(
+                                                            'users.edit',
+                                                            user
+                                                        )
+                                                    "
                                                     class="text-cobalt-blue hover:text-indigo-900"
                                                     >Edit<span class="sr-only"
                                                         >, {{ user.name }}</span
