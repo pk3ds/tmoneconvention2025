@@ -83,7 +83,11 @@ const search = () => {
                                     </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                    <PrimaryButton> Add user </PrimaryButton>
+                                    <Link :href="route('users.create')">
+                                        <PrimaryButton>
+                                            Add user
+                                        </PrimaryButton>
+                                    </Link>
                                 </div>
                             </div>
                             <div class="mt-8 -mx-4 sm:-mx-0">

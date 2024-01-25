@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -34,7 +39,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return Inertia::render('Users/Create', [
+            'roles' => $roles,
+        ]);
     }
 
     /**
@@ -42,7 +50,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class,
+            'phone_no' => 'required|string|max:255|unique:' . User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'role' => 'required|exists:roles,name',
+            'password' => ['nullable', 'confirmed', Password::defaults()],
+        ]);
+
+        DB::beginTransaction();
+        $user = User::create([
+            'name' => $request->name,
+            'staff_id' => $request->staff_id,
+            'phone_no' => $request->phone_no,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : Hash::make('password'),
+        ])->assignRole($request->role);
+
+        event(new Registered($user));
+
+        DB::commit();
+        return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 
     /**
