@@ -60,7 +60,7 @@ const stats = [
                                 at a glance
                             </h2>
                             <p
-                                class="p-4 mt-2 text-3xl font-bold tracking-tight text-cobalt-blue bg-grey font-title sm:text-4xl"
+                                class="p-4 mt-2 text-3xl font-bold tracking-wide text-cobalt-blue bg-grey font-title sm:text-4xl"
                             >
                                 TM One Convention 2024
                             </p>
