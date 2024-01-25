@@ -13,7 +13,7 @@ onMounted(() => {
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <div
                 v-if="$page.props.flash.success"
-                id="sticky-banner"
+                id="sticky-banner-success"
                 tabindex="-1"
                 class="fixed top-0 z-50 flex justify-between w-full p-5 bg-green-400 border-b border-gray-200 start-0"
             >
@@ -22,7 +22,7 @@ onMounted(() => {
                         class="flex items-center text-sm font-normal text-gray-900"
                     >
                         <span
-                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 bg-gray-200 rounded-full me-3 dark:bg-gray-600"
+                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 rounded-full me-3"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ onMounted(() => {
                 </div>
                 <div class="flex items-center">
                     <button
-                        data-dismiss-target="#sticky-banner"
+                        data-dismiss-target="#sticky-banner-success"
                         type="button"
                         class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-900 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5"
                     >
@@ -65,7 +65,7 @@ onMounted(() => {
 
             <div
                 v-if="$page.props.flash.warning"
-                id="sticky-banner"
+                id="sticky-banner-warning"
                 tabindex="-1"
                 class="fixed top-0 z-50 flex justify-between w-full p-5 bg-yellow-300 border-b border-gray-200 start-0"
             >
@@ -74,7 +74,7 @@ onMounted(() => {
                         class="flex items-center text-sm font-normal text-gray-900"
                     >
                         <span
-                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 bg-gray-200 rounded-full me-3 dark:bg-gray-600"
+                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 rounded-full me-3"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ onMounted(() => {
                 </div>
                 <div class="flex items-center">
                     <button
-                        data-dismiss-target="#sticky-banner"
+                        data-dismiss-target="#sticky-banner-warning"
                         type="button"
                         class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-900 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5"
                     >
@@ -115,7 +115,7 @@ onMounted(() => {
 
             <div
                 v-if="$page.props.flash.error"
-                id="sticky-banner"
+                id="sticky-banner-error"
                 tabindex="-1"
                 class="fixed top-0 z-50 flex justify-between w-full p-5 bg-red-500 border-b border-gray-200 start-0"
             >
@@ -124,14 +124,14 @@ onMounted(() => {
                         class="flex items-center text-sm font-normal text-gray-900"
                     >
                         <span
-                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 bg-gray-200 rounded-full me-3 dark:bg-gray-600"
+                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 rounded-full me-3"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 512 512"
                             >
                                 <path
-                                    d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
                                 />
                             </svg>
                         </span>
@@ -140,7 +140,7 @@ onMounted(() => {
                 </div>
                 <div class="flex items-center">
                     <button
-                        data-dismiss-target="#sticky-banner"
+                        data-dismiss-target="#sticky-banner-error"
                         type="button"
                         class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-900 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5"
                     >
@@ -319,7 +319,11 @@ onMounted(() => {
                                 <span class="ms-3">Dashboard</span>
                             </Link>
                         </li>
-                        <li>
+                        <li
+                            v-if="
+                                $page.props.permissions.includes('view users')
+                            "
+                        >
                             <Link
                                 :href="route('users.index')"
                                 :class="{

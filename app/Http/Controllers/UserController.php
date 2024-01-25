@@ -71,7 +71,7 @@ class UserController extends Controller
         event(new Registered($user));
 
         DB::commit();
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+        return redirect()->route('users.index')->with('success', 'User ' . $user->name . ' created successfully');
     }
 
     /**
@@ -128,6 +128,20 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')->with('warning', 'User ' . $user->name . ' deleted successfully');
+    }
+
+    /**
+     * Restore the specified resource from deleted state.
+     */
+    public function restore($id)
+    {
+        $user = User::withTrashed()->find($id);
+
+        $user->restore();
+
+        return redirect(route('users.index'))->with('success', 'User ' . $user->name . ' restored successfully');
     }
 }
