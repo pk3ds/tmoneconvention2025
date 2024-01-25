@@ -20,13 +20,6 @@
     background-size: cover;
 }
 
-.bg-chevron {
-    background-image: url('/assets/images/BG-Chevron-01.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .no-animation__card {
     font-size: 5rem !important;
 }
