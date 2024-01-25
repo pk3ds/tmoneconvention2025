@@ -1,12 +1,13 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
+import { Head, Link } from "@inertiajs/vue3";
 
 const stats = [
     { id: 1, name: "Passport stamps", value: "8" },
     { id: 2, name: "Points collected", value: "12,345" },
     { id: 3, name: "Group name", value: "RedBull" },
-    // { id: 4, name: "Room Number", value: "13-03" },
+    { id: 4, name: "Room Number", value: "13-03" },
 ];
 </script>
 
@@ -14,7 +15,18 @@ const stats = [
     <Head title="Dashboard" />
 
     <AuthenticatedLayout>
-        <div class="py-12">
+        <template #breadcrumb>
+            <BreadcrumbItem>
+                <Link
+                    href="#"
+                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                >
+                    Dashboard
+                </Link>
+            </BreadcrumbItem>
+        </template>
+
+        <div class="py-4">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div
                     class="relative py-24 overflow-hidden bg-gray-900 sm:rounded-lg isolate sm:py-32"

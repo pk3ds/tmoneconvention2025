@@ -1,10 +1,11 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     roles: Object,
@@ -26,7 +27,26 @@ const form = useForm({
     <Head title="Edit User" />
 
     <AuthenticatedLayout>
-        <div class="py-12">
+        <template #breadcrumb>
+            <BreadcrumbItem>
+                <Link
+                    :href="route('users.index')"
+                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                >
+                    Users
+                </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+                <Link
+                    href="#"
+                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                >
+                    Edit
+                </Link>
+            </BreadcrumbItem>
+        </template>
+
+        <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
                 <div
                     class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"

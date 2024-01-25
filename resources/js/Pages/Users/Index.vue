@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
 
@@ -32,7 +33,18 @@ const restore = (user) => {
     <Head title="Users" />
 
     <AuthenticatedLayout>
-        <div class="py-12">
+        <template #breadcrumb>
+            <BreadcrumbItem>
+                <Link
+                    href="#"
+                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                >
+                    Users
+                </Link>
+            </BreadcrumbItem>
+        </template>
+
+        <div class="py-4">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <form class="mb-6" @submit.prevent="search">
                     <label
