@@ -278,7 +278,10 @@ const formatDate = (date) => {
                                                 {{ activity.description }}
                                             </h3>
                                             <div
-                                                v-if="activity.properties"
+                                                v-if="
+                                                    activity.properties
+                                                        .attributes
+                                                "
                                                 class="flex justify-end"
                                             >
                                                 <table
