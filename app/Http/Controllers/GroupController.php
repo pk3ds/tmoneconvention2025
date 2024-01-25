@@ -86,7 +86,7 @@ class GroupController extends Controller
 
         return Inertia::render('Groups/Edit', [
             'group' => $group->load('users'),
-            'activities' => $activities,
+            'activities' => $activities->load('causer'),
         ]);
     }
 
@@ -106,6 +106,42 @@ class GroupController extends Controller
 
         DB::commit();
         return redirect(route('groups.index'))->with('success', 'Group ' . $group->name . ' updated successfully');
+    }
+
+    /**
+     * Update the group points in database.
+     */
+    public function points(Request $request, Group $group)
+    {
+        $validated = $request->validate([
+            'points' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        $initialPoints = $group->points;
+
+        $group->disableLogging();
+
+        $group->update([
+            'points' => $group->points + $request->points,
+        ]);
+
+        $finalPoints = $group->points;
+
+        if ($finalPoints != $initialPoints) {
+            $adjustmentPoints = $finalPoints - $initialPoints;
+            activity()
+                ->causedBy(Auth::user())
+                ->performedOn($group)
+                ->withProperties(['points' => $adjustmentPoints])
+                ->event('points update')
+                ->log('points update');
+        }
+
+        $group->enableLogging();
+
+        DB::commit();
+        return redirect(route('groups.edit', $group))->with('success', 'Points updated successfully');
     }
 
     /**

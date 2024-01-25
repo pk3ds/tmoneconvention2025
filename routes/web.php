@@ -44,6 +44,7 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
     Route::get('/groups/{group}/edit', [GroupController::class, 'edit'])->name('groups.edit');
     Route::patch('/groups/{group}', [GroupController::class, 'update'])->name('groups.update');
+    Route::patch('/groups/{group}/points', [GroupController::class, 'points'])->name('groups.points');
     Route::delete('/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
     Route::put('/groups/{id}', [GroupController::class, 'restore'])->middleware('can:view deleted')->name('groups.restore');
 

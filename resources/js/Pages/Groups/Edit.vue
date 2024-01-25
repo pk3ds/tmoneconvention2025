@@ -6,6 +6,8 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
+import NumberInput from "@/Components/NumberInput.vue";
+import ActivityLog from "@/Components/ActivityLog.vue";
 
 const props = defineProps({
     group: Object,
@@ -14,16 +16,12 @@ const props = defineProps({
 
 const form = useForm({
     name: props.group.name,
+    points: props.group.points,
 });
 
-const formatDate = (date) => {
-    return new Intl.DateTimeFormat("en-my", {
-        dateStyle: "medium",
-        timeStyle: "short",
-        timeZone: "Asia/Kuala_Lumpur",
-        hour12: false,
-    }).format(new Date(date));
-};
+const pointsForm = useForm({
+    points: "",
+});
 </script>
 
 <template>
@@ -93,139 +91,112 @@ const formatDate = (date) => {
                                 />
                             </div>
 
-                            <div class="flex items-center gap-4">
-                                <PrimaryButton :disabled="form.processing"
-                                    >Save</PrimaryButton
+                            <div>
+                                <InputLabel for="points" value="Points" />
+
+                                <NumberInput
+                                    id="points"
+                                    type="text"
+                                    class="block w-full mt-1"
+                                    v-model="form.points"
+                                    readonly
+                                />
+                            </div>
+
+                            <div
+                                class="flex items-center justify-between gap-4"
+                            >
+                                <PrimaryButton :disabled="form.processing">
+                                    Save
+                                </PrimaryButton>
+                                <PrimaryButton
+                                    :disabled="form.processing"
+                                    type="button"
+                                    data-modal-target="points-modal"
+                                    data-modal-toggle="points-modal"
                                 >
+                                    Points
+                                </PrimaryButton>
                             </div>
                         </form>
                     </section>
 
                     <section class="hidden col-span-6 text-right md:block">
-                        <div
-                            id="accordion-flush"
-                            data-accordion="collapse"
-                            data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                            data-inactive-classes="text-gray-500 dark:text-gray-400"
-                        >
-                            <h2 id="accordion-flush-heading-1">
-                                <button
-                                    type="button"
-                                    class="flex items-center justify-end w-full gap-3 py-2 font-medium text-right text-gray-500"
-                                    data-accordion-target="#accordion-flush-body-1"
-                                    aria-expanded="true"
-                                    aria-controls="accordion-flush-body-1"
-                                >
-                                    <span>Activity Log</span>
-                                    <svg
-                                        data-accordion-icon
-                                        class="w-3 h-3 rotate-180 shrink-0"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 10 6"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M9 5 5 1 1 5"
-                                        />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div
-                                id="accordion-flush-body-1"
-                                class="hidden"
-                                aria-labelledby="accordion-flush-heading-1"
-                            >
-                                <div class="py-2">
-                                    <ol
-                                        class="relative mt-6 border-gray-200 border-e"
-                                    >
-                                        <li
-                                            v-for="activity in activities"
-                                            class="mb-10 me-4"
-                                        >
-                                            <div
-                                                class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -end-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
-                                            ></div>
-                                            <time
-                                                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-                                                >{{
-                                                    formatDate(
-                                                        activity.created_at
-                                                    )
-                                                }}</time
-                                            >
-                                            <h3
-                                                class="text-lg font-semibold text-gray-900 capitalize dark:text-white"
-                                            >
-                                                {{ activity.description }}
-                                            </h3>
-                                            <div
-                                                v-if="
-                                                    activity.properties
-                                                        .attributes
-                                                "
-                                                class="flex justify-end"
-                                            >
-                                                <table
-                                                    class="px-2 text-sm text-left text-gray-500"
-                                                >
-                                                    <thead
-                                                        class="text-xs text-gray-700 uppercase bg-gray-50"
-                                                    >
-                                                        <tr>
-                                                            <td
-                                                                class="px-1 py-1"
-                                                            >
-                                                                Key
-                                                            </td>
-                                                            <td
-                                                                class="px-1 py-1"
-                                                            >
-                                                                Value
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr
-                                                            v-for="[
-                                                                key,
-                                                                value,
-                                                            ] in Object.entries(
-                                                                activity
-                                                                    .properties
-                                                                    .attributes
-                                                            )"
-                                                            class="bg-white border-b"
-                                                        >
-                                                            <td
-                                                                scope="col"
-                                                                class="px-1 py-1"
-                                                            >
-                                                                {{ key }}
-                                                            </td>
-                                                            <td
-                                                                scope="col"
-                                                                class="px-1 py-1"
-                                                            >
-                                                                {{ value }}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
+                        <ActivityLog :activities="activities" />
                     </section>
                 </div>
             </div>
         </div>
     </AuthenticatedLayout>
+
+    <div
+        id="points-modal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+        <div class="relative w-full max-w-md max-h-full p-4">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div
+                    class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600"
+                >
+                    <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white"
+                    >
+                        Input Group Points
+                    </h3>
+                    <button
+                        type="button"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="points-modal"
+                    >
+                        <svg
+                            class="w-3 h-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 14"
+                        >
+                            <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                            />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <div class="p-4 md:p-5">
+                    <form
+                        @submit.prevent="
+                            pointsForm.patch(route('groups.points', group))
+                        "
+                        class="space-y-5"
+                    >
+                        <div>
+                            <label
+                                for="points"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >Points</label
+                            >
+                            <input
+                                type="text"
+                                name="points"
+                                v-model="pointsForm.points"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required
+                            />
+                        </div>
+                        <div class="flex justify-end">
+                            <PrimaryButton data-modal-hide="points-modal">
+                                Update
+                            </PrimaryButton>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
