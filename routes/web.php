@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,7 +22,7 @@ Route::get('/', function () {
             'card' => 'player',
             'title' => 'TM One Convention 2024',
             'image' => '/images/Banner-01.jpg',
-            'description' => 'TM ONE Convention 2024',
+            'description' => 'Innovate The Next',
         ]
     ]);
 })->name('/');
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 
 require __DIR__ . '/auth.php';
