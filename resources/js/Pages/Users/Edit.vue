@@ -149,7 +149,6 @@ const form = useForm({
                                     type="password"
                                     class="block w-full mt-1"
                                     v-model="form.password"
-                                    required
                                 />
 
                                 <InputError
@@ -169,7 +168,6 @@ const form = useForm({
                                     type="password"
                                     class="block w-full mt-1"
                                     v-model="form.password_confirmation"
-                                    required
                                 />
 
                                 <InputError
