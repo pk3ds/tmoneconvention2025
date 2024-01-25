@@ -62,7 +62,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class,
             'phone_no' => 'required|string|max:255|unique:' . User::class,
-            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'email' => 'required|string|email|max:255|unique:' . User::class,
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
@@ -119,7 +119,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class . ',staff_id,' . $user->id,
             'phone_no' => 'required|string|max:255|unique:' . User::class . ',phone_no,' . $user->id,
-            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class . ',email,' . $user->id,
+            'email' => 'required|string|email|max:255|unique:' . User::class . ',email,' . $user->id,
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
