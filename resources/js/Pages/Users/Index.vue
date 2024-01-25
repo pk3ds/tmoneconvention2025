@@ -1,5 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -56,7 +57,7 @@ const search = () => {
                             placeholder="Search users..."
                         />
                         <button
-                            class="text-white absolute end-2.5 bottom-2.5 bg-cobalt-blue hover:bg-ultramarine focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2"
+                            class="text-white font-semibold absolute end-2.5 bottom-2.5 bg-cobalt-blue font-title hover:bg-ultramarine focus:ring-4 focus:outline-none focus:ring-blue-300 tracking-widest rounded-md text-xs uppercase px-4 py-2"
                         >
                             Search
                         </button>
@@ -82,12 +83,7 @@ const search = () => {
                                     </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                    <button
-                                        type="button"
-                                        class="block px-3 py-2 text-sm font-semibold text-center text-white rounded-md shadow-sm bg-cobalt-blue hover:bg-ultramarine focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-blue"
-                                    >
-                                        Add user
-                                    </button>
+                                    <PrimaryButton> Add user </PrimaryButton>
                                 </div>
                             </div>
                             <div class="mt-8 -mx-4 sm:-mx-0">
