@@ -52,7 +52,7 @@ const search = () => {
                             type="search"
                             id="default-search"
                             v-model="form.search"
-                            class="block w-full p-4 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg ps-10 focus:ring-blue-500 focus:border-blue-500"
+                            class="block w-full p-4 text-sm text-gray-900 bg-white border border-gray-300 rounded-none sm:rounded-lg ps-10 focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Search users..."
                         />
                         <button
