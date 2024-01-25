@@ -23,10 +23,5 @@ class UserSeeder extends Seeder
             'name' => 'Committee',
             'email' => 'committee@mail.com',
         ])->assignRole('committee');
-
-        $users = User::factory(198)->create();
-        foreach ($users as $user) {
-            $user->assignRole('user');
-        }
     }
 }
