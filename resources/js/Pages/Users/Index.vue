@@ -240,12 +240,12 @@ const restore = (user) => {
                                                 {{ user.email }}
                                             </td>
                                             <td
-                                                class="px-3 py-4 text-sm text-gray-500"
+                                                class="px-3 py-4 text-sm text-gray-500 capitalize"
                                             >
                                                 {{
-                                                    user.roles
+                                                    user.roles.length > 0
                                                         ? user.roles[0].name
-                                                        : "None"
+                                                        : "none"
                                                 }}
                                             </td>
                                             <td
