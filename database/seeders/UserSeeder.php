@@ -16,11 +16,14 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'staff_id' => 'TM38432',
+            'use_password' => true,
             'email' => 'admin@mail.com',
         ])->assignRole('admin');
 
         User::factory()->create([
             'name' => 'Committee',
+            'staff_id' => 'TM12345',
+            'use_password' => true,
             'email' => 'committee@mail.com',
         ])->assignRole('committee');
     }
