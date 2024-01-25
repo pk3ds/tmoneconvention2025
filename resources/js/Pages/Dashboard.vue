@@ -1,7 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 
 const stats = [
     { id: 1, name: "Passport stamps", value: "8" },
@@ -16,14 +15,19 @@ const stats = [
 
     <AuthenticatedLayout>
         <template #breadcrumb>
-            <BreadcrumbItem>
-                <Link
-                    href="#"
-                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                >
-                    Dashboard
-                </Link>
-            </BreadcrumbItem>
+            <li class="flex">
+                <div class="flex items-center">
+                    <svg
+                        class="flex-shrink-0 w-6 h-full text-gray-100"
+                        viewBox="0 0 24 44"
+                        preserveAspectRatio="none"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                    </svg>
+                </div>
+            </li>
         </template>
 
         <div class="py-4">
@@ -81,17 +85,52 @@ const stats = [
                             class="grid max-w-2xl grid-cols-1 mx-auto mt-16 text-white gap-x-8 gap-y-10 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4"
                         >
                             <div
-                                v-for="stat in stats"
-                                :key="stat.id"
                                 class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
                             >
                                 <dt class="text-sm leading-6">
-                                    {{ stat.name }}
+                                    Passport stamps
                                 </dt>
                                 <dd
-                                    class="order-first text-3xl font-semibold tracking-tight font-title"
+                                    class="text-3xl font-semibold tracking-tight font-title"
                                 >
-                                    {{ stat.value }}
+                                    0
+                                </dd>
+                            </div>
+                            <div
+                                class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
+                            >
+                                <dt class="text-sm leading-6">
+                                    Points collected
+                                </dt>
+                                <dd
+                                    class="text-3xl font-semibold tracking-tight font-title"
+                                >
+                                    {{ $page.props.auth.user.points }}
+                                </dd>
+                            </div>
+                            <div
+                                class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
+                            >
+                                <dt class="text-sm leading-6">Group name</dt>
+                                <dd
+                                    class="text-3xl font-semibold tracking-tight font-title"
+                                >
+                                    {{
+                                        $page.props.auth.user.group?.name ??
+                                        "None"
+                                    }}
+                                </dd>
+                            </div>
+                            <div
+                                class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
+                            >
+                                <dt class="text-sm leading-6">Room number</dt>
+                                <dd
+                                    class="text-3xl font-semibold tracking-tight font-title"
+                                >
+                                    {{
+                                        $page.props.auth.user.room_no ?? "None"
+                                    }}
                                 </dd>
                             </div>
                         </dl>

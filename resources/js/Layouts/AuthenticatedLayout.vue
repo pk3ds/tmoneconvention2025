@@ -89,7 +89,7 @@ watch(
                             <div class="px-4 py-3">
                                 <span
                                     class="block text-sm text-gray-900 dark:text-white"
-                                    >{{ $page.props.auth.user.name }}</span
+                                    >{{ $page.props.auth.user.staff_id }}</span
                                 >
                                 <span
                                     class="block text-sm text-gray-500 truncate dark:text-gray-400"
@@ -258,7 +258,7 @@ watch(
                     <li class="flex">
                         <div class="flex items-center">
                             <Link
-                                href="/"
+                                :href="route('dashboard')"
                                 class="text-gray-400 hover:text-gray-500"
                             >
                                 <svg
