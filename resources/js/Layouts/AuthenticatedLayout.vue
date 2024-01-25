@@ -1,168 +1,37 @@
 <script setup>
-import { onMounted } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { onMounted, computed, ref, watch } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
 
 onMounted(() => {
     initFlowbite();
 });
+
+const page = usePage();
+
+const showFlash = ref(false);
+
+const flash = computed(function () {
+    return page.props.flash;
+});
+
+watch(
+    page.props,
+    function (val) {
+        if (val?.flash) {
+            showFlash.value = true;
+        }
+    },
+    {
+        immediate: true,
+        deep: true,
+    }
+);
 </script>
 
 <template>
     <div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <div
-                v-if="$page.props.flash.success"
-                id="sticky-banner-success"
-                tabindex="-1"
-                class="fixed top-0 z-50 flex justify-between w-full p-5 bg-green-400 border-b border-gray-200 start-0"
-            >
-                <div class="flex items-center mx-auto">
-                    <p
-                        class="flex items-center text-sm font-normal text-gray-900"
-                    >
-                        <span
-                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 rounded-full me-3"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"
-                            >
-                                <path
-                                    d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"
-                                />
-                            </svg>
-                        </span>
-                        <span>
-                            {{ $page.props.flash.success }}
-                        </span>
-                    </p>
-                </div>
-                <div class="flex items-center">
-                    <button
-                        data-dismiss-target="#sticky-banner-success"
-                        type="button"
-                        class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-900 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5"
-                    >
-                        <svg
-                            class="w-3 h-3"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div
-                v-if="$page.props.flash.warning"
-                id="sticky-banner-warning"
-                tabindex="-1"
-                class="fixed top-0 z-50 flex justify-between w-full p-5 bg-yellow-300 border-b border-gray-200 start-0"
-            >
-                <div class="flex items-center mx-auto">
-                    <p
-                        class="flex items-center text-sm font-normal text-gray-900"
-                    >
-                        <span
-                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 rounded-full me-3"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"
-                            >
-                                <path
-                                    d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
-                                />
-                            </svg>
-                        </span>
-                        <span> {{ $page.props.flash.warning }} </span>
-                    </p>
-                </div>
-                <div class="flex items-center">
-                    <button
-                        data-dismiss-target="#sticky-banner-warning"
-                        type="button"
-                        class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-900 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5"
-                    >
-                        <svg
-                            class="w-3 h-3"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div
-                v-if="$page.props.flash.error"
-                id="sticky-banner-error"
-                tabindex="-1"
-                class="fixed top-0 z-50 flex justify-between w-full p-5 bg-red-500 border-b border-gray-200 start-0"
-            >
-                <div class="flex items-center mx-auto">
-                    <p
-                        class="flex items-center text-sm font-normal text-gray-900"
-                    >
-                        <span
-                            class="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 p-1 rounded-full me-3"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"
-                            >
-                                <path
-                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
-                                />
-                            </svg>
-                        </span>
-                        <span> {{ $page.props.flash.error }} </span>
-                    </p>
-                </div>
-                <div class="flex items-center">
-                    <button
-                        data-dismiss-target="#sticky-banner-error"
-                        type="button"
-                        class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-900 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5"
-                    >
-                        <svg
-                            class="w-3 h-3"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
             <nav
                 class="fixed top-0 z-20 w-full bg-white border-gray-200 start-0"
             >
@@ -414,6 +283,72 @@ onMounted(() => {
             <main>
                 <slot />
             </main>
+
+            <div
+                v-if="showFlash && flash.success"
+                @click="showFlash = false"
+                id="toast-bottom-left"
+                class="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-green-800 bg-green-300 divide-x divide-gray-200 rounded-lg shadow cursor-pointer rtl:divide-x-reverse bottom-5 left-5"
+                role="alert"
+            >
+                <div class="flex items-center gap-2 text-sm font-normal">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="w-5 h-5"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"
+                        />
+                    </svg>
+                    {{ flash.success }}
+                </div>
+            </div>
+
+            <div
+                v-if="showFlash && flash.warning"
+                @click="showFlash = false"
+                id="toast-bottom-left"
+                class="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-yellow-800 bg-yellow-300 divide-x divide-gray-200 rounded-lg shadow cursor-pointer rtl:divide-x-reverse bottom-5 left-5"
+                role="alert"
+            >
+                <div class="flex items-center gap-2 text-sm font-normal">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="w-5 h-5"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+                        />
+                    </svg>
+                    {{ flash.warning }}
+                </div>
+            </div>
+
+            <div
+                v-if="showFlash && flash.error"
+                @click="showFlash = false"
+                id="toast-bottom-left"
+                class="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-red-800 bg-red-300 divide-x divide-gray-200 rounded-lg shadow cursor-pointer rtl:divide-x-reverse bottom-5 left-5"
+                role="alert"
+            >
+                <div class="flex items-center gap-2 text-sm font-normal">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="w-5 h-5"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                        />
+                    </svg>
+                    {{ flash.error }}
+                </div>
+            </div>
         </div>
     </div>
 </template>
