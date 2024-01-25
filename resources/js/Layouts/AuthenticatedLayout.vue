@@ -163,7 +163,9 @@ onMounted(() => {
                 </div>
             </div>
 
-            <nav class="bg-white border-gray-200 dark:bg-gray-800">
+            <nav
+                class="fixed top-0 z-20 w-full bg-white border-gray-200 start-0"
+            >
                 <div
                     class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
                 >
@@ -355,7 +357,7 @@ onMounted(() => {
             </div>
 
             <!-- Page Content -->
-            <main>
+            <main class="mt-8">
                 <slot />
             </main>
         </div>
