@@ -35,14 +35,15 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class,
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone_no' => 'required|string|max:255|unique:' . User::class,
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'staff_id' => $request->staff_id,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'phone_no' => $request->phone_no,
+            'password' => Hash::make('password'),
         ]);
 
         event(new Registered($user));
