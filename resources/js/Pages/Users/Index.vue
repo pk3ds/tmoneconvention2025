@@ -119,6 +119,12 @@ const search = () => {
                                                 scope="col"
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                                             >
+                                                Phone No
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
+                                            >
                                                 Email
                                             </th>
                                             <th
@@ -162,6 +168,16 @@ const search = () => {
                                                     <dt
                                                         class="sr-only sm:hidden"
                                                     >
+                                                        Phone No
+                                                    </dt>
+                                                    <dd
+                                                        class="mt-1 text-gray-500 truncate sm:hidden"
+                                                    >
+                                                        {{ user.phone_no }}
+                                                    </dd>
+                                                    <dt
+                                                        class="sr-only sm:hidden"
+                                                    >
                                                         Email
                                                     </dt>
                                                     <dd
@@ -175,6 +191,11 @@ const search = () => {
                                                 class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
                                             >
                                                 {{ user.staff_id }}
+                                            </td>
+                                            <td
+                                                class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
+                                            >
+                                                {{ user.phone_no }}
                                             </td>
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"

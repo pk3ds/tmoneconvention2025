@@ -30,6 +30,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'staff_id' => $staffId,
+            'phone_no' => fake()->phoneNumber(),
             'email' => $staffEmail,
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
