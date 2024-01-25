@@ -48,14 +48,3 @@ import { Countdown } from "vue3-flip-countdown";
         </div>
     </div>
 </template>
-
-<style>
-.no-animation__card {
-    font-size: 5rem !important;
-}
-
-.flip-clock__piece {
-    margin-left: 1em !important;
-    margin-right: 1em !important;
-}
-</style>
