@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('staff_id')->unique()->nullable();
             $table->string('phone_no')->nullable();
             $table->string('room_no')->nullable();
+            $table->integer('points')->default(0);
             $table->string('transport_mode')->nullable();
             $table->string('pickup_location')->nullable();
             $table->timestamp('email_verified_at')->nullable();

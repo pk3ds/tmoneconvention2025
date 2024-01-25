@@ -22,7 +22,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['group_id', 'name', 'email', 'staff_id', 'phone_no', 'room_no', 'transport_mode', 'pickup_location', 'password'];
+    protected $fillable = [
+        'group_id',
+        'name',
+        'email',
+        'staff_id',
+        'phone_no',
+        'room_no',
+        'points',
+        'transport_mode',
+        'pickup_location',
+        'password'
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -51,7 +62,7 @@ class User extends Authenticatable
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['group_id', 'name', 'email', 'staff_id', 'phone_no', 'room_no', 'transport_mode', 'pickup_location']);
+        return LogOptions::defaults()->logOnly(['group_id', 'name', 'email', 'staff_id', 'phone_no', 'room_no', 'points', 'transport_mode', 'pickup_location']);
     }
 
     public function group()

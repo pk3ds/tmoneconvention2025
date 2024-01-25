@@ -142,6 +142,42 @@ class UserController extends Controller
     }
 
     /**
+     * Update the user points in database.
+     */
+    public function points(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'points' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        $initialPoints = $user->points;
+
+        $user->disableLogging();
+
+        $user->update([
+            'points' => $user->points + $request->points,
+        ]);
+
+        $finalPoints = $user->points;
+
+        if ($finalPoints != $initialPoints) {
+            $adjustmentPoints = $finalPoints - $initialPoints;
+            activity()
+                ->causedBy(Auth::user())
+                ->performedOn($user)
+                ->withProperties(['points' => $adjustmentPoints])
+                ->event('points update')
+                ->log('points update');
+        }
+
+        $user->enableLogging();
+
+        DB::commit();
+        return redirect(route('users.edit', $user))->with('success', 'Points updated successfully');
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
