@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@mail.com',
         ])->assignRole('super admin');
 
-        $users = User::factory(8)->create();
+        $users = User::factory(197)->create();
         foreach ($users as $user) {
             $user->assignRole('user');
         }

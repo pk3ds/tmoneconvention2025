@@ -5,17 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $search = $request->query('search');
+        $permissionNames = Auth::user()->getPermissionsViaRoles()->pluck('name');
+
+        if ($permissionNames->contains('view deleted')) {
+            $users = User::orderBy('name')->withTrashed()->search()->get();
+        } else {
+            $users = User::orderBy('name')->search()->get();
+        }
 
         return Inertia::render('Users/Index', [
+            'search' => $search,
             'users' => $users->load('roles'),
         ]);
     }

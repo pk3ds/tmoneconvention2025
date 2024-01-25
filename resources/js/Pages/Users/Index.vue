@@ -1,12 +1,19 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, useForm, router } from "@inertiajs/vue3";
 
-defineProps({
-    users: {
-        type: Object,
-    },
+const props = defineProps({
+    search: String,
+    users: Object,
 });
+
+const form = useForm({
+    search: props.search ?? null,
+});
+
+const search = () => {
+    router.get(route("users.index", { search: form.search }));
+};
 </script>
 
 <template>
@@ -15,6 +22,47 @@ defineProps({
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <form class="mb-6" @submit.prevent="search">
+                    <label
+                        for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                        >Search</label
+                    >
+                    <div class="relative">
+                        <div
+                            class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3"
+                        >
+                            <svg
+                                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                />
+                            </svg>
+                        </div>
+                        <input
+                            type="search"
+                            id="default-search"
+                            v-model="form.search"
+                            class="block w-full p-4 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg ps-10 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Search users..."
+                        />
+                        <button
+                            class="text-white absolute end-2.5 bottom-2.5 bg-cobalt-blue hover:bg-ultramarine focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </form>
+
                 <div
                     class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg"
                 >
@@ -43,7 +91,14 @@ defineProps({
                                 </div>
                             </div>
                             <div class="mt-8 -mx-4 sm:-mx-0">
+                                <h1
+                                    class="text-base leading-6 text-gray-900"
+                                    v-if="users.length <= 0"
+                                >
+                                    No users to display
+                                </h1>
                                 <table
+                                    v-else
                                     class="min-w-full divide-y divide-gray-300"
                                 >
                                     <thead>
