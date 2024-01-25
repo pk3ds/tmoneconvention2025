@@ -27,8 +27,15 @@ import { Countdown } from "vue3-flip-countdown";
                         deadlineISO="2024-01-29 07:00:00"
                         mainColor="#FF5E00"
                         labelColor="#FF5E00"
-                        mainFlipBackgroundColor="#FFF"
-                        secondFlipBackgroundColor="#FFF"
+                        :flipAnimation="false"
+                        class="font-title"
+                        labelSize="2rem"
+                        :labels="{
+                            days: 'Days',
+                            hours: 'Hours',
+                            minutes: 'Mins',
+                            seconds: 'Secs',
+                        }"
                     />
                 </div>
             </div>
@@ -41,3 +48,14 @@ import { Countdown } from "vue3-flip-countdown";
         </div>
     </div>
 </template>
+
+<style>
+.no-animation__card {
+    font-size: 5rem !important;
+}
+
+.flip-clock__piece {
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+}
+</style>
