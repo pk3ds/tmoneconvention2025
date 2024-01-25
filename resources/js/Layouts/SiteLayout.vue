@@ -48,8 +48,16 @@ document.addEventListener("scroll", function () {
                 <div
                     class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
                 >
-                    <!-- FIXME enable login button -->
                     <Link
+                        v-if="$page.props.auth.user"
+                        :href="route('dashboard')"
+                        type="button"
+                        class="flex px-4 py-3 text-sm font-medium text-center text-white uppercase font-title bg-accent-orange hover:bg-cobalt-blue focus:ring-4 focus:outline-none focus:ring-blue-300"
+                    >
+                        Dashboard
+                    </Link>
+                    <Link
+                        v-else
                         :href="route('login')"
                         type="button"
                         class="flex px-4 py-3 text-sm font-medium text-center text-white uppercase font-title bg-accent-orange hover:bg-cobalt-blue focus:ring-4 focus:outline-none focus:ring-blue-300"
