@@ -13,6 +13,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        Permission::create(['name' => 'change password']);
         Permission::create(['name' => 'view users']);
         Permission::create(['name' => 'view deleted']);
     }
