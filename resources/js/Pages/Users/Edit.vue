@@ -10,6 +10,7 @@ import { Head, Link, useForm } from "@inertiajs/vue3";
 const props = defineProps({
     roles: Object,
     user: Object,
+    activities: Object,
 });
 
 const form = useForm({
@@ -21,6 +22,15 @@ const form = useForm({
     password: "",
     password_confirmation: "",
 });
+
+const formatDate = (date) => {
+    return new Intl.DateTimeFormat("en-my", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Asia/Kuala_Lumpur",
+        hour12: false,
+    }).format(new Date(date));
+};
 </script>
 
 <template>
@@ -49,9 +59,9 @@ const form = useForm({
         <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
                 <div
-                    class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
+                    class="grid grid-cols-12 gap-2 p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
                 >
-                    <section class="max-w-xl">
+                    <section class="col-span-12 md:col-span-6">
                         <header>
                             <h2
                                 class="text-lg font-medium text-gray-900 dark:text-gray-100"
@@ -202,6 +212,81 @@ const form = useForm({
                                 >
                             </div>
                         </form>
+                    </section>
+
+                    <section class="hidden col-span-6 text-right md:block">
+                        <header>
+                            <h2
+                                class="text-lg font-medium text-gray-900 dark:text-gray-100"
+                            >
+                                Activity Log
+                            </h2>
+
+                            <p
+                                class="mt-1 text-sm text-gray-600 dark:text-gray-400"
+                            >
+                                View user activity log.
+                            </p>
+                        </header>
+
+                        <ol class="relative mt-6 border-gray-200 border-e">
+                            <li
+                                v-for="activity in activities"
+                                class="mb-10 me-4"
+                            >
+                                <div
+                                    class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -end-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
+                                ></div>
+                                <time
+                                    class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                                    >{{ formatDate(activity.created_at) }}</time
+                                >
+                                <h3
+                                    class="text-lg font-semibold text-gray-900 capitalize dark:text-white"
+                                >
+                                    {{ activity.description }}
+                                </h3>
+                                <div class="flex justify-end">
+                                    <table
+                                        class="px-2 text-sm text-left text-gray-500"
+                                    >
+                                        <thead
+                                            class="text-xs text-gray-700 uppercase bg-gray-50"
+                                        >
+                                            <tr>
+                                                <td class="px-1 py-1">Key</td>
+                                                <td class="px-1 py-1">Value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                v-for="[
+                                                    key,
+                                                    value,
+                                                ] in Object.entries(
+                                                    activity.properties
+                                                        .attributes
+                                                )"
+                                                class="bg-white border-b"
+                                            >
+                                                <td
+                                                    scope="col"
+                                                    class="px-1 py-1"
+                                                >
+                                                    {{ key }}
+                                                </td>
+                                                <td
+                                                    scope="col"
+                                                    class="px-1 py-1"
+                                                >
+                                                    {{ value }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ol>
                     </section>
                 </div>
             </div>

@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Spatie\Activitylog\Models\Activity;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -20,12 +21,19 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
-        $permissionNames = Auth::user()->getPermissionsViaRoles()->pluck('name');
+        $permissionNames = Auth::user()
+            ->getPermissionsViaRoles()
+            ->pluck('name');
 
         if ($permissionNames->contains('view deleted')) {
-            $users = User::orderBy('name')->withTrashed()->search()->get();
+            $users = User::orderBy('name')
+                ->withTrashed()
+                ->search()
+                ->get();
         } else {
-            $users = User::orderBy('name')->search()->get();
+            $users = User::orderBy('name')
+                ->search()
+                ->get();
         }
 
         return Inertia::render('Users/Index', [
@@ -71,7 +79,9 @@ class UserController extends Controller
         event(new Registered($user));
 
         DB::commit();
-        return redirect()->route('users.index')->with('success', 'User ' . $user->name . ' created successfully');
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User ' . $user->name . ' created successfully');
     }
 
     /**
@@ -88,9 +98,15 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        $activities = Activity::orderBy('created_at', 'desc')
+            ->where('subject_type', get_class($user))
+            ->where('subject_id', $user->id)
+            ->get();
+
         return Inertia::render('Users/Edit', [
             'roles' => $roles,
             'user' => $user->load('roles'),
+            'activities' => $activities,
         ]);
     }
 
@@ -130,7 +146,9 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('users.index')->with('warning', 'User ' . $user->name . ' deleted successfully');
+        return redirect()
+            ->route('users.index')
+            ->with('warning', 'User ' . $user->name . ' deleted successfully');
     }
 
     /**
