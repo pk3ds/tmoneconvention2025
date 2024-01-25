@@ -14,22 +14,17 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'User',
-            'email' => 'user@mail.com',
-        ])->assignRole('user');
-
-        User::factory()->create([
             'name' => 'Admin',
+            'staff_id' => 'TM38432',
             'email' => 'admin@mail.com',
         ])->assignRole('admin');
 
         User::factory()->create([
-            'name' => 'Super Admin',
-            'staff_id' => 'TM38432',
-            'email' => 'superadmin@mail.com',
-        ])->assignRole('super admin');
+            'name' => 'Committee',
+            'email' => 'committee@mail.com',
+        ])->assignRole('committee');
 
-        $users = User::factory(197)->create();
+        $users = User::factory(198)->create();
         foreach ($users as $user) {
             $user->assignRole('user');
         }
