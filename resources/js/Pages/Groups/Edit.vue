@@ -8,19 +8,12 @@ import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    roles: Object,
-    user: Object,
+    group: Object,
     activities: Object,
 });
 
 const form = useForm({
-    name: props.user.name,
-    staff_id: props.user.staff_id,
-    phone_no: props.user.phone_no,
-    email: props.user.email,
-    role: props.user.roles[0]?.name,
-    password: "",
-    password_confirmation: "",
+    name: props.group.name,
 });
 
 const formatDate = (date) => {
@@ -34,16 +27,16 @@ const formatDate = (date) => {
 </script>
 
 <template>
-    <Head title="Edit User" />
+    <Head title="Edit Group" />
 
     <AuthenticatedLayout>
         <template #breadcrumb>
             <BreadcrumbItem>
                 <Link
-                    :href="route('users.index')"
+                    :href="route('groups.index')"
                     class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                 >
-                    Users
+                    Groups
                 </Link>
             </BreadcrumbItem>
             <BreadcrumbItem>
@@ -66,19 +59,19 @@ const formatDate = (date) => {
                             <h2
                                 class="text-lg font-medium text-gray-900 dark:text-gray-100"
                             >
-                                User Information
+                                Group Information
                             </h2>
 
                             <p
                                 class="mt-1 text-sm text-gray-600 dark:text-gray-400"
                             >
-                                Edit existing user.
+                                Edit existing group.
                             </p>
                         </header>
 
                         <form
                             @submit.prevent="
-                                form.patch(route('users.update', user))
+                                form.patch(route('groups.update', group))
                             "
                             class="mt-6 space-y-6"
                         >
@@ -97,112 +90,6 @@ const formatDate = (date) => {
                                 <InputError
                                     class="mt-2"
                                     :message="form.errors.name"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="staff_id" value="Staff ID" />
-
-                                <TextInput
-                                    id="staff_id"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.staff_id"
-                                    required
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.staff_id"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="phone_no" value="Phone No" />
-
-                                <TextInput
-                                    id="phone_no"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.phone_no"
-                                    required
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.phone_no"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="email" value="Email" />
-
-                                <TextInput
-                                    id="email"
-                                    type="email"
-                                    class="block w-full mt-1"
-                                    v-model="form.email"
-                                    required
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.email"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="role" value="Role" />
-                                <select
-                                    v-model="form.role"
-                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
-                                >
-                                    <option
-                                        v-for="role in roles"
-                                        :value="role.name"
-                                    >
-                                        {{ role.name }}
-                                    </option>
-                                </select>
-
-                                <InputError
-                                    :message="form.errors.role"
-                                    class="mt-2"
-                                />
-                            </div>
-
-                            <div v-if="form.role != 'user'">
-                                <InputLabel for="password" value="Password" />
-
-                                <TextInput
-                                    id="password"
-                                    type="password"
-                                    class="block w-full mt-1"
-                                    v-model="form.password"
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.password"
-                                />
-                            </div>
-
-                            <div v-if="form.role != 'user'">
-                                <InputLabel
-                                    for="password"
-                                    value="Confirm Password"
-                                />
-
-                                <TextInput
-                                    id="password_confirmation"
-                                    type="password"
-                                    class="block w-full mt-1"
-                                    v-model="form.password_confirmation"
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.password_confirmation"
                                 />
                             </div>
 

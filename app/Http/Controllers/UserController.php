@@ -124,6 +124,7 @@ class UserController extends Controller
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
+        DB::beginTransaction();
         $user->update([
             'name' => $request->name,
             'staff_id' => $request->staff_id,
@@ -136,6 +137,7 @@ class UserController extends Controller
             $user->syncRoles($request->role);
         }
 
+        DB::commit();
         return redirect(route('users.index'))->with('success', 'User ' . $user->name . ' updated successfully');
     }
 

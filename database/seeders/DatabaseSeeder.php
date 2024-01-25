@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         if (!App::environment('production')) {
             $this->call([
                 UserSeeder::class,
+                GroupSeeder::class,
             ]);
         }
     }

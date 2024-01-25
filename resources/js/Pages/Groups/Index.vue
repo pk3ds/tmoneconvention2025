@@ -6,7 +6,7 @@ import { Head, Link, useForm, router } from "@inertiajs/vue3";
 
 const props = defineProps({
     search: String,
-    users: Object,
+    groups: Object,
 });
 
 const form = useForm({
@@ -14,20 +14,20 @@ const form = useForm({
 });
 
 const search = () => {
-    router.get(route("users.index", { search: form.search }));
+    router.get(route("groups.index", { search: form.search }));
 };
 
-const destroy = (user) => {
-    router.delete(route("users.destroy", user));
+const destroy = (group) => {
+    router.delete(route("groups.destroy", group));
 };
 
 const restore = (id) => {
-    router.put(route("users.restore", id));
+    router.put(route("groups.restore", id));
 };
 </script>
 
 <template>
-    <Head title="Users" />
+    <Head title="Groups" />
 
     <AuthenticatedLayout>
         <template #breadcrumb>
@@ -36,7 +36,7 @@ const restore = (id) => {
                     href="#"
                     class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                 >
-                    Users
+                    Groups
                 </Link>
             </BreadcrumbItem>
         </template>
@@ -94,18 +94,18 @@ const restore = (id) => {
                                     <h1
                                         class="text-base font-semibold leading-6 text-gray-900"
                                     >
-                                        Users
+                                        Groups
                                     </h1>
                                     <p class="mt-2 text-sm text-gray-700">
-                                        A list of all the users in the system
-                                        including their name, title, email and
-                                        role.
+                                        A list of all the groups in the system
+                                        including their name and number of
+                                        users.
                                     </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                    <Link :href="route('users.create')">
+                                    <Link :href="route('groups.create')">
                                         <PrimaryButton>
-                                            Add user
+                                            Add group
                                         </PrimaryButton>
                                     </Link>
                                 </div>
@@ -113,9 +113,9 @@ const restore = (id) => {
                             <div class="mt-8 -mx-4 sm:-mx-0">
                                 <h1
                                     class="text-base leading-6 text-gray-900"
-                                    v-if="users.length <= 0"
+                                    v-if="groups.length <= 0"
                                 >
-                                    No users to display
+                                    No groups to display
                                 </h1>
                                 <table
                                     v-else
@@ -133,25 +133,13 @@ const restore = (id) => {
                                                 scope="col"
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                                             >
-                                                Staff ID
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
-                                            >
-                                                Phone No
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
-                                            >
-                                                Email
+                                                Points
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                             >
-                                                Role
+                                                Users
                                             </th>
                                             <th
                                                 scope="col"
@@ -166,15 +154,15 @@ const restore = (id) => {
                                     <tbody
                                         class="bg-white divide-y divide-gray-200"
                                     >
-                                        <tr v-for="user in users">
+                                        <tr v-for="group in groups">
                                             <td
                                                 class="w-full py-4 pl-4 pr-3 text-sm font-medium text-gray-900 max-w-0 sm:w-auto sm:max-w-none sm:pl-0"
                                             >
                                                 <span class="flex gap-2">
-                                                    {{ user.name }}
+                                                    {{ group.name }}
 
                                                     <svg
-                                                        v-if="user.deleted_at"
+                                                        v-if="group.deleted_at"
                                                         class="w-3.5 text-gray-400"
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 448 512"
@@ -189,68 +177,34 @@ const restore = (id) => {
                                                     class="font-normal lg:hidden"
                                                 >
                                                     <dt class="sr-only">
-                                                        Staff ID
+                                                        Points
                                                     </dt>
                                                     <dd
                                                         class="mt-1 text-gray-700 truncate"
                                                     >
-                                                        {{ user.staff_id }}
-                                                    </dd>
-                                                    <dt
-                                                        class="sr-only sm:hidden"
-                                                    >
-                                                        Phone No
-                                                    </dt>
-                                                    <dd
-                                                        class="mt-1 text-gray-500 truncate sm:hidden"
-                                                    >
-                                                        {{ user.phone_no }}
-                                                    </dd>
-                                                    <dt
-                                                        class="sr-only sm:hidden"
-                                                    >
-                                                        Email
-                                                    </dt>
-                                                    <dd
-                                                        class="mt-1 text-gray-500 truncate sm:hidden"
-                                                    >
-                                                        {{ user.email }}
+                                                        {{ group.points }}
                                                     </dd>
                                                 </dl>
                                             </td>
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
                                             >
-                                                {{ user.staff_id }}
-                                            </td>
-                                            <td
-                                                class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
-                                            >
-                                                {{ user.phone_no }}
-                                            </td>
-                                            <td
-                                                class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
-                                            >
-                                                {{ user.email }}
+                                                {{ group.points }}
                                             </td>
                                             <td
                                                 class="px-3 py-4 text-sm text-gray-500 capitalize"
                                             >
-                                                {{
-                                                    user.roles.length > 0
-                                                        ? user.roles[0].name
-                                                        : "none"
-                                                }}
+                                                {{ group.users.length }}
                                             </td>
                                             <td
                                                 class="grid grid-cols-1 gap-10 px-3 py-4 sm:gap-4 lg:grid-cols-2"
                                             >
                                                 <Link
-                                                    v-if="!user.deleted_at"
+                                                    v-if="!group.deleted_at"
                                                     :href="
                                                         route(
-                                                            'users.edit',
-                                                            user
+                                                            'groups.edit',
+                                                            group
                                                         )
                                                     "
                                                     class="text-cobalt-blue hover:text-ultramarine"
@@ -267,8 +221,8 @@ const restore = (id) => {
                                                     </svg>
                                                 </Link>
                                                 <span
-                                                    v-if="!user.deleted_at"
-                                                    @click="destroy(user)"
+                                                    v-if="!group.deleted_at"
+                                                    @click="destroy(group)"
                                                     class="text-red-700 cursor-pointer hover:text-red-500"
                                                 >
                                                     <svg
@@ -283,8 +237,8 @@ const restore = (id) => {
                                                     </svg>
                                                 </span>
                                                 <span
-                                                    v-if="user.deleted_at"
-                                                    @click="restore(user.id)"
+                                                    v-if="group.deleted_at"
+                                                    @click="restore(group.id)"
                                                     class="text-green-600 cursor-pointer hover:text-green-500"
                                                 >
                                                     <svg
