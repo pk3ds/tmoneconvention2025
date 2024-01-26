@@ -1,6 +1,7 @@
 <script setup>
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Head, Link, router } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";
 
@@ -65,13 +66,17 @@ const formatDate = (date) => {
             </div>
 
             <p class="mb-6 text-sm font-normal text-gray-500">
-                Check in successful! Enjoy the session.<br />
+                You're checked in! Enjoy the session.<br />
                 <span class="font-semibold">Check in time:</span>
                 {{ formatDate(checkin.created_at) }}<br />
                 <span class="font-semibold">Check in points:</span>
                 {{ checkin.points }}<br />
             </p>
-            <div class="flex items-center justify-end">
+            <div class="flex items-center justify-between">
+                <Link :href="route('dashboard')">
+                    <SecondaryButton>Dashboard</SecondaryButton>
+                </Link>
+
                 <span class="rounded-md text-cobalt-blue">
                     Not you?
                     <Link
