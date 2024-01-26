@@ -31,12 +31,12 @@ watch(
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100">
             <nav
                 class="fixed top-0 z-20 w-full bg-white border-gray-200 start-0"
             >
                 <div
-                    class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
+                    class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto text-gray-800"
                 >
                     <button
                         type="button"
@@ -44,31 +44,58 @@ watch(
                         data-drawer-show="drawer-navigation"
                         aria-controls="drawer-navigation"
                     >
-                        <img
-                            class="block w-auto text-gray-800 fill-current dark:hidden h-9 dark:text-gray-200"
-                            src="/images/Logo-Color.png"
-                            alt="TM ONE"
-                        />
-                        <img
-                            class="hidden w-auto text-gray-800 fill-current dark:block h-9 dark:text-gray-200"
-                            src="/images/Logo-White.png"
-                            alt="TM ONE"
-                        />
+                        <svg
+                            class="w-5 h-5"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 17 14"
+                        >
+                            <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15"
+                            ></path>
+                        </svg>
                     </button>
+
+                    <Link
+                        href="/"
+                        data-drawer-hide="drawer-navigation"
+                        aria-controls="drawer-navigation"
+                    >
+                        <img
+                            src="/images/Logo-Wording-Color.png"
+                            class="h-8"
+                            alt="TM One"
+                        />
+                    </Link>
+
                     <div
                         class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
                     >
                         <button
                             type="button"
-                            class="flex items-center text-sm md:me-0 dark:text-white"
+                            class="flex items-center text-sm md:me-0"
                             id="user-menu-button"
                             aria-expanded="false"
                             data-dropdown-toggle="user-dropdown"
                             data-dropdown-placement="bottom"
                         >
                             <span class="sr-only">Open user menu</span>
-                            {{ $page.props.auth.user.name }}
                             <svg
+                                class="w-6 h-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"
+                                />
+                            </svg>
+                            <!-- <svg
                                 class="ms-2 -me-0.5 h-4 w-4"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20"
@@ -79,7 +106,7 @@ watch(
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd"
                                 />
-                            </svg>
+                            </svg> -->
                         </button>
                         <!-- Dropdown menu -->
                         <div
@@ -88,8 +115,8 @@ watch(
                         >
                             <div class="px-4 py-3">
                                 <span
-                                    class="block text-sm text-gray-900 dark:text-white"
-                                    >{{ $page.props.auth.user.staff_id }}</span
+                                    class="block text-sm text-gray-900 truncate dark:text-white"
+                                    >{{ $page.props.auth.user.name }}</span
                                 >
                                 <span
                                     class="block text-sm text-gray-500 truncate dark:text-gray-400"
