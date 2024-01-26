@@ -5,23 +5,13 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
 import Awards from "./Partials/Awards.vue";
 import ActivityLog from "@/Components/ActivityLog.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 
 const props = defineProps({
+    groups: Object,
     roles: Object,
     user: Object,
     activities: Object,
-});
-
-const form = useForm({
-    name: props.user.name,
-    staff_id: props.user.staff_id,
-    phone_no: props.user.phone_no,
-    email: props.user.email,
-    role: props.user.roles[0]?.name,
-    password: "",
-    password_confirmation: "",
-    points: props.user.points,
 });
 
 const back = () => {
@@ -115,7 +105,11 @@ const back = () => {
                             role="tabpanel"
                             aria-labelledby="details-tab"
                         >
-                            <Details :form="form" :roles="roles" :user="user" />
+                            <Details
+                                :groups="groups"
+                                :roles="roles"
+                                :user="user"
+                            />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"

@@ -9,6 +9,7 @@ import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
 defineProps({
+    groups: Object,
     roles: Object,
 });
 
@@ -17,6 +18,9 @@ const form = useForm({
     staff_id: "",
     phone_no: "",
     email: "",
+    room_no: "",
+    pickup_location: "",
+    group_id: "",
     role: "",
     password: "",
     password_confirmation: "",
@@ -152,8 +156,64 @@ const back = () => {
                             </div>
 
                             <div>
+                                <InputLabel for="room_no" value="Room No" />
+
+                                <TextInput
+                                    id="room_no"
+                                    type="text"
+                                    class="block w-full mt-1"
+                                    v-model="form.room_no"
+                                />
+
+                                <InputError
+                                    class="mt-2"
+                                    :message="form.errors.room_no"
+                                />
+                            </div>
+
+                            <div>
+                                <InputLabel
+                                    for="pickup_location"
+                                    value="Pickup Location"
+                                />
+
+                                <TextInput
+                                    id="pickup_location"
+                                    type="text"
+                                    class="block w-full mt-1"
+                                    v-model="form.pickup_location"
+                                />
+
+                                <InputError
+                                    class="mt-2"
+                                    :message="form.errors.pickup_location"
+                                />
+                            </div>
+
+                            <div>
+                                <InputLabel for="group_id" value="Group" />
+                                <select
+                                    v-model="form.group_id"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                                >
+                                    <option
+                                        v-for="group in groups"
+                                        :value="group.id"
+                                    >
+                                        {{ group.name }}
+                                    </option>
+                                </select>
+
+                                <InputError
+                                    :message="form.errors.group_id"
+                                    class="mt-2"
+                                />
+                            </div>
+
+                            <div>
                                 <InputLabel for="role" value="Role" />
                                 <select
+                                    required
                                     v-model="form.role"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
                                 >

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -47,8 +48,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $groups = Group::all();
         $roles = Role::all();
         return Inertia::render('Users/Create', [
+            'groups' => $groups,
             'roles' => $roles,
         ]);
     }
@@ -63,16 +66,22 @@ class UserController extends Controller
             'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class,
             'phone_no' => 'required|string|max:255|unique:' . User::class,
             'email' => 'required|string|email|max:255|unique:' . User::class,
+            'room_no' => 'nullable|string|max:255',
+            'pickup_location' => 'nullable|string|max:255',
+            'group_id' => 'nullable|exists:' . Group::class . ',id',
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
         DB::beginTransaction();
         $user = User::create([
+            'group_id' => $request->group_id,
             'name' => $request->name,
             'staff_id' => $request->staff_id,
             'phone_no' => $request->phone_no,
             'email' => $request->email,
+            'room_no' => $request->room_no,
+            'pickup_location' => $request->pickup_location,
             'password' => $request->password ? Hash::make($request->password) : Hash::make('password'),
         ])->assignRole($request->role);
 
@@ -97,6 +106,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $groups = Group::all();
         $roles = Role::all();
         $activities = Activity::orderBy('created_at', 'desc')
             ->where('subject_type', get_class($user))
@@ -104,8 +114,9 @@ class UserController extends Controller
             ->get();
 
         return Inertia::render('Users/Edit', [
+            'groups' => $groups,
             'roles' => $roles,
-            'user' => $user->load('roles'),
+            'user' => $user->load('roles', 'group'),
             'activities' => $activities,
         ]);
     }
@@ -120,16 +131,22 @@ class UserController extends Controller
             'staff_id' => 'required|string|uppercase|max:255|unique:' . User::class . ',staff_id,' . $user->id,
             'phone_no' => 'required|string|max:255|unique:' . User::class . ',phone_no,' . $user->id,
             'email' => 'required|string|email|max:255|unique:' . User::class . ',email,' . $user->id,
+            'room_no' => 'nullable|string|max:255',
+            'pickup_location' => 'nullable|string|max:255',
+            'group_id' => 'nullable|exists:' . Group::class . ',id',
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
         DB::beginTransaction();
         $user->update([
+            'group_id' => $request->group_id,
             'name' => $request->name,
             'staff_id' => $request->staff_id,
             'phone_no' => $request->phone_no,
             'email' => $request->email,
+            'room_no' => $request->room_no,
+            'pickup_location' => $request->pickup_location,
             'password' => $request->password ? Hash::make($request->password) : Hash::make('password'),
         ]);
 
