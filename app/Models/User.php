@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Award;
 use App\Models\Group;
+use App\Models\Session;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
@@ -95,5 +96,10 @@ class User extends Authenticatable
     public function awards()
     {
         return $this->morphMany(Award::class, 'awardable');
+    }
+
+    public function sessions()
+    {
+        return $this->belongsToMany(Session::class)->withPivot('points')->withTimestamps();
     }
 }

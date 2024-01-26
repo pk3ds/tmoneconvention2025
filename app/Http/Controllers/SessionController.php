@@ -93,7 +93,7 @@ class SessionController extends Controller
             ->get();
 
         return Inertia::render('Sessions/Edit', [
-            'session' => $session,
+            'session' => $session->load('users'),
             'activities' => $activities->load('causer'),
         ]);
     }
@@ -119,7 +119,9 @@ class SessionController extends Controller
         ]);
 
         DB::commit();
-        return redirect()->back()->with('success', 'Session ' . $session->name . ' updated successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Session ' . $session->name . ' updated successfully');
     }
 
     /**
@@ -144,5 +146,49 @@ class SessionController extends Controller
         $session->restore();
 
         return redirect(route('sessions.index'))->with('success', 'Session ' . $session->name . ' restored successfully');
+    }
+
+    /**
+     * Show the form for checking in to session.
+     */
+    public function scan($uuid)
+    {
+        $session = Session::where('uuid', $uuid)->first();
+
+        $exist = DB::table('session_user')
+            ->where('session_id', $session->id)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+
+        if ($exist->count() > 0) {
+            return Inertia::render('Sessions/Checkins/Show', [
+                'session' => $session,
+            ]);
+        } else {
+            return Inertia::render('Sessions/Checkins/Create', [
+                'session' => $session,
+            ]);
+        }
+    }
+
+    /**
+     * Show the form for checking in to session.
+     */
+    public function checkin($uuid)
+    {
+        $session = Session::where('uuid', $uuid)->first();
+
+        DB::beginTransaction();
+
+        Auth::user()
+            ->sessions()
+            ->save($session);
+
+        // TODO link user and session, with log and points
+
+        DB::commit();
+        return Inertia::render('Sessions/Checkins/Show', [
+            'session' => $session,
+        ]);
     }
 }

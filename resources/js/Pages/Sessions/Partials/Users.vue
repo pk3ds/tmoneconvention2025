@@ -22,7 +22,6 @@ const props = defineProps({
     </header>
 
     <div class="mt-8 -mx-4 sm:-mx-0">
-        <!-- FIXME session users -->
         <h1
             class="text-base leading-6 text-gray-900"
             v-if="session.users?.length <= 0"
@@ -59,7 +58,6 @@ const props = defineProps({
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                <!-- FIXME session users -->
                 <tr v-for="user in session.users">
                     <td
                         class="w-full py-4 pl-4 pr-3 text-sm font-medium text-gray-900 max-w-0 sm:w-auto sm:max-w-none sm:pl-0"

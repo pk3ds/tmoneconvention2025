@@ -3,7 +3,7 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { useForm } from "@inertiajs/vue3";
+import { useForm, Link } from "@inertiajs/vue3";
 import QRCodeVue3 from "qrcode-vue3";
 
 const props = defineProps({
@@ -140,11 +140,10 @@ const form = useForm({
                     </button>
                 </div>
                 <div class="p-4 md:p-5">
-                    <!-- FIXME change value to check in page! -->
                     <QRCodeVue3
                         :width="1000"
                         :height="1000"
-                        :value="session.uuid"
+                        :value="route('sessions.checkin', session.uuid)"
                         :qrOptions="{
                             typeNumber: 0,
                             mode: 'Byte',
@@ -178,6 +177,13 @@ const form = useForm({
                             color: '#180092',
                         }"
                     />
+                </div>
+                <div class="flex items-center justify-center gap-4 p-4 md:p-5">
+                    <Link :href="route('sessions.checkin', session.uuid)">
+                        <PrimaryButton data-modal-hide="qr-modal">
+                            Link
+                        </PrimaryButton>
+                    </Link>
                 </div>
             </div>
         </div>

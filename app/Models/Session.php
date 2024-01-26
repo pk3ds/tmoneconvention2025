@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -34,5 +35,10 @@ class Session extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logOnly(['name', 'description', 'start_at', 'end_at']);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('points')->withTimestamps();
     }
 }

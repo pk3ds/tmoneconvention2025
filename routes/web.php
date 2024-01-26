@@ -27,15 +27,20 @@ Route::get('/', function () {
             'title' => 'TM One Convention 2024',
             'image' => '/images/Banner-01.jpg',
             'description' => 'Innovate The Next',
-        ]
+        ],
     ]);
 })->name('/');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 
-Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+
+    Route::get('/sessions/checkin/{uuid}', [SessionController::class, 'scan'])->name('sessions.scan');
+    Route::post('/sessions/checkin/{uuid}', [SessionController::class, 'checkin'])->name('sessions.checkin');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -52,7 +57,9 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::patch('/groups/{group}', [GroupController::class, 'update'])->name('groups.update');
     Route::patch('/groups/{group}/points', [GroupController::class, 'points'])->name('groups.points');
     Route::delete('/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
-    Route::put('/groups/{id}', [GroupController::class, 'restore'])->middleware('can:view deleted')->name('groups.restore');
+    Route::put('/groups/{id}', [GroupController::class, 'restore'])
+        ->middleware('can:view deleted')
+        ->name('groups.restore');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
@@ -61,7 +68,9 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::patch('/users/{user}/points', [UserController::class, 'points'])->name('users.points');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::put('/users/{id}', [UserController::class, 'restore'])->middleware('can:view deleted')->name('users.restore');
+    Route::put('/users/{id}', [UserController::class, 'restore'])
+        ->middleware('can:view deleted')
+        ->name('users.restore');
 
     Route::get('/sessions', [SessionController::class, 'index'])->name('sessions.index');
     Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
@@ -69,7 +78,9 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::get('/sessions/{session}/edit', [SessionController::class, 'edit'])->name('sessions.edit');
     Route::patch('/sessions/{session}', [SessionController::class, 'update'])->name('sessions.update');
     Route::delete('/sessions/{session}', [SessionController::class, 'destroy'])->name('sessions.destroy');
-    Route::put('/sessions/{id}', [SessionController::class, 'restore'])->middleware('can:view deleted')->name('sessions.restore');
+    Route::put('/sessions/{id}', [SessionController::class, 'restore'])
+        ->middleware('can:view deleted')
+        ->name('sessions.restore');
 
     Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
     Route::get('/awards/create', [AwardController::class, 'create'])->name('awards.create');
