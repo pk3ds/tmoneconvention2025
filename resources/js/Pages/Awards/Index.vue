@@ -66,7 +66,7 @@ const search = () => {
                             id="default-search"
                             v-model="form.search"
                             class="block w-full p-4 text-sm text-gray-900 bg-white border border-gray-300 rounded-none sm:rounded-lg ps-10 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Search users..."
+                            placeholder="Search awards..."
                         />
                         <button
                             class="text-white font-semibold absolute end-2.5 bottom-2.5 bg-cobalt-blue font-title hover:bg-ultramarine focus:ring-4 focus:outline-none focus:ring-blue-300 tracking-widest rounded-md text-xs uppercase px-4 py-2"
