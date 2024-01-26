@@ -2,6 +2,15 @@
 const props = defineProps({
     session: Object,
 });
+
+const formatDate = (date) => {
+    return new Intl.DateTimeFormat("en-my", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Asia/Kuala_Lumpur",
+        hour12: false,
+    }).format(new Date(date));
+};
 </script>
 
 <template>
@@ -45,15 +54,21 @@ const props = defineProps({
                     </th>
                     <th
                         scope="col"
+                        class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                    >
+                        Group
+                    </th>
+                    <th
+                        scope="col"
                         class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                     >
-                        Email
+                        Points
                     </th>
                     <th
                         scope="col"
                         class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                        Phone No
+                        Check In Time
                     </th>
                 </tr>
             </thead>
@@ -70,9 +85,13 @@ const props = defineProps({
                             <dd class="mt-1 text-gray-700 truncate">
                                 {{ user.staff_id }}
                             </dd>
-                            <dt class="sr-only sm:hidden">Email</dt>
+                            <dt class="sr-only">Group</dt>
+                            <dd class="mt-1 text-gray-700 truncate">
+                                {{ user.group?.name }}
+                            </dd>
+                            <dt class="sr-only sm:hidden">Points</dt>
                             <dd class="mt-1 text-gray-500 truncate sm:hidden">
-                                {{ user.email }}
+                                {{ user.pivot?.points }}
                             </dd>
                         </dl>
                     </td>
@@ -82,12 +101,17 @@ const props = defineProps({
                         {{ user.staff_id }}
                     </td>
                     <td
+                        class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
+                    >
+                        {{ user.group?.name }}
+                    </td>
+                    <td
                         class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
                     >
-                        {{ user.email }}
+                        {{ user.pivot?.points }}
                     </td>
                     <td class="px-3 py-4 text-sm text-gray-500 capitalize">
-                        {{ user.phone_no }}
+                        {{ formatDate(user.pivot?.created_at) }}
                     </td>
                 </tr>
             </tbody>

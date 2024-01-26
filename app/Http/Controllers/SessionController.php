@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Session;
 use Illuminate\Support\Str;
@@ -93,7 +94,7 @@ class SessionController extends Controller
             ->get();
 
         return Inertia::render('Sessions/Edit', [
-            'session' => $session->load('users'),
+            'session' => $session->load('users.group'),
             'activities' => $activities->load('causer'),
         ]);
     }
@@ -176,15 +177,40 @@ class SessionController extends Controller
      */
     public function checkin($uuid)
     {
+        $points = 1000;
         $session = Session::where('uuid', $uuid)->first();
 
         DB::beginTransaction();
+        $user = Auth::user();
+        $user->sessions()->save($session, [
+            'points' => $points,
+        ]);
 
-        Auth::user()
-            ->sessions()
-            ->save($session);
+        $user->disableLogging();
+        $user->update([
+            'points' => $user->points + $points,
+        ]);
+        activity()
+            ->causedBy($user)
+            ->performedOn($user)
+            ->withProperties(['points' => $points])
+            ->event($session->name)
+            ->log('check in');
+        $user->enableLogging();
 
-        // TODO link user and session, with log and points
+        if ($group = $user->group) {
+            $group->disableLogging();
+            $group->update([
+                'points' => $group->points + $points,
+            ]);
+            activity()
+                ->causedBy($user)
+                ->performedOn($group)
+                ->withProperties(['points' => $points])
+                ->event($session->name . ' from ' . $user->name)
+                ->log('check in');
+            $group->enableLogging();
+        }
 
         DB::commit();
         return Inertia::render('Sessions/Checkins/Show', [
