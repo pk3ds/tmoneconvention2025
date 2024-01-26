@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionSeeder::class,
             RoleSeeder::class,
+            UserSeeder::class,
         ]);
 
         if (!App::environment('production')) {
             $this->call([
-                UserSeeder::class,
                 GroupSeeder::class,
             ]);
         }
