@@ -1,22 +1,15 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
+import Details from "./Partials/Details.vue";
+import Users from "./Partials/Users.vue";
+import ActivityLog from "@/Components/ActivityLog.vue";
+import { Head, Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     session: Object,
-});
-
-const form = useForm({
-    name: props.session.name,
-    description: props.session.description,
-    start_at: props.session.start_at,
-    end_at: props.session.end_at,
+    activities: Object,
 });
 
 const back = () => {
@@ -49,114 +42,86 @@ const back = () => {
 
         <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
-                >
-                    <section>
-                        <header class="flex justify-between">
-                            <div>
-                                <h2
-                                    class="text-lg font-medium text-gray-900 dark:text-gray-100"
-                                >
-                                    Session Information
-                                </h2>
-
-                                <p
-                                    class="mt-1 text-sm text-gray-600 dark:text-gray-400"
-                                >
-                                    Edit existing session.
-                                </p>
-                            </div>
-                            <SecondaryButton
-                                class="px-4 my-2 me-2"
-                                @click="back"
-                            >
-                                Back
-                            </SecondaryButton>
-                        </header>
-
-                        <form
-                            @submit.prevent="
-                                form.patch(route('sessions.update', session))
-                            "
-                            class="mt-6 space-y-6"
+                <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
+                    <div
+                        class="flex justify-between mb-4 border-b border-gray-200"
+                    >
+                        <ul
+                            class="flex flex-wrap -mb-px text-sm font-medium text-center"
+                            id="default-tab"
+                            data-tabs-toggle="#default-tab-content"
+                            role="tablist"
                         >
-                            <div>
-                                <InputLabel for="name" value="Name" />
-
-                                <TextInput
-                                    id="name"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.name"
-                                    required
-                                    autofocus
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.name"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel
-                                    for="description"
-                                    value="Description"
-                                />
-
-                                <TextInput
-                                    id="description"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.description"
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.description"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="start_at" value="Start Date" />
-
-                                <TextInput
-                                    id="start_at"
-                                    type="date"
-                                    class="block w-full mt-1"
-                                    v-model="form.start_at"
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.start_at"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="end_at" value="End Date" />
-
-                                <TextInput
-                                    id="end_at"
-                                    type="date"
-                                    class="block w-full mt-1"
-                                    v-model="form.end_at"
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.end_at"
-                                />
-                            </div>
-
-                            <div class="flex items-center gap-4">
-                                <PrimaryButton :disabled="form.processing"
-                                    >Save</PrimaryButton
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg"
+                                    id="details-tab"
+                                    data-tabs-target="#details"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="details"
+                                    aria-selected="false"
                                 >
-                            </div>
-                        </form>
-                    </section>
+                                    details
+                                </button>
+                            </li>
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="users-tab"
+                                    data-tabs-target="#users"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="users"
+                                    aria-selected="false"
+                                >
+                                    users
+                                </button>
+                            </li>
+                            <li role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="logs-tab"
+                                    data-tabs-target="#logs"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="logs"
+                                    aria-selected="false"
+                                >
+                                    logs
+                                </button>
+                            </li>
+                        </ul>
+                        <SecondaryButton class="px-4 my-2 me-2" @click="back">
+                            Back
+                        </SecondaryButton>
+                    </div>
+                    <div id="default-tab-content">
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="details"
+                            role="tabpanel"
+                            aria-labelledby="details-tab"
+                        >
+                            <Details :session="session" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="users"
+                            role="tabpanel"
+                            aria-labelledby="users-tab"
+                        >
+                            <Users :session="session" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="logs"
+                            role="tabpanel"
+                            aria-labelledby="logs-tab"
+                        >
+                            <ActivityLog :activities="activities" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

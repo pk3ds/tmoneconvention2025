@@ -119,7 +119,7 @@ class SessionController extends Controller
         ]);
 
         DB::commit();
-        return redirect(route('sessions.index'))->with('success', 'Session ' . $session->name . ' updated successfully');
+        return redirect()->back()->with('success', 'Session ' . $session->name . ' updated successfully');
     }
 
     /**
