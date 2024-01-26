@@ -34,6 +34,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -65,8 +67,6 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::post('/awards', [AwardController::class, 'store'])->name('awards.store');
     Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
     Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
-
-    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 });
 
 require __DIR__ . '/auth.php';
