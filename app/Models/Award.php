@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Award;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Group extends Model
+class Award extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
@@ -19,26 +17,28 @@ class Group extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'points'];
+    protected $fillable = [
+        'name',
+        'remarks',
+        'points',
+        'awardable_id',
+        'awardable_type',
+    ];
 
     public function scopeSearch($query)
     {
         $query
-            ->where('name', 'like', '%' . request('search') . '%');
+            ->where('name', 'like', '%' . request('search') . '%')
+            ->orWhere('remarks', 'like', '%' . request('search') . '%');
     }
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['name', 'points']);
+        return LogOptions::defaults()->logOnly(['name', 'remarks', 'points', 'awardable.name']);
     }
 
-    public function users()
+    public function awardable()
     {
-        return $this->hasMany(User::class);
-    }
-
-    public function awards()
-    {
-        return $this->morphMany(Award::class, 'awardable');
+        return $this->morphTo();
     }
 }

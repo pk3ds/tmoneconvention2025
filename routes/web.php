@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 
@@ -57,6 +58,8 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::patch('/users/{user}/points', [UserController::class, 'points'])->name('users.points');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::put('/users/{id}', [UserController::class, 'restore'])->middleware('can:view deleted')->name('users.restore');
+
+    Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
 });
 
 require __DIR__ . '/auth.php';

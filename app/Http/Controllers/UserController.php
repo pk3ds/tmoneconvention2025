@@ -116,7 +116,7 @@ class UserController extends Controller
         return Inertia::render('Users/Edit', [
             'groups' => $groups,
             'roles' => $roles,
-            'user' => $user->load('roles', 'group'),
+            'user' => $user->load('roles', 'group', 'awards'),
             'activities' => $activities,
         ]);
     }

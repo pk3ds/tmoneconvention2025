@@ -13,6 +13,6 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        Group::factory(16)->hasUsers(40)->create();
+        Group::factory(16)->hasUsers(40)->hasAwards(10)->create();
     }
 }

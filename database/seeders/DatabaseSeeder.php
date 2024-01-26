@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         if (!App::environment('production')) {
             $this->call([
                 GroupSeeder::class,
+                AwardSeeder::class,
             ]);
         }
     }

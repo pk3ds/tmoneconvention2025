@@ -125,7 +125,7 @@ class GroupController extends Controller
             ->get();
 
         return Inertia::render('Groups/Edit', [
-            'group' => $group->load('users'),
+            'group' => $group->load('users', 'awards'),
             'activities' => $activities->load('causer'),
         ]);
     }
