@@ -170,15 +170,11 @@ class UserController extends Controller
 
         DB::beginTransaction();
         $initialPoints = $user->points;
-
         $user->disableLogging();
-
         $user->update([
             'points' => $user->points + $request->points,
         ]);
-
         $finalPoints = $user->points;
-
         if ($finalPoints != $initialPoints) {
             $adjustmentPoints = $finalPoints - $initialPoints;
             activity()
@@ -188,8 +184,26 @@ class UserController extends Controller
                 ->event($request->remarks)
                 ->log('points update');
         }
-
         $user->enableLogging();
+
+        if ($group = $user->group) {
+            $group->disableLogging();
+            $initialPoints = $group->points;
+            $group->update([
+                'points' => $group->points + $request->points,
+            ]);
+            $finalPoints = $group->points;
+            if ($finalPoints != $initialPoints) {
+                $adjustmentPoints = $finalPoints - $initialPoints;
+                activity()
+                    ->causedBy(Auth::user())
+                    ->performedOn($group)
+                    ->withProperties(['points' => $adjustmentPoints])
+                    ->event($request->remarks . ' from ' . $user->name)
+                    ->log('points update');
+            }
+            $group->enableLogging();
+        }
 
         DB::commit();
         return redirect(route('users.edit', $user))->with('success', 'Points updated successfully');
