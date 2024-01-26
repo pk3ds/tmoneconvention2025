@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
 import Awards from "./Partials/Awards.vue";
 import ActivityLog from "@/Components/ActivityLog.vue";
@@ -22,6 +23,10 @@ const form = useForm({
     password_confirmation: "",
     points: props.user.points,
 });
+
+const back = () => {
+    window.history.back();
+};
 </script>
 
 <template>
@@ -50,7 +55,9 @@ const form = useForm({
         <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
                 <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
-                    <div class="mb-4 border-b border-gray-200">
+                    <div
+                        class="flex justify-between mb-4 border-b border-gray-200"
+                    >
                         <ul
                             class="flex flex-wrap -mb-px text-sm font-medium text-center"
                             id="default-tab"
@@ -97,6 +104,9 @@ const form = useForm({
                                 </button>
                             </li>
                         </ul>
+                        <SecondaryButton class="px-4 my-2 me-2" @click="back">
+                            Back
+                        </SecondaryButton>
                     </div>
                     <div id="default-tab-content">
                         <div

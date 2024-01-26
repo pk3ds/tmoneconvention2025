@@ -4,6 +4,7 @@ import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
@@ -20,6 +21,10 @@ const form = useForm({
     password: "",
     password_confirmation: "",
 });
+
+const back = () => {
+    window.history.back();
+};
 </script>
 
 <template>
@@ -50,19 +55,27 @@ const form = useForm({
                 <div
                     class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
                 >
-                    <section class="max-w-xl">
-                        <header>
-                            <h2
-                                class="text-lg font-medium text-gray-900 dark:text-gray-100"
-                            >
-                                User Information
-                            </h2>
+                    <section>
+                        <header class="flex justify-between">
+                            <div>
+                                <h2
+                                    class="text-lg font-medium text-gray-900 dark:text-gray-100"
+                                >
+                                    User Information
+                                </h2>
 
-                            <p
-                                class="mt-1 text-sm text-gray-600 dark:text-gray-400"
+                                <p
+                                    class="mt-1 text-sm text-gray-600 dark:text-gray-400"
+                                >
+                                    Create new user.
+                                </p>
+                            </div>
+                            <SecondaryButton
+                                class="px-4 my-2 me-2"
+                                @click="back"
                             >
-                                Create new user.
-                            </p>
+                                Back
+                            </SecondaryButton>
                         </header>
 
                         <form
