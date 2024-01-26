@@ -1,7 +1,4 @@
 <script setup>
-// TODO banner or something for success
-
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import { initFlowbite } from "flowbite";
@@ -13,10 +10,16 @@ onMounted(() => {
 
 const props = defineProps({
     session: Object,
+    checkin: Object,
 });
 
-const checkin = () => {
-    router.post(route("sessions.checkin", props.session.uuid));
+const formatDate = (date) => {
+    return new Intl.DateTimeFormat("en-my", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Asia/Kuala_Lumpur",
+        hour12: false,
+    }).format(new Date(date));
 };
 </script>
 
@@ -62,7 +65,11 @@ const checkin = () => {
             </div>
 
             <p class="mb-6 text-sm font-normal text-gray-500">
-                Check in successful! Enjoy the session.
+                Check in successful! Enjoy the session.<br />
+                <span class="font-semibold">Check in time:</span>
+                {{ formatDate(checkin.created_at) }}<br />
+                <span class="font-semibold">Check in points:</span>
+                {{ checkin.points }}<br />
             </p>
             <div class="flex items-center justify-end">
                 <span class="rounded-md text-cobalt-blue">

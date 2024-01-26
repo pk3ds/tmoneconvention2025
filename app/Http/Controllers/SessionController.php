@@ -156,15 +156,16 @@ class SessionController extends Controller
     {
         $session = Session::where('uuid', $uuid)->first();
 
-        $exist = DB::table('session_user')
+        $checkin = DB::table('session_user')
             ->where('session_id', $session->id)
             ->where('user_id', Auth::user()->id)
-            ->get();
+            ->first();
 
-        if ($exist->count() > 0) {
+        if ($checkin) {
             return Inertia::render('Sessions/Checkins/Show', [
                 'session' => $session,
-            ]);
+                'checkin' => $checkin
+            ])->with('flash.warning', 'Already checked in!');
         } else {
             return Inertia::render('Sessions/Checkins/Create', [
                 'session' => $session,
@@ -185,6 +186,11 @@ class SessionController extends Controller
         $user->sessions()->save($session, [
             'points' => $points,
         ]);
+
+        $checkin = DB::table('session_user')
+            ->where('session_id', $session->id)
+            ->where('user_id', $user->id)
+            ->first();
 
         $user->disableLogging();
         $user->update([
@@ -215,6 +221,7 @@ class SessionController extends Controller
         DB::commit();
         return Inertia::render('Sessions/Checkins/Show', [
             'session' => $session,
-        ]);
+            'checkin' => $checkin,
+        ])->with('flash.success', 'Check in successful!');
     }
 }
