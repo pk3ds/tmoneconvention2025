@@ -13,7 +13,7 @@ const form = useForm({
 });
 
 const search = () => {
-    router.get(route("users.index", { search: form.search }));
+    router.get(route("members.index", { search: form.search }));
 };
 
 const comparePoints = (a, b) => {

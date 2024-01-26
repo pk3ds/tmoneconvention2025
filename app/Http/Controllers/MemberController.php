@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,10 @@ class MemberController extends Controller
         $search = $request->query('search');
 
         if ($group = Auth::user()->group) {
-            $members = $group->users;
+            $members = User::where('group_id', $group->id)
+                ->orderBy('name')
+                ->search()
+                ->get();
         }
 
         return Inertia::render('Members/Index', [
