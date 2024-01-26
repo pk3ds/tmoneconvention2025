@@ -22,11 +22,6 @@ const form = useForm({
     password_confirmation: "",
     points: props.user.points,
 });
-
-const pointsForm = useForm({
-    points: "",
-    remarks: "",
-});
 </script>
 
 <template>
@@ -110,7 +105,7 @@ const pointsForm = useForm({
                             role="tabpanel"
                             aria-labelledby="details-tab"
                         >
-                            <Details :form="form" :group="group" />
+                            <Details :form="form" :roles="roles" :user="user" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"
@@ -118,7 +113,7 @@ const pointsForm = useForm({
                             role="tabpanel"
                             aria-labelledby="awards-tab"
                         >
-                            <Awards :group="group" />
+                            <Awards :user="user" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"

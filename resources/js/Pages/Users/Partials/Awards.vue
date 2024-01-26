@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-    group: Object,
+    user: Object,
 });
 </script>
 

@@ -8,7 +8,8 @@ import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     form: Object,
-    group: Object,
+    roles: Object,
+    user: Object,
 });
 
 const pointsForm = useForm({
@@ -171,7 +172,7 @@ const pointsForm = useForm({
                     <h3
                         class="text-xl font-semibold text-gray-900 dark:text-white"
                     >
-                        Input Group Points
+                        Input User Points
                     </h3>
                     <button
                         type="button"
@@ -199,10 +200,10 @@ const pointsForm = useForm({
                 <div class="p-4 md:p-5">
                     <form
                         @submit.prevent="
-                            pointsForm.patch(route('groups.points', group), {
+                            pointsForm.patch(route('users.points', user), {
                                 preserveScroll: true,
                                 onSuccess: (res) => {
-                                    form.points = res.props.group.points;
+                                    form.points = res.props.user.points;
                                     pointsForm.points = '';
                                     pointsForm.remarks = '';
                                 },
