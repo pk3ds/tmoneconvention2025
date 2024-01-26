@@ -25,7 +25,8 @@ document.addEventListener("scroll", function () {
         <nav
             class="fixed top-0 z-20 w-full start-0"
             :class="{
-                'bg-white transition duration-300 ease-in': showWhiteNavbar,
+                'bg-white transition duration-300 ease-in border-b border-gray-300':
+                    showWhiteNavbar,
             }"
         >
             <div
