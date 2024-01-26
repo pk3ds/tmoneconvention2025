@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -60,6 +61,8 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::put('/users/{id}', [UserController::class, 'restore'])->middleware('can:view deleted')->name('users.restore');
 
     Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
+
+    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 });
 
 require __DIR__ . '/auth.php';
