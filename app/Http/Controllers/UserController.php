@@ -138,7 +138,7 @@ class UserController extends Controller
         }
 
         DB::commit();
-        return redirect(route('users.index'))->with('success', 'User ' . $user->name . ' updated successfully');
+        return redirect()->back()->with('success', 'User ' . $user->name . ' updated successfully');
     }
 
     /**
