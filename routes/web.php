@@ -8,6 +8,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,12 @@ Route::get('/', function () {
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        $checkinCount = DB::table('session_user')
+            ->where('user_id', Auth::user()->id)
+            ->count();
+        return Inertia::render('Dashboard', [
+            'checkinCount' => $checkinCount
+        ]);
     })->name('dashboard');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');

@@ -1,6 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
+
+defineProps({
+    checkinCount: Object,
+});
 </script>
 
 <template>
@@ -52,13 +56,11 @@ import { Head } from "@inertiajs/vue3";
                             <div
                                 class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
                             >
-                                <dt class="text-sm leading-6">
-                                    Passport stamps
-                                </dt>
+                                <dt class="text-sm leading-6">QR check in</dt>
                                 <dd
                                     class="text-3xl font-semibold tracking-tight font-title"
                                 >
-                                    0
+                                    {{ checkinCount }}
                                 </dd>
                             </div>
                             <div
