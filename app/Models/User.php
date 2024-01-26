@@ -32,7 +32,18 @@ class User extends Authenticatable
         'points',
         'transport_mode',
         'pickup_location',
-        'password'
+        'password',
+        'employee_no',
+        'position',
+        'unit',
+        'division',
+        'gender',
+        'band',
+        'tag_category',
+        'tag_division',
+        'room_type',
+        'check_in',
+        'check_out',
     ];
 
     /**
@@ -63,7 +74,16 @@ class User extends Authenticatable
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['group_id', 'name', 'email', 'staff_id', 'phone_no', 'room_no', 'points', 'transport_mode', 'pickup_location']);
+        return LogOptions::defaults()->logOnly([
+            'group.name',
+            'name',
+            'email',
+            'staff_id',
+            'phone_no',
+            'room_no',
+            'points',
+            'pickup_location',
+        ]);
     }
 
     public function group()

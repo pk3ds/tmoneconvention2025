@@ -1,9 +1,15 @@
 <script setup>
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { Link, router } from "@inertiajs/vue3";
+import { ref } from "vue";
+import * as XLSX from "xlsx";
 
 const props = defineProps({
     group: Object,
 });
+
+const templateInput = ref(null);
+const uploadedUsers = ref([]);
 
 const destroy = (user) => {
     router.delete(route("users.destroy", user));
@@ -12,17 +18,51 @@ const destroy = (user) => {
 const restore = (id) => {
     router.put(route("users.restore", id));
 };
+
+const start = () => {
+    templateInput.value.click();
+};
+
+const upload = (event) => {
+    const template = event.target.files[0];
+
+    const fileReader = new FileReader();
+    fileReader.readAsBinaryString(template);
+    fileReader.onload = () => {
+        var workbook = XLSX.read(fileReader.result, { type: "binary" });
+        var sheetNames = workbook.SheetNames;
+        const excelData = XLSX.utils.sheet_to_json(
+            workbook.Sheets[sheetNames[0]]
+        );
+        excelData.forEach((user) => {
+            uploadedUsers.value.push(user);
+        });
+        router.post(route("groups.upload", props.group), uploadedUsers.value);
+        uploadedUsers.value = [];
+    };
+};
 </script>
 
 <template>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            Members Information
-        </h2>
+    <header class="flex justify-between">
+        <div>
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                Members Information
+            </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            View users tagged as group members.
-        </p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                View users tagged as group members.
+            </p>
+        </div>
+        <PrimaryButton class="px-4 my-2 me-2" @click.prevent="start">
+            Upload
+        </PrimaryButton>
+        <input
+            type="file"
+            @change="upload($event)"
+            class="hidden"
+            ref="templateInput"
+        />
     </header>
 
     <div class="mt-8 -mx-4 sm:-mx-0">

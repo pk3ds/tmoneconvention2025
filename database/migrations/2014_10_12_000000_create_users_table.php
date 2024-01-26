@@ -24,6 +24,17 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('use_password')->default(false);
             $table->string('password');
+            $table->string('employee_no')->nullable();
+            $table->string('position')->nullable();
+            $table->string('unit')->nullable();
+            $table->string('division')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('band')->nullable();
+            $table->string('tag_category')->nullable();
+            $table->string('tag_division')->nullable();
+            $table->string('room_type')->nullable();
+            $table->string('check_in')->nullable();
+            $table->string('check_out')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

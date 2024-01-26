@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Activitylog\Models\Activity;
 
 class GroupController extends Controller
@@ -72,6 +74,44 @@ class GroupController extends Controller
     public function show(Group $group)
     {
         //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function upload(Request $request, Group $group)
+    {
+        $users = $request->all();
+
+        DB::beginTransaction();
+        foreach ($users as $user) {
+            $staffId = strtoupper($user['Staff ID']);
+            $staffId = trim($staffId);
+
+            $createdUser = User::create([
+                'group_id' => $group->id,
+                'name' => $user['Name'] ?? 'Unknown',
+                'staff_id' => $staffId,
+                'phone_no' => $user['Contact No'] ?? null,
+                'email' => $user['Email'] ?? null,
+                'pickup_location' => $user['Pickup Point'] ?? null,
+                'password' => Hash::make('password'),
+                'employee_no' => $user['Perno'] ?? null,
+                'position' => $user['Positions'] ?? null,
+                'unit' => $user['Org Unit'] ?? null,
+                'division' => $user['Division'] ?? null,
+                'gender' => $user['Gender'] ?? null,
+                'band' => $user['Band'] ?? null,
+                'tag_category' => $user['Tag 1 - Category'] ?? null,
+                'tag_division' => $user['Tag 2 - Division'] ?? null,
+                'room_type' => $user['Type of Room'] ?? null,
+                'check_in' => $user['Check In'] ?? null,
+                'check_out' => $user['Check Out'] ?? null,
+            ])->assignRole('user');
+        }
+
+        DB::commit();
+        return redirect()->back()->with('success', 'Users uploaded successfully');
     }
 
     /**
