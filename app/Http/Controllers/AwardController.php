@@ -92,7 +92,7 @@ class AwardController extends Controller
                         ->causedBy(Auth::user())
                         ->performedOn($group)
                         ->withProperties(['points' => $adjustmentPoints])
-                        ->event($request->remarks . ' from ' . $user->name)
+                        ->event($request->name . ' from ' . $user->name)
                         ->log('points update');
                 }
                 $group->enableLogging();
