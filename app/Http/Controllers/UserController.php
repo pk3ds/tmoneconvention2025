@@ -148,6 +148,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'points' => 'required',
+            'remarks' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -167,7 +168,7 @@ class UserController extends Controller
                 ->causedBy(Auth::user())
                 ->performedOn($user)
                 ->withProperties(['points' => $adjustmentPoints])
-                ->event('points update')
+                ->event($request->remarks)
                 ->log('points update');
         }
 

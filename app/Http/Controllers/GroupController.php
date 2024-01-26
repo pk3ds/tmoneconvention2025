@@ -115,6 +115,7 @@ class GroupController extends Controller
     {
         $validated = $request->validate([
             'points' => 'required',
+            'remarks' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -134,7 +135,7 @@ class GroupController extends Controller
                 ->causedBy(Auth::user())
                 ->performedOn($group)
                 ->withProperties(['points' => $adjustmentPoints])
-                ->event('points update')
+                ->event($request->remarks)
                 ->log('points update');
         }
 

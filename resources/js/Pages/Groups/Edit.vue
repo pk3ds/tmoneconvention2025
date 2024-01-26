@@ -21,6 +21,7 @@ const form = useForm({
 
 const pointsForm = useForm({
     points: "",
+    remarks: "",
 });
 </script>
 
@@ -32,98 +33,197 @@ const pointsForm = useForm({
             <BreadcrumbItem>
                 <Link
                     :href="route('groups.index')"
-                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                    class="ml-4 text-sm font-medium"
                 >
                     Groups
                 </Link>
             </BreadcrumbItem>
             <BreadcrumbItem>
-                <Link
-                    href="#"
-                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                >
-                    Edit
-                </Link>
+                <Link href="#" class="ml-4 text-sm font-medium"> Edit </Link>
             </BreadcrumbItem>
         </template>
 
         <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="grid grid-cols-12 gap-2 p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
-                >
-                    <section class="col-span-12 md:col-span-6">
-                        <header>
-                            <h2
-                                class="text-lg font-medium text-gray-900 dark:text-gray-100"
-                            >
-                                Group Information
-                            </h2>
-
-                            <p
-                                class="mt-1 text-sm text-gray-600 dark:text-gray-400"
-                            >
-                                Edit existing group.
-                            </p>
-                        </header>
-
-                        <form
-                            @submit.prevent="
-                                form.patch(route('groups.update', group))
-                            "
-                            class="mt-6 space-y-6"
+                <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
+                    <div class="mb-4 border-b border-gray-200">
+                        <ul
+                            class="flex flex-wrap -mb-px text-sm font-medium text-center"
+                            id="default-tab"
+                            data-tabs-toggle="#default-tab-content"
+                            role="tablist"
                         >
-                            <div>
-                                <InputLabel for="name" value="Name" />
-
-                                <TextInput
-                                    id="name"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.name"
-                                    required
-                                    autofocus
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.name"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="points" value="Points" />
-
-                                <NumberInput
-                                    id="points"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.points"
-                                    readonly
-                                />
-                            </div>
-
-                            <div
-                                class="flex items-center justify-between gap-4"
-                            >
-                                <PrimaryButton :disabled="form.processing">
-                                    Save
-                                </PrimaryButton>
-                                <PrimaryButton
-                                    :disabled="form.processing"
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg"
+                                    id="details-tab"
+                                    data-tabs-target="#details"
                                     type="button"
-                                    data-modal-target="points-modal"
-                                    data-modal-toggle="points-modal"
+                                    role="tab"
+                                    aria-controls="details"
+                                    aria-selected="false"
                                 >
-                                    Points
-                                </PrimaryButton>
-                            </div>
-                        </form>
-                    </section>
+                                    details
+                                </button>
+                            </li>
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="users-tab"
+                                    data-tabs-target="#users"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="users"
+                                    aria-selected="false"
+                                >
+                                    users
+                                </button>
+                            </li>
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="awards-tab"
+                                    data-tabs-target="#awards"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="awards"
+                                    aria-selected="false"
+                                >
+                                    awards
+                                </button>
+                            </li>
+                            <li role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="logs-tab"
+                                    data-tabs-target="#logs"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="logs"
+                                    aria-selected="false"
+                                >
+                                    logs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="default-tab-content">
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="details"
+                            role="tabpanel"
+                            aria-labelledby="details-tab"
+                        >
+                            <header>
+                                <h2
+                                    class="text-lg font-medium text-gray-900 dark:text-gray-100"
+                                >
+                                    Group Information
+                                </h2>
 
-                    <section class="hidden col-span-6 text-right md:block">
-                        <ActivityLog :activities="activities" />
-                    </section>
+                                <p
+                                    class="mt-1 text-sm text-gray-600 dark:text-gray-400"
+                                >
+                                    Edit existing group.
+                                </p>
+                            </header>
+
+                            <form
+                                @submit.prevent="
+                                    form.patch(route('groups.update', group))
+                                "
+                                class="mt-6 space-y-6"
+                            >
+                                <div>
+                                    <InputLabel for="name" value="Name" />
+
+                                    <TextInput
+                                        id="name"
+                                        type="text"
+                                        class="block w-full mt-1"
+                                        v-model="form.name"
+                                        required
+                                        autofocus
+                                    />
+
+                                    <InputError
+                                        class="mt-2"
+                                        :message="form.errors.name"
+                                    />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="points" value="Points" />
+
+                                    <NumberInput
+                                        id="points"
+                                        type="text"
+                                        class="block w-full mt-1"
+                                        v-model="form.points"
+                                        readonly
+                                    />
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between gap-4"
+                                >
+                                    <PrimaryButton :disabled="form.processing">
+                                        Save
+                                    </PrimaryButton>
+                                    <PrimaryButton
+                                        :disabled="form.processing"
+                                        type="button"
+                                        data-modal-target="points-modal"
+                                        data-modal-toggle="points-modal"
+                                    >
+                                        Points
+                                    </PrimaryButton>
+                                </div>
+                            </form>
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="users"
+                            role="tabpanel"
+                            aria-labelledby="users-tab"
+                        >
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                This is some placeholder content the
+                                <strong
+                                    class="font-medium text-gray-800 dark:text-white"
+                                    >users tab's associated content</strong
+                                >. Clicking another tab will toggle the
+                                visibility of this one for the next. The tab
+                                JavaScript swaps classes to control the content
+                                visibility and styling.
+                            </p>
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="awards"
+                            role="tabpanel"
+                            aria-labelledby="awards-tab"
+                        >
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                This is some placeholder content the
+                                <strong
+                                    class="font-medium text-gray-800 dark:text-white"
+                                    >awards tab's associated content</strong
+                                >. Clicking another tab will toggle the
+                                visibility of this one for the next. The tab
+                                JavaScript swaps classes to control the content
+                                visibility and styling.
+                            </p>
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="logs"
+                            role="tabpanel"
+                            aria-labelledby="logs-tab"
+                        >
+                            <ActivityLog :activities="activities" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,7 +271,14 @@ const pointsForm = useForm({
                 <div class="p-4 md:p-5">
                     <form
                         @submit.prevent="
-                            pointsForm.patch(route('groups.points', group))
+                            pointsForm.patch(route('groups.points', group), {
+                                preserveScroll: true,
+                                onSuccess: (res) => {
+                                    form.points = res.props.group.points;
+                                    pointsForm.points = '';
+                                    pointsForm.remarks = '';
+                                },
+                            })
                         "
                         class="space-y-5"
                     >
@@ -185,6 +292,20 @@ const pointsForm = useForm({
                                 type="text"
                                 name="points"
                                 v-model="pointsForm.points"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label
+                                for="remarks"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >Remarks</label
+                            >
+                            <input
+                                type="text"
+                                name="remarks"
+                                v-model="pointsForm.remarks"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required
                             />
