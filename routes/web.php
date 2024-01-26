@@ -60,7 +60,11 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::put('/users/{id}', [UserController::class, 'restore'])->middleware('can:view deleted')->name('users.restore');
 
+    Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
+    Route::get('/awards/create', [AwardController::class, 'create'])->name('awards.create');
+    Route::post('/awards', [AwardController::class, 'store'])->name('awards.store');
     Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
+    Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 });

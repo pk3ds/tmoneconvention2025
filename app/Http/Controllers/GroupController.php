@@ -154,7 +154,7 @@ class GroupController extends Controller
     public function points(Request $request, Group $group)
     {
         $validated = $request->validate([
-            'points' => 'required',
+            'points' => 'required|numeric',
             'remarks' => 'required',
         ]);
 

@@ -2,17 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Inertia\Inertia;
 use App\Models\Award;
+use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AwardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->query('search');
+        $awards = Award::orderBy('name')
+            ->search()
+            ->get();
+
+        return Inertia::render('Awards/Index', [
+            'search' => $search,
+            'awards' => $awards->load('awardable'),
+        ]);
     }
 
     /**
@@ -20,7 +33,14 @@ class AwardController extends Controller
      */
     public function create()
     {
-        //
+        $types = [User::class, Group::class];
+        $groups = Group::orderBy('name')->search()->get();
+        $users = User::orderBy('name')->search()->get();
+        return Inertia::render('Awards/Create', [
+            'types' => $types,
+            'groups' => $groups,
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -28,7 +48,76 @@ class AwardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'remarks' => 'nullable|string|max:255',
+            'points' => 'required|numeric',
+            'awardable_type' => 'required',
+            'awardable_id' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        $award = Award::create([
+            'name' => $request->name,
+            'remarks' => $request->remarks,
+            'points' => $request->points,
+            'awardable_type' => $request->awardable_type,
+            'awardable_id' => $request->awardable_id,
+        ]);
+
+        if ($request->awardable_type == User::class) {
+            $user = User::find($request->awardable_id);
+            $user->disableLogging();
+            $user->update([
+                'points' => $user->points + $request->points,
+            ]);
+            activity()
+                ->causedBy(Auth::user())
+                ->performedOn($user)
+                ->withProperties(['points' => $request->points])
+                ->event($request->name)
+                ->log('award');
+            $user->enableLogging();
+
+            if ($group = $user->group) {
+                $group->disableLogging();
+                $initialPoints = $group->points;
+                $group->update([
+                    'points' => $group->points + $request->points,
+                ]);
+                $finalPoints = $group->points;
+                if ($finalPoints != $initialPoints) {
+                    $adjustmentPoints = $finalPoints - $initialPoints;
+                    activity()
+                        ->causedBy(Auth::user())
+                        ->performedOn($group)
+                        ->withProperties(['points' => $adjustmentPoints])
+                        ->event($request->remarks . ' from ' . $user->name)
+                        ->log('points update');
+                }
+                $group->enableLogging();
+            }
+        }
+
+        if ($request->awardable_type == Group::class) {
+            $group = Group::find($request->awardable_id);
+            $group->disableLogging();
+            $group->update([
+                'points' => $group->points + $request->points,
+            ]);
+            activity()
+                ->causedBy(Auth::user())
+                ->performedOn($group)
+                ->withProperties(['points' => $request->points])
+                ->event($request->name)
+                ->log('award');
+        }
+        $group->enableLogging();
+
+        DB::commit();
+        return redirect()
+            ->route('awards.index')
+            ->with('success', 'Award ' . $award->name . ' created successfully');
     }
 
     /**
@@ -60,6 +149,6 @@ class AwardController extends Controller
      */
     public function destroy(Award $award)
     {
-        //
+        dd("N/A");
     }
 }
