@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 GroupSeeder::class,
                 AwardSeeder::class,
+                SessionSeeder::class,
             ]);
         }
     }

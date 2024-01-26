@@ -7,6 +7,7 @@ use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,14 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::patch('/users/{user}/points', [UserController::class, 'points'])->name('users.points');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::put('/users/{id}', [UserController::class, 'restore'])->middleware('can:view deleted')->name('users.restore');
+
+    Route::get('/sessions', [SessionController::class, 'index'])->name('sessions.index');
+    Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
+    Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
+    Route::get('/sessions/{session}/edit', [SessionController::class, 'edit'])->name('sessions.edit');
+    Route::patch('/sessions/{session}', [SessionController::class, 'update'])->name('sessions.update');
+    Route::delete('/sessions/{session}', [SessionController::class, 'destroy'])->name('sessions.destroy');
+    Route::put('/sessions/{id}', [SessionController::class, 'restore'])->middleware('can:view deleted')->name('sessions.restore');
 
     Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
     Route::get('/awards/create', [AwardController::class, 'create'])->name('awards.create');
