@@ -9,10 +9,13 @@ import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
+    station_id: Number,
+    stations: Object,
     types: Object,
 });
 
 const form = useForm({
+    station_id: props.station_id ?? "",
     name: "",
     question_type_id: "",
 });
@@ -84,6 +87,27 @@ const transform = (string) => {
                             "
                             class="mt-6 space-y-6"
                         >
+                            <div v-show="!station_id">
+                                <InputLabel for="station_id" value="Station" />
+                                <select
+                                    required
+                                    v-model="form.station_id"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                                >
+                                    <option
+                                        v-for="station in stations"
+                                        :value="station.id"
+                                    >
+                                        {{ station.name }}
+                                    </option>
+                                </select>
+
+                                <InputError
+                                    :message="form.errors.station_id"
+                                    class="mt-2"
+                                />
+                            </div>
+
                             <div>
                                 <InputLabel for="name" value="Name" />
 

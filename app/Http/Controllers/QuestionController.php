@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Station;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +43,12 @@ class QuestionController extends Controller
      */
     public function create()
     {
+        $station_id = Auth::user()->station?->id;
+        $stations = Station::orderBy('name')->get();
         $types = QuestionType::all();
         return Inertia::render('Questions/Create', [
+            'station_id' => $station_id,
+            'stations' => $stations,
             'types' => $types,
         ]);
     }
@@ -54,11 +59,13 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'station_id' => 'required|numeric',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
         ]);
 
         $question = Question::create([
+            'station_id' => $request->station_id,
             'name' => $request->name,
             'question_type_id' => $request->question_type_id,
             'is_active' => true,
