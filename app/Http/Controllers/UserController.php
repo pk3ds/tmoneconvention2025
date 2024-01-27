@@ -29,11 +29,13 @@ class UserController extends Controller
         if ($permissionNames->contains('view deleted')) {
             $users = User::orderBy('name')
                 ->withTrashed()
+                ->role('user')
                 ->search()
                 ->get();
         } else {
             $users = User::orderBy('name')
                 ->search()
+                ->role('user')
                 ->get();
         }
 
