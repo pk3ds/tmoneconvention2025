@@ -146,7 +146,7 @@ const restore = (id) => {
                                                 scope="col"
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                                             >
-                                                Email
+                                                Group
                                             </th>
                                             <th
                                                 scope="col"
@@ -204,12 +204,17 @@ const restore = (id) => {
                                                     <dt
                                                         class="sr-only sm:hidden"
                                                     >
-                                                        Email
+                                                        Group
                                                     </dt>
                                                     <dd
                                                         class="mt-1 text-gray-500 truncate sm:hidden"
                                                     >
-                                                        {{ user.email }}
+                                                        {{
+                                                            user.group
+                                                                ? user.group
+                                                                      .name
+                                                                : "None"
+                                                        }}
                                                     </dd>
                                                 </dl>
                                             </td>
@@ -226,7 +231,11 @@ const restore = (id) => {
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
                                             >
-                                                {{ user.email }}
+                                                {{
+                                                    user.group
+                                                        ? user.group.name
+                                                        : "None"
+                                                }}
                                             </td>
                                             <td
                                                 class="px-3 py-4 text-sm text-gray-500 capitalize"

@@ -42,7 +42,7 @@ class CommitteeController extends Controller
 
         return Inertia::render('Committees/Index', [
             'search' => $search,
-            'committees' => $users->load('roles'),
+            'committees' => $users->load('roles', 'station'),
         ]);
     }
 
