@@ -5,6 +5,7 @@ import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
 
 const props = defineProps({
+    search: String,
     questions: Object,
 });
 

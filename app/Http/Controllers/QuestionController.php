@@ -22,10 +22,12 @@ class QuestionController extends Controller
 
         if ($permissionNames->contains('view deleted')) {
             $questions = Question::orderBy('name')
+                ->where('name', 'like', '%' . $search . '%')
                 ->withTrashed()
                 ->get();
         } else {
             $questions = Question::orderBy('name')
+                ->where('name', 'like', '%' . $search . '%')
                 ->get();
         }
 
