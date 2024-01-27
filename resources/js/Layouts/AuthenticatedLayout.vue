@@ -201,6 +201,32 @@ watch(
                                 <span class="ms-3">Dashboard</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                :href="route('checkins.index')"
+                                :class="{
+                                    'bg-gray-100 dark:bg-gray-600':
+                                        route().current('checkins.index'),
+                                }"
+                                data-drawer-hide="drawer-navigation"
+                                aria-controls="drawer-navigation"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            >
+                                <svg
+                                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 384 512"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
+                                    />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">
+                                    Check-ins
+                                </span>
+                            </Link>
+                        </li>
                         <li v-if="$page.props.auth.user.group_id">
                             <Link
                                 :href="route('members.index')"

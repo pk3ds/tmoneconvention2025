@@ -1,14 +1,15 @@
 <?php
 
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::middleware('auth', 'verified')->group(function () {
     })->name('dashboard');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+
+    Route::get('/checkins', [CheckinController::class, 'index'])->name('checkins.index');
 
     Route::get('/sessions/checkin/{uuid}', [SessionController::class, 'scan'])->name('sessions.scan');
     Route::post('/sessions/checkin/{uuid}', [SessionController::class, 'checkin'])->name('sessions.checkin');
