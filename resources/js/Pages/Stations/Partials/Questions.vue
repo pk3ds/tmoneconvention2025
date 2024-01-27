@@ -9,13 +9,24 @@ const props = defineProps({
 
 <template>
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            Questions Information
-        </h2>
+        <div class="sm:flex sm:items-center">
+            <div class="sm:flex-auto">
+                <h2
+                    class="text-lg font-medium text-gray-900 dark:text-gray-100"
+                >
+                    Questions Information
+                </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            View station questions collection.
-        </p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    View station questions collection.
+                </p>
+            </div>
+            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                <Link :href="route('questions.create')">
+                    <PrimaryButton> Add question </PrimaryButton>
+                </Link>
+            </div>
+        </div>
     </header>
 
     <div class="mt-8 -mx-4 sm:-mx-0">
