@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Harishdurga\LaravelQuiz\Models\Question;
+use Harishdurga\LaravelQuiz\Models\QuestionType;
 
 class QuestionController extends Controller
 {
@@ -42,7 +43,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $types = QuestionType::all();
+        return Inertia::render('Questions/Create', [
+            'types' => $types,
+        ]);
     }
 
     /**
@@ -50,7 +54,20 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'question_type_id' => 'required|numeric',
+        ]);
+
+        $question = Question::create([
+            'name' => $request->name,
+            'question_type_id' => $request->question_type_id,
+            'is_active' => true,
+        ]);
+
+        return redirect()
+            ->route('questions.index')
+            ->with('success', 'Question created successfully');
     }
 
     /**

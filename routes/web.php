@@ -155,6 +155,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/questions/create', [QuestionController::class, 'create'])
         ->middleware('can:manage questions')
         ->name('questions.create');
+    Route::post('/questions', [QuestionController::class, 'store'])
+        ->middleware('can:manage questions')
+        ->name('questions.store');
 });
 
 require __DIR__ . '/auth.php';
