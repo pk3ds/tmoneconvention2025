@@ -25,6 +25,13 @@ class UserSeeder extends Seeder
                 'phone_no' => '0135711937',
                 'pickup_location' => 'Self Drive',
             ])->assignRole('admin');
+            User::create([
+                'name' => 'Asri',
+                'staff_id' => 'TM39452',
+                'use_password' => true,
+                'password' => Hash::make('password'),
+                'pickup_location' => 'Self Drive',
+            ])->assignRole('admin');
         } else {
             User::factory()->create([
                 'name' => 'Admin',
