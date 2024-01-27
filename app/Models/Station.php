@@ -15,7 +15,7 @@ class Station extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'type', 'description'];
+    protected $fillable = ['name', 'type', 'description', 'rating'];
 
     public function scopeSearch($query)
     {

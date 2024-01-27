@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class StationController extends Controller
@@ -41,7 +42,7 @@ class StationController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Stations/Create');
     }
 
     /**
@@ -49,7 +50,23 @@ class StationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        $station = Station::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'description' => $request->description,
+        ]);
+
+        DB::commit();
+        return redirect()
+            ->route('stations.index')
+            ->with('success', 'Station ' . $station->name . ' created successfully');
     }
 
     /**
@@ -65,7 +82,9 @@ class StationController extends Controller
      */
     public function edit(Station $station)
     {
-        //
+        return Inertia::render('Stations/Edit', [
+            'station' => $station
+        ]);
     }
 
     /**
@@ -73,7 +92,21 @@ class StationController extends Controller
      */
     public function update(Request $request, Station $station)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        $station->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'description' => $request->description,
+        ]);
+
+        DB::commit();
+        return redirect(route('stations.index'))->with('success', 'Station ' . $station->name . ' updated successfully');
     }
 
     /**
@@ -81,6 +114,22 @@ class StationController extends Controller
      */
     public function destroy(Station $station)
     {
-        //
+        $station->delete();
+
+        return redirect()
+            ->route('stations.index')
+            ->with('warning', 'Station ' . $station->name . ' deleted successfully');
+    }
+
+    /**
+     * Restore the specified resource from deleted state.
+     */
+    public function restore($id)
+    {
+        $station = Station::withTrashed()->find($id);
+
+        $station->restore();
+
+        return redirect(route('stations.index'))->with('success', 'Station ' . $station->name . ' restored successfully');
     }
 }

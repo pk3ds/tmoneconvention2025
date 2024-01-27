@@ -128,9 +128,9 @@ Route::middleware('auth', 'can:manage users')->group(function () {
 Route::middleware('auth', 'can:manage stations')->group(function () {
     Route::get('/stations', [StationController::class, 'index'])->name('stations.index');
     Route::get('/stations/create', [StationController::class, 'create'])->name('stations.create');
-    // Route::post('/stations', [StationController::class, 'store'])->name('stations.store');
+    Route::post('/stations', [StationController::class, 'store'])->name('stations.store');
     Route::get('/stations/{station}/edit', [StationController::class, 'edit'])->name('stations.edit');
-    // Route::patch('/stations/{station}', [StationController::class, 'update'])->name('stations.update');
+    Route::patch('/stations/{station}', [StationController::class, 'update'])->name('stations.update');
     Route::delete('/stations/{station}', [StationController::class, 'destroy'])->name('stations.destroy');
     Route::put('/stations/{id}', [StationController::class, 'restore'])
         ->middleware('can:view deleted')

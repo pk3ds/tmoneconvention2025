@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->float('rating')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
