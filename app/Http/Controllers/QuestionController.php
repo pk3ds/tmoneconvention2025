@@ -135,7 +135,7 @@ class QuestionController extends Controller
             'stations' => $stations,
             'types' => $types,
             'question' => $question->load('options'),
-            'activities' => $activities,
+            'activities' => $activities->load('causer'),
         ]);
     }
 
