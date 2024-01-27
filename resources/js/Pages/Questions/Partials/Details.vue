@@ -3,19 +3,13 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
+    form: Object,
     station_id: Number,
     stations: Object,
     types: Object,
     question: Object,
-});
-
-const form = useForm({
-    station_id: props.station_id ?? props.question.station_id,
-    name: props.question.name,
-    question_type_id: props.question.question_type_id,
 });
 
 const transform = (string) => {
@@ -83,7 +77,7 @@ const transform = (string) => {
             <InputError :message="form.errors.question_type_id" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end gap-4">
+        <div class="flex items-center justify-start gap-4">
             <PrimaryButton :disabled="form.processing"> Save </PrimaryButton>
         </div>
     </form>

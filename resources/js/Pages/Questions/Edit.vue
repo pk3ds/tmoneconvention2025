@@ -3,9 +3,9 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
-// import Options from "./Partials/Options.vue";
+import Options from "./Partials/Options.vue";
 import ActivityLog from "@/Components/ActivityLog.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     station_id: Number,
@@ -13,6 +13,24 @@ const props = defineProps({
     types: Object,
     question: Object,
     activities: Object,
+});
+
+const form = useForm({
+    station_id: props.station_id ?? props.question.station_id,
+    name: props.question.name,
+    question_type_id: props.question.question_type_id,
+    option_one_id: props.question.options[0].id,
+    option_one: props.question.options[0].name,
+    option_one_correct: props.question.options[0].is_correct,
+    option_two_id: props.question.options[1].id,
+    option_two: props.question.options[1].name,
+    option_two_correct: props.question.options[1].is_correct,
+    option_three_id: props.question.options[2].id,
+    option_three: props.question.options[2].name,
+    option_three_correct: props.question.options[2].is_correct,
+    option_four_id: props.question.options[3].id,
+    option_four: props.question.options[3].name,
+    option_four_correct: props.question.options[3].is_correct,
 });
 
 const back = () => {
@@ -107,6 +125,7 @@ const back = () => {
                             aria-labelledby="details-tab"
                         >
                             <Details
+                                :form="form"
                                 :station_id="station_id"
                                 :stations="stations"
                                 :types="types"
@@ -119,7 +138,7 @@ const back = () => {
                             role="tabpanel"
                             aria-labelledby="options-tab"
                         >
-                            <!-- <Options :question="question" /> -->
+                            <Options :form="form" :question="question" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"

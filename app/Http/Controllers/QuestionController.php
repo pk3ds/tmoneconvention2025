@@ -134,7 +134,7 @@ class QuestionController extends Controller
             'station_id' => $station_id,
             'stations' => $stations,
             'types' => $types,
-            'question' => $question,
+            'question' => $question->load('options'),
             'activities' => $activities,
         ]);
     }
@@ -148,6 +148,18 @@ class QuestionController extends Controller
             'station_id' => 'required|numeric',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
+            'option_one_id' => 'required|exists:' . QuestionOption::class . ',id',
+            "option_one" => 'required|string|max:255',
+            "option_one_correct" => 'required',
+            'option_two_id' => 'required|exists:' . QuestionOption::class . ',id',
+            "option_two" => 'required|string|max:255',
+            "option_two_correct" => 'required',
+            'option_three_id' => 'required|exists:' . QuestionOption::class . ',id',
+            "option_three" => 'required|string|max:255',
+            "option_three_correct" => 'required',
+            'option_four_id' => 'required|exists:' . QuestionOption::class . ',id',
+            "option_four" => 'required|string|max:255',
+            "option_four_correct" => 'required',
         ]);
 
         $question->update([
@@ -155,6 +167,30 @@ class QuestionController extends Controller
             'name' => $request->name,
             'question_type_id' => $request->question_type_id,
             'is_active' => true,
+        ]);
+
+        $option_one = QuestionOption::find($request->option_one_id)->update([
+            'question_id' => $question->id,
+            'name' => $request->option_one,
+            'is_correct' => $request->option_one_correct,
+        ]);
+
+        $option_two = QuestionOption::find($request->option_two_id)->update([
+            'question_id' => $question->id,
+            'name' => $request->option_two,
+            'is_correct' => $request->option_two_correct,
+        ]);
+
+        $option_three = QuestionOption::find($request->option_three_id)->update([
+            'question_id' => $question->id,
+            'name' => $request->option_three,
+            'is_correct' => $request->option_three_correct,
+        ]);
+
+        $option_four = QuestionOption::find($request->option_four_id)->update([
+            'question_id' => $question->id,
+            'name' => $request->option_four,
+            'is_correct' => $request->option_four_correct,
         ]);
 
         return redirect()
