@@ -19,7 +19,7 @@ class Group extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'points'];
+    protected $fillable = ['name', 'points', 'rating'];
 
     public function scopeSearch($query)
     {

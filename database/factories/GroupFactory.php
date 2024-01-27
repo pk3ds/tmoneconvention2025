@@ -19,6 +19,7 @@ class GroupFactory extends Factory
         return [
             'name' => fake()->company(),
             'points' => fake()->randomNumber(5, true),
+            'rating' => fake()->randomFloat(1, 0, 5),
         ];
     }
 }
