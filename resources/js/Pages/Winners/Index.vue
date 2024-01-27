@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 
@@ -171,44 +172,52 @@ const claim = (winner) => {
                                                 {{ winner.prize }}
                                             </td>
                                             <td
-                                                class="grid grid-cols-1 gap-10 px-3 py-4 sm:gap-4 lg:grid-cols-2"
+                                                class="px-3 py-4 text-sm text-gray-500 capitalize"
                                             >
-                                                <Link
-                                                    :href="
-                                                        route(
-                                                            'winners.edit',
-                                                            winner
-                                                        )
-                                                    "
-                                                    class="text-cobalt-blue hover:text-ultramarine"
+                                                <div
+                                                    class="grid grid-cols-1 gap-10 px-3 py-4 sm:gap-4 lg:grid-cols-2"
                                                 >
-                                                    <svg
-                                                        class="w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 512 512"
-                                                        fill="currentColor"
+                                                    <Link
+                                                        :href="
+                                                            route(
+                                                                'winners.edit',
+                                                                winner
+                                                            )
+                                                        "
                                                     >
-                                                        <path
-                                                            d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"
-                                                        />
-                                                    </svg>
-                                                </Link>
-                                                <span
-                                                    v-if="!winner.is_claimed"
-                                                    @click="claim(winner)"
-                                                    class="cursor-pointer text-cobalt-blue hover:text-ultramarine"
-                                                >
-                                                    <svg
-                                                        class="w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 512 512"
-                                                        fill="currentColor"
+                                                        <PrimaryButton>
+                                                            <svg
+                                                                class="w-4"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 512 512"
+                                                                fill="currentColor"
+                                                            >
+                                                                <path
+                                                                    d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"
+                                                                />
+                                                            </svg>
+                                                        </PrimaryButton>
+                                                    </Link>
+                                                    <span
+                                                        v-if="
+                                                            !winner.is_claimed
+                                                        "
+                                                        @click="claim(winner)"
                                                     >
-                                                        <path
-                                                            d="M190.5 68.8L225.3 128H224 152c-22.1 0-40-17.9-40-40s17.9-40 40-40h2.2c14.9 0 28.8 7.9 36.3 20.8zM64 88c0 14.4 3.5 28 9.6 40H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H480c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H438.4c6.1-12 9.6-25.6 9.6-40c0-48.6-39.4-88-88-88h-2.2c-31.9 0-61.5 16.9-77.7 44.4L256 85.5l-24.1-41C215.7 16.9 186.1 0 154.2 0H152C103.4 0 64 39.4 64 88zm336 0c0 22.1-17.9 40-40 40H288h-1.3l34.8-59.2C329.1 55.9 342.9 48 357.8 48H360c22.1 0 40 17.9 40 40zM32 288V464c0 26.5 21.5 48 48 48H224V288H32zM288 512H432c26.5 0 48-21.5 48-48V288H288V512z"
-                                                        />
-                                                    </svg>
-                                                </span>
+                                                        <SecondaryButton>
+                                                            <svg
+                                                                class="w-4"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 512 512"
+                                                                fill="currentColor"
+                                                            >
+                                                                <path
+                                                                    d="M190.5 68.8L225.3 128H224 152c-22.1 0-40-17.9-40-40s17.9-40 40-40h2.2c14.9 0 28.8 7.9 36.3 20.8zM64 88c0 14.4 3.5 28 9.6 40H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H480c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H438.4c6.1-12 9.6-25.6 9.6-40c0-48.6-39.4-88-88-88h-2.2c-31.9 0-61.5 16.9-77.7 44.4L256 85.5l-24.1-41C215.7 16.9 186.1 0 154.2 0H152C103.4 0 64 39.4 64 88zm336 0c0 22.1-17.9 40-40 40H288h-1.3l34.8-59.2C329.1 55.9 342.9 48 357.8 48H360c22.1 0 40 17.9 40 40zM32 288V464c0 26.5 21.5 48 48 48H224V288H32zM288 512H432c26.5 0 48-21.5 48-48V288H288V512z"
+                                                                />
+                                                            </svg>
+                                                        </SecondaryButton>
+                                                    </span>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
