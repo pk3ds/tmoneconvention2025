@@ -45,7 +45,7 @@ return [
          * Default Harishdurga\LaravelQuiz\Models\Question::class
          */
 
-        'question_option' => Harishdurga\LaravelQuiz\Models\QuestionOption::class,
+        'question_option' => App\Models\QuestionOption::class,
 
         /*
          * Default Harishdurga\LaravelQuiz\Models\Question::class

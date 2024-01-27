@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 use Harishdurga\LaravelQuiz\Models\QuestionType;
-use Harishdurga\LaravelQuiz\Models\QuestionOption;
+use App\Models\QuestionOption;
 
 class QuestionController extends Controller
 {

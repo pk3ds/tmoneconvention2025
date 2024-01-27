@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Question;
 use Illuminate\Database\Seeder;
-use Harishdurga\LaravelQuiz\Models\QuestionOption;
+use App\Models\QuestionOption;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class QuestionOptionSeeder extends Seeder
