@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             QuestionTypeSeeder::class,
-            QuestionSeeder::class,
-            QuestionOptionSeeder::class,
         ]);
 
         if (!App::environment('production')) {
@@ -31,6 +29,8 @@ class DatabaseSeeder extends Seeder
                 SessionSeeder::class,
                 WinnerSeeder::class,
                 StationSeeder::class,
+                QuestionSeeder::class,
+                QuestionOptionSeeder::class,
             ]);
         }
     }
