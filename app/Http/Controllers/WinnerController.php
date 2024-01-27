@@ -126,6 +126,6 @@ class WinnerController extends Controller
             'claimed_at' => now(),
         ]);
 
-        return redirect()->route('winners.index')->with('success', 'Prize claimed successfully');
+        return redirect()->route('winners.index')->with('success', 'Prize ' . $winner->prize . ' claimed successfully');
     }
 }
