@@ -33,7 +33,7 @@ watch(
     <div>
         <div class="min-h-screen bg-gray-100">
             <nav
-                class="fixed top-0 z-20 w-full bg-white border-gray-200 start-0"
+                class="fixed top-0 z-20 w-full bg-white border-b border-gray-200 start-0"
             >
                 <div
                     class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto text-gray-800"
