@@ -74,7 +74,9 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        //
+        return Inertia::render('Stations/Show', [
+            'station' => $station
+        ]);
     }
 
     /**

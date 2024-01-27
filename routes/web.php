@@ -133,6 +133,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/stations', [StationController::class, 'store'])
         ->middleware('can:manage stations')
         ->name('stations.store');
+    Route::get('/stations/{station}', [StationController::class, 'show'])
+        ->name('stations.show');
     Route::get('/stations/{station}/edit', [StationController::class, 'edit'])
         ->middleware('can:manage stations')
         ->name('stations.edit');

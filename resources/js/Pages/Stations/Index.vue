@@ -25,10 +25,6 @@ const destroy = (group) => {
 const restore = (id) => {
     router.put(route("stations.restore", id));
 };
-
-const start = () => {
-    alert("Not available!");
-};
 </script>
 
 <template>
@@ -367,15 +363,22 @@ const start = () => {
                                                         </svg>
                                                     </SecondaryButton>
                                                 </span>
-                                                <SecondaryButton
+                                                <Link
                                                     v-if="
                                                         $page.props.auth.user
                                                             .group?.id
                                                     "
-                                                    @click="start"
+                                                    :href="
+                                                        route(
+                                                            'stations.show',
+                                                            station
+                                                        )
+                                                    "
                                                 >
-                                                    Start
-                                                </SecondaryButton>
+                                                    <SecondaryButton>
+                                                        Start
+                                                    </SecondaryButton>
+                                                </Link>
                                             </td>
                                         </tr>
                                     </tbody>
