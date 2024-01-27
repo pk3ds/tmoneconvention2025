@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Group;
+use App\Models\Station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -29,19 +30,19 @@ class CommitteeController extends Controller
         if ($permissionNames->contains('view deleted')) {
             $users = User::orderBy('name')
                 ->withTrashed()
-                ->role(['admin', 'committee', 'vendor'])
+                ->role(['admin', 'committee', 'vendor', 'product'])
                 ->search()
                 ->get();
         } else {
             $users = User::orderBy('name')
-                ->role(['admin', 'committee', 'vendor'])
+                ->role(['admin', 'committee', 'vendor', 'product'])
                 ->search()
                 ->get();
         }
 
         return Inertia::render('Committees/Index', [
             'search' => $search,
-            'committees' => $users->load('roles'),
+            'committees' => $users->load('roles', 'station'),
         ]);
     }
 
@@ -50,9 +51,11 @@ class CommitteeController extends Controller
      */
     public function create()
     {
-        $groups = Group::all();
-        $roles = Role::all();
+        $stations = Station::orderBy('name')->get();
+        $groups = Group::orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
         return Inertia::render('Committees/Create', [
+            'stations' => $stations,
             'groups' => $groups,
             'roles' => $roles,
         ]);
@@ -70,6 +73,7 @@ class CommitteeController extends Controller
             'email' => 'required|string|email|max:255|unique:' . User::class,
             'room_no' => 'nullable|string|max:255',
             'pickup_location' => 'nullable|string|max:255',
+            'station_id' => 'nullable|exists:' . Station::class . ',id',
             'group_id' => 'nullable|exists:' . Group::class . ',id',
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
@@ -85,6 +89,7 @@ class CommitteeController extends Controller
 
         DB::beginTransaction();
         $user = User::create([
+            'station_id' => $request->station_id,
             'group_id' => $request->group_id,
             'name' => $request->name,
             'staff_id' => $request->staff_id,
@@ -113,18 +118,58 @@ class CommitteeController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     */
+    public function upload(Request $request)
+    {
+        $users = $request->all();
+
+        DB::beginTransaction();
+        foreach ($users as $user) {
+            $staffId = strtoupper($user['Staff ID']);
+            $staffId = trim($staffId);
+
+            $createdUser = User::create([
+                'name' => $user['Name'] ?? 'Unknown',
+                'staff_id' => $staffId,
+                'phone_no' => $user['Contact No'] ?? null,
+                'email' => $user['Email'] ?? null,
+                'pickup_location' => $user['Pickup Point'] ?? null,
+                'password' => Hash::make('password'),
+                'use_password' => true,
+                'employee_no' => $user['Perno'] ?? null,
+                'position' => $user['Positions'] ?? null,
+                'unit' => $user['Org Unit'] ?? null,
+                'division' => $user['Division'] ?? null,
+                'gender' => $user['Gender'] ?? null,
+                'band' => $user['Band'] ?? null,
+                'tag_category' => $user['Tag 1 - Category'] ?? null,
+                'tag_division' => $user['Tag 2 - Division'] ?? null,
+                'room_type' => $user['Type of Room'] ?? null,
+                'check_in' => $user['Check In'] ?? null,
+                'check_out' => $user['Check Out'] ?? null,
+            ])->assignRole('committee');
+        }
+
+        DB::commit();
+        return redirect()->back()->with('success', 'Users uploaded successfully');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(User $user)
     {
-        $groups = Group::all();
-        $roles = Role::all();
+        $stations = Station::orderBy('name')->get();
+        $groups = Group::orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
         $activities = Activity::orderBy('created_at', 'desc')
             ->where('subject_type', get_class($user))
             ->where('subject_id', $user->id)
             ->get();
 
         return Inertia::render('Committees/Edit', [
+            'stations' => $stations,
             'groups' => $groups,
             'roles' => $roles,
             'user' => $user->load('roles', 'group', 'awards'),
@@ -144,6 +189,7 @@ class CommitteeController extends Controller
             'email' => 'required|string|email|max:255|unique:' . User::class . ',email,' . $user->id,
             'room_no' => 'nullable|string|max:255',
             'pickup_location' => 'nullable|string|max:255',
+            'station_id' => 'nullable|exists:' . Station::class . ',id',
             'group_id' => 'nullable|exists:' . Group::class . ',id',
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
@@ -159,6 +205,7 @@ class CommitteeController extends Controller
 
         DB::beginTransaction();
         $user->update([
+            'station_id' => $request->station_id,
             'group_id' => $request->group_id,
             'name' => $request->name,
             'staff_id' => $request->staff_id,

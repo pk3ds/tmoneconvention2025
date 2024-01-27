@@ -1,24 +1,17 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
+import Details from "./Partials/Details.vue";
+import Quizzes from "./Partials/Quizzes.vue";
+import Questions from "./Partials/Questions.vue";
+import ActivityLog from "@/Components/ActivityLog.vue";
+import { Head, Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     station: Object,
+    activities: Object,
 });
-
-const form = useForm({
-    name: props.station.name,
-    type: props.station.type,
-    description: props.station.description,
-});
-
-const items = ["product", "team building"];
 
 const back = () => {
     window.history.back();
@@ -50,100 +43,107 @@ const back = () => {
 
         <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg"
-                >
-                    <section>
-                        <header class="flex justify-between">
-                            <div>
-                                <h2
-                                    class="text-lg font-medium text-gray-900 dark:text-gray-100"
-                                >
-                                    Station Information
-                                </h2>
-
-                                <p
-                                    class="mt-1 text-sm text-gray-600 dark:text-gray-400"
-                                >
-                                    Edit existing station.
-                                </p>
-                            </div>
-                            <SecondaryButton
-                                class="px-4 my-2 me-2"
-                                @click="back"
-                            >
-                                Back
-                            </SecondaryButton>
-                        </header>
-
-                        <form
-                            @submit.prevent="
-                                form.patch(route('stations.update', station))
-                            "
-                            class="mt-6 space-y-6"
+                <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
+                    <div
+                        class="flex justify-between mb-4 border-b border-gray-200"
+                    >
+                        <ul
+                            class="flex flex-wrap -mb-px text-sm font-medium text-center"
+                            id="default-tab"
+                            data-tabs-toggle="#default-tab-content"
+                            role="tablist"
                         >
-                            <div>
-                                <InputLabel for="name" value="Name" />
-
-                                <TextInput
-                                    id="name"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.name"
-                                    required
-                                    autofocus
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.name"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel for="type" value="Type" />
-                                <select
-                                    required
-                                    v-model="form.type"
-                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg"
+                                    id="details-tab"
+                                    data-tabs-target="#details"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="details"
+                                    aria-selected="false"
                                 >
-                                    <option v-for="item in items" :value="item">
-                                        {{ item }}
-                                    </option>
-                                </select>
-
-                                <InputError
-                                    :message="form.errors.type"
-                                    class="mt-2"
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel
-                                    for="description"
-                                    value="Description"
-                                />
-
-                                <TextInput
-                                    id="description"
-                                    type="text"
-                                    class="block w-full mt-1"
-                                    v-model="form.description"
-                                />
-
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.description"
-                                />
-                            </div>
-
-                            <div class="flex items-center gap-4">
-                                <PrimaryButton :disabled="form.processing"
-                                    >Save</PrimaryButton
+                                    details
+                                </button>
+                            </li>
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="questions-tab"
+                                    data-tabs-target="#questions"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="questions"
+                                    aria-selected="false"
                                 >
-                            </div>
-                        </form>
-                    </section>
+                                    questions
+                                </button>
+                            </li>
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="quiz-tab"
+                                    data-tabs-target="#quiz"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="quiz"
+                                    aria-selected="false"
+                                >
+                                    quiz
+                                </button>
+                            </li>
+                            <li role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="logs-tab"
+                                    data-tabs-target="#logs"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="logs"
+                                    aria-selected="false"
+                                >
+                                    logs
+                                </button>
+                            </li>
+                        </ul>
+                        <SecondaryButton class="px-4 my-2 me-2" @click="back">
+                            Back
+                        </SecondaryButton>
+                    </div>
+                    <div id="default-tab-content">
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="details"
+                            role="tabpanel"
+                            aria-labelledby="details-tab"
+                        >
+                            <Details :station="station" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="questions"
+                            role="tabpanel"
+                            aria-labelledby="questions-tab"
+                        >
+                            <Questions :station="station" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="quiz"
+                            role="tabpanel"
+                            aria-labelledby="quiz-tab"
+                        >
+                            <Quizzes :station="station" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="logs"
+                            role="tabpanel"
+                            aria-labelledby="logs-tab"
+                        >
+                            <ActivityLog :activities="activities" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

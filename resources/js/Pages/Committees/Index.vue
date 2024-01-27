@@ -4,15 +4,43 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
+import { ref } from "vue";
+import * as XLSX from "xlsx";
 
 const props = defineProps({
     search: String,
     committees: Object,
 });
 
+const templateInput = ref(null);
+const uploadedUsers = ref([]);
+
 const form = useForm({
     search: props.search ?? null,
 });
+
+const start = () => {
+    templateInput.value.click();
+};
+
+const upload = (event) => {
+    const template = event.target.files[0];
+
+    const fileReader = new FileReader();
+    fileReader.readAsBinaryString(template);
+    fileReader.onload = () => {
+        var workbook = XLSX.read(fileReader.result, { type: "binary" });
+        var sheetNames = workbook.SheetNames;
+        const excelData = XLSX.utils.sheet_to_json(
+            workbook.Sheets[sheetNames[0]]
+        );
+        excelData.forEach((user) => {
+            uploadedUsers.value.push(user);
+        });
+        router.post(route("committees.upload"), uploadedUsers.value);
+        uploadedUsers.value = [];
+    };
+};
 
 const search = () => {
     router.get(route("committees.index", { search: form.search }));
@@ -104,11 +132,67 @@ const restore = (id) => {
                                     </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                    <Link :href="route('committees.create')">
-                                        <PrimaryButton>
-                                            Add user
-                                        </PrimaryButton>
-                                    </Link>
+                                    <PrimaryButton
+                                        id="dropdownDefaultButton"
+                                        data-dropdown-toggle="dropdown"
+                                        type="button"
+                                    >
+                                        Add Committee
+                                        <svg
+                                            class="w-2.5 h-2.5 ms-3"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 10 6"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="m1 1 4 4 4-4"
+                                            />
+                                        </svg>
+                                    </PrimaryButton>
+
+                                    <!-- Dropdown menu -->
+                                    <div
+                                        id="dropdown"
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                                    >
+                                        <ul
+                                            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                            aria-labelledby="dropdownDefaultButton"
+                                        >
+                                            <li>
+                                                <Link
+                                                    :href="
+                                                        route(
+                                                            'committees.create'
+                                                        )
+                                                    "
+                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                    >Single</Link
+                                                >
+                                            </li>
+
+                                            <li>
+                                                <button
+                                                    type="button"
+                                                    @click="start"
+                                                    class="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                >
+                                                    Multiple
+                                                </button>
+                                                <input
+                                                    type="file"
+                                                    @change="upload($event)"
+                                                    class="hidden"
+                                                    ref="templateInput"
+                                                />
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mt-8 -mx-4 sm:-mx-0">
@@ -146,7 +230,7 @@ const restore = (id) => {
                                                 scope="col"
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                                             >
-                                                Email
+                                                Station
                                             </th>
                                             <th
                                                 scope="col"
@@ -210,12 +294,17 @@ const restore = (id) => {
                                                     <dt
                                                         class="sr-only sm:hidden"
                                                     >
-                                                        Email
+                                                        Station
                                                     </dt>
                                                     <dd
                                                         class="mt-1 text-gray-500 truncate sm:hidden"
                                                     >
-                                                        {{ user.email }}
+                                                        {{
+                                                            user.station
+                                                                ? user.station
+                                                                      .name
+                                                                : "None"
+                                                        }}
                                                     </dd>
                                                 </dl>
                                             </td>
@@ -232,7 +321,11 @@ const restore = (id) => {
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
                                             >
-                                                {{ user.email }}
+                                                {{
+                                                    user.station
+                                                        ? user.station.name
+                                                        : "None"
+                                                }}
                                             </td>
                                             <td
                                                 class="px-3 py-4 text-sm text-gray-500 capitalize"

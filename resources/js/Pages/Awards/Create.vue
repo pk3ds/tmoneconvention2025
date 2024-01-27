@@ -118,7 +118,10 @@ const back = () => {
                             </div>
 
                             <div>
-                                <InputLabel for="remark" value="Remarks" />
+                                <InputLabel
+                                    for="remark"
+                                    value="Remarks (optional)"
+                                />
 
                                 <TextInput
                                     id="remark"

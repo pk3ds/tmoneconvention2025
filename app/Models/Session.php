@@ -34,7 +34,7 @@ class Session extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['name', 'description', 'start_at', 'end_at']);
+        return LogOptions::defaults()->logOnly(['name', 'description', 'start_at', 'end_at'])->dontSubmitEmptyLogs();
     }
 
     public function users()

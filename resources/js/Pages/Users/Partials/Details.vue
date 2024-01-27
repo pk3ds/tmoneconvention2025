@@ -105,7 +105,7 @@ const pointsForm = useForm({
         </div>
 
         <div>
-            <InputLabel for="room_no" value="Room No" />
+            <InputLabel for="room_no" value="Room No (optional)" />
 
             <TextInput
                 id="room_no"
@@ -118,7 +118,10 @@ const pointsForm = useForm({
         </div>
 
         <div>
-            <InputLabel for="pickup_location" value="Pickup Location" />
+            <InputLabel
+                for="pickup_location"
+                value="Pickup Location (optional)"
+            />
 
             <TextInput
                 id="pickup_location"
@@ -131,7 +134,7 @@ const pointsForm = useForm({
         </div>
 
         <div>
-            <InputLabel for="group_id" value="Group" />
+            <InputLabel for="group_id" value="Group (optional)" />
             <select
                 v-model="form.group_id"
                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"

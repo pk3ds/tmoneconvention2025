@@ -41,7 +41,7 @@ class UserController extends Controller
 
         return Inertia::render('Users/Index', [
             'search' => $search,
-            'users' => $users,
+            'users' => $users->load('group'),
         ]);
     }
 
@@ -50,8 +50,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $groups = Group::all();
-        $roles = Role::all();
+        $groups = Group::orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
         return Inertia::render('Users/Create', [
             'groups' => $groups,
             'roles' => $roles,
@@ -117,8 +117,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $groups = Group::all();
-        $roles = Role::all();
+        $groups = Group::orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
         $activities = Activity::orderBy('created_at', 'desc')
             ->where('subject_type', get_class($user))
             ->where('subject_id', $user->id)

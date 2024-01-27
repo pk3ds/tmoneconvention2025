@@ -34,7 +34,7 @@ class Award extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['name', 'remarks', 'points', 'awardable.name']);
+        return LogOptions::defaults()->logOnly(['name', 'remarks', 'points', 'awardable.name'])->dontSubmitEmptyLogs();
     }
 
     public function awardable()

@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CommitteeController;
 
 /*
@@ -68,6 +70,7 @@ Route::middleware('auth', 'can:manage users')->group(function () {
     Route::get('/committees', [CommitteeController::class, 'index'])->name('committees.index');
     Route::get('/committees/create', [CommitteeController::class, 'create'])->name('committees.create');
     Route::post('/committees', [committeeController::class, 'store'])->name('committees.store');
+    Route::post('/committees/upload', [committeeController::class, 'upload'])->name('committees.upload');
     Route::get('/committees/{user}/edit', [CommitteeController::class, 'edit'])->name('committees.edit');
     Route::patch('/committees/{user}', [CommitteeController::class, 'update'])->name('committees.update');
     Route::delete('/committees/{user}', [CommitteeController::class, 'destroy'])->name('committees.destroy');
@@ -111,8 +114,6 @@ Route::middleware('auth', 'can:manage users')->group(function () {
     Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
     Route::get('/awards/create', [AwardController::class, 'create'])->name('awards.create');
     Route::post('/awards', [AwardController::class, 'store'])->name('awards.store');
-    Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
-    Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
 
     Route::get('/winners', [WinnerController::class, 'index'])->name('winners.index');
     Route::get('/winners/{winner}/edit', [WinnerController::class, 'edit'])->name('winners.edit');
@@ -145,8 +146,52 @@ Route::middleware('auth')->group(function () {
         ->middleware('can:manage stations')
         ->name('stations.destroy');
     Route::put('/stations/{id}', [StationController::class, 'restore'])
-        ->middleware('can:view deleted')
+        ->middleware('can:manage stations', 'can:view deleted')
         ->name('stations.restore');
+
+    Route::get('/questions', [QuestionController::class, 'index'])
+        ->middleware('can:manage questions')
+        ->name('questions.index');
+    Route::get('/questions/create', [QuestionController::class, 'create'])
+        ->middleware('can:manage questions')
+        ->name('questions.create');
+    Route::post('/questions', [QuestionController::class, 'store'])
+        ->middleware('can:manage questions')
+        ->name('questions.store');
+    Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])
+        ->middleware('can:manage questions')
+        ->name('questions.edit');
+    Route::patch('/questions/{question}', [QuestionController::class, 'update'])
+        ->middleware('can:manage questions')
+        ->name('questions.update');
+    Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])
+        ->middleware('can:manage questions')
+        ->name('questions.destroy');
+    Route::put('/questions/{id}', [QuestionController::class, 'restore'])
+        ->middleware('can:manage questions', 'can:view deleted')
+        ->name('questions.restore');
+
+    Route::get('/quizzes', [QuizController::class, 'index'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.index');
+    Route::get('/quizzes/create', [QuizController::class, 'create'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.create');
+    Route::post('/quizzes', [QuizController::class, 'store'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.store');
+    Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.edit');
+    Route::patch('/quizzes/{quiz}', [QuizController::class, 'update'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.update');
+    Route::delete('/quizzes/{quiz}', [QuizController::class, 'destroy'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.destroy');
+    Route::put('/quizzes/{id}', [QuizController::class, 'restore'])
+        ->middleware('can:manage questions', 'can:view deleted')
+        ->name('quizzes.restore');
 });
 
 require __DIR__ . '/auth.php';

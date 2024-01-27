@@ -177,6 +177,30 @@ watch(
                 </button>
                 <div class="py-4 overflow-y-auto">
                     <ul class="space-y-2 font-medium">
+                        <li>
+                            <Link
+                                :href="route('dashboard')"
+                                :class="{
+                                    'bg-gray-100 dark:bg-gray-600':
+                                        route().current('dashboard'),
+                                }"
+                                data-drawer-hide="drawer-navigation"
+                                aria-controls="drawer-navigation"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM256 416c35.3 0 64-28.7 64-64c0-17.4-6.9-33.1-18.1-44.6L366 161.7c5.3-12.1-.2-26.3-12.3-31.6s-26.3 .2-31.6 12.3L257.9 288c-.6 0-1.3 0-1.9 0c-35.3 0-64 28.7-64 64s28.7 64 64 64zM176 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM96 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm352-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+                                    />
+                                </svg>
+                                <span class="ms-3">My Dashboard</span>
+                            </Link>
+                        </li>
                         <li
                             v-if="
                                 $page.props.permissions.includes('manage users')
@@ -205,30 +229,6 @@ watch(
                                 <span class="flex-1 ms-3 whitespace-nowrap">
                                     Committees
                                 </span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                :href="route('dashboard')"
-                                :class="{
-                                    'bg-gray-100 dark:bg-gray-600':
-                                        route().current('dashboard'),
-                                }"
-                                data-drawer-hide="drawer-navigation"
-                                aria-controls="drawer-navigation"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
-                            >
-                                <svg
-                                    class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 256h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
-                                    />
-                                </svg>
-                                <span class="ms-3">Dashboard</span>
                             </Link>
                         </li>
                         <li>
@@ -280,6 +280,38 @@ watch(
                                 </svg>
                                 <span class="flex-1 ms-3 whitespace-nowrap">
                                     Members
+                                </span>
+                            </Link>
+                        </li>
+                        <li
+                            v-if="
+                                $page.props.permissions.includes(
+                                    'manage questions'
+                                )
+                            "
+                        >
+                            <Link
+                                :href="route('questions.index')"
+                                :class="{
+                                    'bg-gray-100 dark:bg-gray-600':
+                                        route().current('questions.index'),
+                                }"
+                                data-drawer-hide="drawer-navigation"
+                                aria-controls="drawer-navigation"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            >
+                                <svg
+                                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 384 512"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM105.8 229.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L216 328.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V314.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H158.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM160 416a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                                    />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">
+                                    Questions
                                 </span>
                             </Link>
                         </li>
@@ -456,6 +488,38 @@ watch(
                                 </svg>
                                 <span class="flex-1 ms-3 whitespace-nowrap">
                                     Users
+                                </span>
+                            </Link>
+                        </li>
+                        <li
+                            v-if="
+                                $page.props.permissions.includes(
+                                    'manage questions'
+                                )
+                            "
+                        >
+                            <Link
+                                :href="route('quizzes.index')"
+                                :class="{
+                                    'bg-gray-100 dark:bg-gray-600':
+                                        route().current('quizzes.index'),
+                                }"
+                                data-drawer-hide="drawer-navigation"
+                                aria-controls="drawer-navigation"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            >
+                                <svg
+                                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 640 512"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9v28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5V291.9c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.6l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496.7 262.6 354.5 314c-11.1 4-22.8 6-34.5 6s-23.5-2-34.5-6L143.3 262.6 128 408z"
+                                    />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">
+                                    Quiz
                                 </span>
                             </Link>
                         </li>

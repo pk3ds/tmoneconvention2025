@@ -8,6 +8,7 @@ import ActivityLog from "@/Components/ActivityLog.vue";
 import { Head, Link } from "@inertiajs/vue3";
 
 const props = defineProps({
+    stations: Object,
     groups: Object,
     roles: Object,
     user: Object,
@@ -106,6 +107,7 @@ const back = () => {
                             aria-labelledby="details-tab"
                         >
                             <Details
+                                :stations="stations"
                                 :groups="groups"
                                 :roles="roles"
                                 :user="user"

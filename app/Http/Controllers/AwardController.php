@@ -34,8 +34,8 @@ class AwardController extends Controller
     public function create()
     {
         $types = [User::class, Group::class];
-        $groups = Group::orderBy('name')->search()->get();
-        $users = User::orderBy('name')->search()->get();
+        $groups = Group::orderBy('name')->get();
+        $users = User::orderBy('name')->get();
         return Inertia::render('Awards/Create', [
             'types' => $types,
             'groups' => $groups,
@@ -133,7 +133,7 @@ class AwardController extends Controller
      */
     public function edit(Award $award)
     {
-        dd("N/A");
+        //
     }
 
     /**
@@ -149,6 +149,6 @@ class AwardController extends Controller
      */
     public function destroy(Award $award)
     {
-        dd("N/A");
+        //
     }
 }
