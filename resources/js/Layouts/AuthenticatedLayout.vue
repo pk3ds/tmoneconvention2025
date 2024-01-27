@@ -313,13 +313,7 @@ watch(
                                 </span>
                             </Link>
                         </li>
-                        <li
-                            v-if="
-                                $page.props.permissions.includes(
-                                    'manage stations'
-                                )
-                            "
-                        >
+                        <li>
                             <Link
                                 :href="route('stations.index')"
                                 :class="{

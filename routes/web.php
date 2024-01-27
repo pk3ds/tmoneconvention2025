@@ -46,7 +46,7 @@ Route::middleware('auth', 'verified')->group(function () {
             ->where('user_id', Auth::user()->id)
             ->count();
         return Inertia::render('Dashboard', [
-            'checkinCount' => $checkinCount
+            'checkinCount' => $checkinCount,
         ]);
     })->name('dashboard');
 
@@ -125,13 +125,23 @@ Route::middleware('auth', 'can:manage users')->group(function () {
     Route::post('/lucky-draw/multiple', [WinnerController::class, 'storeMultiple'])->name('winners.storeMultiple');
 });
 
-Route::middleware('auth', 'can:manage stations')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/stations', [StationController::class, 'index'])->name('stations.index');
-    Route::get('/stations/create', [StationController::class, 'create'])->name('stations.create');
-    Route::post('/stations', [StationController::class, 'store'])->name('stations.store');
-    Route::get('/stations/{station}/edit', [StationController::class, 'edit'])->name('stations.edit');
-    Route::patch('/stations/{station}', [StationController::class, 'update'])->name('stations.update');
-    Route::delete('/stations/{station}', [StationController::class, 'destroy'])->name('stations.destroy');
+    Route::get('/stations/create', [StationController::class, 'create'])
+        ->middleware('can:manage stations')
+        ->name('stations.create');
+    Route::post('/stations', [StationController::class, 'store'])
+        ->middleware('can:manage stations')
+        ->name('stations.store');
+    Route::get('/stations/{station}/edit', [StationController::class, 'edit'])
+        ->middleware('can:manage stations')
+        ->name('stations.edit');
+    Route::patch('/stations/{station}', [StationController::class, 'update'])
+        ->middleware('can:manage stations')
+        ->name('stations.update');
+    Route::delete('/stations/{station}', [StationController::class, 'destroy'])
+        ->middleware('can:manage stations')
+        ->name('stations.destroy');
     Route::put('/stations/{id}', [StationController::class, 'restore'])
         ->middleware('can:view deleted')
         ->name('stations.restore');

@@ -39,6 +39,13 @@ class UserSeeder extends Seeder
                 'use_password' => true,
                 'email' => 'committee@mail.com',
             ])->assignRole('committee');
+
+            User::factory()->create([
+                'name' => 'Vendor',
+                'staff_id' => 'TM45678',
+                'use_password' => true,
+                'email' => 'vendor@mail.com',
+            ])->assignRole('vendor');
         }
     }
 }

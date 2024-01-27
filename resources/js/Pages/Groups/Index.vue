@@ -136,6 +136,11 @@ const restore = (id) => {
                                                 Points
                                             </th>
                                             <th
+                                                v-if="
+                                                    $page.props.permissions.includes(
+                                                        'view rating'
+                                                    )
+                                                "
                                                 scope="col"
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                                             >
@@ -190,10 +195,22 @@ const restore = (id) => {
                                                     >
                                                         {{ group.points }}
                                                     </dd>
-                                                    <dt class="sr-only">
+                                                    <dt
+                                                        v-if="
+                                                            $page.props.permissions.includes(
+                                                                'view rating'
+                                                            )
+                                                        "
+                                                        class="sr-only"
+                                                    >
                                                         Rating
                                                     </dt>
                                                     <dd
+                                                        v-if="
+                                                            $page.props.permissions.includes(
+                                                                'view rating'
+                                                            )
+                                                        "
                                                         class="mt-1 text-gray-700 truncate"
                                                     >
                                                         <div
@@ -227,6 +244,11 @@ const restore = (id) => {
                                                 {{ group.points }}
                                             </td>
                                             <td
+                                                v-if="
+                                                    $page.props.permissions.includes(
+                                                        'view rating'
+                                                    )
+                                                "
                                                 class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
                                             >
                                                 <div class="flex items-center">
