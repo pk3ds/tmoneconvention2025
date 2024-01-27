@@ -20,6 +20,8 @@ class QuestionSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        Question::factory(9)->create();
+        Question::factory(19)->create([
+            'station_id' => 1,
+        ]);
     }
 }
