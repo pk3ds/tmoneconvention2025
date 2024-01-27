@@ -15,7 +15,6 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        // FIXME scope search not available
         $search = $request->query('search');
         $permissionNames = Auth::user()
             ->getPermissionsViaRoles()
