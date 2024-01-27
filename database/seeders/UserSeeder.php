@@ -48,6 +48,7 @@ class UserSeeder extends Seeder
             ])->assignRole('committee');
 
             User::factory()->create([
+                'station_id' => 1,
                 'name' => 'Vendor',
                 'staff_id' => 'TM45678',
                 'use_password' => true,
