@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
@@ -169,6 +170,28 @@ Route::middleware('auth')->group(function () {
     Route::put('/questions/{id}', [QuestionController::class, 'restore'])
         ->middleware('can:manage questions', 'can:view deleted')
         ->name('questions.restore');
+
+    Route::get('/quizzes', [QuizController::class, 'index'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.index');
+    Route::get('/quizzes/create', [QuizController::class, 'create'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.create');
+    Route::post('/quizzes', [QuizController::class, 'store'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.store');
+    Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.edit');
+    Route::patch('/quizzes/{quiz}', [QuizController::class, 'update'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.update');
+    Route::delete('/quizzes/{quiz}', [QuizController::class, 'destroy'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.destroy');
+    Route::put('/quizzes/{id}', [QuizController::class, 'restore'])
+        ->middleware('can:manage questions', 'can:view deleted')
+        ->name('quizzes.restore');
 });
 
 require __DIR__ . '/auth.php';
