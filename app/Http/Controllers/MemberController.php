@@ -21,11 +21,13 @@ class MemberController extends Controller
                 ->orderBy('name')
                 ->search()
                 ->get();
+
+            return Inertia::render('Members/Index', [
+                'search' => $search,
+                'users' => $members,
+            ]);
         }
 
-        return Inertia::render('Members/Index', [
-            'search' => $search,
-            'users' => $members,
-        ]);
+        abort(404);
     }
 }
