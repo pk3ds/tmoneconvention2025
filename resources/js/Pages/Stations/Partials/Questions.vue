@@ -36,12 +36,6 @@ const props = defineProps({
                     </th>
                     <th
                         scope="col"
-                        class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                    >
-                        Type
-                    </th>
-                    <th
-                        scope="col"
                         class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
                         Options
@@ -59,17 +53,7 @@ const props = defineProps({
                         <span class="flex gap-2">
                             {{ question.name }}
                         </span>
-                        <dl class="font-normal lg:hidden">
-                            <dt class="sr-only">Type</dt>
-                            <dd class="mt-1 text-gray-700 truncate">
-                                {{ question.type?.name }}
-                            </dd>
-                        </dl>
-                    </td>
-                    <td
-                        class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
-                    >
-                        {{ question.type?.name }}
+                        <dl class="font-normal lg:hidden"></dl>
                     </td>
                     <td class="px-3 py-4 text-sm text-gray-500 capitalize">
                         {{ question.options?.length }}

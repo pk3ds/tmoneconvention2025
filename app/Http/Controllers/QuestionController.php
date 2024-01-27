@@ -36,7 +36,7 @@ class QuestionController extends Controller
 
         return Inertia::render('Questions/Index', [
             'search' => $search,
-            'questions' => $questions->load('question_type', 'options', 'station'),
+            'questions' => $questions->load('options', 'station'),
         ]);
     }
 

@@ -18,10 +18,6 @@ const search = () => {
     router.get(route("questions.index", { search: form.search }));
 };
 
-const transform = (string) => {
-    return string.replaceAll("_", " ");
-};
-
 const destroy = (question) => {
     router.delete(route("questions.destroy", question));
 };
@@ -137,12 +133,6 @@ const restore = (id) => {
                                                 scope="col"
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                                             >
-                                                Type
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                                            >
                                                 Options
                                             </th>
                                             <th
@@ -189,20 +179,6 @@ const restore = (id) => {
                                                     class="font-normal lg:hidden"
                                                 >
                                                     <dt class="sr-only">
-                                                        Type
-                                                    </dt>
-                                                    <dd
-                                                        class="mt-1 text-gray-700 capitalize truncate"
-                                                    >
-                                                        {{
-                                                            transform(
-                                                                question
-                                                                    .question_type
-                                                                    ?.name
-                                                            )
-                                                        }}
-                                                    </dd>
-                                                    <dt class="sr-only">
                                                         Options
                                                     </dt>
                                                     <dd
@@ -214,16 +190,6 @@ const restore = (id) => {
                                                         }}
                                                     </dd>
                                                 </dl>
-                                            </td>
-                                            <td
-                                                class="hidden px-3 py-4 text-sm text-gray-500 capitalize truncate lg:table-cell"
-                                            >
-                                                {{
-                                                    transform(
-                                                        question.question_type
-                                                            ?.name
-                                                    )
-                                                }}
                                             </td>
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 capitalize lg:table-cell"
