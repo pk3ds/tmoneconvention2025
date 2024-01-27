@@ -183,6 +183,21 @@ class SessionController extends Controller
 
         DB::beginTransaction();
         $user = Auth::user();
+
+        if (!$user->activated_at) {
+            $user->disableLogging();
+            $user->update([
+                'activated_at' => now(),
+            ]);
+            activity()
+                ->causedBy($user)
+                ->performedOn($user)
+                ->withProperties(['activated_at' => now()])
+                ->event('User account activation')
+                ->log('activation');
+            $user->enableLogging();
+        }
+
         $user->sessions()->save($session, [
             'points' => $points,
         ]);

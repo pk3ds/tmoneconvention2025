@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('room_type')->nullable();
             $table->string('check_in')->nullable();
             $table->string('check_out')->nullable();
+            $table->timestamp('activated_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

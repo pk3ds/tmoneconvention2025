@@ -46,6 +46,7 @@ class User extends Authenticatable
         'room_type',
         'check_in',
         'check_out',
+        'activated_at',
     ];
 
     /**
