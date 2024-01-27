@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 use Harishdurga\LaravelQuiz\Models\QuestionType;
+use Harishdurga\LaravelQuiz\Models\QuestionOption;
 
 class QuestionController extends Controller
 {
@@ -63,6 +64,14 @@ class QuestionController extends Controller
             'station_id' => 'required|numeric',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
+            "option_one" => 'required|string|max:255',
+            "option_one_correct" => 'required',
+            "option_two" => 'required|string|max:255',
+            "option_two_correct" => 'required',
+            "option_three" => 'required|string|max:255',
+            "option_three_correct" => 'required',
+            "option_four" => 'required|string|max:255',
+            "option_four_correct" => 'required',
         ]);
 
         $question = Question::create([
@@ -70,6 +79,30 @@ class QuestionController extends Controller
             'name' => $request->name,
             'question_type_id' => $request->question_type_id,
             'is_active' => true,
+        ]);
+
+        $option_one = QuestionOption::create([
+            'question_id' => $question->id,
+            'name' => $request->option_one,
+            'is_correct' => $request->option_one_correct,
+        ]);
+
+        $option_two = QuestionOption::create([
+            'question_id' => $question->id,
+            'name' => $request->option_two,
+            'is_correct' => $request->option_two_correct,
+        ]);
+
+        $option_three = QuestionOption::create([
+            'question_id' => $question->id,
+            'name' => $request->option_three,
+            'is_correct' => $request->option_three_correct,
+        ]);
+
+        $option_four = QuestionOption::create([
+            'question_id' => $question->id,
+            'name' => $request->option_four,
+            'is_correct' => $request->option_four_correct,
         ]);
 
         return redirect()
