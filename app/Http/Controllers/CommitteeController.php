@@ -118,6 +118,44 @@ class CommitteeController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     */
+    public function upload(Request $request)
+    {
+        $users = $request->all();
+
+        DB::beginTransaction();
+        foreach ($users as $user) {
+            $staffId = strtoupper($user['Staff ID']);
+            $staffId = trim($staffId);
+
+            $createdUser = User::create([
+                'name' => $user['Name'] ?? 'Unknown',
+                'staff_id' => $staffId,
+                'phone_no' => $user['Contact No'] ?? null,
+                'email' => $user['Email'] ?? null,
+                'pickup_location' => $user['Pickup Point'] ?? null,
+                'password' => Hash::make('password'),
+                'use_password' => true,
+                'employee_no' => $user['Perno'] ?? null,
+                'position' => $user['Positions'] ?? null,
+                'unit' => $user['Org Unit'] ?? null,
+                'division' => $user['Division'] ?? null,
+                'gender' => $user['Gender'] ?? null,
+                'band' => $user['Band'] ?? null,
+                'tag_category' => $user['Tag 1 - Category'] ?? null,
+                'tag_division' => $user['Tag 2 - Division'] ?? null,
+                'room_type' => $user['Type of Room'] ?? null,
+                'check_in' => $user['Check In'] ?? null,
+                'check_out' => $user['Check Out'] ?? null,
+            ])->assignRole('committee');
+        }
+
+        DB::commit();
+        return redirect()->back()->with('success', 'Users uploaded successfully');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(User $user)
