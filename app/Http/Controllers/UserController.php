@@ -117,7 +117,7 @@ class UserController extends Controller
             'groups' => $groups,
             'roles' => $roles,
             'user' => $user->load('roles', 'group', 'awards'),
-            'activities' => $activities,
+            'activities' => $activities->load('causer'),
         ]);
     }
 
