@@ -30,7 +30,7 @@ class Station extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['name', 'type', 'description', 'rating']);
+        return LogOptions::defaults()->logOnly(['name', 'type', 'description', 'rating'])->dontSubmitEmptyLogs();
     }
 
     public function questions()

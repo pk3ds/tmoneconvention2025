@@ -91,7 +91,7 @@ class User extends Authenticatable
             'room_no',
             'points',
             'pickup_location',
-        ]);
+        ])->dontSubmitEmptyLogs();
     }
 
     public function group()
