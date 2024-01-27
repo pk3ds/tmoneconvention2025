@@ -7,6 +7,7 @@ use App\Models\Station;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 use Harishdurga\LaravelQuiz\Models\QuestionType;
 
 class QuestionController extends Controller
@@ -89,7 +90,20 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        $activities = Activity::orderBy('created_at', 'desc')
+            ->where('subject_type', get_class($question))
+            ->where('subject_id', $question->id)
+            ->get();
+        $station_id = Auth::user()->station?->id;
+        $stations = Station::orderBy('name')->get();
+        $types = QuestionType::all();
+        return Inertia::render('Questions/Edit', [
+            'station_id' => $station_id,
+            'stations' => $stations,
+            'types' => $types,
+            'question' => $question,
+            'activities' => $activities,
+        ]);
     }
 
     /**
@@ -97,7 +111,22 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $validated = $request->validate([
+            'station_id' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'question_type_id' => 'required|numeric',
+        ]);
+
+        $question->update([
+            'station_id' => $request->station_id,
+            'name' => $request->name,
+            'question_type_id' => $request->question_type_id,
+            'is_active' => true,
+        ]);
+
+        return redirect()
+            ->route('questions.index')
+            ->with('success', 'Question updated successfully');
     }
 
     /**
