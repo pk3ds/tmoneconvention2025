@@ -30,12 +30,12 @@ class CommitteeController extends Controller
         if ($permissionNames->contains('view deleted')) {
             $users = User::orderBy('name')
                 ->withTrashed()
-                ->role(['admin', 'committee', 'vendor'])
+                ->role(['admin', 'committee', 'vendor', 'product'])
                 ->search()
                 ->get();
         } else {
             $users = User::orderBy('name')
-                ->role(['admin', 'committee', 'vendor'])
+                ->role(['admin', 'committee', 'vendor', 'product'])
                 ->search()
                 ->get();
         }

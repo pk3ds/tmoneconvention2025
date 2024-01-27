@@ -46,7 +46,7 @@ const pointsForm = useForm({
     </header>
 
     <form
-        @submit.prevent="form.patch(route('users.update', user))"
+        @submit.prevent="form.patch(route('committees.update', user))"
         class="mt-6 space-y-6"
     >
         <div>
