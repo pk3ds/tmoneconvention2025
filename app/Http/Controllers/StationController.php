@@ -85,7 +85,7 @@ class StationController extends Controller
     public function edit(Station $station)
     {
         return Inertia::render('Stations/Edit', [
-            'station' => $station
+            'station' => $station->load('questions.options', 'activities')
         ]);
     }
 
