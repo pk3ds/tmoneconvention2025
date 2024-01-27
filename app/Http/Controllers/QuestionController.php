@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Harishdurga\LaravelQuiz\Models\Question;
 use Harishdurga\LaravelQuiz\Models\QuestionType;
 
 class QuestionController extends Controller
@@ -23,12 +23,12 @@ class QuestionController extends Controller
 
         if ($permissionNames->contains('view deleted')) {
             $questions = Question::orderBy('name')
-                ->where('name', 'like', '%' . $search . '%')
+                ->search()
                 ->withTrashed()
                 ->get();
         } else {
             $questions = Question::orderBy('name')
-                ->where('name', 'like', '%' . $search . '%')
+                ->search()
                 ->get();
         }
 
