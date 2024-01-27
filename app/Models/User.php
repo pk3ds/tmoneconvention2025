@@ -7,6 +7,7 @@ use App\Models\Award;
 use App\Models\Group;
 use App\Models\Winner;
 use App\Models\Session;
+use App\Models\Station;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
@@ -108,6 +109,11 @@ class User extends Authenticatable
 
     public function winner()
     {
-        return $this->belongsTo(Winner::class);
+        return $this->hasOne(Winner::class);
+    }
+
+    public function station()
+    {
+        return $this->belongsTo(Station::class);
     }
 }

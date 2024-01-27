@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,5 +29,10 @@ class Station extends Model
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }
