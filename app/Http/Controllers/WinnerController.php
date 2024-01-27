@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Winner;
 use Illuminate\Http\Request;
@@ -21,19 +22,64 @@ class WinnerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the page for creating a new resource.
      */
-    public function create()
+    public function createSingle()
     {
-        //
+        return Inertia::render('Winners/SingleDraw');
+    }
+
+    /**
+     * Show the page for creating a new resource.
+     */
+    public function createMultiple()
+    {
+        return Inertia::render('Winners/MultipleDraw');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeSingle(Request $request)
     {
-        //
+        $winners = Winner::all()->pluck('user_id');
+        $users = User::whereNotNull('activated_at')->whereNotIn('id', $winners)->get();
+
+        if ($users->count() == 0) {
+            return ['name' => 'No more users'];
+        }
+
+        $winner = $users->random();
+
+        Winner::create([
+            'user_id' => $winner->id,
+        ]);
+
+        return $winner;
+    }
+
+    /**
+     * Store multiple newly created resources in storage.
+     */
+    public function storeMultiple(Request $request)
+    {
+        $number = $request->numbers;
+        $winners = Winner::all()->pluck('user_id');
+        $users = User::whereNotNull('activated_at')->whereNotIn('id', $winners)->get();
+
+        if ($users->count() == 0) {
+            return [['name' => 'No more users']];
+        }
+
+        $winners = $users->random($number);
+
+        foreach ($winners as $winner) {
+            Winner::create([
+                'user_id' => $winner->id,
+            ]);
+        }
+
+        return $winners;
     }
 
     /**

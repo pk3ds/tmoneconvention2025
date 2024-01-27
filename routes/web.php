@@ -34,6 +34,10 @@ Route::get('/', function () {
     ]);
 })->name('/');
 
+Route::get('/lucky-draw', function () {
+    return Inertia::render('Winners/LuckyDraw');
+})->name('winners.draw');
+
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', function () {
         $checkinCount = DB::table('session_user')
@@ -97,6 +101,11 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::post('/awards', [AwardController::class, 'store'])->name('awards.store');
     Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
     Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
+
+    Route::get('/lucky-draw/single', [WinnerController::class, 'createSingle'])->name('winners.createSingle');
+    Route::post('/lucky-draw/single', [WinnerController::class, 'storeSingle'])->name('winners.storeSingle');
+    Route::get('/lucky-draw/multiple', [WinnerController::class, 'createMultiple'])->name('winners.createMultiple');
+    Route::post('/lucky-draw/multiple', [WinnerController::class, 'storeMultiple'])->name('winners.storeMultiple');
 
     Route::get('/winners', [WinnerController::class, 'index'])->name('winners.index');
 });
