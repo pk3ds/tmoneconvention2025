@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
+import Quizzes from "./Partials/Quizzes.vue";
 import Questions from "./Partials/Questions.vue";
 import ActivityLog from "@/Components/ActivityLog.vue";
 import { Head, Link } from "@inertiajs/vue3";
@@ -78,6 +79,19 @@ const back = () => {
                                     questions
                                 </button>
                             </li>
+                            <li class="me-2" role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="quiz-tab"
+                                    data-tabs-target="#quiz"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="quiz"
+                                    aria-selected="false"
+                                >
+                                    quiz
+                                </button>
+                            </li>
                             <li role="presentation">
                                 <button
                                     class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
@@ -112,6 +126,14 @@ const back = () => {
                             aria-labelledby="questions-tab"
                         >
                             <Questions :station="station" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="quiz"
+                            role="tabpanel"
+                            aria-labelledby="quiz-tab"
+                        >
+                            <Quizzes :station="station" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"
