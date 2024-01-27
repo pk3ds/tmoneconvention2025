@@ -54,6 +54,14 @@ class UserSeeder extends Seeder
                 'use_password' => true,
                 'email' => 'vendor@mail.com',
             ])->assignRole('vendor');
+
+            User::factory()->create([
+                'station_id' => 1,
+                'name' => 'Product',
+                'staff_id' => 'TM23456',
+                'use_password' => true,
+                'email' => 'product@mail.com',
+            ])->assignRole('product');
         }
     }
 }
