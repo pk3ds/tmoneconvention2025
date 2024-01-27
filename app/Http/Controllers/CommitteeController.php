@@ -51,9 +51,9 @@ class CommitteeController extends Controller
      */
     public function create()
     {
-        $stations = Station::all();
-        $groups = Group::all();
-        $roles = Role::all();
+        $stations = Station::orderBy('name')->get();
+        $groups = Group::orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
         return Inertia::render('Committees/Create', [
             'stations' => $stations,
             'groups' => $groups,
@@ -122,9 +122,9 @@ class CommitteeController extends Controller
      */
     public function edit(User $user)
     {
-        $stations = Station::all();
-        $groups = Group::all();
-        $roles = Role::all();
+        $stations = Station::orderBy('name')->get();
+        $groups = Group::orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
         $activities = Activity::orderBy('created_at', 'desc')
             ->where('subject_type', get_class($user))
             ->where('subject_id', $user->id)
