@@ -31,15 +31,5 @@ class QuestionOptionSeeder extends Seeder
             'name' => 'Innovate Your Next',
             'is_correct' => true,
         ]);
-
-        $other_questions = Question::all()->skip(1);
-
-        foreach ($other_questions as $question) {
-            for ($i = 0; $i < 3; $i++) {
-                QuestionOption::create([
-                    'question_id' => $question->id,
-                ]);
-            }
-        }
     }
 }

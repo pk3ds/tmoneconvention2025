@@ -18,7 +18,5 @@ class QuestionSeeder extends Seeder
             'question_type_id' => 1,
             'is_active' => true,
         ]);
-
-        Question::factory(9)->create();
     }
 }
