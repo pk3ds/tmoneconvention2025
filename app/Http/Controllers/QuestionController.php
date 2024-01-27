@@ -105,6 +105,32 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->disableLogging();
+        $question->update([
+            'is_active' => false,
+        ]);
+        $question->enableLogging();
+        $question->delete();
+
+        return redirect()
+            ->route('questions.index')
+            ->with('warning', 'Question deleted successfully');
+    }
+
+    /**
+     * Restore the specified resource from deleted state.
+     */
+    public function restore($id)
+    {
+        $question = Question::withTrashed()->find($id);
+
+        $question->disableLogging();
+        $question->update([
+            'is_active' => true,
+        ]);
+        $question->enableLogging();
+        $question->restore();
+
+        return redirect(route('questions.index'))->with('success', 'Question restored successfully');
     }
 }

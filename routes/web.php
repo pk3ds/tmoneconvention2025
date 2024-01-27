@@ -158,6 +158,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/questions', [QuestionController::class, 'store'])
         ->middleware('can:manage questions')
         ->name('questions.store');
+    Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])
+        ->middleware('can:manage questions')
+        ->name('questions.edit');
+    Route::patch('/questions/{question}', [QuestionController::class, 'update'])
+        ->middleware('can:manage questions')
+        ->name('questions.update');
+    Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])
+        ->middleware('can:manage questions')
+        ->name('questions.destroy');
+    Route::put('/questions/{id}', [QuestionController::class, 'restore'])
+        ->middleware('can:manage questions', 'can:view deleted')
+        ->name('questions.restore');
 });
 
 require __DIR__ . '/auth.php';
