@@ -105,6 +105,6 @@ class Question extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['name', 'is_active']);
+        return LogOptions::defaults()->logOnly(['station.name', 'name', 'is_active']);
     }
 }
