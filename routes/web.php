@@ -112,8 +112,6 @@ Route::middleware('auth', 'can:manage users')->group(function () {
     Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
     Route::get('/awards/create', [AwardController::class, 'create'])->name('awards.create');
     Route::post('/awards', [AwardController::class, 'store'])->name('awards.store');
-    Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
-    Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
 
     Route::get('/winners', [WinnerController::class, 'index'])->name('winners.index');
     Route::get('/winners/{winner}/edit', [WinnerController::class, 'edit'])->name('winners.edit');

@@ -133,7 +133,7 @@ class AwardController extends Controller
      */
     public function edit(Award $award)
     {
-        dd("N/A");
+        //
     }
 
     /**
@@ -149,6 +149,6 @@ class AwardController extends Controller
      */
     public function destroy(Award $award)
     {
-        dd("N/A");
+        //
     }
 }
