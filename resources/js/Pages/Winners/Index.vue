@@ -55,7 +55,9 @@ const claim = (winner) => {
                                     <Link :href="route('winners.createSingle')">
                                         <PrimaryButton> Single </PrimaryButton>
                                     </Link>
-                                    <Link :href="route('winners.createSingle')">
+                                    <Link
+                                        :href="route('winners.createMultiple')"
+                                    >
                                         <PrimaryButton>
                                             Multiple
                                         </PrimaryButton>
