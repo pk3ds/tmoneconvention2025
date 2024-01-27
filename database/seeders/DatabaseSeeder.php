@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 StationSeeder::class,
                 QuestionSeeder::class,
                 QuestionOptionSeeder::class,
+                QuizSeeder::class,
             ]);
         }
     }
