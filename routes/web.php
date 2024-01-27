@@ -11,6 +11,7 @@ use App\Http\Controllers\WinnerController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\CommitteeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,16 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth', 'can:view users')->group(function () {
+    Route::get('/committees', [CommitteeController::class, 'index'])->name('committees.index');
+    Route::get('/committees/create', [CommitteeController::class, 'create'])->name('committees.create');
+    Route::post('/committees', [committeeController::class, 'store'])->name('committees.store');
+    Route::get('/committees/{user}/edit', [CommitteeController::class, 'edit'])->name('committees.edit');
+    Route::patch('/committees/{user}', [CommitteeController::class, 'update'])->name('committees.update');
+    Route::delete('/committees/{user}', [CommitteeController::class, 'destroy'])->name('committees.destroy');
+    Route::put('/committees/{id}', [CommitteeController::class, 'restore'])
+        ->middleware('can:view deleted')
+        ->name('committees.restore');
+
     Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
     Route::get('/groups/create', [GroupController::class, 'create'])->name('groups.create');
     Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
