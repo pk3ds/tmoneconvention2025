@@ -16,7 +16,7 @@ const endDraw = () => {
 
 <style>
 body {
-    background-image: url("/images/BG-01.jpg");
+    background-image: url("../../../../public/images/BG-01.jpg");
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
