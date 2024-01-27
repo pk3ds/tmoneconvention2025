@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
+use Harishdurga\LaravelQuiz\Database\Seeders\QuestionTypeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,9 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            QuestionTypeSeeder::class,
+            QuestionSeeder::class,
+            QuestionOptionSeeder::class,
         ]);
 
         if (!App::environment('production')) {
