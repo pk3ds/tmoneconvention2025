@@ -33,9 +33,6 @@ const back = () => {
                 Edit existing station.
             </p>
         </div>
-        <SecondaryButton class="px-4 my-2 me-2" @click="back">
-            Back
-        </SecondaryButton>
     </header>
 
     <form
