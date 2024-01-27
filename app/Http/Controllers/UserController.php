@@ -75,6 +75,14 @@ class UserController extends Controller
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
+        if ($request->role != 'user') {
+            $usePassword = true;
+            $password = Hash::make($request->password);
+        } else {
+            $usePassword = false;
+            $password = Hash::make('password');
+        }
+
         DB::beginTransaction();
         $user = User::create([
             'group_id' => $request->group_id,
@@ -84,7 +92,8 @@ class UserController extends Controller
             'email' => $request->email,
             'room_no' => $request->room_no,
             'pickup_location' => $request->pickup_location,
-            'password' => $request->password ? Hash::make($request->password) : Hash::make('password'),
+            'use_password' => $usePassword,
+            'password' => $password,
         ])->assignRole($request->role);
 
         event(new Registered($user));
@@ -140,6 +149,14 @@ class UserController extends Controller
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
+        if ($request->role != 'user') {
+            $usePassword = true;
+            $password = Hash::make($request->password);
+        } else {
+            $usePassword = false;
+            $password = Hash::make('password');
+        }
+
         DB::beginTransaction();
         $user->update([
             'group_id' => $request->group_id,
@@ -149,7 +166,8 @@ class UserController extends Controller
             'email' => $request->email,
             'room_no' => $request->room_no,
             'pickup_location' => $request->pickup_location,
-            'password' => $request->password ? Hash::make($request->password) : Hash::make('password'),
+            'use_password' => $usePassword,
+            'password' => $password,
         ]);
 
         if ($request->role) {

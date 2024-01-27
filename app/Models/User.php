@@ -48,6 +48,7 @@ class User extends Authenticatable
         'check_in',
         'check_out',
         'activated_at',
+        'use_password',
     ];
 
     /**

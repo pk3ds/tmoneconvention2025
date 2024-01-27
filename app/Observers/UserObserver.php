@@ -11,10 +11,7 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        $roles = $user->getRoleNames();
-        if ($roles->count() == 0) {
-            $user->assignRole('user');
-        }
+        //
     }
 
     /**
@@ -22,7 +19,10 @@ class UserObserver
      */
     public function updated(User $user): void
     {
-        //
+        $roles = $user->getRoleNames();
+        if ($roles->count() == 0) {
+            $user->assignRole('user');
+        }
     }
 
     /**
