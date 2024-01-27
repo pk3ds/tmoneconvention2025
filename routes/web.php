@@ -11,6 +11,7 @@ use App\Http\Controllers\WinnerController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StationController;
 use App\Http\Controllers\CommitteeController;
 
 /*
@@ -63,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth', 'can:view users')->group(function () {
+Route::middleware('auth', 'can:manage users')->group(function () {
     Route::get('/committees', [CommitteeController::class, 'index'])->name('committees.index');
     Route::get('/committees/create', [CommitteeController::class, 'create'])->name('committees.create');
     Route::post('/committees', [committeeController::class, 'store'])->name('committees.store');
@@ -122,6 +123,18 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::post('/lucky-draw/single', [WinnerController::class, 'storeSingle'])->name('winners.storeSingle');
     Route::get('/lucky-draw/multiple', [WinnerController::class, 'createMultiple'])->name('winners.createMultiple');
     Route::post('/lucky-draw/multiple', [WinnerController::class, 'storeMultiple'])->name('winners.storeMultiple');
+});
+
+Route::middleware('auth', 'can:manage stations')->group(function () {
+    Route::get('/stations', [StationController::class, 'index'])->name('stations.index');
+    Route::get('/stations/create', [StationController::class, 'create'])->name('stations.create');
+    // Route::post('/stations', [StationController::class, 'store'])->name('stations.store');
+    Route::get('/stations/{station}/edit', [StationController::class, 'edit'])->name('stations.edit');
+    // Route::patch('/stations/{station}', [StationController::class, 'update'])->name('stations.update');
+    Route::delete('/stations/{station}', [StationController::class, 'destroy'])->name('stations.destroy');
+    Route::put('/stations/{id}', [StationController::class, 'restore'])
+        ->middleware('can:view deleted')
+        ->name('stations.restore');
 });
 
 require __DIR__ . '/auth.php';
