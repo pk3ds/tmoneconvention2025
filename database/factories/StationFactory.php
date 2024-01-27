@@ -20,6 +20,7 @@ class StationFactory extends Factory
             'name' => fake()->catchPhrase(),
             'type' => fake()->word(),
             'description' => fake()->words(5, true),
+            'rating' => fake()->randomFloat(1, 0, 5),
         ];
     }
 }
