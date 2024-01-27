@@ -132,9 +132,15 @@ const transform = (string) => {
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                                             >
                                                 Options
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                Station
                                             </th>
                                             <th
                                                 scope="col"
@@ -151,7 +157,7 @@ const transform = (string) => {
                                     >
                                         <tr v-for="question in questions">
                                             <td
-                                                class="w-full py-4 pl-4 pr-3 text-sm font-medium text-gray-900 max-w-0 sm:w-auto sm:max-w-none sm:pl-0"
+                                                class="w-full py-4 pl-4 pr-3 text-sm font-medium text-gray-900 truncate max-w-0 sm:w-auto sm:max-w-none sm:pl-0"
                                             >
                                                 <span class="flex gap-2">
                                                     {{ question.name }}
@@ -187,10 +193,21 @@ const transform = (string) => {
                                                             )
                                                         }}
                                                     </dd>
+                                                    <dt class="sr-only">
+                                                        Options
+                                                    </dt>
+                                                    <dd
+                                                        class="mt-1 text-gray-700 capitalize truncate"
+                                                    >
+                                                        {{
+                                                            question.options
+                                                                .length
+                                                        }}
+                                                    </dd>
                                                 </dl>
                                             </td>
                                             <td
-                                                class="hidden px-3 py-4 text-sm text-gray-500 capitalize lg:table-cell"
+                                                class="hidden px-3 py-4 text-sm text-gray-500 capitalize truncate lg:table-cell"
                                             >
                                                 {{
                                                     transform(
@@ -200,9 +217,14 @@ const transform = (string) => {
                                                 }}
                                             </td>
                                             <td
-                                                class="px-3 py-4 text-sm text-gray-500 capitalize"
+                                                class="hidden px-3 py-4 text-sm text-gray-500 capitalize lg:table-cell"
                                             >
                                                 {{ question.options.length }}
+                                            </td>
+                                            <td
+                                                class="px-3 py-4 text-sm text-gray-500 capitalize truncate"
+                                            >
+                                                {{ question.station?.name }}
                                             </td>
                                         </tr>
                                     </tbody>
