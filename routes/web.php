@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\WinnerController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
@@ -96,6 +97,8 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::post('/awards', [AwardController::class, 'store'])->name('awards.store');
     Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
     Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
+
+    Route::get('/winners', [WinnerController::class, 'index'])->name('winners.index');
 });
 
 require __DIR__ . '/auth.php';

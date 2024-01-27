@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
                 GroupSeeder::class,
                 AwardSeeder::class,
                 SessionSeeder::class,
+                WinnerSeeder::class,
             ]);
         }
     }
