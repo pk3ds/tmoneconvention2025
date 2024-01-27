@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Quiz;
 use Illuminate\Database\Seeder;
-use Harishdurga\LaravelQuiz\Models\Quiz;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class QuizSeeder extends Seeder
@@ -14,6 +14,7 @@ class QuizSeeder extends Seeder
     public function run(): void
     {
         $quiz = Quiz::create([
+            'station_id' => 1,
             'name' => 'TM One Quiz',
             'description' => 'Test your knowledge of TM One',
             'slug' => 'tm-one-quiz',
@@ -29,5 +30,7 @@ class QuizSeeder extends Seeder
                 'negative_mark_value' => 0,
             ]
         ]);
+
+        Quiz::factory(5)->hasQuestions(5)->create();
     }
 }

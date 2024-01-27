@@ -57,7 +57,7 @@ return [
          * Default Harishdurga\LaravelQuiz\Models\Quiz::class
          */
 
-        'quiz' => Harishdurga\LaravelQuiz\Models\Quiz::class,
+        'quiz' => App\Models\Quiz::class,
 
         /*
          * Default Harishdurga\LaravelQuiz\Models\QuizAttempt::class

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Quiz;
 use App\Models\User;
 use App\Models\Question;
 use Spatie\Activitylog\LogOptions;
@@ -41,5 +42,10 @@ class Station extends Model
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
     }
 }

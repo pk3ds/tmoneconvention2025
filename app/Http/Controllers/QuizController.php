@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quiz;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Harishdurga\LaravelQuiz\Models\Quiz;
 
 class QuizController extends Controller
 {
@@ -21,12 +21,12 @@ class QuizController extends Controller
 
         if ($permissionNames->contains('view deleted')) {
             $quizzes = Quiz::orderBy('name')
-                // ->search()
+                ->search()
                 ->withTrashed()
                 ->get();
         } else {
             $quizzes = Quiz::orderBy('name')
-                // ->search()
+                ->search()
                 ->get();
         }
 
