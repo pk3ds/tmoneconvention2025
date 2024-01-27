@@ -31,5 +31,10 @@ class QuestionOptionSeeder extends Seeder
             'name' => 'Innovate Your Next',
             'is_correct' => true,
         ]);
+        QuestionOption::create([
+            'question_id' => $question_one->id,
+            'name' => 'Ini Cara Kita',
+            'is_correct' => false,
+        ]);
     }
 }

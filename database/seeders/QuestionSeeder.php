@@ -20,7 +20,7 @@ class QuestionSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        Question::factory(19)->create([
+        Question::factory(19)->hasOptions(4)->create([
             'station_id' => 1,
         ]);
     }
