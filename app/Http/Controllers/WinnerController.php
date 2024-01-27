@@ -95,7 +95,9 @@ class WinnerController extends Controller
      */
     public function edit(Winner $winner)
     {
-        //
+        return Inertia::render('Winners/Edit', [
+            'winner' => $winner->load('user'),
+        ]);
     }
 
     /**
@@ -103,14 +105,27 @@ class WinnerController extends Controller
      */
     public function update(Request $request, Winner $winner)
     {
-        //
+        $request->validate([
+            'prize' => 'required'
+        ]);
+
+        $winner->update([
+            'prize' => $request->prize,
+        ]);
+
+        return redirect()->route('winners.index')->with('success', 'Prize updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Mark the specified prize as claimed in storage.
      */
-    public function destroy(Winner $winner)
+    public function claim(Winner $winner)
     {
-        //
+        $winner->update([
+            'is_claimed' => true,
+            'claimed_at' => now(),
+        ]);
+
+        return redirect()->route('winners.index')->with('success', 'Prize claimed successfully');
     }
 }

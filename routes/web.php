@@ -102,12 +102,15 @@ Route::middleware('auth', 'can:view users')->group(function () {
     Route::get('/awards/{award}/edit', [AwardController::class, 'edit'])->name('awards.edit');
     Route::delete('/awards/{award}', [AwardController::class, 'destroy'])->name('awards.destroy');
 
+    Route::get('/winners', [WinnerController::class, 'index'])->name('winners.index');
+    Route::get('/winners/{winner}/edit', [WinnerController::class, 'edit'])->name('winners.edit');
+    Route::patch('/winners/{winner}', [WinnerController::class, 'update'])->name('winners.update');
+    Route::patch('/winners/{winner}/claim', [WinnerController::class, 'claim'])->name('winners.claim');
+
     Route::get('/lucky-draw/single', [WinnerController::class, 'createSingle'])->name('winners.createSingle');
     Route::post('/lucky-draw/single', [WinnerController::class, 'storeSingle'])->name('winners.storeSingle');
     Route::get('/lucky-draw/multiple', [WinnerController::class, 'createMultiple'])->name('winners.createMultiple');
     Route::post('/lucky-draw/multiple', [WinnerController::class, 'storeMultiple'])->name('winners.storeMultiple');
-
-    Route::get('/winners', [WinnerController::class, 'index'])->name('winners.index');
 });
 
 require __DIR__ . '/auth.php';
