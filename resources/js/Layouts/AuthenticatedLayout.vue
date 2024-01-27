@@ -286,7 +286,7 @@ watch(
                         <li
                             v-if="
                                 $page.props.permissions.includes(
-                                    'manage stations'
+                                    'manage questions'
                                 )
                             "
                         >
