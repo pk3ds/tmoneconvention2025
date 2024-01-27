@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use App\Models\Station;
+use Spatie\Activitylog\LogOptions;
 use Database\Factories\QuestionFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Question extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, LogsActivity;
 
     /**
      * The attributes that aren't mass assignable.
@@ -28,7 +30,6 @@ class Question extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     public function getTable()
@@ -100,5 +101,10 @@ class Question extends Model
     public function station()
     {
         return $this->belongsTo(Station::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(['name', 'is_active']);
     }
 }
