@@ -178,6 +178,7 @@ class SessionController extends Controller
      */
     public function checkin($uuid)
     {
+        // FIXME points threshold?
         $points = 1000;
         $session = Session::where('uuid', $uuid)->first();
 
