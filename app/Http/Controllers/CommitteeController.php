@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Group;
+use App\Models\Station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -50,9 +51,11 @@ class CommitteeController extends Controller
      */
     public function create()
     {
+        $stations = Station::all();
         $groups = Group::all();
         $roles = Role::all();
         return Inertia::render('Committees/Create', [
+            'stations' => $stations,
             'groups' => $groups,
             'roles' => $roles,
         ]);
@@ -70,6 +73,7 @@ class CommitteeController extends Controller
             'email' => 'required|string|email|max:255|unique:' . User::class,
             'room_no' => 'nullable|string|max:255',
             'pickup_location' => 'nullable|string|max:255',
+            'station_id' => 'nullable|exists:' . Station::class . ',id',
             'group_id' => 'nullable|exists:' . Group::class . ',id',
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
@@ -85,6 +89,7 @@ class CommitteeController extends Controller
 
         DB::beginTransaction();
         $user = User::create([
+            'station_id' => $request->station_id,
             'group_id' => $request->group_id,
             'name' => $request->name,
             'staff_id' => $request->staff_id,
@@ -117,6 +122,7 @@ class CommitteeController extends Controller
      */
     public function edit(User $user)
     {
+        $stations = Station::all();
         $groups = Group::all();
         $roles = Role::all();
         $activities = Activity::orderBy('created_at', 'desc')
@@ -125,6 +131,7 @@ class CommitteeController extends Controller
             ->get();
 
         return Inertia::render('Committees/Edit', [
+            'stations' => $stations,
             'groups' => $groups,
             'roles' => $roles,
             'user' => $user->load('roles', 'group', 'awards'),
@@ -144,6 +151,7 @@ class CommitteeController extends Controller
             'email' => 'required|string|email|max:255|unique:' . User::class . ',email,' . $user->id,
             'room_no' => 'nullable|string|max:255',
             'pickup_location' => 'nullable|string|max:255',
+            'station_id' => 'nullable|exists:' . Station::class . ',id',
             'group_id' => 'nullable|exists:' . Group::class . ',id',
             'role' => 'required|exists:roles,name',
             'password' => ['nullable', 'confirmed', Password::defaults()],
@@ -159,6 +167,7 @@ class CommitteeController extends Controller
 
         DB::beginTransaction();
         $user->update([
+            'station_id' => $request->station_id,
             'group_id' => $request->group_id,
             'name' => $request->name,
             'staff_id' => $request->staff_id,

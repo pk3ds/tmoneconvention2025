@@ -7,6 +7,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
+    stations: Object,
     groups: Object,
     roles: Object,
     user: Object,
@@ -20,6 +21,7 @@ const form = useForm({
     room_no: props.user.room_no,
     pickup_location: props.user.pickup_location,
     group_id: props.user.group_id,
+    station_id: props.user.station_id,
     role: props.user.roles[0]?.name,
     password: "",
     password_confirmation: "",
@@ -145,6 +147,20 @@ const pointsForm = useForm({
             </select>
 
             <InputError :message="form.errors.group_id" class="mt-2" />
+        </div>
+
+        <div>
+            <InputLabel for="station_id" value="Station (optional)" />
+            <select
+                v-model="form.station_id"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+            >
+                <option v-for="station in stations" :value="station.id">
+                    {{ station.name }}
+                </option>
+            </select>
+
+            <InputError :message="form.errors.station_id" class="mt-2" />
         </div>
 
         <div>
