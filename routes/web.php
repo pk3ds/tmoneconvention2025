@@ -12,6 +12,7 @@ use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CommitteeController;
 
 /*
@@ -145,8 +146,15 @@ Route::middleware('auth')->group(function () {
         ->middleware('can:manage stations')
         ->name('stations.destroy');
     Route::put('/stations/{id}', [StationController::class, 'restore'])
-        ->middleware('can:view deleted')
+        ->middleware('can:manage stations', 'can:view deleted')
         ->name('stations.restore');
+
+    Route::get('/questions', [QuestionController::class, 'index'])
+        ->middleware('can:manage questions')
+        ->name('questions.index');
+    Route::get('/questions/create', [QuestionController::class, 'create'])
+        ->middleware('can:manage questions')
+        ->name('questions.create');
 });
 
 require __DIR__ . '/auth.php';
