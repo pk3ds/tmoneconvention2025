@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
                 'staff_id' => 'TM38432',
                 'pickup_location' => 'Self Drive',
                 'use_password' => true,
+                'password' => Hash::make('password'),
                 'phone_no' => '0135711937',
                 'email' => 'putranaz94@gmail.com',
             ])->assignRole('admin');
@@ -39,6 +40,7 @@ class UserSeeder extends Seeder
                 'name' => 'Committee',
                 'staff_id' => 'TM12345',
                 'use_password' => true,
+                'password' => Hash::make('password'),
                 'email' => 'committee@mail.com',
             ])->assignRole('committee');
 
@@ -47,6 +49,7 @@ class UserSeeder extends Seeder
                 'name' => 'Vendor',
                 'staff_id' => 'TM45678',
                 'use_password' => true,
+                'password' => Hash::make('password'),
                 'email' => 'vendor@mail.com',
             ])->assignRole('vendor');
 
@@ -55,6 +58,7 @@ class UserSeeder extends Seeder
                 'name' => 'Product',
                 'staff_id' => 'TM23456',
                 'use_password' => true,
+                'password' => Hash::make('password'),
                 'email' => 'product@mail.com',
             ])->assignRole('product');
         }
