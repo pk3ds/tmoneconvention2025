@@ -3,14 +3,15 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
-// import Questions from "./Partials/Questions.vue";
+import Questions from "./Partials/Questions.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import ActivityLog from "@/Components/ActivityLog.vue";
 
 const props = defineProps({
     quiz: Object,
-    stations: Object,
     station_id: Number,
+    stations: Object,
+    questions: Object,
     activities: Object,
 });
 
@@ -108,7 +109,7 @@ const back = () => {
                             role="tabpanel"
                             aria-labelledby="questions-tab"
                         >
-                            <!-- <Questions :quiz="quiz" /> -->
+                            <Questions :quiz="quiz" :questions="questions" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"

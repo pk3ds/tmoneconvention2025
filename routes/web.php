@@ -186,6 +186,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/quizzes/{id}', [QuizController::class, 'restore'])
         ->middleware('can:manage questions', 'can:view deleted')
         ->name('quizzes.restore');
+    Route::patch('/quizzes/{quiz}/link', [QuizController::class, 'link'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.link');
+    Route::patch('/quizzes/{quiz}/unlink', [QuizController::class, 'unlink'])
+        ->middleware('can:manage questions')
+        ->name('quizzes.unlink');
 });
 
 require __DIR__ . '/auth.php';
