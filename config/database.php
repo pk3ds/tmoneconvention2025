@@ -44,17 +44,6 @@ return [
 
     'connections' => [
 
-        'cleardb' => [
-            'driver' => 'mysql',
-            'host' => $hostname,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-        ],
-
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -68,7 +57,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', $hostname),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', $$database),
+            'database' => env('DB_DATABASE', $database),
             'username' => env('DB_USERNAME', $username),
             'password' => env('DB_PASSWORD', $password),
             'unix_socket' => env('DB_SOCKET', ''),
