@@ -13,55 +13,53 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '01: AI-BOT',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '02: INNOONE',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '03: NEXTWAVE',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '04: SUPER4',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '05: VEE VU ',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '06: TECHNOBLAZERS',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '07: 7UP',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '08: 1NNOV8',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '09: NINEXT',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '10: BEN10',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '11: 11:11',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '12: STARGAZER',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '13: DIGITAL 13',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '14: POWER GEN ',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '15: MARVELLOUS',
         ]);
-        Group::create([
+        Group::factory()->hasUsers(40)->create([
             'name' => '16: PHOENIX RISING ',
         ]);
-
-        // Group::factory(16)->hasUsers(40)->hasAwards(10)->create();
     }
 }
