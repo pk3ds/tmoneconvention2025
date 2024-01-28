@@ -11,7 +11,7 @@
         Detection, Automoted Response and Investigation & Response
     </p>
 
-    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
         2. MSOC (Managed Security Operation Centre) function as a comprehensive
         solution that manages complex IT security issues and enhancing security
         posture on both organizational and technical level. The main component
@@ -24,6 +24,6 @@
         disrupt business operations and detect user anomalies and via artificial
         intelligence (AI) to automate manual processes associated with threat
         detection and incident response and provide real- time alert on security
-        incidents.​
+        incidents
     </p>
 </template>
