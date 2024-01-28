@@ -13,7 +13,7 @@
         market needs
     </p>
 
-    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
         Private 5G:<br />
         As a Solution Consultant(SC) for an end-to-end customized solutions.
         Specializing in delivering comprehensive tailored made end-to-end
@@ -23,12 +23,12 @@
         wireless offered under wireless which are Satellite (VSAT & Starlink)
         and Wireless (Wi-Fi Lite, Wi-Fi Premium, Customer Project)
     </p>
-    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
         Mobile Services:<br />
         Mobile Services: Product offerings for Mobile Services consist of CCP,
         CIP, FWA, M2M & Custom
     </p>
-    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
         Wireless:<br />
         Two type of wireless offered under wireless which are Satellite (VSAT &
         Starlink) and Wireless (Wi-Fi Lite, Wi-Fi Premium, Customer Project)
