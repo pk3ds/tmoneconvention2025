@@ -20,7 +20,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        07.00
+                        07:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl text-gray-900">
@@ -35,7 +35,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        09.00
+                        09:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl text-gray-900">
@@ -47,7 +47,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        10.00
+                        10:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -65,7 +65,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        11.00
+                        11:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -77,7 +77,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        11.30
+                        11:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -90,7 +90,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        13.30
+                        13:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -102,7 +102,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        15.00
+                        15:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -115,7 +115,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        17.00
+                        17:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -127,7 +127,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        17.20
+                        17:20
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -139,7 +139,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        20.00
+                        20:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -165,7 +165,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        08.00
+                        08:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -177,7 +177,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        08.30
+                        08:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -195,7 +195,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        09.00
+                        09:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -207,7 +207,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        09.45
+                        09:45
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -219,7 +219,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        10.15
+                        10:15
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -260,7 +260,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        12.00
+                        12:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -272,7 +272,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        14.30
+                        14:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -284,7 +284,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        15.00
+                        15:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -326,7 +326,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        16.00
+                        16:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -338,7 +338,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        16.20
+                        16:20
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -356,7 +356,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        16.50
+                        16:50
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -369,7 +369,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        17.30
+                        17:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -384,7 +384,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        19.00
+                        19:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
