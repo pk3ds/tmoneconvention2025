@@ -1,3 +1,14 @@
+<script setup>
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+
+const emit = defineEmits(["closeModal"]);
+
+const close = () => {
+    emit("closeModal");
+};
+</script>
+
 <template>
     <h2 class="text-lg font-medium text-gray-900 font-title dark:text-gray-100">
         PWRSTATION 03: Cybersecurity: Managed XDE & Managed SOC
@@ -26,4 +37,11 @@
         detection and incident response and provide real- time alert on security
         incidents
     </p>
+
+    <div class="flex justify-between mt-6">
+        <a href="https://forms.gle/qEXzT23V56Y1mD1i7" target="_blank">
+            <PrimaryButton> Quiz </PrimaryButton>
+        </a>
+        <SecondaryButton @click="close"> Close </SecondaryButton>
+    </div>
 </template>
