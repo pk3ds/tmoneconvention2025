@@ -44,12 +44,7 @@ Route::get('/lucky-draw', function () {
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', function () {
-        $checkinCount = DB::table('session_user')
-            ->where('user_id', Auth::user()->id)
-            ->count();
-        return Inertia::render('Dashboard', [
-            'checkinCount' => $checkinCount,
-        ]);
+        return Inertia::render('Dashboard');
     })->name('dashboard');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
