@@ -1,5 +1,4 @@
 <script setup>
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Modal from "@/Components/Modal.vue";
 import Station01 from "./Modals/Station01.vue";
 import Station02 from "./Modals/Station02.vue";
@@ -233,18 +232,38 @@ const closeModal = () => {
 
     <Modal :show="showingModal" @close="closeModal">
         <div class="p-6">
-            <Station01 v-if="selectedStation == '01'" />
-            <Station02 v-if="selectedStation == '02'" />
-            <Station03 v-if="selectedStation == '03'" />
-            <Station04 v-if="selectedStation == '04'" />
-            <Station05 v-if="selectedStation == '05'" />
-            <Station06 v-if="selectedStation == '06'" />
-            <Station07 v-if="selectedStation == '07'" />
-            <Station08 v-if="selectedStation == '08'" />
-
-            <div class="flex justify-end mt-6">
-                <SecondaryButton @click="closeModal"> Close </SecondaryButton>
-            </div>
+            <Station01
+                v-if="selectedStation == '01'"
+                @closeModal="closeModal"
+            />
+            <Station02
+                v-if="selectedStation == '02'"
+                @closeModal="closeModal"
+            />
+            <Station03
+                v-if="selectedStation == '03'"
+                @closeModal="closeModal"
+            />
+            <Station04
+                v-if="selectedStation == '04'"
+                @closeModal="closeModal"
+            />
+            <Station05
+                v-if="selectedStation == '05'"
+                @closeModal="closeModal"
+            />
+            <Station06
+                v-if="selectedStation == '06'"
+                @closeModal="closeModal"
+            />
+            <Station07
+                v-if="selectedStation == '07'"
+                @closeModal="closeModal"
+            />
+            <Station08
+                v-if="selectedStation == '08'"
+                @closeModal="closeModal"
+            />
         </div>
     </Modal>
 </template>

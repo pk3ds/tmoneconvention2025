@@ -1,3 +1,13 @@
+<script setup>
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+
+const emit = defineEmits(["closeModal"]);
+
+const close = () => {
+    emit("closeModal");
+};
+</script>
 <template>
     <h2 class="text-lg font-medium text-gray-900 font-title dark:text-gray-100">
         PWRSTATION 01: Mobile & Wireless: 5G
@@ -33,4 +43,11 @@
         Two type of wireless offered under wireless which are Satellite (VSAT &
         Starlink) and Wireless (Wi-Fi Lite, Wi-Fi Premium, Customer Project)
     </p>
+
+    <div class="flex justify-between mt-6">
+        <a href="https://forms.gle/nCE2QWvBNGboNcVGA " target="_blank">
+            <PrimaryButton> Quiz </PrimaryButton>
+        </a>
+        <SecondaryButton @click="close"> Close </SecondaryButton>
+    </div>
 </template>

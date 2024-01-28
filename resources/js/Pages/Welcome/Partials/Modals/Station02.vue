@@ -1,3 +1,13 @@
+<script setup>
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+
+const emit = defineEmits(["closeModal"]);
+
+const close = () => {
+    emit("closeModal");
+};
+</script>
 <template>
     <h2 class="text-lg font-medium text-gray-900 font-title dark:text-gray-100">
         PWRSTATION 02: Cybersecurity: Secure Service Edge (SSE)
@@ -19,4 +29,11 @@
         firewalls, and internet proxies, offering a transformative shift in
         network security
     </p>
+
+    <div class="flex justify-between mt-6">
+        <a href="https://forms.gle/rVqCSoperL1PcNNX6" target="_blank">
+            <PrimaryButton> Quiz </PrimaryButton>
+        </a>
+        <SecondaryButton @click="close"> Close </SecondaryButton>
+    </div>
 </template>

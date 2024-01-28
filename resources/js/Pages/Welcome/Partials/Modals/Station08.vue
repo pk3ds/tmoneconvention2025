@@ -1,3 +1,14 @@
+<script setup>
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+
+const emit = defineEmits(["closeModal"]);
+
+const close = () => {
+    emit("closeModal");
+};
+</script>
+
 <template>
     <h2 class="text-lg font-medium text-gray-900 font-title dark:text-gray-100">
         PWRSTATION 08: Smart Education & Smart Agriculture: Digital School &
@@ -74,4 +85,11 @@
         </ol>
 
     </p>
+
+    <div class="flex justify-between mt-6">
+        <a href="https://forms.gle/tc1Vfq235SA7vQC9A" target="_blank">
+            <PrimaryButton> Quiz </PrimaryButton>
+        </a>
+        <SecondaryButton @click="close"> Close </SecondaryButton>
+    </div>
 </template>
