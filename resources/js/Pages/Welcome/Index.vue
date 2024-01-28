@@ -11,24 +11,24 @@ import { Head } from "@inertiajs/vue3";
 <template>
     <Head title="TM One Convention 2024" />
     <SiteLayout>
-        <div class="relative z-10 overflow-hidden isolate pt-14" id="main">
+        <div class="overflow-hidden isolate pt-14" id="main">
             <Hero />
         </div>
 
-        <div class="relative z-10" id="countdown">
+        <div class="" id="countdown">
             <Countdown />
         </div>
 
-        <div class="relative z-10" id="agenda">
+        <div class="" id="agenda">
             <Agenda />
         </div>
 
-        <div class="relative z-10 py-12" id="dress-code">
+        <div class="py-12" id="dress-code">
             <Attire />
         </div>
 
-        <div class="relative z-10 py-12" id="pwrgame">
-            <Map />
+        <div class="py-12" id="pwrgame">
+            <Map :stations="stations" />
         </div>
     </SiteLayout>
 </template>

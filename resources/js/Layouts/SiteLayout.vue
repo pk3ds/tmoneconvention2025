@@ -147,10 +147,4 @@ document.addEventListener("scroll", function () {
             <slot />
         </div>
     </div>
-
-    <img
-        class="fixed bottom-0 left-0 z-0 max-w-48"
-        src="/images/Chevron-01.png"
-        alt="TM ONE"
-    />
 </template>
