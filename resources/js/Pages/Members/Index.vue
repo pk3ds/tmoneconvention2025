@@ -96,7 +96,7 @@ const comparePoints = (a, b) => {
                                         class="text-base font-semibold leading-6 text-gray-900"
                                     >
                                         {{ $page.props.auth.user.group?.name }}
-                                        Members
+                                        PWRMEMBERS
                                     </h1>
                                     <p class="mt-2 text-sm text-gray-700">
                                         A list of your team members including

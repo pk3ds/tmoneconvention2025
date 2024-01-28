@@ -95,12 +95,11 @@ const restore = (id) => {
                                     <h1
                                         class="text-base font-semibold leading-6 text-gray-900"
                                     >
-                                        Stations
+                                        PWRSTATIONS
                                     </h1>
                                     <p class="mt-2 text-sm text-gray-700">
-                                        A list of all the stations in the system
-                                        including their name and number of
-                                        users.
+                                        A list of all the stations including
+                                        their name and number of users.
                                     </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
