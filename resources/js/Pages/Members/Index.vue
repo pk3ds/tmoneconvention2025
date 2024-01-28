@@ -99,8 +99,7 @@ const comparePoints = (a, b) => {
                                     </h1>
                                     <p class="mt-2 text-sm text-gray-700">
                                         A list of your team members including
-                                        their name, room number, phone number
-                                        and points.
+                                        their name, phone number and points.
                                     </p>
                                 </div>
                                 <div
@@ -125,12 +124,6 @@ const comparePoints = (a, b) => {
                                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                                             >
                                                 Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                                            >
-                                                Room No
                                             </th>
                                             <th
                                                 scope="col"
@@ -183,14 +176,6 @@ const comparePoints = (a, b) => {
                                                 <dl
                                                     class="font-normal lg:hidden"
                                                 >
-                                                    <dt class="sr-only">
-                                                        Room No
-                                                    </dt>
-                                                    <dd
-                                                        class="mt-1 text-gray-700 truncate"
-                                                    >
-                                                        {{ user.room_no }}
-                                                    </dd>
                                                     <dt
                                                         class="sr-only sm:hidden"
                                                     >
@@ -202,11 +187,6 @@ const comparePoints = (a, b) => {
                                                         {{ user.phone_no }}
                                                     </dd>
                                                 </dl>
-                                            </td>
-                                            <td
-                                                class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
-                                            >
-                                                {{ user.room_no }}
                                             </td>
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
