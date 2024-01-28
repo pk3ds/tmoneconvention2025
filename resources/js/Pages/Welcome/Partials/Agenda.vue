@@ -47,7 +47,56 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
+                        09:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            <span class="font-title">PWRGAME</span> Kick Off
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
                         10:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            <span class="font-title">PWRGAME</span> Breakout
+                            Session
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        12:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Lunch, Zuhur Prayer & Check-in
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        14:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Energizer
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        14:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -65,11 +114,11 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        11:00
+                        15:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">PWRGAME</span> Kick Off
+                            Tea Break
                         </p>
                     </dd>
                 </div>
@@ -77,32 +126,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        11:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">PWRGAME</span> Breakout
-                            Session
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        13:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Lunch, Zuhur Prayer & Check-in
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        15:00
+                        15:45
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -115,19 +139,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        17:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Tea Break & Asar Prayer
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        17:20
+                        18:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -230,12 +242,11 @@
                             <br /><br /><br />
                             <span class="text-xl">
                                 <span class="font-title">
-                                    • Dato’ Seri Dr. Abdul Aziz Sheikh Abdul
-                                    Kadir,
+                                    • Ts. Mohd Zabri Adil bin Talib,
                                 </span>
                                 <span class="text-lg">
-                                    Chairman, Majlis Agama Islam Negeri Sembilan
-                                    (MAINS)
+                                    Head of Division, Cyber Security Responsive
+                                    Services CyberSecurity Malaysia (CSM)
                                 </span>
                                 <br /><br />
                                 <span class="font-title">
@@ -246,11 +257,12 @@
                                 </span>
                                 <br /><br />
                                 <span class="font-title">
-                                    • Ts. Mohd Zabri Adil bin Talib,
+                                    • Dato’ Seri Dr. Abdul Aziz Sheikh Abdul
+                                    Kadir,
                                 </span>
                                 <span class="text-lg">
-                                    Head of Division, Cyber Security Responsive
-                                    Services CyberSecurity Malaysia (CSM)
+                                    Chairman, Majlis Agama Islam Negeri Sembilan
+                                    (MAINS)
                                 </span>
                             </span>
                         </p>
