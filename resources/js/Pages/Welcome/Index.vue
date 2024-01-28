@@ -5,7 +5,13 @@ import Hero from "./Partials/Hero.vue";
 import Countdown from "./Partials/Countdown.vue";
 import Attire from "./Partials/Attire.vue";
 import Map from "./Partials/Map.vue";
+import Leaderboard from "./Partials/Leaderboard.vue";
 import { Head } from "@inertiajs/vue3";
+
+const props = defineProps({
+    leaderboards: Object,
+    groups: Object,
+});
 </script>
 
 <template>
@@ -29,6 +35,10 @@ import { Head } from "@inertiajs/vue3";
 
         <div class="py-12" id="pwrgame">
             <Map :stations="stations" />
+        </div>
+
+        <div class="py-12" id="table">
+            <Leaderboard :leaderboards="leaderboards" :groups="groups" />
         </div>
     </SiteLayout>
 </template>
