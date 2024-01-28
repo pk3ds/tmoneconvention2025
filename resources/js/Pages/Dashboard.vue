@@ -1,10 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
-
-defineProps({
-    checkinCount: Object,
-});
 </script>
 
 <template>
@@ -39,11 +35,6 @@ defineProps({
                     />
                     <div class="relative px-6 mx-auto max-w-7xl lg:px-8">
                         <div class="max-w-2xl mx-auto lg:mx-0 lg:max-w-xl">
-                            <h2
-                                class="text-base font-semibold leading-8 text-accent-orange"
-                            >
-                                at a glance
-                            </h2>
                             <p
                                 class="p-4 mt-2 text-3xl font-bold tracking-wide text-cobalt-blue bg-grey font-title sm:text-4xl"
                             >
@@ -53,16 +44,6 @@ defineProps({
                         <dl
                             class="grid max-w-2xl grid-cols-1 mx-auto mt-16 text-white gap-x-8 gap-y-10 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4"
                         >
-                            <div
-                                class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
-                            >
-                                <dt class="text-sm leading-6">QR check in</dt>
-                                <dd
-                                    class="text-3xl font-semibold tracking-tight font-title"
-                                >
-                                    {{ checkinCount }}
-                                </dd>
-                            </div>
                             <div
                                 class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
                             >
@@ -86,6 +67,18 @@ defineProps({
                                         $page.props.auth.user.group?.name ??
                                         "None"
                                     }}
+                                </dd>
+                            </div>
+                            <div
+                                class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
+                            >
+                                <dt class="text-sm leading-6">
+                                    Pickup/drop point
+                                </dt>
+                                <dd
+                                    class="text-3xl font-semibold tracking-tight font-title"
+                                >
+                                    {{ $page.props.auth.user.pickup_location }}
                                 </dd>
                             </div>
                             <div
