@@ -47,6 +47,10 @@ Route::middleware('auth', 'verified')->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
+    Route::get('/passport', function () {
+        return Inertia::render('Passport');
+    })->name('passport');
+
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 
     Route::get('/checkins', [CheckinController::class, 'index'])->name('checkins.index');
