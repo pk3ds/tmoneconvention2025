@@ -1,6 +1,26 @@
 <script setup>
-const info = (location) => {
-    console.log(location);
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import Modal from "@/Components/Modal.vue";
+import Station01 from "./Modals/Station01.vue";
+import Station02 from "./Modals/Station02.vue";
+import Station03 from "./Modals/Station03.vue";
+import Station04 from "./Modals/Station04.vue";
+import Station05 from "./Modals/Station05.vue";
+import Station06 from "./Modals/Station06.vue";
+import Station07 from "./Modals/Station07.vue";
+import Station08 from "./Modals/Station08.vue";
+import { ref } from "vue";
+
+const showingModal = ref(false);
+const selectedStation = ref(null);
+
+const openModal = (location) => {
+    selectedStation.value = location;
+    showingModal.value = true;
+};
+
+const closeModal = () => {
+    showingModal.value = false;
 };
 </script>
 
@@ -29,7 +49,7 @@ const info = (location) => {
 
                     <map name="image-map-2">
                         <area
-                            @click.prevent="info('1')"
+                            @click.prevent="openModal('01')"
                             target=""
                             alt="Station 1"
                             title="Station 1"
@@ -38,7 +58,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('2')"
+                            @click.prevent="openModal('02')"
                             target=""
                             alt="Station 2"
                             title="Station 2"
@@ -47,7 +67,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('3')"
+                            @click.prevent="openModal('03')"
                             target=""
                             alt="Station 3"
                             title="Station 3"
@@ -56,7 +76,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('4')"
+                            @click.prevent="openModal('04')"
                             target=""
                             alt="Station 4"
                             title="Station 4"
@@ -65,7 +85,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('5')"
+                            @click.prevent="openModal('05')"
                             target=""
                             alt="Station 5"
                             title="Station 5"
@@ -74,7 +94,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('6')"
+                            @click.prevent="openModal('06')"
                             target=""
                             alt="Station 6"
                             title="Station 6"
@@ -83,7 +103,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('7')"
+                            @click.prevent="openModal('07')"
                             target=""
                             alt="Station 7"
                             title="Station 7"
@@ -92,7 +112,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('8')"
+                            @click.prevent="openModal('08')"
                             target=""
                             alt="Station 8"
                             title="Station 8"
@@ -111,7 +131,7 @@ const info = (location) => {
 
                     <map name="image-map-1">
                         <area
-                            @click.prevent="info('9')"
+                            @click.prevent=""
                             target=""
                             alt="Station 9"
                             title="Station 9"
@@ -120,7 +140,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('10')"
+                            @click.prevent=""
                             target=""
                             alt="Station 10"
                             title="Station 10"
@@ -129,7 +149,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('11A')"
+                            @click.prevent=""
                             target=""
                             alt="Station 11A"
                             title="Station 11A"
@@ -138,7 +158,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('11B')"
+                            @click.prevent=""
                             target=""
                             alt="Station 11B"
                             title="Station 11B"
@@ -147,7 +167,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('12A')"
+                            @click.prevent=""
                             target=""
                             alt="Station 12A"
                             title="Station 12A"
@@ -156,7 +176,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('12B')"
+                            @click.prevent=""
                             target=""
                             alt="Station 12B"
                             title="Station 12B"
@@ -165,7 +185,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('13A')"
+                            @click.prevent=""
                             target=""
                             alt="Station 13A"
                             title="Station 13A"
@@ -174,7 +194,7 @@ const info = (location) => {
                             shape="circle"
                         />
                         <area
-                            @click.prevent="info('13B')"
+                            @click.prevent=""
                             target=""
                             alt="Station 13B"
                             title="Station 13B"
@@ -187,4 +207,21 @@ const info = (location) => {
             </div>
         </div>
     </div>
+
+    <Modal :show="showingModal" @close="closeModal">
+        <div class="p-6">
+            <Station01 v-if="selectedStation == '01'" />
+            <Station02 v-if="selectedStation == '02'" />
+            <Station03 v-if="selectedStation == '03'" />
+            <Station04 v-if="selectedStation == '04'" />
+            <Station05 v-if="selectedStation == '05'" />
+            <Station06 v-if="selectedStation == '06'" />
+            <Station07 v-if="selectedStation == '07'" />
+            <Station08 v-if="selectedStation == '08'" />
+
+            <div class="flex justify-end mt-6">
+                <SecondaryButton @click="closeModal"> Close </SecondaryButton>
+            </div>
+        </div>
+    </Modal>
 </template>
