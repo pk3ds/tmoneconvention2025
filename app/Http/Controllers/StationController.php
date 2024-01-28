@@ -75,7 +75,7 @@ class StationController extends Controller
     public function show(Station $station)
     {
         return Inertia::render('Stations/Show', [
-            'station' => $station
+            'station' => $station->load('quizzes.questions.question')
         ]);
     }
 

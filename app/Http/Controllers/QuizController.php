@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Quiz;
 use Inertia\Inertia;
 use App\Models\Station;
-use App\Models\Question;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
+use Harishdurga\LaravelQuiz\Models\Question;
 use Harishdurga\LaravelQuiz\Models\QuizQuestion;
 
 class QuizController extends Controller
@@ -76,13 +76,8 @@ class QuizController extends Controller
             'pass_marks' => 1400,
             'max_attempts' => 1,
             'is_published' => 1,
-            'duration' => 180,
+            'duration' => 0,
             'valid_from' => now(),
-            'negative_marking_settings' => [
-                'enable_negative_marks' => false,
-                'negative_marking_type' => 'fixed',
-                'negative_mark_value' => 0,
-            ],
         ]);
         return redirect()
             ->route('quizzes.index')
@@ -102,15 +97,10 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        $station_id = Auth::user()->station?->id;
         $stations = Station::orderBy('name')->get();
         $quiz_questions_id = $quiz->questions->pluck('question_id');
 
-        if ($station_id) {
-            $questions = Question::orderBy('name')->whereNotIn('id', $quiz_questions_id)->where('station_id', $station_id)->get();
-        } else {
-            $questions = Question::orderBy('name')->whereNotIn('id', $quiz_questions_id)->get();
-        }
+        $questions = Question::orderBy('name')->whereNotIn('id', $quiz_questions_id)->get();
 
         $activities = Activity::orderBy('created_at', 'desc')
             ->where('subject_type', get_class($quiz))
@@ -118,10 +108,9 @@ class QuizController extends Controller
             ->get();
 
         return Inertia::render('Quizzes/Edit', [
-            'quiz' => $quiz->load('questions.question.station'),
-            'station_id' => $station_id,
+            'quiz' => $quiz->load('questions.question'),
             'stations' => $stations,
-            'questions' => $questions->load('station'),
+            'questions' => $questions,
             'activities' => $activities->load('causer'),
         ]);
     }
@@ -148,13 +137,13 @@ class QuizController extends Controller
             'pass_marks' => 1400,
             'max_attempts' => 1,
             'is_published' => 1,
-            'duration' => 180,
+            'duration' => 0,
             'valid_from' => now(),
-            'negative_marking_settings' => [
-                'enable_negative_marks' => false,
-                'negative_marking_type' => 'fixed',
-                'negative_mark_value' => 0,
-            ],
+            // 'negative_marking_settings' => [
+            //     'enable_negative_marks' => false,
+            //     'negative_marking_type' => 'fixed',
+            //     'negative_mark_value' => 0,
+            // ],
         ]);
 
         return redirect()
