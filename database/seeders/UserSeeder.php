@@ -27,10 +27,12 @@ class UserSeeder extends Seeder
             ])->assignRole('admin');
         } else {
             User::factory()->create([
-                'name' => 'Admin',
+                'name' => 'Nazrin Putra',
                 'staff_id' => 'TM38432',
+                'pickup_location' => 'Self Drive',
                 'use_password' => true,
-                'email' => 'admin@mail.com',
+                'phone_no' => '0135711937',
+                'email' => 'putranaz94@gmail.com',
             ])->assignRole('admin');
 
             User::factory()->create([
