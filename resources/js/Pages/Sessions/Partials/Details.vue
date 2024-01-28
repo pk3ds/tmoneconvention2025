@@ -143,7 +143,7 @@ const form = useForm({
                     <QRCodeVue3
                         :width="1000"
                         :height="1000"
-                        :value="route('sessions.checkin', session.uuid)"
+                        :value="route('checkins.store', session.uuid)"
                         :qrOptions="{
                             typeNumber: 0,
                             mode: 'Byte',
@@ -179,7 +179,7 @@ const form = useForm({
                     />
                 </div>
                 <div class="flex items-center justify-center gap-4 p-4 md:p-5">
-                    <Link :href="route('sessions.checkin', session.uuid)">
+                    <Link :href="route('checkins.store', session.uuid)">
                         <PrimaryButton data-modal-hide="qr-modal">
                             Link
                         </PrimaryButton>

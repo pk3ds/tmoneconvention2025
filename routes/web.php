@@ -50,9 +50,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 
     Route::get('/checkins', [CheckinController::class, 'index'])->name('checkins.index');
-
-    Route::get('/sessions/checkin/{uuid}', [SessionController::class, 'scan'])->name('sessions.scan');
-    Route::post('/sessions/checkin/{uuid}', [SessionController::class, 'checkin'])->name('sessions.checkin');
+    Route::get('/checkins/{uuid}', [CheckinController::class, 'create'])->name('checkins.create');
+    Route::post('/checkins/{uuid}', [CheckinController::class, 'store'])->name('checkins.store');
 });
 
 Route::middleware('auth')->group(function () {

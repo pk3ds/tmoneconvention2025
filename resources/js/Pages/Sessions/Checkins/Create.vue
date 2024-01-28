@@ -14,7 +14,7 @@ const props = defineProps({
 });
 
 const checkin = () => {
-    router.post(route("sessions.checkin", props.session.uuid));
+    router.post(route("checkins.store", props.session.uuid));
 };
 </script>
 
