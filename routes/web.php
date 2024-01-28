@@ -1,6 +1,7 @@
 <?php
 
 use Inertia\Inertia;
+use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
@@ -35,6 +36,8 @@ Route::get('/', function () {
             'image' => '/images/Banner-01.jpg',
             'description' => 'Innovate The Next',
         ],
+        'leaderboards' => Group::orderBy('points', 'desc')->with('awards')->limit(3)->get(),
+        'groups' => Group::orderBy('points', 'desc')->get(),
     ]);
 })->name('/');
 
