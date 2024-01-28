@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('winners', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id');
             $table->string('prize')->nullable();
             $table->string('remark')->nullable();
             $table->boolean('is_claimed')->default(false);
