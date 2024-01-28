@@ -4,14 +4,19 @@ import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
 import Options from "./Partials/Options.vue";
+import ActivityLog from "@/Components/ActivityLog.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
+    station_id: Number,
+    stations: Object,
     types: Object,
     question: Object,
+    activities: Object,
 });
 
 const form = useForm({
+    station_id: props.station_id ?? props.question.station_id,
     name: props.question.name,
     question_type_id: props.question.question_type_id,
     option_one_id: props.question.options[0].id,
@@ -97,6 +102,19 @@ const back = () => {
                                     options
                                 </button>
                             </li>
+                            <li role="presentation">
+                                <button
+                                    class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="logs-tab"
+                                    data-tabs-target="#logs"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="logs"
+                                    aria-selected="false"
+                                >
+                                    logs
+                                </button>
+                            </li>
                         </ul>
                         <SecondaryButton class="px-4 my-2 me-2" @click="back">
                             Back
@@ -124,6 +142,14 @@ const back = () => {
                             aria-labelledby="options-tab"
                         >
                             <Options :form="form" :question="question" />
+                        </div>
+                        <div
+                            class="hidden p-4 rounded-lg"
+                            id="logs"
+                            role="tabpanel"
+                            aria-labelledby="logs-tab"
+                        >
+                            <ActivityLog :activities="activities" />
                         </div>
                     </div>
                 </div>

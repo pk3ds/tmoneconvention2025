@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AttemptController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -193,11 +192,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/quizzes/{quiz}/unlink', [QuizController::class, 'unlink'])
         ->middleware('can:manage questions')
         ->name('quizzes.unlink');
-
-    Route::get('/attempts/quiz/{quiz}/create', [AttemptController::class, 'create'])
-        ->name('attempts.create');
-    Route::post('/attempts/quiz/{quiz}', [AttemptController::class, 'store'])
-        ->name('attempts.store');
 });
 
 require __DIR__ . '/auth.php';
