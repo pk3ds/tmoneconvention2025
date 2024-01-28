@@ -6,8 +6,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
     form: Object,
-    station_id: Number,
-    stations: Object,
     types: Object,
     question: Object,
 });
@@ -32,21 +30,6 @@ const transform = (string) => {
         @submit.prevent="form.patch(route('questions.update', question))"
         class="mt-6 space-y-6"
     >
-        <div v-show="!station_id">
-            <InputLabel for="station_id" value="Station" />
-            <select
-                required
-                v-model="form.station_id"
-                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
-            >
-                <option v-for="station in stations" :value="station.id">
-                    {{ station.name }}
-                </option>
-            </select>
-
-            <InputError :message="form.errors.station_id" class="mt-2" />
-        </div>
-
         <div>
             <InputLabel for="name" value="Name" />
 

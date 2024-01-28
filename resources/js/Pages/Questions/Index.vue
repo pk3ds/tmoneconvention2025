@@ -137,12 +137,6 @@ const restore = (id) => {
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Station
-                                            </th>
-                                            <th
-                                                scope="col"
                                                 class="relative py-3.5 pl-3 pr-4 sm:pr-0"
                                             >
                                                 <span class="sr-only"
@@ -163,7 +157,7 @@ const restore = (id) => {
 
                                                     <svg
                                                         v-if="
-                                                            question.deleted_at
+                                                            !question.is_active
                                                         "
                                                         class="w-3.5 text-gray-400"
                                                         xmlns="http://www.w3.org/2000/svg"
@@ -197,11 +191,6 @@ const restore = (id) => {
                                                 {{ question.options.length }}
                                             </td>
                                             <td
-                                                class="px-3 py-4 text-sm text-gray-500 capitalize truncate"
-                                            >
-                                                {{ question.station?.name }}
-                                            </td>
-                                            <td
                                                 class="px-3 py-4 text-sm text-gray-500 capitalize"
                                             >
                                                 <div
@@ -209,7 +198,7 @@ const restore = (id) => {
                                                 >
                                                     <Link
                                                         v-if="
-                                                            !question.deleted_at
+                                                            question.is_active
                                                         "
                                                         :href="
                                                             route(
@@ -233,7 +222,7 @@ const restore = (id) => {
                                                     </Link>
                                                     <span
                                                         v-if="
-                                                            !question.deleted_at
+                                                            question.is_active
                                                         "
                                                         @click="
                                                             destroy(question)
@@ -256,7 +245,7 @@ const restore = (id) => {
                                                     </span>
                                                     <span
                                                         v-if="
-                                                            question.deleted_at
+                                                            !question.is_active
                                                         "
                                                         @click="
                                                             restore(question.id)
