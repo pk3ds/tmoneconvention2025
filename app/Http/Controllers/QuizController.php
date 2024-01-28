@@ -8,6 +8,7 @@ use App\Models\Station;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class QuizController extends Controller
 {
@@ -79,7 +80,7 @@ class QuizController extends Controller
                 'enable_negative_marks' => false,
                 'negative_marking_type' => 'fixed',
                 'negative_mark_value' => 0,
-            ]
+            ],
         ]);
         return redirect()
             ->route('quizzes.index')
@@ -99,7 +100,19 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        //
+        $station_id = Auth::user()->station?->id;
+        $stations = Station::orderBy('name')->get();
+        $activities = Activity::orderBy('created_at', 'desc')
+            ->where('subject_type', get_class($quiz))
+            ->where('subject_id', $quiz->id)
+            ->get();
+
+        return Inertia::render('Quizzes/Edit', [
+            'quiz' => $quiz->load('questions'),
+            'station_id' => $station_id,
+            'stations' => $stations,
+            'activities' => $activities->load('causer'),
+        ]);
     }
 
     /**
@@ -107,7 +120,35 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
-        //
+        $validated = $request->validate([
+            'station_id' => 'required|numeric|exists:' . Station::class . ',id',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $slug = Str::slug($request->name);
+        $quiz->update([
+            'station_id' => $request->station_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => $slug,
+            'time_between_attempts' => 0,
+            'total_marks' => 2000,
+            'pass_marks' => 1400,
+            'max_attempts' => 1,
+            'is_published' => 1,
+            'duration' => 180,
+            'valid_from' => now(),
+            'negative_marking_settings' => [
+                'enable_negative_marks' => false,
+                'negative_marking_type' => 'fixed',
+                'negative_mark_value' => 0,
+            ],
+        ]);
+
+        return redirect()
+            ->back()
+            ->with('success', 'Quiz updated successfully');
     }
 
     /**
@@ -115,6 +156,22 @@ class QuizController extends Controller
      */
     public function destroy(Quiz $quiz)
     {
-        //
+        $quiz->delete();
+
+        return redirect()
+            ->route('quizzes.index')
+            ->with('warning', 'Quiz ' . $quiz->name . ' deleted successfully');
+    }
+
+    /**
+     * Restore the specified resource from deleted state.
+     */
+    public function restore($id)
+    {
+        $quiz = Quiz::withTrashed()->find($id);
+
+        $quiz->restore();
+
+        return redirect(route('quizzes.index'))->with('success', 'Quiz ' . $quiz->name . ' restored successfully');
     }
 }
