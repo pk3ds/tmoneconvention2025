@@ -251,6 +251,10 @@
     "file": "assets/BG-01-iXg1HFQe.jpg",
     "src": "public/images/BG-01.jpg"
   },
+  "public/images/BG-Chevron-02.png": {
+    "file": "assets/BG-Chevron-02-FXA_RVkP.png",
+    "src": "public/images/BG-Chevron-02.png"
+  },
   "resources/js/Pages/Auth/ConfirmPassword.vue": {
     "file": "assets/ConfirmPassword-uhah8vEF.js",
     "imports": [
@@ -2013,7 +2017,7 @@
     "src": "resources/js/Pages/Users/Partials/Details.vue"
   },
   "resources/js/Pages/Welcome/Index.vue": {
-    "file": "assets/Index-B28eHRwR.js",
+    "file": "assets/Index-aLYRwuVR.js",
     "imports": [
       "_@inertiajs-ju8D2hAz.js",
       "_flowbite-0yPYSvbH.js",
@@ -2023,6 +2027,7 @@
       "resources/js/Pages/Welcome/Partials/Countdown.vue",
       "resources/js/Pages/Welcome/Partials/Attire.vue",
       "resources/js/Pages/Welcome/Partials/Map.vue",
+      "resources/js/Pages/Welcome/Partials/Leaderboard.vue",
       "_axios-mNEckKTA.js",
       "_deepmerge-LjH1GvcH.js",
       "_call-bind-C9g98eDj.js",
@@ -2124,6 +2129,20 @@
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Welcome/Partials/Hero.vue"
+  },
+  "resources/js/Pages/Welcome/Partials/Leaderboard.vue": {
+    "assets": [
+      "assets/BG-Chevron-02-FXA_RVkP.png"
+    ],
+    "css": [
+      "assets/Leaderboard-XD5V59yr.css"
+    ],
+    "file": "assets/Leaderboard-Sn0oAimf.js",
+    "imports": [
+      "_@vue-vmfQIgrK.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Welcome/Partials/Leaderboard.vue"
   },
   "resources/js/Pages/Welcome/Partials/Map.vue": {
     "file": "assets/Map-FmMM7R9X.js",
@@ -2407,7 +2426,7 @@
       "assets/BG-01-Plain-B9GXJNGz.jpg"
     ],
     "css": [
-      "assets/app-2d9lfH4T.css"
+      "assets/app-YGAANS8u.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/Auth/ConfirmPassword.vue",
@@ -2471,6 +2490,7 @@
       "resources/js/Pages/Welcome/Partials/Attire.vue",
       "resources/js/Pages/Welcome/Partials/Countdown.vue",
       "resources/js/Pages/Welcome/Partials/Hero.vue",
+      "resources/js/Pages/Welcome/Partials/Leaderboard.vue",
       "resources/js/Pages/Welcome/Partials/Map.vue",
       "resources/js/Pages/Welcome/Partials/Modals/Station01.vue",
       "resources/js/Pages/Welcome/Partials/Modals/Station02.vue",
@@ -2486,7 +2506,7 @@
       "resources/js/Pages/Winners/MultipleDraw.vue",
       "resources/js/Pages/Winners/SingleDraw.vue"
     ],
-    "file": "assets/app-D9SB8VY4.js",
+    "file": "assets/app-Y4HizQ9d.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",

@@ -6,7 +6,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <section class="bg-[url('/images/BG-Chevron-02.png')] shadow-sm rounded-lg">
+    <section class="rounded-lg shadow-sm bg-chevron-02">
         <div
             id="pricing-block-5"
             class="text-center rounded-t-lg font-title background-radial-gradient"
@@ -292,9 +292,13 @@ const props = defineProps({
 }
 
 .background-radial-gradient {
-    background-image: url("/images/BG-Chevron-02.png");
+    background-image: url("../../../../../public/images/BG-Chevron-02.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bg-chevron-02 {
+    background-image: url("../../../../../public/images/BG-Chevron-02.png");
 }
 </style>
