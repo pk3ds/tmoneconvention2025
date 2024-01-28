@@ -538,6 +538,7 @@ watch(
             </div>
 
             <nav
+                v-if="$page.props.permissions.includes('change password')"
                 class="flex pt-20 mx-auto max-w-7xl sm:px-6 lg:px-8"
                 aria-label="Breadcrumb"
             >
@@ -565,6 +566,8 @@ watch(
                     <slot name="breadcrumb" />
                 </ol>
             </nav>
+
+            <div v-else class="flex pt-20 mx-auto max-w-7xl sm:px-6 lg:px-8" />
 
             <!-- Page Content -->
             <main>
