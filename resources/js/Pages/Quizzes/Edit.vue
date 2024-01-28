@@ -41,6 +41,9 @@ const back = () => {
         <div class="py-4">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
                 <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
+                    <h1 class="text-xl font-semibold leading-6 text-gray-900">
+                        {{ quiz.name }}
+                    </h1>
                     <div
                         class="flex justify-between mb-4 border-b border-gray-200"
                     >
