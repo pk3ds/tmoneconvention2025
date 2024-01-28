@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Station;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
-use Harishdurga\LaravelQuiz\Models\Question;
 use Harishdurga\LaravelQuiz\Models\QuestionType;
-use Harishdurga\LaravelQuiz\Models\QuestionOption;
+use App\Models\QuestionOption;
 
 class QuestionController extends Controller
 {
@@ -25,18 +25,23 @@ class QuestionController extends Controller
 
         if ($permissionNames->contains('view deleted')) {
             $questions = Question::orderBy('name')
-                ->where('name', 'like', '%' . request('search') . '%')
+                ->search()
                 ->withTrashed()
                 ->get();
         } else {
             $questions = Question::orderBy('name')
-                ->where('name', 'like', '%' . request('search') . '%')
+                ->search()
                 ->get();
+        }
+
+        $station_id = Auth::user()->station?->id;
+        if ($station_id) {
+            $questions = $questions->where('station_id', $station_id);
         }
 
         return Inertia::render('Questions/Index', [
             'search' => $search,
-            'questions' => $questions->load('options'),
+            'questions' => $questions->load('options', 'station'),
         ]);
     }
 
@@ -45,8 +50,12 @@ class QuestionController extends Controller
      */
     public function create()
     {
+        $station_id = Auth::user()->station?->id;
+        $stations = Station::orderBy('name')->get();
         $types = QuestionType::all();
         return Inertia::render('Questions/Create', [
+            'station_id' => $station_id,
+            'stations' => $stations,
             'types' => $types,
         ]);
     }
@@ -57,6 +66,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'station_id' => 'required|numeric|exists:' . Station::class . ',id',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
             "option_one" => 'required|string|max:255',
@@ -70,6 +80,7 @@ class QuestionController extends Controller
         ]);
 
         $question = Question::create([
+            'station_id' => $request->station_id,
             'name' => $request->name,
             'question_type_id' => $request->question_type_id,
             'is_active' => true,
@@ -117,11 +128,19 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
+        $activities = Activity::orderBy('created_at', 'desc')
+            ->where('subject_type', get_class($question))
+            ->where('subject_id', $question->id)
+            ->get();
+        $station_id = Auth::user()->station?->id;
         $stations = Station::orderBy('name')->get();
         $types = QuestionType::all();
         return Inertia::render('Questions/Edit', [
+            'station_id' => $station_id,
+            'stations' => $stations,
             'types' => $types,
             'question' => $question->load('options'),
+            'activities' => $activities->load('causer'),
         ]);
     }
 
@@ -131,6 +150,7 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $validated = $request->validate([
+            'station_id' => 'required|numeric|exists:' . Station::class . ',id',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
             'option_one_id' => 'required|exists:' . QuestionOption::class . ',id',
@@ -148,6 +168,7 @@ class QuestionController extends Controller
         ]);
 
         $question->update([
+            'station_id' => $request->station_id,
             'name' => $request->name,
             'question_type_id' => $request->question_type_id,
             'is_active' => true,
@@ -187,9 +208,11 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
+        $question->disableLogging();
         $question->update([
             'is_active' => false,
         ]);
+        $question->enableLogging();
         $question->delete();
 
         return redirect()
@@ -204,9 +227,11 @@ class QuestionController extends Controller
     {
         $question = Question::withTrashed()->find($id);
 
+        $question->disableLogging();
         $question->update([
             'is_active' => true,
         ]);
+        $question->enableLogging();
         $question->restore();
 
         return redirect(route('questions.index'))->with('success', 'Question restored successfully');

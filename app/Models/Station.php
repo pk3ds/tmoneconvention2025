@@ -4,10 +4,10 @@ namespace App\Models;
 
 use App\Models\Quiz;
 use App\Models\User;
+use App\Models\Question;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Harishdurga\LaravelQuiz\Models\Question;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
