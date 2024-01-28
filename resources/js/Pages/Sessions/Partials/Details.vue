@@ -149,7 +149,7 @@ const form = useForm({
                             mode: 'Byte',
                             errorCorrectionLevel: 'H',
                         }"
-                        image="/images/Wording-01.png"
+                        image="/images/Wording-02.png"
                         :imageOptions="{
                             hideBackgroundDots: true,
                             imageSize: 0.4,
