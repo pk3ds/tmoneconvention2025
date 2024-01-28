@@ -19,10 +19,11 @@ class QuizSeeder extends Seeder
             'description' => 'Test your knowledge of TM One',
             'slug' => 'tm-one-quiz',
             'time_between_attempts' => 0, //Time in seconds between each attempt
-            'total_marks' => 20,
-            'pass_marks' => 14,
+            'total_marks' => 2000,
+            'pass_marks' => 1400,
             'max_attempts' => 1,
             'is_published' => 1,
+            'duration' => 180,
             'valid_from' => now(),
             'negative_marking_settings' => [
                 'enable_negative_marks' => false,

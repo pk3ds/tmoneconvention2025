@@ -61,7 +61,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'station_id' => 'required|numeric',
+            'station_id' => 'required|numeric|exists:' . Station::class . ',id',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
             "option_one" => 'required|string|max:255',
@@ -145,7 +145,7 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $validated = $request->validate([
-            'station_id' => 'required|numeric',
+            'station_id' => 'required|numeric|exists:' . Station::class . ',id',
             'name' => 'required|string|max:255',
             'question_type_id' => 'required|numeric',
             'option_one_id' => 'required|exists:' . QuestionOption::class . ',id',
