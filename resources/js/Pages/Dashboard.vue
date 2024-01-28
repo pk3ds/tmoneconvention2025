@@ -78,7 +78,7 @@ defineProps({
                             <div
                                 class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
                             >
-                                <dt class="text-sm leading-6">Group name</dt>
+                                <dt class="text-sm leading-6">PWRTEAM</dt>
                                 <dd
                                     class="text-3xl font-semibold tracking-tight font-title"
                                 >
