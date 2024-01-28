@@ -4,6 +4,7 @@ import Agenda from "./Partials/Agenda.vue";
 import Hero from "./Partials/Hero.vue";
 import Countdown from "./Partials/Countdown.vue";
 import Attire from "./Partials/Attire.vue";
+import Map from "./Partials/Map.vue";
 import { Head } from "@inertiajs/vue3";
 </script>
 
@@ -24,6 +25,10 @@ import { Head } from "@inertiajs/vue3";
 
         <div class="relative z-10 py-12" id="dress-code">
             <Attire />
+        </div>
+
+        <div class="relative z-10 py-12" id="pwrgame">
+            <Map />
         </div>
     </SiteLayout>
 </template>
