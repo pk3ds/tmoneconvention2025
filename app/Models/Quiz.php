@@ -106,7 +106,7 @@ class Quiz extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 
     public function station()
@@ -116,7 +116,7 @@ class Quiz extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['options', 'station.name', 'name', 'is_active'])->dontSubmitEmptyLogs();
+        return LogOptions::defaults()->logOnly(['station.name', 'name', 'description', 'is_active'])->dontSubmitEmptyLogs();
     }
 
     public function scopeSearch($query)

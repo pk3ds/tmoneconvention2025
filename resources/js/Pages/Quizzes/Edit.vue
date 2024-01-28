@@ -3,34 +3,16 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Details from "./Partials/Details.vue";
-import Options from "./Partials/Options.vue";
+import Questions from "./Partials/Questions.vue";
+import { Head, Link } from "@inertiajs/vue3";
 import ActivityLog from "@/Components/ActivityLog.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
+    quiz: Object,
     station_id: Number,
     stations: Object,
-    types: Object,
-    question: Object,
+    questions: Object,
     activities: Object,
-});
-
-const form = useForm({
-    station_id: props.station_id ?? props.question.station_id,
-    name: props.question.name,
-    question_type_id: props.question.question_type_id,
-    option_one_id: props.question.options[0].id,
-    option_one: props.question.options[0].name,
-    option_one_correct: props.question.options[0].is_correct,
-    option_two_id: props.question.options[1].id,
-    option_two: props.question.options[1].name,
-    option_two_correct: props.question.options[1].is_correct,
-    option_three_id: props.question.options[2].id,
-    option_three: props.question.options[2].name,
-    option_three_correct: props.question.options[2].is_correct,
-    option_four_id: props.question.options[3].id,
-    option_four: props.question.options[3].name,
-    option_four_correct: props.question.options[3].is_correct,
 });
 
 const back = () => {
@@ -39,25 +21,20 @@ const back = () => {
 </script>
 
 <template>
-    <Head title="Edit Question" />
+    <Head title="Edit Quiz" />
 
     <AuthenticatedLayout>
         <template #breadcrumb>
             <BreadcrumbItem>
                 <Link
-                    :href="route('questions.index')"
-                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                    :href="route('quizzes.index')"
+                    class="ml-4 text-sm font-medium"
                 >
-                    Questions
+                    Quizzes
                 </Link>
             </BreadcrumbItem>
             <BreadcrumbItem>
-                <Link
-                    href="#"
-                    class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                >
-                    Edit
-                </Link>
+                <Link href="#" class="ml-4 text-sm font-medium"> Edit </Link>
             </BreadcrumbItem>
         </template>
 
@@ -65,7 +42,7 @@ const back = () => {
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
                 <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                     <h1 class="text-xl font-semibold leading-6 text-gray-900">
-                        {{ question.name }}
+                        {{ quiz.name }}
                     </h1>
                     <div
                         class="flex justify-between mb-4 border-b border-gray-200"
@@ -92,14 +69,14 @@ const back = () => {
                             <li class="me-2" role="presentation">
                                 <button
                                     class="inline-block p-4 capitalize border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                    id="options-tab"
-                                    data-tabs-target="#options"
+                                    id="questions-tab"
+                                    data-tabs-target="#questions"
                                     type="button"
                                     role="tab"
-                                    aria-controls="options"
+                                    aria-controls="questions"
                                     aria-selected="false"
                                 >
-                                    options
+                                    questions
                                 </button>
                             </li>
                             <li role="presentation">
@@ -127,21 +104,15 @@ const back = () => {
                             role="tabpanel"
                             aria-labelledby="details-tab"
                         >
-                            <Details
-                                :form="form"
-                                :station_id="station_id"
-                                :stations="stations"
-                                :types="types"
-                                :question="question"
-                            />
+                            <Details :quiz="quiz" :stations="stations" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"
-                            id="options"
+                            id="questions"
                             role="tabpanel"
-                            aria-labelledby="options-tab"
+                            aria-labelledby="questions-tab"
                         >
-                            <Options :form="form" :question="question" />
+                            <Questions :quiz="quiz" :questions="questions" />
                         </div>
                         <div
                             class="hidden p-4 rounded-lg"

@@ -34,6 +34,11 @@ class QuestionController extends Controller
                 ->get();
         }
 
+        $station_id = Auth::user()->station?->id;
+        if ($station_id) {
+            $questions = $questions->where('station_id', $station_id);
+        }
+
         return Inertia::render('Questions/Index', [
             'search' => $search,
             'questions' => $questions->load('options', 'station'),
