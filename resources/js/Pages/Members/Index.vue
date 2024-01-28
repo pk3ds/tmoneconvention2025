@@ -95,6 +95,7 @@ const comparePoints = (a, b) => {
                                     <h1
                                         class="text-base font-semibold leading-6 text-gray-900"
                                     >
+                                        {{ $page.props.auth.user.group?.name }}
                                         Members
                                     </h1>
                                     <p class="mt-2 text-sm text-gray-700">
