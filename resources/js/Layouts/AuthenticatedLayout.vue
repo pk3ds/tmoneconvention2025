@@ -405,7 +405,7 @@ watch(
                                 </span>
                             </Link>
                         </li>
-                        <li>
+                        <!-- <li>
                             <Link
                                 :href="route('passport')"
                                 :class="{
@@ -428,7 +428,7 @@ watch(
                                 </svg>
                                 <span class="ms-3">Passport</span>
                             </Link>
-                        </li>
+                        </li> -->
                         <li
                             v-if="
                                 $page.props.permissions.includes('manage users')
