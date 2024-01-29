@@ -2,7 +2,7 @@
 import SiteLayout from "@/Layouts/SiteLayout.vue";
 import Agenda from "./Partials/Agenda.vue";
 import Hero from "./Partials/Hero.vue";
-import Countdown from "./Partials/Countdown.vue";
+// import Countdown from "./Partials/Countdown.vue";
 import Attire from "./Partials/Attire.vue";
 import Map from "./Partials/Map.vue";
 import Leaderboard from "./Partials/Leaderboard.vue";
@@ -21,9 +21,9 @@ const props = defineProps({
             <Hero />
         </div>
 
-        <div class="" id="countdown">
+        <!-- <div class="" id="countdown">
             <Countdown />
-        </div>
+        </div> -->
 
         <div class="" id="agenda">
             <Agenda />
