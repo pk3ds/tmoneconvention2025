@@ -216,7 +216,7 @@ const props = defineProps({
                 League Table Standings
             </p>
             <div class="flex flex-col mt-12">
-                <div class="px-24 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="px-0 overflow-x-auto md:px-24 sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                         <div class="overflow-hidden">
                             <table class="min-w-full">
