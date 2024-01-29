@@ -87,7 +87,11 @@ class WinnerController extends Controller
      */
     public function show(Winner $winner)
     {
-        //
+        $winners = Winner::all();
+
+        return Inertia::render('Winners/Winners', [
+            'winners' => $winners->load('user'),
+        ]);
     }
 
     /**

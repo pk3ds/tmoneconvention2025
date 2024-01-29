@@ -59,6 +59,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/checkins', [CheckinController::class, 'index'])->name('checkins.index');
     Route::get('/checkins/{uuid}', [CheckinController::class, 'create'])->name('checkins.create');
     Route::post('/checkins/{uuid}', [CheckinController::class, 'store'])->name('checkins.store');
+
+    Route::get('/lucky-draw/winners', [WinnerController::class, 'show'])->name('winners.show');
 });
 
 Route::middleware('auth')->group(function () {
