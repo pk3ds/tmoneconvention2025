@@ -252,4 +252,48 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'User ' . $user->name . ' restored successfully');
     }
+
+    public function bulk(Request $request)
+    {
+        $users = $request->all();
+
+        DB::beginTransaction();
+        foreach ($users as $user) {
+            $staffId = strtoupper($user['Staff ID']);
+            $staffId = trim($staffId);
+            $points = $user['Points'];
+
+
+            if ($user = User::where('staff_id', $staffId)->first()) {
+                $user->disableLogging();
+                $user->update([
+                    'points' => $user->points + $points
+                ]);
+                activity()
+                    ->causedBy(Auth::user())
+                    ->performedOn($user)
+                    ->withProperties(['points' => $points])
+                    ->event('Bulk update')
+                    ->log('points update');
+                $user->enableLogging();
+
+                if ($group = $user->group) {
+                    $group->disableLogging();
+                    $group->update([
+                        'points' => $group->points + $points,
+                    ]);
+                    activity()
+                        ->causedBy(Auth::user())
+                        ->performedOn($group)
+                        ->withProperties(['points' => $points])
+                        ->event('Bulk update from ' . $user->name)
+                        ->log('points update');
+                    $group->enableLogging();
+                }
+            }
+        }
+
+        DB::commit();
+        return redirect()->back()->with('success', 'Points uploaded successfully');
+    }
 }

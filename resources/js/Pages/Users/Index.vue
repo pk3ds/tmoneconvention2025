@@ -4,11 +4,16 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
+import { ref } from "vue";
+import * as XLSX from "xlsx";
 
 const props = defineProps({
     search: String,
     users: Object,
 });
+
+const templateInput = ref(null);
+const uploadedUsers = ref([]);
 
 const form = useForm({
     search: props.search ?? null,
@@ -24,6 +29,29 @@ const destroy = (user) => {
 
 const restore = (id) => {
     router.put(route("users.restore", id));
+};
+
+const start = () => {
+    templateInput.value.click();
+};
+
+const upload = (event) => {
+    const template = event.target.files[0];
+
+    const fileReader = new FileReader();
+    fileReader.readAsBinaryString(template);
+    fileReader.onload = () => {
+        var workbook = XLSX.read(fileReader.result, { type: "binary" });
+        var sheetNames = workbook.SheetNames;
+        const excelData = XLSX.utils.sheet_to_json(
+            workbook.Sheets[sheetNames[0]]
+        );
+        excelData.forEach((user) => {
+            uploadedUsers.value.push(user);
+        });
+        router.patch(route("users.bulk"), uploadedUsers.value);
+        uploadedUsers.value = [];
+    };
 };
 </script>
 
@@ -103,7 +131,21 @@ const restore = (id) => {
                                         and role.
                                     </p>
                                 </div>
-                                <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                                <div
+                                    class="gap-2 mt-4 sm:ml-16 sm:mt-0 sm:flex-none"
+                                >
+                                    <input
+                                        type="file"
+                                        @change="upload($event)"
+                                        class="hidden"
+                                        ref="templateInput"
+                                    />
+                                    <SecondaryButton
+                                        class="mr-2"
+                                        @click="start"
+                                    >
+                                        Upload Points
+                                    </SecondaryButton>
                                     <Link :href="route('users.create')">
                                         <PrimaryButton>
                                             Add user
@@ -135,6 +177,12 @@ const restore = (id) => {
                                                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                                             >
                                                 Staff ID
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                                            >
+                                                Points
                                             </th>
                                             <th
                                                 scope="col"
@@ -191,6 +239,14 @@ const restore = (id) => {
                                                     >
                                                         {{ user.staff_id }}
                                                     </dd>
+                                                    <dt class="sr-only">
+                                                        Points
+                                                    </dt>
+                                                    <dd
+                                                        class="mt-1 text-gray-700 truncate"
+                                                    >
+                                                        {{ user.points }}
+                                                    </dd>
                                                     <dt
                                                         class="sr-only sm:hidden"
                                                     >
@@ -222,6 +278,11 @@ const restore = (id) => {
                                                 class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
                                             >
                                                 {{ user.staff_id }}
+                                            </td>
+                                            <td
+                                                class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
+                                            >
+                                                {{ user.points }}
                                             </td>
                                             <td
                                                 class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
