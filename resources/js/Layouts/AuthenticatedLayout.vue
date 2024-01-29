@@ -379,7 +379,7 @@ watch(
                                 </span>
                             </Link>
                         </li>
-                        <!-- <li>
+                        <li>
                             <Link
                                 :href="route('winners.show')"
                                 :class="{
@@ -402,7 +402,7 @@ watch(
                                 </svg>
                                 <span class="ms-3">Lucky Draw</span>
                             </Link>
-                        </li> -->
+                        </li>
                         <li>
                             <Link
                                 :href="route('checkins.index')"
