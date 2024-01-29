@@ -88,7 +88,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Energizer
+                            Powergizer
                         </p>
                     </dd>
                 </div>
