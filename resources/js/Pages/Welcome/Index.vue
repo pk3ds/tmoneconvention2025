@@ -37,7 +37,7 @@ const props = defineProps({
             <Map :stations="stations" />
         </div>
 
-        <div class="py-12" id="table">
+        <div class="py-12" id="pwrteam">
             <Leaderboard :leaderboards="leaderboards" :groups="groups" />
         </div>
     </SiteLayout>

@@ -62,7 +62,7 @@ const props = defineProps({
                             class="text-center"
                             v-if="leaderboards[0].awards.length === 0"
                         >
-                            No award received (yet..)
+                            It's lonely up here, come and challenge us :P
                         </p>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ const props = defineProps({
                             class="text-center"
                             v-if="leaderboards[0].awards.length === 0"
                         >
-                            No award received (yet..)
+                            It's lonely up here, come and challenge us :P
                         </p>
                     </div>
                 </div>

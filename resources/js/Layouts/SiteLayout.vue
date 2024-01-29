@@ -138,6 +138,14 @@ document.addEventListener("scroll", function () {
                                 >PWRGAME</Link
                             >
                         </li>
+                        <li>
+                            <Link
+                                href="#pwrteam"
+                                v-smooth-scroll
+                                class="block px-3 py-2 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent hover:text-accent-orange md:p-0"
+                                >Leaderboard</Link
+                            >
+                        </li>
                     </ul>
                 </div>
             </div>
