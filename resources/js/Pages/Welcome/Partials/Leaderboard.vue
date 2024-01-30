@@ -62,7 +62,7 @@ const props = defineProps({
                             class="text-center"
                             v-if="leaderboards[0].awards.length === 0"
                         >
-                            It's lonely up here, come and challenge us :P
+                            <!-- It's lonely up here, come and challenge us :P -->
                         </p>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ const props = defineProps({
                             class="text-center"
                             v-if="leaderboards[1].awards.length === 0"
                         >
-                            We are working on something ;)
+                            <!-- We are working on something ;) -->
                         </p>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ const props = defineProps({
                             class="text-center"
                             v-if="leaderboards[0].awards.length === 0"
                         >
-                            It's lonely up here, come and challenge us :P
+                            <!-- It's lonely up here, come and challenge us :P -->
                         </p>
                     </div>
                 </div>
@@ -195,7 +195,7 @@ const props = defineProps({
                             class="text-center"
                             v-if="leaderboards[1].awards.length === 0"
                         >
-                            At least we are on the podium!
+                            <!-- At least we are on the podium! -->
                         </p>
                     </div>
                 </div>
