@@ -51,18 +51,19 @@ import { Link } from "@inertiajs/vue3";
             </h1>
 
             <!-- FIXME enable links if required -->
-            <!-- <div class="flex items-center justify-center mt-10 gap-x-6">
-                        <Link
-                            href="#"
-                            class="rounded-md bg-accent-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-accent-orange/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-orange/80"
-                            >Learn more</Link
-                        >
-                        <Link
-                            href="#"
-                            class="text-sm font-semibold leading-6 text-white"
-                            >Learn more <span aria-hidden="true">→</span></Link
-                        >
-                    </div> -->
+            <div class="flex items-center justify-center mt-10 gap-x-6">
+                <a
+                    target="_blank"
+                    href="https://forms.office.com/r/grG3rbEQBg"
+                    class="bg-accent-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cobalt-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-blue"
+                    >Post Convention Survey</a
+                >
+                <!-- <Link
+                    href="#"
+                    class="text-sm font-semibold leading-6 text-white"
+                    >Learn more <span aria-hidden="true">→</span></Link
+                > -->
+            </div>
         </div>
     </div>
     <div
