@@ -34,7 +34,7 @@ const props = defineProps({
         </div>
 
         <div class="py-12" id="pwrgame">
-            <Map :stations="stations" />
+            <Map />
         </div>
 
         <div class="py-12" id="pwrteam">
