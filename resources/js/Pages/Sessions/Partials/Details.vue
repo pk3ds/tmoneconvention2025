@@ -15,6 +15,8 @@ const form = useForm({
     description: props.session.description,
     start_at: props.session.start_at,
     end_at: props.session.end_at,
+    isCheckpoint: props.session.isCheckpoint,
+    checkpointNo: props.session.checkpointNo,
 });
 </script>
 
@@ -85,6 +87,38 @@ const form = useForm({
             />
 
             <InputError class="mt-2" :message="form.errors.end_at" />
+        </div>
+
+        <div>
+            <div class="flex items-center mt-4">
+                <input
+                    id="isCheckpoint"
+                    type="checkbox"
+                    class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    v-model="form.isCheckpoint"
+                />
+                <label
+                    for="isCheckpoint"
+                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                    Is Checkpoint
+                </label>
+            </div>
+
+            <InputError class="mt-2" :message="form.errors.isCheckpoint" />
+        </div>
+
+        <div>
+            <InputLabel for="checkpointNo" value="Checkpoint Number" />
+
+            <TextInput
+                id="checkpointNo"
+                type="number"
+                class="block w-full mt-1"
+                v-model="form.checkpointNo"
+            />
+
+            <InputError class="mt-2" :message="form.errors.checkpointNo" />
         </div>
 
         <div class="flex items-center justify-between gap-4">
