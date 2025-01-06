@@ -41,7 +41,7 @@ document.addEventListener("scroll", function () {
                     />
                     <img
                         v-if="!showWhiteNavbar"
-                        src="/images/Logo-Wording-White.png"
+                        src="/images/Logo-Wording-Color.png"
                         class="h-8"
                         alt="TM One"
                     />
@@ -94,9 +94,13 @@ document.addEventListener("scroll", function () {
                     class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                     id="navbar-sticky"
                 >
-                    <ul
+                    <!-- For white bar theme below -->
+                    <!-- <ul
                         class="flex flex-col p-4 mt-4 font-medium uppercase border border-gray-100 rounded-lg font-title text-cobalt-blue md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent"
                         :class="{ 'md:text-white': !showWhiteNavbar }"
+                    > -->
+                    <ul
+                        class="flex flex-col p-4 mt-4 font-medium uppercase border border-gray-100 rounded-lg font-title text-cobalt-blue md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent"
                     >
                         <li>
                             <Link

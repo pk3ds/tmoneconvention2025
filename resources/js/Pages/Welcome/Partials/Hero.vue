@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/vue3";
 
 <template>
     <img
-        src="/images/BG-01-Plain.jpg"
+        src="/images/BG-02-2025.jpg"
         alt=""
         class="absolute inset-0 object-cover w-full h-full -z-10"
     />
@@ -38,31 +38,34 @@ import { Link } from "@inertiajs/vue3";
     </div>
     <div class="flex items-center max-w-2xl mx-auto h-[calc(100vh-55px)]">
         <div class="text-center">
-            <img src="/images/Wording-01.png" alt="TM ONE CONVENTION 2024" />
+            <img
+                src="/images/Wording-01-2025.png"
+                alt="TM ONE CONVENTION 2025"
+            />
             <h1
-                class="my-6 text-2xl font-bold tracking-tight text-white uppercase font-title sm:text-3xl"
+                class="my-6 text-2xl font-bold tracking-tight text-black uppercase font-title sm:text-3xl"
             >
-                29<sup>th</sup> - 30<sup>th</sup> January 2024
+                14<sup>th</sup> - 15<sup>th</sup> January 2025
 
                 <br />
-                <span class="text-lg text-white sm:text-2xl">
-                    Royale Chulan Seremban
+                <span class="text-lg text-black sm:text-2xl">
+                    WYNDHAM ION MAJESTIC HOTEL GENTING HIGHLANDS
                 </span>
             </h1>
 
             <!-- FIXME enable links if required -->
             <div class="flex items-center justify-center mt-10 gap-x-6">
-                <a
+                <!-- <a
                     target="_blank"
                     href="https://forms.office.com/r/grG3rbEQBg"
                     class="bg-accent-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cobalt-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-blue"
                     >Post Convention Survey</a
-                >
-                <!-- <Link
-                    href="#"
-                    class="text-sm font-semibold leading-6 text-white"
-                    >Learn more <span aria-hidden="true">→</span></Link
                 > -->
+                <Link
+                    href="#"
+                    class="bg-blue-50 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-300"
+                    >Learn more <span aria-hidden="true">→</span></Link
+                >
             </div>
         </div>
     </div>
