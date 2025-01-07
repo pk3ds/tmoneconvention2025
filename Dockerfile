@@ -35,3 +35,7 @@ RUN npm run build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+RUN echo "php_admin_value[output_buffering] = 16384" >> /usr/local/etc/php-fpm.d/www.conf
+RUN echo "php_admin_value[max_input_vars] = 10000" >> /usr/local/etc/php-fpm.d/www.conf
+RUN echo "php_admin_value[fastcgi.logging] = 1" >> /usr/local/etc/php-fpm.d/www.conf
