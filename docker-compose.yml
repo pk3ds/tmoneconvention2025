@@ -11,7 +11,8 @@ services:
         volumes:
             - ./:/var/www
         networks:
-            - tmoneconvention
+            - tmoneconvention_network
+            - mariadb_network
         environment:
             - "DB_HOST=centralized_mariadb"
             - "DB_PORT=3306"
@@ -29,12 +30,13 @@ services:
             - ./:/var/www
             - ./nginx/conf.d:/etc/nginx/conf.d/
         networks:
-            - laravelnet
+            - tmoneconvention_network
+            - npm_network
 
 networks:
-    laravelnet:
+    tmoneconvention_network:
         driver: bridge
-
-volumes:
-    dbdata:
-        driver: local
+    mariadb_network:
+        external: true
+    npm_network:
+        external: true
