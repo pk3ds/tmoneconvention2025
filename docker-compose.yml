@@ -1,38 +1,36 @@
-# docker-compose.yml
+### docker-compose.yml
+version: "3"
 services:
     app:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: laravel_vue_app
+        container_name: laravel_app
         restart: unless-stopped
         working_dir: /var/www
         volumes:
-            - .:/var/www:delegated
-            - .env:/var/www/.env:delegated
-            - /var/www/vendor
-            - /var/www/node_modules
+            - ./:/var/www
         networks:
-            - npm_network
+            - app_network
             - mariadb_network
-            - app_network
 
-    php-fpm:
-        image: php:8.2-fpm
-        container_name: laravel_php_fpm
+    nginx:
+        image: nginx:alpine
+        container_name: laravel_nginx
         restart: unless-stopped
-        working_dir: /var/www
+        ports:
+            - "8080:80"
         volumes:
-            - .:/var/www:delegated
-            - .env:/var/www/.env:delegated
-            - /var/www/vendor
+            - ./:/var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
         networks:
             - app_network
+            - npm_network
 
 networks:
-    npm_network:
-        external: true
-    mariadb_network:
-        external: true
     app_network:
         driver: bridge
+    mariadb_network:
+        external: true
+    npm_network:
+        external: true
