@@ -4,8 +4,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: laravel-inertia-app
-        container_name: laravel-inertia-app
+        image: tmoneconvention_app
+        container_name: tmoneconvention_app
         restart: unless-stopped
         working_dir: /var/www
         volumes:
@@ -22,7 +22,7 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: laravel-inertia-nginx
+        container_name: tmoneconvention_nginx
         restart: unless-stopped
         ports:
             - "8081:80"
