@@ -33,9 +33,10 @@ const props = defineProps({
             <Attire />
         </div>
 
-        <div class="py-12" id="pwrgame">
+        <!-- Hiding pwrgames -->
+        <!-- <div class="py-12" id="pwrgame">
             <Map />
-        </div>
+        </div> -->
 
         <div class="py-12" id="pwrteam">
             <Leaderboard :leaderboards="leaderboards" :groups="groups" />
