@@ -28,6 +28,9 @@ WORKDIR /var/www
 # Copy existing application directory
 COPY . .
 
+RUN echo "php_value[max_input_vars] = 20000" >> /usr/local/etc/php-fpm.d/www.conf
+RUN echo "php_admin_value[output_buffering] = 32768" >> /usr/local/etc/php-fpm.d/www.conf
+
 # Install dependencies
 RUN composer install
 RUN npm install
@@ -39,7 +42,7 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 RUN echo "php_admin_value[output_buffering] = 16384" >> /usr/local/etc/php-fpm.d/www.conf
 RUN echo "php_admin_value[max_input_vars] = 10000" >> /usr/local/etc/php-fpm.d/www.conf
 RUN echo "php_admin_value[fastcgi.logging] = 1" >> /usr/local/etc/php-fpm.d/www.conf
-RUN echo "php_admin_value[output_buffering] = 32768" >> /usr/local/etc/php-fpm.d/www.conf
+# RUN echo "php_admin_value[output_buffering] = 32768" >> /usr/local/etc/php-fpm.d/www.conf
 
 RUN mkdir -p /var/www/storage/framework/sessions \
     && chown -R www-data:www-data /var/www/storage \
