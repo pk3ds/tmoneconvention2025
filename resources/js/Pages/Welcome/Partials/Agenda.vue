@@ -122,34 +122,50 @@
                         15:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">
+                        <div class="text-2xl leading-7 text-gray-900">
+                            <h2 class="font-title mb-8">
                                 Customer Sharing: Accelerating Industry
                                 Transformation through Digital Innovation
-                            </span>
-                            <br /><br /><br />
-                            <span class="text-xl">
-                                <span class="font-title">
-                                    • Transforming Banking - Bank Islam's
-                                    Vision, Innovation & Digital Transformation
-                                    for a Resilient Financial Services
-                                </span>
-                                <span class="text-lg">
-                                    Noor Farilla Abdullah, Group Chief Digital
-                                    Officer, Bank Islam Malaysia Berhad
-                                </span>
-                                <br /><br />
-                                <span class="font-title">
-                                    • Racing Ahead through Digital Evolution -
-                                    The EPF Story
-                                </span>
-                                <span class="text-lg">
-                                    Afhzal Abdul Rahman, Chief Digital
-                                    Technology Officer, Employees Provident Fund
-                                    (EPF)
-                                </span>
-                            </span>
-                        </p>
+                            </h2>
+
+                            <div class="space-y-6 text-xl">
+                                <div>
+                                    <div class="font-title mb-2">
+                                        • Transforming Banking - Bank Islam's
+                                        Vision, Innovation & Digital
+                                        Transformation for a Resilient Financial
+                                        Services
+                                    </div>
+                                    <div class="text-lg">
+                                        <span
+                                            class="text-black-600 font-semibold"
+                                            >Noor Farilla Abdullah</span
+                                        >
+                                        <span class="text-gray-600"
+                                            >, Group Chief Digital Officer, Bank
+                                            Islam Malaysia Berhad</span
+                                        >
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="font-title mb-2">
+                                        • Racing Ahead through Digital Evolution
+                                        - The EPF Story
+                                    </div>
+                                    <div class="text-lg">
+                                        <span
+                                            class="text-black-600 font-semibold"
+                                            >Afhzal Abdul Rahman</span
+                                        >
+                                        <span class="text-gray-600"
+                                            >, Chief Digital Technology Officer,
+                                            Employees Provident Fund (EPF)</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </dd>
                 </div>
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
