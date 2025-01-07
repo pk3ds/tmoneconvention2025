@@ -1,23 +1,10 @@
-### Dockerfile
-FROM php:8.2-fpm
+FROM php:8.1-fpm-alpine
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    nodejs \
-    npm
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache git curl libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd-dev zip libzip-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo pdo_mysql gd zip exif pcntl
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -25,25 +12,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy existing application directory
-COPY . .
+# Copy existing application directory contents
+COPY . /var/www
 
-RUN echo "php_value[max_input_vars] = 20000" >> /usr/local/etc/php-fpm.d/www.conf
-RUN echo "php_admin_value[output_buffering] = 32768" >> /usr/local/etc/php-fpm.d/www.conf
+# Copy existing application directory permissions
+COPY --chown=www-data:www-data . /var/www
 
-# Install dependencies
-RUN composer install
-RUN npm install
-RUN npm run build
-
-# Set permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
-
-RUN echo "php_admin_value[output_buffering] = 16384" >> /usr/local/etc/php-fpm.d/www.conf
-RUN echo "php_admin_value[max_input_vars] = 10000" >> /usr/local/etc/php-fpm.d/www.conf
-RUN echo "php_admin_value[fastcgi.logging] = 1" >> /usr/local/etc/php-fpm.d/www.conf
-# RUN echo "php_admin_value[output_buffering] = 32768" >> /usr/local/etc/php-fpm.d/www.conf
-
-RUN mkdir -p /var/www/storage/framework/sessions \
-    && chown -R www-data:www-data /var/www/storage \
-    && chmod -R 775 /var/www/storage
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]

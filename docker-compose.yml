@@ -1,36 +1,40 @@
-### docker-compose.yml
-version: "3"
+version: "3.8"
 services:
     app:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: tmoneconvention_app
+        image: laravel-inertia-app
+        container_name: laravel-inertia-app
         restart: unless-stopped
         working_dir: /var/www
         volumes:
             - ./:/var/www
         networks:
-            - app_network
-            - mariadb_network
+            - tmoneconvention
+        environment:
+            - "DB_HOST=centralized_mariadb"
+            - "DB_PORT=3306"
+            - "DB_DATABASE=convention2025_db"
+            - "DB_USERNAME=convention2025_user"
+            - "DB_PASSWORD=convention2025_password"
 
     nginx:
         image: nginx:alpine
-        container_name: tmoneconvention_nginx
+        container_name: laravel-inertia-nginx
         restart: unless-stopped
         ports:
             - "8081:80"
         volumes:
             - ./:/var/www
-            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+            - ./nginx/conf.d:/etc/nginx/conf.d/
         networks:
-            - app_network
-            - npm_network
+            - laravelnet
 
 networks:
-    app_network:
+    laravelnet:
         driver: bridge
-    mariadb_network:
-        external: true
-    npm_network:
-        external: true
+
+volumes:
+    dbdata:
+        driver: local
