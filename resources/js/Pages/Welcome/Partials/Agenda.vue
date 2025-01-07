@@ -10,7 +10,7 @@
         <p
             class="mt-2 text-lg leading-8 text-center uppercase text-accent-orange font-title"
         >
-            Day 1 - 29<sup>th</sup> January 2024
+            Day 1 - 14<sup>th</sup> January 2025
         </p>
         <div
             class="max-w-4xl px-6 pb-24 mx-auto divide-y divide-gray-900/10 sm:pb-32 lg:px-8 lg:pb-40"
@@ -39,19 +39,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl text-gray-900">
-                            Arrival & Registration
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        09:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">PWRGAME</span> Kick Off
+                            Arrival, Registration & Welcoming Refreshment
                         </p>
                     </dd>
                 </div>
@@ -63,44 +51,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">PWRGAME</span> Breakout
-                            Session
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        12:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Lunch, Zuhur Prayer & Check-in
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        14:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Powergizer
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        14:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Keynote Address by
+                            Keynote by
                             <span class="font-title">
                                 Shazurawati Abd Karim,
                             </span>
@@ -114,70 +65,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        15:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Tea Break
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        15:45
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">PWRGAME</span> Breakout
-                            Session (continued)
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        18:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Free & Easy
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        20:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title"> Gala Dinner<br /> </span>
-
-                            “TM One Cosplay Odyssey: The Nightfall Chronicles”
-                        </p>
-                    </dd>
-                </div>
-            </dl>
-        </div>
-
-        <p
-            class="mt-2 text-lg leading-8 text-center uppercase text-accent-orange font-title"
-        >
-            Day 2 - 30<sup>th</sup> January 2024
-        </p>
-        <div
-            class="max-w-4xl px-6 pb-24 mx-auto divide-y divide-gray-900/10 sm:pb-32 lg:px-8 lg:pb-40"
-        >
-            <dl class="space-y-8 divide-y divide-gray-900/10">
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        08:00
+                        11:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -189,11 +77,11 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        08:30
+                        12:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Session with;
+                            Session with
                             <span class="font-title">
                                 Amar Huzaimi Md Deris,
                             </span>
@@ -207,11 +95,11 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        09:00
+                        12:45
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title">PWRGAME</span> Finale
+                            Lunch, Zohor Prayer & Check-in
                         </p>
                     </dd>
                 </div>
@@ -219,11 +107,11 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        09:45
+                        14:45
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Tea Break
+                            <b>Powergizer</b>
                         </p>
                     </dd>
                 </div>
@@ -231,40 +119,152 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        10:15
+                        15:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
                             <span class="font-title">
-                                Sharing Session: Empowering Digital Industry
-                                Towards Digital Malaysia
+                                Customer Sharing: Accelerating Industry
+                                Transformation through Digital Innovation
                             </span>
                             <br /><br /><br />
                             <span class="text-xl">
                                 <span class="font-title">
-                                    • Ts. Mohd Zabri Adil bin Talib,
+                                    • Transforming Banking - Bank Islam's
+                                    Vision, Innovation & Digital Transformation
+                                    for a Resilient Financial Services
                                 </span>
                                 <span class="text-lg">
-                                    Head of Division, Cyber Security Responsive
-                                    Services CyberSecurity Malaysia (CSM)
+                                    Noor Farilla Abdullah, Group Chief Digital
+                                    Officer, Bank Islam Malaysia Berhad
                                 </span>
                                 <br /><br />
                                 <span class="font-title">
-                                    • Ahmad Yusri Mohamed,
+                                    • Racing Ahead through Digital Evolution -
+                                    The EPF Story
                                 </span>
                                 <span class="text-lg">
-                                    Chief Digital Officer, Johor Corporation
-                                </span>
-                                <br /><br />
-                                <span class="font-title">
-                                    • Dato’ Seri Dr. Abdul Aziz Sheikh Abdul
-                                    Kadir,
-                                </span>
-                                <span class="text-lg">
-                                    Chairman, Majlis Agama Islam Negeri Sembilan
-                                    (MAINS)
+                                    Afhzal Abdul Rahman, Chief Digital
+                                    Technology Officer, Employees Provident Fund
+                                    (EPF)
                                 </span>
                             </span>
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        16:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Tea Break & Asar Prayer
+                        </p>
+                    </dd>
+                </div>
+                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        18:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Free & Easy
+                        </p>
+                    </dd>
+                </div> -->
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        20:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            <span class="font-title">
+                                Gala Dinner & Award Night<br />
+                            </span>
+
+                            “Theme Celestial Soirée : A Night Among The Stars”
+                        </p>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+
+        <p
+            class="mt-2 text-lg leading-8 text-center uppercase text-accent-orange font-title"
+        >
+            Day 2 - 15<sup>th</sup> January 2025
+        </p>
+        <div
+            class="max-w-4xl px-6 pb-24 mx-auto divide-y divide-gray-900/10 sm:pb-32 lg:px-8 lg:pb-40"
+        >
+            <dl class="space-y-8 divide-y divide-gray-900/10">
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        06:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Breakfast
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        07:45
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            <b>Powergizer</b>
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        08:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            TM One
+                            <span class="font-title">PWR RACE</span> Briefing
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        08:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            TM One
+                            <span class="font-title">PWR RACE</span>
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        11:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            TM One
+                            <span class="font-title">PWR RACE</span> Result
+                            Announcement
                         </p>
                     </dd>
                 </div>
@@ -276,11 +276,48 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Checkout, Lunch & Zuhur Prayer
+                            Lunch, Zohor Prayer & Check-out
                         </p>
                     </dd>
                 </div>
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        14:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            <b>Powergizer</b>
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        14:15
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Forum: Powering The Next/ Leaders Pledge - TM One
+                            Leaders
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        16:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Tea Break
+                        </p>
+                    </dd>
+                </div>
+                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
@@ -345,12 +382,12 @@
                             Tea Break
                         </p>
                     </dd>
-                </div>
+                </div> -->
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        16:20
+                        16:15
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -368,12 +405,25 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        16:50
+                        17:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Announcement of
-                            <span class="font-title">Best PWRTEAM</span>
+                            TM One Convention
+                            <span class="font-title">PWR TEAM</span>
+                            Announcement
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        17:15
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Photo Session
                         </p>
                     </dd>
                 </div>
@@ -385,10 +435,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Bus departure from
-                            <span class="font-title">
-                                Royale Chulan Seremban
-                            </span>
+                            Asar Prayer
                         </p>
                     </dd>
                 </div>
@@ -396,7 +443,23 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        19:00
+                        18:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            Bus departure to
+                            <span class="font-title"
+                                >Genting Premium Outlet / TM Annexe 2 / TM
+                                Campus</span
+                            >
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        22:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
