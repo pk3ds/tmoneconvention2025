@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\PassportController;
 use App\Http\Controllers\CommitteeController;
 
 /*
@@ -50,9 +51,7 @@ Route::middleware('auth', 'verified')->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/passport', function () {
-        return Inertia::render('Passport');
-    })->name('passport');
+    Route::get('/passport', [PassportController::class, 'index'])->name('passport');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 
