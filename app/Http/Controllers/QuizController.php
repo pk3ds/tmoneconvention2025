@@ -254,51 +254,51 @@ class QuizController extends Controller
             // Calculate marks and points
             $attempt->calculateMarks();
 
-            // Update user points if passed
-            if ($attempt->is_passed) {
-                $user = auth()->user();
+            $user = Auth::user();
+            $user->disableLogging();
+            // Update user points
+            $user->update([
+                'points' => $user->points + $attempt->points_earned,
+            ]);
 
-                // Update user points
-                $user->increment('points', $attempt->points_earned);
+            // Log the points update
+            activity()
+                ->causedBy($user)
+                ->performedOn($user)
+                ->withProperties([
+                    'points' => $attempt->points_earned,
+                    'quiz_name' => $quiz->name,
+                    'marks_obtained' => $attempt->marks_obtained,
+                    'correct_answers' => $attempt->correct_answers,
+                    'total_questions' => $attempt->total_questions
+                ])
+                ->event('Quiz completion')
+                ->log('points earned');
+            $user->enableLogging();
 
-                // Log the points update
+            // Update group points if user belongs to a group
+            if ($group = $user->group) {
+                $group->disableLogging();
+                $group->update([
+                    'points' => $group->points + $attempt->points_earned,
+                ]);
+
                 activity()
                     ->causedBy($user)
-                    ->performedOn($user)
+                    ->performedOn($group)
                     ->withProperties([
                         'points' => $attempt->points_earned,
                         'quiz_name' => $quiz->name,
-                        'marks_obtained' => $attempt->marks_obtained,
-                        'correct_answers' => $attempt->correct_answers,
-                        'total_questions' => $attempt->total_questions
+                        'user_name' => $user->name
                     ])
-                    ->event('Quiz completion')
+                    ->event('Group points from quiz')
                     ->log('points earned');
-
-                // Update group points if user belongs to a group
-                if ($group = $user->group) {
-                    $group->increment('points', $attempt->points_earned);
-
-                    activity()
-                        ->causedBy($user)
-                        ->performedOn($group)
-                        ->withProperties([
-                            'points' => $attempt->points_earned,
-                            'quiz_name' => $quiz->name,
-                            'user_name' => $user->name
-                        ])
-                        ->event('Group points from quiz')
-                        ->log('points earned');
-                }
+                $group->enableLogging();
             }
 
             DB::commit();
 
-            $message = $attempt->is_passed ?
-                "Quiz completed successfully! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!" :
-                "Quiz completed. You scored {$attempt->marks_obtained} marks. Keep practicing!";
-
-            return redirect()->back()->with('success', $message);
+            return redirect()->back()->with('success', "Quiz completed! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!");
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Something went wrong. Please try again.');

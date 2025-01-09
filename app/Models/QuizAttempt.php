@@ -64,7 +64,7 @@ class QuizAttempt extends BaseQuizAttempt
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['quiz.name', 'marks_obtained', 'is_passed', 'correct_answers', 'total_questions'])
+            ->logOnly(['quiz.name', 'marks_obtained', 'is_passed', 'correct_answers', 'total_questions', 'points_earned'])
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
     }
