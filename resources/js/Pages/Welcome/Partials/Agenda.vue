@@ -99,6 +99,22 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
+                            Photo Session with
+                            <span class="font-title">
+                                Amar Huzaimi Md Deris
+                            </span>
+                            & Leaders
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        13:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
                             Lunch, Zohor Prayer & Check-in
                         </p>
                     </dd>
@@ -236,11 +252,11 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        07:45
+                        08:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            <b>Powergizer</b>
+                            Photo Session
                         </p>
                     </dd>
                 </div>
@@ -248,12 +264,11 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        08:00
+                        08:15
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One
-                            <span class="font-title">PWR RACE</span> Briefing
+                            <b>Powergizer</b>
                         </p>
                     </dd>
                 </div>
@@ -266,7 +281,21 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
                             TM One
-                            <span class="font-title">PWR RACE</span>
+                            <span class="font-title">NEXT LEAP PWR RACE</span>
+                            Briefing
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        08:30
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            TM One
+                            <span class="font-title">NEXT LEAP PWR RACE</span>
                         </p>
                     </dd>
                 </div>
@@ -279,8 +308,8 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
                             TM One
-                            <span class="font-title">PWR RACE</span> Result
-                            Announcement
+                            <span class="font-title">NEXT LEAP PWR RACE</span>
+                            Challenge Debrief
                         </p>
                     </dd>
                 </div>
@@ -316,8 +345,23 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Forum: Powering The Next/ Leaders Pledge - TM One
-                            Leaders
+                            TM One
+                            <span class="font-title">NEXT LEAP PWR RACE</span>
+                            Continue
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        15:00
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
+                            TM One
+                            <span class="font-title">NEXT LEAP PWR RACE</span>
+                            Pitching
                         </p>
                     </dd>
                 </div>
@@ -431,7 +475,7 @@
                         </p>
                     </dd>
                 </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
@@ -442,12 +486,12 @@
                             Photo Session
                         </p>
                     </dd>
-                </div>
+                </div> -->
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        17:30
+                        17:15
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
