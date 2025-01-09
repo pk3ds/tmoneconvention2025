@@ -202,6 +202,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/quizzes/{quiz}/unlink', [QuizController::class, 'unlink'])
         ->middleware('can:manage questions')
         ->name('quizzes.unlink');
+    Route::post('/station/{station}/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
 });
 
 require __DIR__ . '/auth.php';

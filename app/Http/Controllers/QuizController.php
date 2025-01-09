@@ -6,11 +6,13 @@ use App\Models\Quiz;
 use Inertia\Inertia;
 use App\Models\Station;
 use App\Models\Question;
+use App\Models\QuestionOption;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 use Harishdurga\LaravelQuiz\Models\QuizQuestion;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -216,5 +218,128 @@ class QuizController extends Controller
         return redirect()
             ->back()
             ->with('warning', 'Question unlinked successfully');
+    }
+
+    public function submit(Request $request, Station $station, Quiz $quiz)
+    {
+        // Validate the request
+        $request->validate([
+            'answers' => 'required|array'
+        ]);
+
+        $existingAttempt = $quiz->attempts()
+            ->where('participant_id', auth()->id())
+            ->where('participant_type', get_class(auth()->user()))
+            ->first();
+
+        if ($existingAttempt) {
+            return redirect()->back()->with('error', 'You have already attempted this quiz');
+        }
+
+        DB::beginTransaction();
+        try {
+            // Create quiz attempt
+            $attempt = $quiz->attempts()->create([
+                'participant_id' => auth()->id(),
+                'participant_type' => get_class(auth()->user()),
+                'quiz_id' => $quiz->id,
+                'marks_obtained' => 0,
+                'is_passed' => false,
+                'correct_answers' => 0,
+                'total_questions' => $quiz->questions->count(),
+            ]);
+
+            // Record answers
+            foreach($request->answers as $questionId => $answerId) {
+                $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
+                if (!$quizQuestion) {
+                    continue;
+                }
+
+                $questionOption = QuestionOption::find($answerId);
+                if (!$questionOption) {
+                    continue;
+                }
+
+                $attempt->answers()->create([
+                    'quiz_question_id' => $quizQuestion->id,
+                    'question_option_id' => $answerId,
+                    'answer' => $questionOption->name
+                ]);
+            }
+
+            // Calculate marks
+            $attempt->calculateMarks();
+
+            // Update user points if passed
+            if ($attempt->is_passed) {
+                $user = auth()->user();
+                $pointsEarned = ceil($attempt->marks_obtained / 100); // Convert marks to points
+
+                $user->disableLogging();
+                $user->update([
+                    'points' => $user->points + $pointsEarned
+                ]);
+
+                activity()
+                    ->causedBy($user)
+                    ->performedOn($user)
+                    ->withProperties([
+                        'points' => $pointsEarned,
+                        'quiz_name' => $quiz->name,
+                        'marks_obtained' => $attempt->marks_obtained,
+                        'correct_answers' => $attempt->correct_answers,
+                        'total_questions' => $attempt->total_questions
+                    ])
+                    ->event('Completed quiz: ' . $quiz->name)
+                    ->log('quiz completion');
+
+                $user->enableLogging();
+
+                // Update group points if user belongs to a group
+                if ($group = $user->group) {
+                    $group->disableLogging();
+                    $group->update([
+                        'points' => $group->points + $pointsEarned,
+                    ]);
+
+                    activity()
+                        ->causedBy($user)
+                        ->performedOn($group)
+                        ->withProperties([
+                            'points' => $pointsEarned,
+                            'quiz_name' => $quiz->name,
+                            'user_name' => $user->name
+                        ])
+                        ->event('Quiz completion by ' . $user->name . ': ' . $quiz->name)
+                        ->log('quiz completion');
+
+                    $group->enableLogging();
+                }
+            }
+
+            DB::commit();
+
+            $message = $attempt->is_passed ?
+                "Quiz completed successfully! You scored {$attempt->marks_obtained} marks and earned {$pointsEarned} points." :
+                "Quiz completed. You scored {$attempt->marks_obtained} marks. Keep practicing!";
+
+            return redirect()->back()->with('success', $message);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+        }
+    }
+
+    public function attempts(Quiz $quiz)
+    {
+        $attempts = $quiz->attempts()
+            ->with(['participant', 'answers.quiz_question', 'answers.question_option'])
+            ->get();
+
+        return Inertia::render('Quizzes/Attempts', [
+            'quiz' => $quiz,
+            'attempts' => $attempts,
+        ]);
     }
 }

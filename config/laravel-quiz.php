@@ -63,7 +63,7 @@ return [
          * Default Harishdurga\LaravelQuiz\Models\QuizAttempt::class
          */
 
-        'quiz_attempt' => Harishdurga\LaravelQuiz\Models\QuizAttempt::class,
+        'quiz_attempt' => App\Models\QuizAttempt::class,
 
         /*
          * Default Harishdurga\LaravelQuiz\Models\QuizAttempt::class
