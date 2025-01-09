@@ -222,11 +222,6 @@ class QuizController extends Controller
 
     public function submit(Request $request, Station $station, Quiz $quiz)
     {
-        // Validate the request
-        $request->validate([
-            'answers' => 'required|array'
-        ]);
-
         $existingAttempt = $quiz->attempts()
             ->where('participant_id', auth()->id())
             ->where('participant_type', get_class(auth()->user()))
@@ -243,85 +238,64 @@ class QuizController extends Controller
                 'participant_id' => auth()->id(),
                 'participant_type' => get_class(auth()->user()),
                 'quiz_id' => $quiz->id,
-                'marks_obtained' => 0,
-                'is_passed' => false,
-                'correct_answers' => 0,
-                'total_questions' => $quiz->questions->count(),
             ]);
 
             // Record answers
             foreach($request->answers as $questionId => $answerId) {
                 $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
-                if (!$quizQuestion) {
-                    continue;
-                }
-
-                $questionOption = QuestionOption::find($answerId);
-                if (!$questionOption) {
-                    continue;
-                }
 
                 $attempt->answers()->create([
                     'quiz_question_id' => $quizQuestion->id,
                     'question_option_id' => $answerId,
-                    'answer' => $questionOption->name
+                    'answer' => QuestionOption::find($answerId)->name
                 ]);
             }
 
-            // Calculate marks
+            // Calculate marks and points
             $attempt->calculateMarks();
 
             // Update user points if passed
             if ($attempt->is_passed) {
                 $user = auth()->user();
-                $pointsEarned = ceil($attempt->marks_obtained / 100); // Convert marks to points
 
-                $user->disableLogging();
-                $user->update([
-                    'points' => $user->points + $pointsEarned
-                ]);
+                // Update user points
+                $user->increment('points', $attempt->points_earned);
 
+                // Log the points update
                 activity()
                     ->causedBy($user)
                     ->performedOn($user)
                     ->withProperties([
-                        'points' => $pointsEarned,
+                        'points' => $attempt->points_earned,
                         'quiz_name' => $quiz->name,
                         'marks_obtained' => $attempt->marks_obtained,
                         'correct_answers' => $attempt->correct_answers,
                         'total_questions' => $attempt->total_questions
                     ])
-                    ->event('Completed quiz: ' . $quiz->name)
-                    ->log('quiz completion');
-
-                $user->enableLogging();
+                    ->event('Quiz completion')
+                    ->log('points earned');
 
                 // Update group points if user belongs to a group
                 if ($group = $user->group) {
-                    $group->disableLogging();
-                    $group->update([
-                        'points' => $group->points + $pointsEarned,
-                    ]);
+                    $group->increment('points', $attempt->points_earned);
 
                     activity()
                         ->causedBy($user)
                         ->performedOn($group)
                         ->withProperties([
-                            'points' => $pointsEarned,
+                            'points' => $attempt->points_earned,
                             'quiz_name' => $quiz->name,
                             'user_name' => $user->name
                         ])
-                        ->event('Quiz completion by ' . $user->name . ': ' . $quiz->name)
-                        ->log('quiz completion');
-
-                    $group->enableLogging();
+                        ->event('Group points from quiz')
+                        ->log('points earned');
                 }
             }
 
             DB::commit();
 
             $message = $attempt->is_passed ?
-                "Quiz completed successfully! You scored {$attempt->marks_obtained} marks and earned {$pointsEarned} points." :
+                "Quiz completed successfully! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!" :
                 "Quiz completed. You scored {$attempt->marks_obtained} marks. Keep practicing!";
 
             return redirect()->back()->with('success', $message);

@@ -166,15 +166,20 @@ const debug = (questionLink, attempt) => {
                                             getUserAttempt(quiz).total_questions
                                         }}
                                     </p>
-                                    <p
+                                    <p class="mt-2">
+                                        Points Earned:
+                                        {{ getUserAttempt(quiz).points_earned }}
+                                    </p>
+                                    <!-- hide passing indicator -->
+                                    <!-- <p
                                         v-if="getUserAttempt(quiz).is_passed"
-                                        class="text-green-600"
+                                        class="text-green-600 mt-2"
                                     >
                                         Passed! 🎉
                                     </p>
-                                    <p v-else class="text-red-600">
+                                    <p v-else class="text-red-600 mt-2">
                                         Not passed. Keep practicing!
-                                    </p>
+                                    </p> -->
                                 </div>
                             </div>
 

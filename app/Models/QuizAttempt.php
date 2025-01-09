@@ -12,11 +12,14 @@ use Harishdurga\LaravelQuiz\Models\QuizAttempt as BaseQuizAttempt;
 
 class QuizAttempt extends BaseQuizAttempt
 {
-    use LogsActivity;
+    use SoftDeletes, LogsActivity;
+
+    protected $guarded = ['id'];
 
     protected $casts = [
         'marks_obtained' => 'float',
-        'is_passed' => 'boolean'
+        'is_passed' => 'boolean',
+        'points_earned' => 'integer',
     ];
 
     public function calculateMarks()
@@ -41,10 +44,18 @@ class QuizAttempt extends BaseQuizAttempt
             }
         }
 
-        $this->marks_obtained = max(0, $totalMarks); // Ensure marks don't go below 0
+        // Calculate points based on marks
+        $pointsEarned = 0;
+        if ($totalMarks > 0) {
+            // For example: Every 100 marks = 1 point
+            $pointsEarned = ceil($totalMarks / 100);
+        }
+
+        $this->marks_obtained = max(0, $totalMarks);
         $this->is_passed = $this->marks_obtained >= $this->quiz->pass_marks;
         $this->correct_answers = $correctAnswers;
         $this->total_questions = $totalQuestions;
+        $this->points_earned = $pointsEarned;
         $this->save();
 
         return $this;
