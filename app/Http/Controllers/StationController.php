@@ -75,7 +75,9 @@ class StationController extends Controller
     public function show(Station $station)
     {
         return Inertia::render('Stations/Show', [
-            'station' => $station
+            'station' => $station->load('questions.options', 'quizzes.questions.question.options', 'activities'),
+            'canManageStations' => auth()->user()->can('manage stations'),
+            'canViewRating' => auth()->user()->can('view rating')
         ]);
     }
 

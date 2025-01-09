@@ -17,23 +17,23 @@ class UserSeeder extends Seeder
     {
         if (App::environment('production')) {
             User::create([
-                'name' => 'Nazrin Putra',
-                'staff_id' => 'TM38432',
+                'name' => 'Aiman Azhari',
+                'staff_id' => 'TM39712',
                 'use_password' => true,
                 'password' => Hash::make('password'),
-                'email' => 'putranaz94@gmail.com',
-                'phone_no' => '0135711937',
+                'email' => 'lolul9792@gmail.com',
+                'phone_no' => '01110100119',
                 'pickup_location' => 'Self Drive',
             ])->assignRole('admin');
         } else {
             User::factory()->create([
-                'name' => 'Nazrin Putra',
-                'staff_id' => 'TM38432',
+                'name' => 'Aiman Azhari',
+                'staff_id' => 'TM39712',
                 'pickup_location' => 'Self Drive',
                 'use_password' => true,
                 'password' => Hash::make('password'),
-                'phone_no' => '0135711937',
-                'email' => 'putranaz94@gmail.com',
+                'phone_no' => '01110100119',
+                'email' => 'lolul9792@gmail.com',
             ])->assignRole('admin');
 
             User::factory()->create([
@@ -61,6 +61,15 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'email' => 'product@mail.com',
             ])->assignRole('product');
+
+            User::factory()->create([
+                'station_id' => 1,
+                'name' => 'User',
+                'staff_id' => 'TM11111',
+                'use_password' => false,
+                'password' => Hash::make('password'),
+                'email' => 'user@mail.com',
+            ])->assignRole('user');
         }
     }
 }
