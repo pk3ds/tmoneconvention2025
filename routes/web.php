@@ -176,7 +176,7 @@ Route::middleware('auth')->group(function () {
         ->name('questions.restore');
 
     Route::get('/quizzes', [QuizController::class, 'index'])
-        ->middleware('can:manage questions')
+        // ->middleware('can:manage questions')
         ->name('quizzes.index');
     Route::get('/quizzes/create', [QuizController::class, 'create'])
         ->middleware('can:manage questions')
@@ -184,6 +184,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/quizzes', [QuizController::class, 'store'])
         ->middleware('can:manage questions')
         ->name('quizzes.store');
+    Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])
+        ->name('quizzes.show');
     Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])
         ->middleware('can:manage questions')
         ->name('quizzes.edit');
@@ -203,6 +205,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('can:manage questions')
         ->name('quizzes.unlink');
     Route::post('/station/{station}/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
+    Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
 });
 
 require __DIR__ . '/auth.php';
