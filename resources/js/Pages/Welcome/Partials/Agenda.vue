@@ -523,8 +523,9 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
+                            Arrival at
                             <span class="font-title">
-                                Arrival at TM Annexe 2 / TM Campus
+                                TM Annexe 2 / TM Campus
                             </span>
                         </p>
                     </dd>
