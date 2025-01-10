@@ -7,6 +7,7 @@ import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import QRCodeVue3 from "qrcode-vue3";
 
 const props = defineProps({
     survey: Object,
@@ -232,15 +233,144 @@ const submit = () => {
                                 </div>
                             </div>
 
-                            <div class="flex justify-end gap-4">
-                                <Link :href="route('surveys.index')">
-                                    <SecondaryButton type="button">
-                                        Cancel
-                                    </SecondaryButton>
-                                </Link>
-                                <PrimaryButton :disabled="form.processing">
-                                    Update Survey
+                            <div class="flex justify-between gap-4">
+                                <div class="flex gap-4">
+                                    <Link :href="route('surveys.index')">
+                                        <SecondaryButton type="button"
+                                            >Cancel</SecondaryButton
+                                        >
+                                    </Link>
+                                    <PrimaryButton :disabled="form.processing">
+                                        Update Survey
+                                    </PrimaryButton>
+                                </div>
+                                <PrimaryButton
+                                    type="button"
+                                    data-modal-target="qr-modal"
+                                    data-modal-toggle="qr-modal"
+                                >
+                                    QR Code
                                 </PrimaryButton>
+                            </div>
+
+                            <!-- Add QR Modal -->
+                            <div
+                                id="qr-modal"
+                                tabindex="-1"
+                                aria-hidden="true"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                            >
+                                <div
+                                    class="relative w-full max-w-md max-h-full p-4"
+                                >
+                                    <div
+                                        class="relative bg-white rounded-lg shadow dark:bg-gray-700"
+                                    >
+                                        <div
+                                            class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600"
+                                        >
+                                            <h3
+                                                class="text-xl font-semibold text-gray-900 dark:text-white"
+                                            >
+                                                Survey QR Code
+                                            </h3>
+                                            <button
+                                                type="button"
+                                                class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                data-modal-hide="qr-modal"
+                                            >
+                                                <svg
+                                                    class="w-3 h-3"
+                                                    aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 14 14"
+                                                >
+                                                    <path
+                                                        stroke="currentColor"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                                                    />
+                                                </svg>
+                                                <span class="sr-only"
+                                                    >Close modal</span
+                                                >
+                                            </button>
+                                        </div>
+                                        <div class="p-4 md:p-5">
+                                            <QRCodeVue3
+                                                :width="1000"
+                                                :height="1000"
+                                                :value="
+                                                    route(
+                                                        'surveys.show',
+                                                        survey.uuid
+                                                    )
+                                                "
+                                                :qrOptions="{
+                                                    typeNumber: 0,
+                                                    mode: 'Byte',
+                                                    errorCorrectionLevel: 'H',
+                                                }"
+                                                image="/images/Wording-02.png"
+                                                :imageOptions="{
+                                                    hideBackgroundDots: true,
+                                                    imageSize: 0.4,
+                                                    margin: 0,
+                                                }"
+                                                :dotsOptions="{
+                                                    type: 'rounded',
+                                                    color: '#2362DD',
+                                                    gradient: {
+                                                        type: 'linear',
+                                                        rotation: 90,
+                                                        colorStops: [
+                                                            {
+                                                                offset: 0,
+                                                                color: '#99B6FF',
+                                                            },
+                                                            {
+                                                                offset: 1,
+                                                                color: '#2362DD',
+                                                            },
+                                                        ],
+                                                    },
+                                                }"
+                                                :backgroundOptions="{
+                                                    color: '#ffffff',
+                                                }"
+                                                :cornersSquareOptions="{
+                                                    type: 'extra-rounded',
+                                                    color: '#2362DD',
+                                                }"
+                                                :cornersDotOptions="{
+                                                    type: 'dot',
+                                                    color: '#180092',
+                                                }"
+                                            />
+                                        </div>
+                                        <div
+                                            class="flex items-center justify-center gap-4 p-4 md:p-5"
+                                        >
+                                            <Link
+                                                :href="
+                                                    route(
+                                                        'surveys.show',
+                                                        survey.uuid
+                                                    )
+                                                "
+                                            >
+                                                <PrimaryButton
+                                                    data-modal-hide="qr-modal"
+                                                >
+                                                    Link
+                                                </PrimaryButton>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
