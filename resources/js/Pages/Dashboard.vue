@@ -38,7 +38,7 @@ import { Head } from "@inertiajs/vue3";
                             <p
                                 class="p-4 mt-2 text-3xl font-bold tracking-wide text-cobalt-blue bg-grey font-title sm:text-4xl"
                             >
-                                TM One Convention 2024
+                                TM One Convention 2025
                             </p>
                         </div>
                         <dl
