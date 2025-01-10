@@ -113,7 +113,14 @@ const hasAttemptedQuiz = (quiz) => {
                                     </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                    <Link :href="route('quizzes.create')">
+                                    <Link
+                                        :href="route('quizzes.create')"
+                                        v-if="
+                                            $page.props.permissions.includes(
+                                                'manage questions'
+                                            )
+                                        "
+                                    >
                                         <PrimaryButton>
                                             Add quiz
                                         </PrimaryButton>
