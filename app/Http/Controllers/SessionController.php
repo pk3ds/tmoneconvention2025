@@ -52,28 +52,32 @@ class SessionController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'start_at' => 'nullable|string|max:255',
-            'end_at' => 'nullable|string|max:255',
-        ]);
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string|max:255',
+        'start_at' => 'nullable|string|max:255',
+        'end_at' => 'nullable|string|max:255',
+        'isCheckpoint' => 'boolean',
+        'checkpointNo' => 'nullable|integer',
+    ]);
 
-        DB::beginTransaction();
-        $session = Session::create([
-            'uuid' => Str::uuid()->toString(),
-            'name' => $request->name,
-            'description' => $request->description,
-            'start_at' => $request->start_at,
-            'end_at' => $request->end_at,
-        ]);
+    DB::beginTransaction();
+    $session = Session::create([
+        'uuid' => Str::uuid()->toString(),
+        'name' => $request->name,
+        'description' => $request->description,
+        'start_at' => $request->start_at,
+        'end_at' => $request->end_at,
+        'isCheckpoint' => $request->isCheckpoint,
+        'checkpointNo' => $request->checkpointNo,
+    ]);
 
-        DB::commit();
-        return redirect()
-            ->route('sessions.index')
-            ->with('success', 'Session ' . $session->name . ' created successfully');
-    }
+    DB::commit();
+    return redirect()
+        ->route('sessions.index')
+        ->with('success', 'Session ' . $session->name . ' created successfully');
+}
 
     /**
      * Display the specified resource.
@@ -103,27 +107,31 @@ class SessionController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Session $session)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'start_at' => 'nullable|string|max:255',
-            'end_at' => 'nullable|string|max:255',
-        ]);
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string|max:255',
+        'start_at' => 'nullable|string|max:255',
+        'end_at' => 'nullable|string|max:255',
+        'isCheckpoint' => 'boolean',
+        'checkpointNo' => 'nullable|integer',
+    ]);
 
-        DB::beginTransaction();
-        $session->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'start_at' => $request->start_at,
-            'end_at' => $request->end_at,
-        ]);
+    DB::beginTransaction();
+    $session->update([
+        'name' => $request->name,
+        'description' => $request->description,
+        'start_at' => $request->start_at,
+        'end_at' => $request->end_at,
+        'isCheckpoint' => $request->isCheckpoint,
+        'checkpointNo' => $request->checkpointNo,
+    ]);
 
-        DB::commit();
-        return redirect()
-            ->back()
-            ->with('success', 'Session ' . $session->name . ' updated successfully');
-    }
+    DB::commit();
+    return redirect()
+        ->back()
+        ->with('success', 'Session ' . $session->name . ' updated successfully');
+}
 
     /**
      * Remove the specified resource from storage.

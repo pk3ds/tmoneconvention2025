@@ -22,11 +22,12 @@ const checkin = () => {
     <Head title="Check In" />
     <GuestLayout>
         <div class="max-w-sm p-6">
-            <div class="flex items-center justify-start gap-3">
+            <!-- Title and location -->
+            <div class="flex items-center justify-start gap-3 mb-6">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 384 512"
-                    class="mb-3 text-accent-orange w-7 h-7"
+                    class="text-accent-orange w-7 h-7"
                     fill="currentColor"
                 >
                     <path
@@ -40,7 +41,35 @@ const checkin = () => {
                 </h5>
             </div>
 
-            <div class="flex items-center justify-center gap-4 my-4">
+            <!-- Preview badge with blur effect if it's a checkpoint -->
+            <div
+                v-if="session.isCheckpoint"
+                class="relative flex justify-center mb-6"
+            >
+                <div class="relative">
+                    <img
+                        :src="`/images/PWRGame-${String(
+                            session.checkpointNo
+                        ).padStart(2, '0')}.png`"
+                        :alt="`Badge ${session.checkpointNo}`"
+                        class="w-48 h-48 object-contain filter blur-sm opacity-50 transition-all duration-300"
+                    />
+                    <div
+                        class="absolute inset-0 flex items-center justify-center"
+                    >
+                        <div
+                            class="p-3 bg-white/80 rounded-lg backdrop-blur-sm"
+                        >
+                            <span class="text-lg font-semibold text-gray-800"
+                                >Unlock Badge!</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User info -->
+            <div class="flex items-center justify-center gap-4 my-6">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 576 512"
@@ -59,13 +88,20 @@ const checkin = () => {
                 </div>
             </div>
 
-            <p class="mb-6 text-sm font-normal text-gray-500">
+            <p class="mb-6 text-sm font-normal text-center text-gray-500">
                 You made it! Before checking in, could you verify the
                 information above? If there is anything wrong, we will gladly
                 fix it for you.
             </p>
+
+            <!-- Action buttons -->
             <div class="flex items-center justify-between">
-                <PrimaryButton @click="checkin">Check In</PrimaryButton>
+                <PrimaryButton
+                    @click="checkin"
+                    class="w-32 justify-center py-3 text-base transition-all duration-300 hover:scale-105"
+                >
+                    Check In
+                </PrimaryButton>
                 <span class="rounded-md text-cobalt-blue">
                     Not you?
                     <Link
@@ -74,8 +110,8 @@ const checkin = () => {
                         as="button"
                         class="underline hover:text-ultramarine focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue"
                     >
-                        Log Out</Link
-                    >
+                        Log Out
+                    </Link>
                 </span>
             </div>
         </div>

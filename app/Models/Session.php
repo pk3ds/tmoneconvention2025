@@ -24,6 +24,13 @@ class Session extends Model
         'description',
         'start_at',
         'end_at',
+        'isCheckpoint',
+        'checkpointNo',
+    ];
+
+    protected $casts = [
+        'isCheckpoint' => 'boolean',
+        'checkpointNo' => 'integer',
     ];
 
     public function scopeSearch($query)
@@ -34,7 +41,7 @@ class Session extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(['name', 'description', 'start_at', 'end_at'])->dontSubmitEmptyLogs();
+        return LogOptions::defaults()->logOnly(['name', 'description', 'start_at', 'end_at', 'isCheckpoint', 'checkpointNo'])->dontSubmitEmptyLogs();
     }
 
     public function users()
