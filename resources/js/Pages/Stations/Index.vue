@@ -3,12 +3,15 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
-import { Head, Link, useForm, router } from "@inertiajs/vue3";
+import { Head, Link, useForm, router, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 const props = defineProps({
     search: String,
     stations: Object,
 });
+
+const page = usePage(); // Add this line
 
 const form = useForm({
     search: props.search ?? null,
@@ -24,6 +27,16 @@ const destroy = (group) => {
 
 const restore = (id) => {
     router.put(route("stations.restore", id));
+};
+
+const hasAttemptedQuiz = (station) => {
+    return (
+        station.quizzes?.some((quiz) =>
+            quiz.attempts?.some(
+                (attempt) => attempt.participant_id === page.props.auth.user.id // Return the comparison directly
+            )
+        ) ?? false
+    );
 };
 </script>
 
@@ -375,7 +388,13 @@ const restore = (id) => {
                                                     "
                                                 >
                                                     <SecondaryButton>
-                                                        Start
+                                                        {{
+                                                            hasAttemptedQuiz(
+                                                                station
+                                                            )
+                                                                ? "View"
+                                                                : "Start"
+                                                        }}
                                                     </SecondaryButton>
                                                 </Link>
                                             </td>

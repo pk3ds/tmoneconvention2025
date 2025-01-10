@@ -61,6 +61,15 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'email' => 'product@mail.com',
             ])->assignRole('product');
+
+            User::factory()->create([
+                'station_id' => 1,
+                'name' => 'User',
+                'staff_id' => 'TM11111',
+                'use_password' => false,
+                'password' => Hash::make('password'),
+                'email' => 'user@mail.com',
+            ])->assignRole('user');
         }
     }
 }

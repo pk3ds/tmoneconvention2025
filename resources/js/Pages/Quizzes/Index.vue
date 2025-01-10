@@ -3,12 +3,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import BreadcrumbItem from "@/Components/BreadcrumbItem.vue";
-import { Head, Link, useForm, router } from "@inertiajs/vue3";
+import { Head, Link, useForm, router, usePage } from "@inertiajs/vue3";
 
 const props = defineProps({
     search: String,
     quizzes: Object,
 });
+
+const page = usePage();
 
 const form = useForm({
     search: props.search ?? null,
@@ -24,6 +26,14 @@ const destroy = (quiz) => {
 
 const restore = (id) => {
     router.put(route("quizzes.restore", id));
+};
+
+const hasAttemptedQuiz = (quiz) => {
+    return (
+        quiz.attempts?.some(
+            (attempt) => attempt.participant_id === page.props.auth.user.id
+        ) ?? false
+    );
 };
 </script>
 
@@ -203,7 +213,12 @@ const restore = (id) => {
                                                     class="flex flex-col justify-end gap-4 gap-y-2 md:flex-row"
                                                 >
                                                     <Link
-                                                        v-if="!quiz.deleted_at"
+                                                        v-if="
+                                                            !quiz.deleted_at &&
+                                                            $page.props.permissions.includes(
+                                                                'manage questions'
+                                                            )
+                                                        "
                                                         :href="
                                                             route(
                                                                 'quizzes.edit',
@@ -225,7 +240,12 @@ const restore = (id) => {
                                                         </PrimaryButton>
                                                     </Link>
                                                     <span
-                                                        v-if="!quiz.deleted_at"
+                                                        v-if="
+                                                            !quiz.deleted_at &&
+                                                            $page.props.permissions.includes(
+                                                                'manage questions'
+                                                            )
+                                                        "
                                                         @click="destroy(quiz)"
                                                     >
                                                         <SecondaryButton
@@ -244,7 +264,12 @@ const restore = (id) => {
                                                         </SecondaryButton>
                                                     </span>
                                                     <span
-                                                        v-if="quiz.deleted_at"
+                                                        v-if="
+                                                            quiz.deleted_at &&
+                                                            $page.props.permissions.includes(
+                                                                'manage questions'
+                                                            )
+                                                        "
                                                         @click="
                                                             restore(quiz.id)
                                                         "
@@ -264,6 +289,33 @@ const restore = (id) => {
                                                             </svg>
                                                         </SecondaryButton>
                                                     </span>
+                                                    <Link
+                                                        v-if="
+                                                            $page.props.auth
+                                                                .user.group
+                                                                ?.id &&
+                                                            !quiz.deleted_at &&
+                                                            !$page.props.permissions.includes(
+                                                                'manage questions'
+                                                            )
+                                                        "
+                                                        :href="
+                                                            route(
+                                                                'quizzes.show',
+                                                                quiz
+                                                            )
+                                                        "
+                                                    >
+                                                        <SecondaryButton>
+                                                            {{
+                                                                hasAttemptedQuiz(
+                                                                    quiz
+                                                                )
+                                                                    ? "View"
+                                                                    : "Start"
+                                                            }}
+                                                        </SecondaryButton>
+                                                    </Link>
                                                 </div>
                                             </td>
                                         </tr>

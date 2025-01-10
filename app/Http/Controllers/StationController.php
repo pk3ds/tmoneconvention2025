@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Station;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -24,10 +25,18 @@ class StationController extends Controller
             $stations = Station::orderBy('name')
                 ->withTrashed()
                 ->search()
+                ->with(['quizzes.attempts' => function($query) {
+                    $query->where('participant_id', Auth::id())
+                        ->where('participant_type', User::class);
+                }])
                 ->get();
         } else {
             $stations = Station::orderBy('name')
                 ->search()
+                ->with(['quizzes.attempts' => function($query) {
+                    $query->where('participant_id', Auth::id())
+                        ->where('participant_type', User::class);
+                }])
                 ->get();
         }
 
@@ -75,7 +84,19 @@ class StationController extends Controller
     public function show(Station $station)
     {
         return Inertia::render('Stations/Show', [
-            'station' => $station
+            'station' => $station->load([
+                'questions.options',
+                'quizzes.questions.question.options',
+                'quizzes.attempts' => function($query) {
+                    $query->where('participant_id', auth()->id())
+                        ->where('participant_type', User::class)
+                        ->with(['answers' => function($q) {
+                            $q->with(['quiz_question', 'question_option']);
+                        }]);
+                }
+            ]),
+            'canManageStations' => auth()->user()->can('manage stations'),
+            'canViewRating' => auth()->user()->can('view rating')
         ]);
     }
 

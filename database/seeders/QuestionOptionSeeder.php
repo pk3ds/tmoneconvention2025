@@ -15,6 +15,8 @@ class QuestionOptionSeeder extends Seeder
     public function run(): void
     {
         $question_one = Question::first();
+        $question_two = Question::find(2);
+        $question_three = Question::find(3);
 
         QuestionOption::create([
             'question_id' => $question_one->id,
@@ -34,6 +36,48 @@ class QuestionOptionSeeder extends Seeder
         QuestionOption::create([
             'question_id' => $question_one->id,
             'name' => 'Ini Cara Kita',
+            'is_correct' => false,
+        ]);
+        // option for question two
+        QuestionOption::create([
+            'question_id' => $question_two->id,
+            'name' => 'Oxygen',
+            'is_correct' => false,
+        ]);
+        QuestionOption::create([
+            'question_id' => $question_two->id,
+            'name' => 'Nitrogen',
+            'is_correct' => false,
+        ]);
+        QuestionOption::create([
+            'question_id' => $question_two->id,
+            'name' => 'Argon',
+            'is_correct' => true,
+        ]);
+        QuestionOption::create([
+            'question_id' => $question_two->id,
+            'name' => 'Carbon',
+            'is_correct' => false,
+        ]);
+        // option for question three
+        QuestionOption::create([
+            'question_id' => $question_three->id,
+            'name' => 'Charles Dickens',
+            'is_correct' => false,
+        ]);
+        QuestionOption::create([
+            'question_id' => $question_three->id,
+            'name' => 'William Shakespeare',
+            'is_correct' => true,
+        ]);
+        QuestionOption::create([
+            'question_id' => $question_three->id,
+            'name' => 'Jane Austen',
+            'is_correct' => false,
+        ]);
+        QuestionOption::create([
+            'question_id' => $question_three->id,
+            'name' => 'Mark Twain',
             'is_correct' => false,
         ]);
     }

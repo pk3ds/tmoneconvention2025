@@ -6,11 +6,14 @@ use App\Models\Quiz;
 use Inertia\Inertia;
 use App\Models\Station;
 use App\Models\Question;
+use App\Models\QuestionOption;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 use Harishdurga\LaravelQuiz\Models\QuizQuestion;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -24,20 +27,22 @@ class QuizController extends Controller
             ->getPermissionsViaRoles()
             ->pluck('name');
 
+        $query = Quiz::orderBy('name')
+            ->search()
+            ->with(['attempts' => function($query) {
+                $query->where('participant_id', auth()->id())
+                    ->where('participant_type', User::class);
+            }]);
+
         if ($permissionNames->contains('view deleted')) {
-            $quizzes = Quiz::orderBy('name')
-                ->search()
-                ->withTrashed()
-                ->get();
+            $quizzes = $query->withTrashed()->get();
         } else {
-            $quizzes = Quiz::orderBy('name')
-                ->search()
-                ->get();
+            $quizzes = $query->get();
         }
 
         return Inertia::render('Quizzes/Index', [
             'search' => $search,
-            'quizzes' => $quizzes->load('questions'),
+            'quizzes' => $quizzes,
         ]);
     }
 
@@ -94,7 +99,19 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        //
+        return Inertia::render('Quizzes/Show', [
+            'quiz' => $quiz->load([
+                'questions.question.options',
+                'attempts' => function($query) {
+                    $query->where('participant_id', auth()->id())
+                        ->where('participant_type', User::class)
+                        ->with(['answers' => function($q) {
+                            $q->with(['quiz_question', 'question_option']);
+                        }]);
+                }
+            ]),
+            'canManageQuestions' => auth()->user()->can('manage questions')
+        ]);
     }
 
     /**
@@ -216,5 +233,98 @@ class QuizController extends Controller
         return redirect()
             ->back()
             ->with('warning', 'Question unlinked successfully');
+    }
+
+    public function submit(Request $request, Quiz $quiz)
+    {
+        $existingAttempt = $quiz->attempts()
+            ->where('participant_id', auth()->id())
+            ->where('participant_type', get_class(auth()->user()))
+            ->first();
+
+        if ($existingAttempt) {
+            return redirect()->back()->with('error', 'You have already attempted this quiz');
+        }
+
+        DB::beginTransaction();
+        try {
+            $attempt = $quiz->attempts()->create([
+                'participant_id' => auth()->id(),
+                'participant_type' => get_class(auth()->user()),
+                'quiz_id' => $quiz->id,
+            ]);
+
+            foreach($request->answers as $questionId => $answerId) {
+                $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
+
+                $attempt->answers()->create([
+                    'quiz_question_id' => $quizQuestion->id,
+                    'question_option_id' => $answerId,
+                    'answer' => QuestionOption::find($answerId)->name
+                ]);
+            }
+
+            $attempt->calculateMarks();
+
+            $user = Auth::user();
+            $user->disableLogging();
+            $user->update([
+                'points' => $user->points + $attempt->points_earned,
+            ]);
+
+            if ($attempt->points_earned > 0) {
+                activity()
+                    ->causedBy($user)
+                    ->performedOn($user)
+                    ->withProperties([
+                        'points' => $attempt->points_earned,
+                        'quiz_name' => $quiz->name,
+                        'marks_obtained' => $attempt->marks_obtained,
+                        'correct_answers' => $attempt->correct_answers,
+                        'total_questions' => $attempt->total_questions
+                    ])
+                    ->event('Quiz completion')
+                    ->log('points earned');
+
+                if ($group = $user->group) {
+                    $group->disableLogging();
+                    $group->update([
+                        'points' => $group->points + $attempt->points_earned,
+                    ]);
+
+                    activity()
+                        ->causedBy($user)
+                        ->performedOn($group)
+                        ->withProperties([
+                            'points' => $attempt->points_earned,
+                            'quiz_name' => $quiz->name,
+                            'user_name' => $user->name
+                        ])
+                        ->event('Group points from quiz')
+                        ->log('points earned');
+                    $group->enableLogging();
+                }
+            }
+            $user->enableLogging();
+
+            DB::commit();
+            return redirect()->back()->with('success', "Quiz completed! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!");
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+        }
+    }
+
+    public function attempts(Quiz $quiz)
+    {
+        $attempts = $quiz->attempts()
+            ->with(['participant', 'answers.quiz_question', 'answers.question_option'])
+            ->get();
+
+        return Inertia::render('Quizzes/Attempts', [
+            'quiz' => $quiz,
+            'attempts' => $attempts,
+        ]);
     }
 }
