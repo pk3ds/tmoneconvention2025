@@ -597,6 +597,32 @@ watch(
                                 </span>
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                :href="route('surveys.index')"
+                                :class="{
+                                    'bg-gray-100 dark:bg-gray-600':
+                                        route().current('surveys.index'),
+                                }"
+                                data-drawer-hide="drawer-navigation"
+                                aria-controls="drawer-navigation"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            >
+                                <svg
+                                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-8.8 7.2-16 16-16H96V96zM64 320c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H96c-17.7 0-32 14.3-32 32v32zm288-160H96v32H352V160z"
+                                    />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">
+                                    Surveys
+                                </span>
+                            </Link>
+                        </li>
                         <li
                             v-if="
                                 $page.props.permissions.includes('manage users')
