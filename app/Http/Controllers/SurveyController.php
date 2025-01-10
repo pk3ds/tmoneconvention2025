@@ -6,6 +6,8 @@ use App\Models\Survey;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class SurveyController extends Controller
@@ -73,6 +75,12 @@ class SurveyController extends Controller
 
         // Create questions
         $survey->questions()->createMany($validated['questions']);
+
+        activity()
+            ->performedOn($survey)
+            ->causedBy(auth()->user())
+            ->withProperties(['questions' => $validated['questions']])
+            ->log('created survey');
 
         return redirect()->route('surveys.index')
             ->with('success', 'Survey created successfully');
@@ -158,6 +166,15 @@ class SurveyController extends Controller
             }
         }
 
+        activity()
+            ->performedOn($survey)
+            ->causedBy(auth()->user())
+            ->withProperties([
+                'questions' => $validated['questions'],
+                'old_questions' => $survey->questions->toArray()
+            ])
+            ->log('updated survey');
+
         return redirect()
             ->route('surveys.index')
             ->with('success', 'Survey updated successfully');
@@ -168,6 +185,11 @@ class SurveyController extends Controller
      */
     public function destroy(Survey $survey)
     {
+        activity()
+            ->performedOn($survey)
+            ->causedBy(auth()->user())
+            ->log('deleted survey');
+
         $survey->delete();
 
         return redirect()
@@ -187,31 +209,88 @@ class SurveyController extends Controller
             ]);
         }
 
-        // Award points first
-        $points = 1000;
-        $user = Auth::user();
-        $user->increment('points', $points);
+        try {
+            DB::beginTransaction();
 
-        // Then create response with points
-        $response = $survey->responses()->create([
-            'user_id' => auth()->id(),
-            'points_earned' => $points
-        ]);
+            // Award points first
+            $points = 1000;
+            $user = Auth::user();
+            $user->disableLogging();
+            $user->increment('points', $points);
 
-        // Store answers
-        foreach ($request->answers as $questionId => $answer) {
-            $response->answers()->create([
-                'survey_question_id' => $questionId,
-                'answer' => $answer,
+            activity()
+                ->causedBy($user)
+                ->performedOn($user)
+                ->withProperties([
+                    'points' => $points,
+                    'survey_title' => $survey->title,
+                ])
+                ->event('Survey completion')
+                ->log('points earned');
+            $user->enableLogging();
+
+            if ($group = $user->group) {
+                $group->disableLogging();
+                $group->update([
+                    'points' => $group->points + $points,
+                ]);
+
+                activity()
+                    ->causedBy($user)
+                    ->performedOn($group)
+                    ->withProperties([
+                        'points' => $points,
+                        'survey_title' => $survey->title,
+                        'user_name' => $user->name
+                    ])
+                    ->event('Group points from survey')
+                    ->log('points earned');
+                $group->enableLogging();
+            }
+
+            // Then create response with points
+            $response = $survey->responses()->create([
+                'user_id' => auth()->id(),
+                'points_earned' => $points
+            ]);
+
+            // Store answers
+            foreach ($request->answers as $questionId => $answer) {
+                $response->answers()->create([
+                    'survey_question_id' => $questionId,
+                    'answer' => $answer,
+                ]);
+            }
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Thank you for your feedback!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Log the error for debugging
+            Log::error('Survey submission failed', [
+                'error' => $e->getMessage(),
+                'user_id' => auth()->id(),
+                'survey_id' => $survey->id
+            ]);
+            dd($e);
+
+            return redirect()->back()->withErrors([
+                'error' => 'An error occurred while submitting your feedback. Please try again later.'
             ]);
         }
-
-        return redirect()->back()->with('success', 'Thank you for your feedback!');
     }
+
 
     public function restore($id)
     {
         $survey = Survey::withTrashed()->find($id);
+
+        activity()
+            ->performedOn($survey)
+            ->causedBy(auth()->user())
+            ->log('restored survey');
 
         $survey->restore();
 
