@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'pickup_location' => 'Self Drive',
                 'use_password' => true,
                 'password' => Hash::make('password'),
-                'phone_no' => '0135711937',
+                'phone_no' => '01110100119',
                 'email' => 'lolul9792@gmail.com',
             ])->assignRole('admin');
 
