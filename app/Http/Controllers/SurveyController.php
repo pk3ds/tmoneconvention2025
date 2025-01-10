@@ -212,8 +212,12 @@ class SurveyController extends Controller
         try {
             DB::beginTransaction();
 
-            // Award points first
-            $points = 1000;
+            // Calculate points based on number of answers
+            $totalQuestions = $survey->questions()->count();
+            $answeredQuestions = count($request->answers);
+            $pointsPerQuestion = 1000 / $totalQuestions;
+            $points = round($pointsPerQuestion * $answeredQuestions);
+
             $user = Auth::user();
             $user->disableLogging();
             $user->increment('points', $points);
@@ -224,6 +228,8 @@ class SurveyController extends Controller
                 ->withProperties([
                     'points' => $points,
                     'survey_title' => $survey->title,
+                    'questions_answered' => $answeredQuestions,
+                    'total_questions' => $totalQuestions
                 ])
                 ->event('Survey completion')
                 ->log('points earned');
@@ -241,20 +247,20 @@ class SurveyController extends Controller
                     ->withProperties([
                         'points' => $points,
                         'survey_title' => $survey->title,
-                        'user_name' => $user->name
+                        'user_name' => $user->name,
+                        'questions_answered' => $answeredQuestions,
+                        'total_questions' => $totalQuestions
                     ])
                     ->event('Group points from survey')
                     ->log('points earned');
                 $group->enableLogging();
             }
 
-            // Then create response with points
             $response = $survey->responses()->create([
                 'user_id' => auth()->id(),
                 'points_earned' => $points
             ]);
 
-            // Store answers
             foreach ($request->answers as $questionId => $answer) {
                 $response->answers()->create([
                     'survey_question_id' => $questionId,
@@ -263,18 +269,15 @@ class SurveyController extends Controller
             }
 
             DB::commit();
-
             return redirect()->back()->with('success', 'Thank you for your feedback!');
+
         } catch (\Exception $e) {
             DB::rollBack();
-
-            // Log the error for debugging
             Log::error('Survey submission failed', [
                 'error' => $e->getMessage(),
                 'user_id' => auth()->id(),
                 'survey_id' => $survey->id
             ]);
-            dd($e);
 
             return redirect()->back()->withErrors([
                 'error' => 'An error occurred while submitting your feedback. Please try again later.'
