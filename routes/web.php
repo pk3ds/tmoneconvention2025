@@ -207,7 +207,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/station/{station}/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
     Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
     Route::resource('surveys', SurveyController::class)->middleware('can:manage surveys');
+    Route::put('surveys/{id}/restore', [SurveyController::class, 'restore'])->name('surveys.restore');
 
+    Route::get('/surveys', [SurveyController::class, 'index'])->name('surveys.index');
     Route::get('/surveys/{survey}', [SurveyController::class, 'show'])->name('surveys.show');
     Route::post('/surveys/{survey}/submit', [SurveyController::class, 'submit'])->name('surveys.submit');
 });

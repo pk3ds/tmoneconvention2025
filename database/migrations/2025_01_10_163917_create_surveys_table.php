@@ -20,6 +20,7 @@ return new class extends Migration
             $table->dateTime('end_time');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // survey_questions table
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->enum('type', ['rating', 'text']);
             $table->integer('order')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // survey_responses table
@@ -39,6 +41,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('points_earned')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // survey_answers table
@@ -48,6 +51,7 @@ return new class extends Migration
             $table->foreignId('survey_question_id')->constrained()->onDelete('cascade');
             $table->text('answer');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -56,6 +60,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('survey_answers');
+        Schema::dropIfExists('survey_responses');
+        Schema::dropIfExists('survey_questions');
         Schema::dropIfExists('surveys');
     }
 };
