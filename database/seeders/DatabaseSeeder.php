@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Survey;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Harishdurga\LaravelQuiz\Database\Seeders\QuestionTypeSeeder;
@@ -16,26 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $survey = Survey::create([
-            'title' => 'CEO Talk Feedback',
-            'description' => 'Please share your thoughts on the CEO presentation',
-            'start_time' => '2024-01-10 13:00:00',
-            'end_time' => '2024-01-10 14:00:00',
-            'is_active' => true
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
+            QuestionTypeSeeder::class,
         ]);
 
-        // Add questions
-        $survey->questions()->createMany([
-            [
-                'question' => 'How would you rate the clarity of the presentation?',
-                'type' => 'rating',
-                'order' => 1
-            ],
-            [
-                'question' => 'What key insights did you gain from this talk?',
-                'type' => 'text',
-                'order' => 2
-            ]
-        ]);
+        if (!App::environment('production')) {
+            $this->call([
+                GroupSeeder::class,
+                AwardSeeder::class,
+                SessionSeeder::class,
+                WinnerSeeder::class,
+                StationSeeder::class,
+                QuestionSeeder::class,
+                QuestionOptionSeeder::class,
+                QuizSeeder::class,
+            ]);
+        }
     }
 }
