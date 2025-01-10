@@ -15,7 +15,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Head title="TM One Convention 2024" />
+    <Head title="TM One Convention 2025" />
     <SiteLayout>
         <div class="overflow-hidden isolate pt-14" id="main">
             <Hero />
