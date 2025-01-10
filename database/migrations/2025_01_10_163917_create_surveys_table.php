@@ -14,6 +14,7 @@ return new class extends Migration
         // surveys table
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('title');
             $table->text('description')->nullable();
             $table->dateTime('start_time');
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
-        });
+         });
 
         // survey_questions table
         Schema::create('survey_questions', function (Blueprint $table) {
