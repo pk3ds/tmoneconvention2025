@@ -33,9 +33,9 @@ Route::get('/', function () {
     return Inertia::render('Welcome/Index', [
         'event' => [
             'card' => 'player',
-            'title' => 'TM One Convention 2024',
+            'title' => 'TM One Convention 2025',
             'image' => '/images/Banner-01.jpg',
-            'description' => 'Innovate The Next',
+            'description' => 'Powering The Next',
         ],
         'leaderboards' => Group::orderBy('points', 'desc')->with('awards')->limit(3)->get(),
         'groups' => Group::orderBy('points', 'desc')->get(),

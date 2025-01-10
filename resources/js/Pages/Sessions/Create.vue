@@ -119,7 +119,7 @@ const back = () => {
 
                                 <TextInput
                                     id="start_at"
-                                    type="date"
+                                    type="datetime-local"
                                     class="block w-full mt-1"
                                     v-model="form.start_at"
                                 />
@@ -135,7 +135,7 @@ const back = () => {
 
                                 <TextInput
                                     id="end_at"
-                                    type="date"
+                                    type="datetime-local"
                                     class="block w-full mt-1"
                                     v-model="form.end_at"
                                 />

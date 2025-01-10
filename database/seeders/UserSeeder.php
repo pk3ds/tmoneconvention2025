@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         if (App::environment('production')) {
             User::create([
-                'name' => 'Amirul Aiman',
+                'name' => 'Aiman Azhari',
                 'staff_id' => 'TM39712',
                 'use_password' => true,
                 'password' => Hash::make('password'),
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             ])->assignRole('admin');
         } else {
             User::factory()->create([
-                'name' => 'Amirul Aiman',
+                'name' => 'Aiman Azhari',
                 'staff_id' => 'TM39712',
                 'pickup_location' => 'Self Drive',
                 'use_password' => true,
