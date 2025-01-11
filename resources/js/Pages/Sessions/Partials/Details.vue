@@ -183,7 +183,7 @@ const form = useForm({
                             mode: 'Byte',
                             errorCorrectionLevel: 'H',
                         }"
-                        image="/images/Wording-02.png"
+                        image="/images/Mini-Banner-2025.png"
                         :imageOptions="{
                             hideBackgroundDots: true,
                             imageSize: 0.4,
