@@ -39,7 +39,7 @@ import { Link } from "@inertiajs/vue3";
     <div class="flex items-center max-w-2xl mx-auto h-[calc(100vh-55px)]">
         <div class="text-center">
             <img
-                src="/images/Wording-01-2025.png"
+                src="/images/Wording-02-2025.png"
                 alt="TM ONE CONVENTION 2025"
             />
             <h1

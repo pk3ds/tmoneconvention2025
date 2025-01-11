@@ -149,7 +149,7 @@ watch(
                     >
                         <img
                             class="w-auto rounded-lg bg-ultramarine"
-                            src="/images/Wording-01.png"
+                            src="/images/Mini-Banner-2025.png"
                             alt="TM ONE"
                         />
                     </Link>
