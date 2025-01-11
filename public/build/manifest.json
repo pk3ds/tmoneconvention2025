@@ -658,7 +658,7 @@
     "src": "resources/js/Pages/Committees/Index.vue"
   },
   "resources/js/Pages/Committees/Partials/Awards.vue": {
-    "file": "assets/Awards-XWyXuUs7.js",
+    "file": "assets/Awards-m_zi0CK1.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -977,7 +977,7 @@
     "src": "resources/js/Pages/Members/Index.vue"
   },
   "resources/js/Pages/Passport.vue": {
-    "file": "assets/Passport-vzP0YU5O.js",
+    "file": "assets/Passport-Ki2jiM3_.js",
     "imports": [
       "_AuthenticatedLayout-Xx1q5qOI.js",
       "_@inertiajs-bduIXNZ8.js",
@@ -2010,7 +2010,7 @@
     "src": "resources/js/Pages/Users/Index.vue"
   },
   "resources/js/Pages/Users/Partials/Awards.vue": {
-    "file": "assets/Awards-m_zi0CK1.js",
+    "file": "assets/Awards-XWyXuUs7.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2568,7 +2568,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-9Xn1uI24.js",
+    "file": "assets/app-vvJowyCR.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
