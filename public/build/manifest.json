@@ -658,7 +658,7 @@
     "src": "resources/js/Pages/Committees/Index.vue"
   },
   "resources/js/Pages/Committees/Partials/Awards.vue": {
-    "file": "assets/Awards-m_zi0CK1.js",
+    "file": "assets/Awards-XWyXuUs7.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2010,7 +2010,7 @@
     "src": "resources/js/Pages/Users/Index.vue"
   },
   "resources/js/Pages/Users/Partials/Awards.vue": {
-    "file": "assets/Awards-XWyXuUs7.js",
+    "file": "assets/Awards-m_zi0CK1.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2074,7 +2074,7 @@
     "css": [
       "assets/Leaderboard-XD5V59yr.css"
     ],
-    "file": "assets/Index-39L-L-sT.js",
+    "file": "assets/Index-2aKxYUq-.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_flowbite-0yPYSvbH.js",
@@ -2131,7 +2131,7 @@
     "src": "resources/js/Pages/Welcome/Partials/Countdown.vue"
   },
   "resources/js/Pages/Welcome/Partials/Hero.vue": {
-    "file": "assets/Hero-T7jf-A1x.js",
+    "file": "assets/Hero-d0vH1axs.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2568,7 +2568,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-9TnSZHvX.js",
+    "file": "assets/app-9Xn1uI24.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
