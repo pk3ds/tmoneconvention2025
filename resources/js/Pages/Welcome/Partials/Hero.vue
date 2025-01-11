@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/vue3";
 
 <template>
     <img
-        src="/images/BG-02-2025.jpg"
+        src="/images/BG-02-2025.png"
         alt=""
         class="absolute inset-0 object-cover w-full h-full -z-10"
     />
