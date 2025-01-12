@@ -35,7 +35,7 @@ Route::get('/', function () {
         'event' => [
             'card' => 'player',
             'title' => 'TM One Convention 2025',
-            'image' => '/images/Banner-01-2025.png',
+            'image' => '/images/Banner-01-2025.jpg',
             'description' => 'Powering The Next',
         ],
         'leaderboards' => Group::orderBy('points', 'desc')->with('awards')->limit(3)->get(),
