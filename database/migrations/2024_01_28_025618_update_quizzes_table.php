@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('quizzes', function (Blueprint $table) {
             $table->foreignId('station_id')->nullable();
+            $table->uuid('uuid')->unique()->after('id');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('quizzes', function (Blueprint $table) {
             $table->dropColumn('station_id');
+            $table->dropColumn('uuid');
         });
     }
 };
