@@ -25,21 +25,21 @@ const props = defineProps({
             <Countdown />
         </div>
 
-        <!-- <div class="" id="agenda">
+        <div class="" id="agenda">
             <Agenda />
         </div>
 
         <div class="py-12" id="dress-code">
             <Attire />
-        </div> -->
+        </div>
 
         <!-- Hiding pwrgames -->
         <!-- <div class="py-12" id="pwrgame">
             <Map />
         </div> -->
 
-        <!-- <div class="py-12" id="pwrteam">
+        <div class="py-12" id="pwrteam">
             <Leaderboard :leaderboards="leaderboards" :groups="groups" />
-        </div> -->
+        </div>
     </SiteLayout>
 </template>

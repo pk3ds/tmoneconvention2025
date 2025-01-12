@@ -147,6 +147,23 @@
                             <div class="space-y-6 text-xl">
                                 <div>
                                     <div class="font-title mb-2">
+                                        • Racing Ahead through Digital Evolution
+                                        - The EPF Story
+                                    </div>
+                                    <div class="text-lg">
+                                        <span
+                                            class="text-black-600 font-semibold"
+                                            >Afhzal Abdul Rahman</span
+                                        >
+                                        <span class="text-gray-600"
+                                            >, Chief Digital Technology Officer,
+                                            Employees Provident Fund (EPF)</span
+                                        >
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="font-title mb-2">
                                         • Transforming Banking - Bank Islam's
                                         Vision, Innovation & Digital
                                         Transformation for a Resilient Financial
@@ -160,23 +177,6 @@
                                         <span class="text-gray-600"
                                             >, Group Chief Digital Officer, Bank
                                             Islam Malaysia Berhad</span
-                                        >
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="font-title mb-2">
-                                        • Racing Ahead through Digital Evolution
-                                        - The EPF Story
-                                    </div>
-                                    <div class="text-lg">
-                                        <span
-                                            class="text-black-600 font-semibold"
-                                            >Afhzal Abdul Rahman</span
-                                        >
-                                        <span class="text-gray-600"
-                                            >, Chief Digital Technology Officer,
-                                            Employees Provident Fund (EPF)</span
                                         >
                                     </div>
                                 </div>
@@ -256,18 +256,6 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Photo Session
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        08:15
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
                             <b>Powergizer</b>
                         </p>
                     </dd>
@@ -276,7 +264,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        08:30
+                        08:15
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -294,6 +282,18 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
+                            Photo Session
+                        </p>
+                    </dd>
+                </div>
+                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                    <dt
+                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
+                    >
+                        08:45
+                    </dt>
+                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
+                        <p class="text-2xl leading-7 text-gray-900">
                             TM One
                             <span class="font-title">NEXT LEAP PWR RACE</span>
                         </p>
@@ -303,7 +303,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        11:30
+                        12:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -317,7 +317,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        12:00
+                        12:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -347,11 +347,11 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             TM One
                             <span class="font-title">NEXT LEAP PWR RACE</span>
-                            Continue
+                            Pitching
                         </p>
                     </dd>
                 </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
+                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
@@ -364,7 +364,7 @@
                             Pitching
                         </p>
                     </dd>
-                </div>
+                </div> -->
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
@@ -471,7 +471,7 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             TM One Convention
                             <span class="font-title">PWR TEAM</span>
-                            Announcement
+                            Winner Announcement
                         </p>
                     </dd>
                 </div>
@@ -491,7 +491,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        17:15
+                        17:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
@@ -507,7 +507,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Bus departure to
+                            Departure to
                             <span class="font-title"
                                 >Genting Premium Outlet / TM Annexe 2 / TM
                                 Campus</span
