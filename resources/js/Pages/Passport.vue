@@ -9,7 +9,8 @@ const props = defineProps({
     },
 });
 
-const passport = Array.from({ length: 13 }, (_, index) => {
+const passport = Array.from({ length: 10 }, (_, index) => {
+    // Updated length to 10
     const checkpointNumber = index + 1;
     return {
         imageUrl: `/images/PWRGame-${String(checkpointNumber).padStart(
