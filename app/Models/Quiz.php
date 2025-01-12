@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Station;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
 use Database\Factories\QuizFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -63,6 +64,15 @@ class Quiz extends Model
         );
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = Str::uuid();
+        });
+    }
+
     public function topics()
     {
         return $this->morphToMany(config('laravel-quiz.models.topic'), 'topicable');
@@ -106,7 +116,7 @@ class Quiz extends Model
 
     public function getRouteKeyName()
     {
-        return 'id';
+        return 'uuid';
     }
 
     public function station()
