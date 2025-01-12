@@ -15,7 +15,7 @@ const submitting = ref(false);
 const submit = () => {
     submitting.value = true;
     router.post(
-        route("surveys.submit", props.survey.id),
+        route("surveys.submit", props.survey.uuid),
         {
             answers: form.value,
         },
