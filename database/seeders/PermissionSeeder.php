@@ -19,5 +19,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'manage questions']);
         Permission::create(['name' => 'view rating']);
         Permission::create(['name' => 'view deleted']);
+        Permission::create(['name' => 'manage surveys']);
     }
 }
