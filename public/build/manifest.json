@@ -53,10 +53,6 @@
       "_flowbite-0yPYSvbH.js"
     ]
   },
-  "_Leaderboard.vue_vue_type_style_index_0_lang-!~{01X}~.js": {
-    "file": "assets/Leaderboard-XD5V59yr.css",
-    "src": "_Leaderboard.vue_vue_type_style_index_0_lang-!~{01X}~.js"
-  },
   "_Modal-fy2VdzYP.js": {
     "file": "assets/Modal-fy2VdzYP.js",
     "imports": [
@@ -658,7 +654,7 @@
     "src": "resources/js/Pages/Committees/Index.vue"
   },
   "resources/js/Pages/Committees/Partials/Awards.vue": {
-    "file": "assets/Awards-XWyXuUs7.js",
+    "file": "assets/Awards-m_zi0CK1.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2145,7 +2141,7 @@
     "src": "resources/js/Pages/Users/Index.vue"
   },
   "resources/js/Pages/Users/Partials/Awards.vue": {
-    "file": "assets/Awards-m_zi0CK1.js",
+    "file": "assets/Awards-XWyXuUs7.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2203,19 +2199,16 @@
     "src": "resources/js/Pages/Users/Partials/Details.vue"
   },
   "resources/js/Pages/Welcome/Index.vue": {
-    "assets": [
-      "assets/BG-Chevron-02-FXA_RVkP.png"
-    ],
-    "css": [
-      "assets/Leaderboard-XD5V59yr.css"
-    ],
-    "file": "assets/Index-2aKxYUq-.js",
+    "file": "assets/Index-N2aixG11.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_flowbite-0yPYSvbH.js",
       "_@vue-ioZSKZPS.js",
+      "resources/js/Pages/Welcome/Partials/Agenda.vue",
       "resources/js/Pages/Welcome/Partials/Hero.vue",
       "resources/js/Pages/Welcome/Partials/Countdown.vue",
+      "resources/js/Pages/Welcome/Partials/Attire.vue",
+      "resources/js/Pages/Welcome/Partials/Leaderboard.vue",
       "_axios-mNEckKTA.js",
       "_deepmerge-LjH1GvcH.js",
       "_call-bind-C9g98eDj.js",
@@ -2234,13 +2227,14 @@
       "_nprogress-eK4H2Raz.js",
       "_lodash.clonedeep-ONeKF3hD.js",
       "_lodash.isequal-8drsGctg.js",
-      "_@popperjs-zyV4rJhQ.js"
+      "_@popperjs-zyV4rJhQ.js",
+      "__plugin-vue_export-helper-x3n3nnut.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Welcome/Index.vue"
   },
   "resources/js/Pages/Welcome/Partials/Agenda.vue": {
-    "file": "assets/Agenda-RqGAauTN.js",
+    "file": "assets/Agenda-CQNxUQo4.js",
     "imports": [
       "__plugin-vue_export-helper-x3n3nnut.js",
       "_@vue-ioZSKZPS.js"
@@ -2299,7 +2293,7 @@
     "css": [
       "assets/Leaderboard-XD5V59yr.css"
     ],
-    "file": "assets/Leaderboard-N6TYAIH7.js",
+    "file": "assets/Leaderboard-MLZtgSWT.js",
     "imports": [
       "_@vue-ioZSKZPS.js"
     ],
@@ -2707,7 +2701,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-PhHVbNpe.js",
+    "file": "assets/app---OnHDm7.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
