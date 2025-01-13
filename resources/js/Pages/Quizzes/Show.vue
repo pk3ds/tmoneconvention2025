@@ -12,10 +12,24 @@ const page = usePage();
 const form = ref({});
 const submitting = ref(false);
 
+// Initialize form with arrays for multiple choice questions
+const initializeForm = () => {
+    props.quiz.questions.forEach((questionLink) => {
+        if (questionLink.question.question_type_id === 2) {
+            form.value[questionLink.question.id] = [];
+        } else {
+            form.value[questionLink.question.id] = null;
+        }
+    });
+};
+
+// Call initialization when component is created
+initializeForm();
+
 const submit = () => {
     submitting.value = true;
     router.post(
-        route("quizzes.submit", props.quiz.id),
+        route("quizzes.submit", props.quiz.uuid),
         {
             answers: form.value,
         },
@@ -37,11 +51,16 @@ const getUserAttempt = () => {
     );
 };
 
-const getUserAnswer = (questionId, attempt) => {
-    if (!attempt || !attempt.answers) return null;
-    return attempt.answers.find(
+const getUserAnswers = (questionId, attempt) => {
+    if (!attempt || !attempt.answers) return [];
+    return attempt.answers.filter(
         (answer) => answer.quiz_question.question_id === questionId
     );
+};
+
+const isOptionSelected = (questionId, optionId, attempt) => {
+    const answers = getUserAnswers(questionId, attempt);
+    return answers.some((answer) => answer.question_option_id === optionId);
 };
 </script>
 
@@ -67,6 +86,15 @@ const getUserAnswer = (questionId, attempt) => {
                             >
                                 <h3 class="text-lg font-medium mb-4">
                                     {{ questionLink.question.name }}
+                                    <span
+                                        v-if="
+                                            questionLink.question
+                                                .question_type_id === 2
+                                        "
+                                        class="text-sm text-gray-500 ml-2"
+                                    >
+                                        (Multiple answers allowed)
+                                    </span>
                                 </h3>
 
                                 <div class="space-y-3">
@@ -79,11 +107,11 @@ const getUserAnswer = (questionId, attempt) => {
                                             'bg-green-100': option.is_correct,
                                             'bg-red-100':
                                                 !option.is_correct &&
-                                                getUserAnswer(
+                                                isOptionSelected(
                                                     questionLink.question_id,
-                                                    getUserAttempt()
-                                                )?.question_option_id ===
                                                     option.id,
+                                                    getUserAttempt()
+                                                ),
                                         }"
                                     >
                                         <div class="flex items-center gap-3">
@@ -105,11 +133,11 @@ const getUserAnswer = (questionId, attempt) => {
                                             <svg
                                                 v-if="
                                                     !option.is_correct &&
-                                                    getUserAnswer(
+                                                    isOptionSelected(
                                                         questionLink.question_id,
+                                                        option.id,
                                                         getUserAttempt()
-                                                    )?.question_option_id ===
-                                                        option.id
+                                                    )
                                                 "
                                                 class="w-5 h-5 text-red-500"
                                                 fill="none"
@@ -158,6 +186,15 @@ const getUserAnswer = (questionId, attempt) => {
                             >
                                 <h3 class="text-lg font-medium mb-4">
                                     {{ questionLink.question.name }}
+                                    <span
+                                        v-if="
+                                            questionLink.question
+                                                .question_type_id === 2
+                                        "
+                                        class="text-sm text-gray-500 ml-2"
+                                    >
+                                        (Select all that apply)
+                                    </span>
                                 </h3>
 
                                 <div class="space-y-3">
@@ -168,7 +205,12 @@ const getUserAnswer = (questionId, attempt) => {
                                         class="flex items-center p-3 border rounded hover:bg-gray-50"
                                     >
                                         <input
-                                            type="radio"
+                                            :type="
+                                                questionLink.question
+                                                    .question_type_id === 2
+                                                    ? 'checkbox'
+                                                    : 'radio'
+                                            "
                                             :name="
                                                 'question-' +
                                                 questionLink.question.id

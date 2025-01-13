@@ -28,14 +28,38 @@ class QuizAttempt extends BaseQuizAttempt
         $correctAnswers = 0;
         $totalQuestions = $this->quiz->questions->count();
 
-        foreach ($this->answers as $answer) {
-            $quizQuestion = $answer->quiz_question;
-            $questionOption = $answer->question_option;
+        // Group answers by quiz question
+        $answersGroupedByQuestion = $this->answers->groupBy('quiz_question_id');
 
-            if ($questionOption && $questionOption->is_correct) {
+        foreach ($this->quiz->questions as $quizQuestion) {
+            $question = $quizQuestion->question;
+            $userAnswers = $answersGroupedByQuestion->get($quizQuestion->id, collect([]));
+
+            // Get all correct options for this question
+            $correctOptions = $question->options->where('is_correct', true);
+            $userSelectedOptionIds = $userAnswers->pluck('question_option_id')->toArray();
+
+            $isCorrect = false;
+
+            if ($question->question_type_id === 1) {
+                // Single select question - only one answer should be selected
+                if ($userAnswers->count() === 1 && $userAnswers->first()->question_option->is_correct) {
+                    $isCorrect = true;
+                }
+            } else {
+                // Multiple select question - all correct options must be selected and no incorrect ones
+                $correctOptionIds = $correctOptions->pluck('id')->toArray();
+
+                // Check if user selected ALL correct options AND ONLY the correct options
+                $isCorrect = count(array_diff($userSelectedOptionIds, $correctOptionIds)) === 0
+                    && count(array_diff($correctOptionIds, $userSelectedOptionIds)) === 0;
+            }
+
+            if ($isCorrect) {
                 $totalMarks += $quizQuestion->marks;
                 $correctAnswers++;
-            } else if ($this->quiz->negative_marking_settings['enable_negative_marks']) {
+            } else if ($userAnswers->isNotEmpty() && $this->quiz->negative_marking_settings['enable_negative_marks']) {
+                // Apply negative marking only if an answer was attempted
                 if ($this->quiz->negative_marking_settings['negative_marking_type'] === Quiz::FIXED_NEGATIVE_TYPE) {
                     $totalMarks -= $quizQuestion->negative_marks;
                 } else {
@@ -60,7 +84,6 @@ class QuizAttempt extends BaseQuizAttempt
 
         return $this;
     }
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

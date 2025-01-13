@@ -236,85 +236,97 @@ class QuizController extends Controller
     }
 
     public function submit(Request $request, Quiz $quiz)
-    {
-        $existingAttempt = $quiz->attempts()
-            ->where('participant_id', auth()->id())
-            ->where('participant_type', get_class(auth()->user()))
-            ->first();
+{
+    $existingAttempt = $quiz->attempts()
+        ->where('participant_id', auth()->id())
+        ->where('participant_type', get_class(auth()->user()))
+        ->first();
 
-        if ($existingAttempt) {
-            return redirect()->back()->with('error', 'You have already attempted this quiz');
+    if ($existingAttempt) {
+        return redirect()->back()->with('error', 'You have already attempted this quiz');
+    }
+
+    DB::beginTransaction();
+    try {
+        $attempt = $quiz->attempts()->create([
+            'participant_id' => auth()->id(),
+            'participant_type' => get_class(auth()->user()),
+            'quiz_id' => $quiz->id,
+        ]);
+
+        foreach($request->answers as $questionId => $answerIds) {
+            $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
+
+            // Handle both single answer (string/integer) and multiple answers (array)
+            $answerIds = is_array($answerIds) ? $answerIds : [$answerIds];
+
+            foreach ($answerIds as $answerId) {
+                $option = QuestionOption::find($answerId);
+
+                if ($option) {
+                    $attempt->answers()->create([
+                        'quiz_question_id' => $quizQuestion->id,
+                        'question_option_id' => $answerId,
+                        'answer' => $option->name
+                    ]);
+                }
+            }
         }
 
-        DB::beginTransaction();
-        try {
-            $attempt = $quiz->attempts()->create([
-                'participant_id' => auth()->id(),
-                'participant_type' => get_class(auth()->user()),
-                'quiz_id' => $quiz->id,
-            ]);
+        $attempt->calculateMarks();
 
-            foreach($request->answers as $questionId => $answerId) {
-                $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
+        $user = Auth::user();
+        $user->disableLogging();
+        $user->update([
+            'points' => $user->points + $attempt->points_earned,
+        ]);
 
-                $attempt->answers()->create([
-                    'quiz_question_id' => $quizQuestion->id,
-                    'question_option_id' => $answerId,
-                    'answer' => QuestionOption::find($answerId)->name
+        if ($attempt->points_earned > 0) {
+            activity()
+                ->causedBy($user)
+                ->performedOn($user)
+                ->withProperties([
+                    'points' => $attempt->points_earned,
+                    'quiz_name' => $quiz->name,
+                    'marks_obtained' => $attempt->marks_obtained,
+                    'correct_answers' => $attempt->correct_answers,
+                    'total_questions' => $attempt->total_questions
+                ])
+                ->event('Quiz completion')
+                ->log('points earned');
+
+            if ($group = $user->group) {
+                $group->disableLogging();
+                $group->update([
+                    'points' => $group->points + $attempt->points_earned,
                 ]);
-            }
 
-            $attempt->calculateMarks();
-
-            $user = Auth::user();
-            $user->disableLogging();
-            $user->update([
-                'points' => $user->points + $attempt->points_earned,
-            ]);
-
-            if ($attempt->points_earned > 0) {
                 activity()
                     ->causedBy($user)
-                    ->performedOn($user)
+                    ->performedOn($group)
                     ->withProperties([
                         'points' => $attempt->points_earned,
                         'quiz_name' => $quiz->name,
-                        'marks_obtained' => $attempt->marks_obtained,
-                        'correct_answers' => $attempt->correct_answers,
-                        'total_questions' => $attempt->total_questions
+                        'user_name' => $user->name
                     ])
-                    ->event('Quiz completion')
+                    ->event('Group points from quiz')
                     ->log('points earned');
-
-                if ($group = $user->group) {
-                    $group->disableLogging();
-                    $group->update([
-                        'points' => $group->points + $attempt->points_earned,
-                    ]);
-
-                    activity()
-                        ->causedBy($user)
-                        ->performedOn($group)
-                        ->withProperties([
-                            'points' => $attempt->points_earned,
-                            'quiz_name' => $quiz->name,
-                            'user_name' => $user->name
-                        ])
-                        ->event('Group points from quiz')
-                        ->log('points earned');
-                    $group->enableLogging();
-                }
+                $group->enableLogging();
             }
-            $user->enableLogging();
-
-            DB::commit();
-            return redirect()->back()->with('success', "Quiz completed! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!");
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
         }
+        $user->enableLogging();
+
+        DB::commit();
+        return redirect()->back()->with('success', "Quiz completed! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!");
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+
+        // For development, you might want to log the error instead of dd()
+        \Log::error('Quiz submission error: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Something went wrong. Please try again.');
     }
+}
 
     public function attempts(Quiz $quiz)
     {
