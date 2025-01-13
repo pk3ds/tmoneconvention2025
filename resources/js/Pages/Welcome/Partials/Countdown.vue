@@ -41,7 +41,8 @@ onUnmounted(() => {
                 <h1
                     class="my-6 text-2xl tracking-tight text-gray-900 uppercase font-title sm:text-4xl"
                 >
-                    TM One Convention is back
+                    TM One Convention 2025 <br />
+                    Countdown
                 </h1>
                 <div class="flex items-center justify-center gap-8 p-4">
                     <div class="flex flex-col items-center">
