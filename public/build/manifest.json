@@ -1430,7 +1430,7 @@
     "src": "resources/js/Pages/Quizzes/Partials/Questions.vue"
   },
   "resources/js/Pages/Quizzes/Show.vue": {
-    "file": "assets/Show-STbFydhj.js",
+    "file": "assets/Show-5rBj8rcj.js",
     "imports": [
       "_@vue-ioZSKZPS.js",
       "_@inertiajs-bduIXNZ8.js",
@@ -2705,7 +2705,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-QXjufwkY.js",
+    "file": "assets/app-ymTfydau.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
