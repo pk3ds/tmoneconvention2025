@@ -350,7 +350,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
-                            Lunch, Zohor Prayer & Check-out
+                            Lunch & Zohor Prayer
                         </p>
                     </dd>
                 </div>
@@ -439,7 +439,10 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
-                            Asar Prayer
+                            Asar Prayer & Check-out
+                        </p>
+                        <p class="text-xl italic text-gray-600 mt-2">
+                            For self-drive, the check-out time is 8:00 PM
                         </p>
                     </dd>
                 </div>
