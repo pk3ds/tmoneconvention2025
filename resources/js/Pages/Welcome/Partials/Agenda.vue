@@ -26,7 +26,7 @@
                         <p class="text-2xl text-gray-900">
                             Bus departure from
                             <span class="font-title"
-                                >TM Annexe 2 / TM Campus</span
+                                >TM Annexe 1 / TM Campus</span
                             >
                         </p>
                     </dd>
@@ -52,12 +52,12 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
                             Keynote by
-                            <span class="font-title">
-                                Shazurawati Abd Karim,
-                            </span>
-                            <span class="text-xl">
-                                Executive Vice President TM One
-                            </span>
+                            <span class="font-title"
+                                >Shazurawati Abd Karim,</span
+                            >
+                            <span class="text-xl"
+                                >Executive Vice President TM One</span
+                            >
                         </p>
                     </dd>
                 </div>
@@ -115,7 +115,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Lunch, Zohor Prayer & Check-in
+                            Lunch, Check-in & Zohor Prayer
                         </p>
                     </dd>
                 </div>
@@ -347,7 +347,7 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             TM One
                             <span class="font-title">NEXT LEAP PWR RACE</span>
-                            Pitching
+                            Pitch
                         </p>
                     </dd>
                 </div>
@@ -469,7 +469,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One Convention
+                            TM One
                             <span class="font-title">PWR TEAM</span>
                             Winner Announcement
                         </p>
@@ -509,7 +509,7 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             Departure to
                             <span class="font-title"
-                                >Genting Premium Outlet / TM Annexe 2 / TM
+                                >Genting Premium Outlet / TM Annexe 1 / TM
                                 Campus</span
                             >
                         </p>
@@ -525,7 +525,7 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             Arrival at
                             <span class="font-title">
-                                TM Annexe 2 / TM Campus
+                                TM Annexe 1 / TM Campus
                             </span>
                         </p>
                     </dd>

@@ -103,6 +103,20 @@ import { Head } from "@inertiajs/vue3";
                                     Pick-up point
                                 </h3>
                                 <div
+                                    v-if="
+                                        $page.props.auth.user?.pickup_route ===
+                                        'Own Transport'
+                                    "
+                                    class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
+                                >
+                                    <dd
+                                        class="text-3xl font-semibold tracking-tight font-title"
+                                    >
+                                        Own Transport
+                                    </dd>
+                                </div>
+                                <div
+                                    v-else
                                     class="grid grid-cols-1 gap-4 sm:grid-cols-3"
                                 >
                                     <div
@@ -112,7 +126,10 @@ import { Head } from "@inertiajs/vue3";
                                         <dd
                                             class="text-3xl font-semibold tracking-tight font-title"
                                         >
-                                            {{ "TMA1 - GPO - WYN" }}
+                                            {{
+                                                $page.props.auth.user
+                                                    ?.pickup_route ?? "KIV"
+                                            }}
                                         </dd>
                                     </div>
                                     <div
@@ -122,7 +139,10 @@ import { Head } from "@inertiajs/vue3";
                                         <dd
                                             class="text-3xl font-semibold tracking-tight font-title"
                                         >
-                                            {{ "13 Jan 2025" }}
+                                            {{
+                                                $page.props.auth.user
+                                                    ?.pickup_date ?? "KIV"
+                                            }}
                                         </dd>
                                     </div>
                                     <div
@@ -134,7 +154,10 @@ import { Head } from "@inertiajs/vue3";
                                         <dd
                                             class="text-3xl font-semibold tracking-tight font-title"
                                         >
-                                            {{ "1" }}
+                                            {{
+                                                $page.props.auth.user
+                                                    ?.pickup_bus_no ?? "KIV"
+                                            }}
                                         </dd>
                                     </div>
                                 </div>
@@ -148,6 +171,20 @@ import { Head } from "@inertiajs/vue3";
                                     Drop-off point
                                 </h3>
                                 <div
+                                    v-if="
+                                        $page.props.auth.user?.dropoff_route ===
+                                        'Own Transport'
+                                    "
+                                    class="flex flex-col pl-6 border-l gap-y-3 border-white/10"
+                                >
+                                    <dd
+                                        class="text-3xl font-semibold tracking-tight font-title"
+                                    >
+                                        Own Transport
+                                    </dd>
+                                </div>
+                                <div
+                                    v-else
                                     class="grid grid-cols-1 gap-4 sm:grid-cols-3"
                                 >
                                     <div
@@ -157,7 +194,10 @@ import { Head } from "@inertiajs/vue3";
                                         <dd
                                             class="text-3xl font-semibold tracking-tight font-title"
                                         >
-                                            {{ "WYN - GPO - TMA1" }}
+                                            {{
+                                                $page.props.auth.user
+                                                    ?.dropoff_route ?? "KIV"
+                                            }}
                                         </dd>
                                     </div>
                                     <div
@@ -167,7 +207,10 @@ import { Head } from "@inertiajs/vue3";
                                         <dd
                                             class="text-3xl font-semibold tracking-tight font-title"
                                         >
-                                            {{ "14 Jan 2025" }}
+                                            {{
+                                                $page.props.auth.user
+                                                    ?.dropoff_date ?? "KIV"
+                                            }}
                                         </dd>
                                     </div>
                                     <div
@@ -179,7 +222,10 @@ import { Head } from "@inertiajs/vue3";
                                         <dd
                                             class="text-3xl font-semibold tracking-tight font-title"
                                         >
-                                            {{ "1" }}
+                                            {{
+                                                $page.props.auth.user
+                                                    ?.dropoff_bus_no ?? "KIV"
+                                            }}
                                         </dd>
                                     </div>
                                 </div>
