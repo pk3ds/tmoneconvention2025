@@ -134,6 +134,9 @@
                         <p class="text-2xl leading-7 text-gray-900 font-body">
                             Lunch, Check-in & Zohor Prayer
                         </p>
+                        <p class="text-xl italic text-gray-600 mt-2">
+                            Ambrosia, Level 12
+                        </p>
                     </dd>
                 </div>
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
@@ -321,7 +324,7 @@
                             <span class="font-title">NEXT LEAP PWR RACE</span>
                         </p>
                         <p class="text-xl italic text-gray-600 mt-2">
-                            Level 50,13,12,11 & Foyer, level G
+                            Level 50, 13, 11 & Foyer, level G
                         </p>
                     </dd>
                 </div>
@@ -351,6 +354,9 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
                             Lunch & Zohor Prayer
+                        </p>
+                        <p class="text-xl italic text-gray-600 mt-2">
+                            Ambrosia, Level 12
                         </p>
                     </dd>
                 </div>
