@@ -176,7 +176,7 @@
                                             Employees Provident Fund (EPF)</span
                                         >
                                     </div>
-                                    <div class="text-2xl font-body">
+                                    <div class="font-body">
                                         • Racing Ahead through Digital Evolution
                                         - The EPF Story
                                     </div>
@@ -193,7 +193,7 @@
                                             Islam Malaysia Berhad</span
                                         >
                                     </div>
-                                    <div class="text-2xl font-body">
+                                    <div class="font-body">
                                         • Transforming Banking - Bank Islam's
                                         Vision, Innovation & Digital
                                         Transformation for a Resilient Financial
