@@ -53,7 +53,8 @@
                     class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden transition duration-500 cursor-pointer bg-light-blue isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 hover:scale-105"
                 >
                     <img
-                        src=""
+                        src="/images/Attire-03.png"
+                        alt="Attire Day 2"
                         class="absolute inset-0 object-cover w-full h-full -z-10"
                     />
                     <div
