@@ -99,12 +99,12 @@ const hasResponded = (survey) => {
                                 <h1
                                     class="text-base font-semibold text-gray-900"
                                 >
-                                    Surveys
+                                    Event Feedback Surveys
                                 </h1>
-                                <p class="mt-2 text-sm text-gray-700">
+                                <!-- <p class="mt-2 text-sm text-gray-700">
                                     A list of all surveys in the system
                                     including feedback questions.
-                                </p>
+                                </p> -->
                             </div>
                             <div class="mt-4 sm:ml-16 sm:mt-0">
                                 <Link

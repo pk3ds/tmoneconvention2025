@@ -619,7 +619,7 @@ watch(
                                     />
                                 </svg>
                                 <span class="flex-1 ms-3 whitespace-nowrap">
-                                    Surveys
+                                    Event Feedback Surveys
                                 </span>
                             </Link>
                         </li>
