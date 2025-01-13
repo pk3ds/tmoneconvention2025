@@ -8,7 +8,7 @@
             Agenda
         </h2>
         <p
-            class="mt-2 text-lg leading-8 text-center uppercase text-accent-orange font-title"
+            class="mt-2 text-2xl leading-8 text-center uppercase text-accent-orange font-title"
         >
             Day 1 - 14<sup>th</sup> January 2025
         </p>
@@ -24,7 +24,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl text-gray-900">
-                            Bus departure from
+                            <span class="font-body">Bus departure from </span>
                             <span class="font-title"
                                 >TM Annexe 1 / TM Campus</span
                             >
@@ -38,8 +38,10 @@
                         09:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl text-gray-900">
+                        <p class="text-2xl text-gray-900 font-body">
                             Arrival, Registration & Welcoming Refreshment
+                            <br />
+                            Ballroom
                         </p>
                     </dd>
                 </div>
@@ -51,11 +53,12 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Keynote by
+                            <span class="font-body">Keynote by </span>
                             <span class="font-title"
-                                >Shazurawati Abd Karim,</span
-                            >
-                            <span class="text-xl"
+                                >Shazurawati Abd Karim,
+                            </span>
+                            <br />
+                            <span class="text-2xl font-body"
                                 >Executive Vice President TM One</span
                             >
                         </p>
@@ -68,7 +71,7 @@
                         11:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             <b>Powergizer</b>
                         </p>
                     </dd>
@@ -81,13 +84,14 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Session with
-                            <span class="font-title">
-                                Amar Huzaimi Md Deris,
-                            </span>
-                            <span class="text-xl">
-                                Group Chief Executive Officer TM
-                            </span>
+                            <span class="font-body">Session with </span>
+                            <span class="font-title"
+                                >Amar Huzaimi Md Deris,</span
+                            >
+                            <br />
+                            <span class="text-2xl font-body">
+                                Group Chief Executive Officer TM</span
+                            >
                         </p>
                     </dd>
                 </div>
@@ -99,11 +103,11 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Photo Session with
-                            <span class="font-title">
-                                Amar Huzaimi Md Deris
-                            </span>
-                            & Leaders
+                            <span class="font-body">Photo Session with </span>
+                            <span class="font-title"
+                                >Amar Huzaimi Md Deris</span
+                            >
+                            <span class="font-body"> & Leaders</span>
                         </p>
                     </dd>
                 </div>
@@ -114,7 +118,7 @@
                         13:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Lunch, Check-in & Zohor Prayer
                         </p>
                     </dd>
@@ -126,7 +130,7 @@
                         14:45
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             <b>Powergizer</b>
                         </p>
                     </dd>
@@ -147,10 +151,6 @@
                             <div class="space-y-6 text-xl">
                                 <div>
                                     <div class="font-title mb-2">
-                                        • Racing Ahead through Digital Evolution
-                                        - The EPF Story
-                                    </div>
-                                    <div class="text-lg">
                                         <span
                                             class="text-black-600 font-semibold"
                                             >Afhzal Abdul Rahman</span
@@ -160,24 +160,28 @@
                                             Employees Provident Fund (EPF)</span
                                         >
                                     </div>
+                                    <div class="text-2xl font-body">
+                                        • Racing Ahead through Digital Evolution
+                                        - The EPF Story
+                                    </div>
                                 </div>
 
                                 <div>
                                     <div class="font-title mb-2">
+                                        <span
+                                            class="text-black-600 font-semibold font-title"
+                                            >Noor Farilla Abdullah</span
+                                        >
+                                        <span class="text-gray-600 font-title"
+                                            >, Group Chief Digital Officer, Bank
+                                            Islam Malaysia Berhad</span
+                                        >
+                                    </div>
+                                    <div class="text-2xl font-body">
                                         • Transforming Banking - Bank Islam's
                                         Vision, Innovation & Digital
                                         Transformation for a Resilient Financial
                                         Services
-                                    </div>
-                                    <div class="text-lg">
-                                        <span
-                                            class="text-black-600 font-semibold"
-                                            >Noor Farilla Abdullah</span
-                                        >
-                                        <span class="text-gray-600"
-                                            >, Group Chief Digital Officer, Bank
-                                            Islam Malaysia Berhad</span
-                                        >
                                     </div>
                                 </div>
                             </div>
@@ -191,23 +195,11 @@
                         16:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Tea Break & Asar Prayer
                         </p>
                     </dd>
                 </div>
-                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        18:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Free & Easy
-                        </p>
-                    </dd>
-                </div> -->
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
@@ -219,8 +211,10 @@
                             <span class="font-title">
                                 Gala Dinner & Award Night<br />
                             </span>
-
-                            “Theme Celestial Soirée : A Night Among The Stars”
+                            <span class="font-body">
+                                "Theme Celestial Soirée : A Night Among The
+                                Stars"
+                            </span>
                         </p>
                     </dd>
                 </div>
@@ -228,7 +222,7 @@
         </div>
 
         <p
-            class="mt-2 text-lg leading-8 text-center uppercase text-accent-orange font-title"
+            class="mt-2 text-2xl leading-8 text-center uppercase text-accent-orange font-title"
         >
             Day 2 - 15<sup>th</sup> January 2025
         </p>
@@ -243,7 +237,7 @@
                         06:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Breakfast
                         </p>
                     </dd>
@@ -255,7 +249,7 @@
                         08:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             <b>Powergizer</b>
                         </p>
                     </dd>
@@ -268,9 +262,9 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One
+                            <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
-                            Briefing
+                            <span class="font-body"> Briefing</span>
                         </p>
                     </dd>
                 </div>
@@ -281,7 +275,7 @@
                         08:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Photo Session
                         </p>
                     </dd>
@@ -294,7 +288,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One
+                            <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
                         </p>
                     </dd>
@@ -307,9 +301,9 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One
+                            <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
-                            Challenge Debrief
+                            <span class="font-body"> Challenge Debrief</span>
                         </p>
                     </dd>
                 </div>
@@ -320,7 +314,7 @@
                         12:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Lunch, Zohor Prayer & Check-out
                         </p>
                     </dd>
@@ -332,7 +326,7 @@
                         14:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             <b>Powergizer</b>
                         </p>
                     </dd>
@@ -345,89 +339,9 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One
+                            <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
-                            Pitch
-                        </p>
-                    </dd>
-                </div>
-                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        15:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            TM One
-                            <span class="font-title">NEXT LEAP PWR RACE</span>
-                            Pitching
-                        </p>
-                    </dd>
-                </div> -->
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        16:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Tea Break
-                        </p>
-                    </dd>
-                </div>
-                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        14:30
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <b>Powergizer</b>
-                        </p>
-                    </dd>
-                </div>
-                <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        15:00
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            <span class="font-title"
-                                >Panel Discussion: Powering The Next</span
-                            >
-                            <span class="text-xl">
-                                <br /><br /><br />
-                                Moderator:
-                                <span class="font-title">Zamry Ibrahim,</span>
-                                General Manager, Energy Enterprise Sales
-                                <br /><br />
-                                Panelists:<br />
-                                <span class="font-title">
-                                    • Noorhanida Su’ib,
-                                </span>
-                                <span class="text-lg">
-                                    Vice President, Product & Innovations TM One
-                                </span>
-                                <br /><br />
-                                <span class="font-title">
-                                    • Mohd Zaidi Bin Mohd Basir,
-                                </span>
-                                <span class="text-lg">
-                                    Vice President, Business Technology TM One
-                                </span>
-                                <br /><br />
-                                <span class="font-title">
-                                    • Mohamad Rejab Sulaiman,
-                                </span>
-                                <span class="text-lg">
-                                    Covering CEO Credence
-                                </span>
-                            </span>
+                            <span class="font-body"> Pitch</span>
                         </p>
                     </dd>
                 </div>
@@ -438,11 +352,11 @@
                         16:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Tea Break
                         </p>
                     </dd>
-                </div> -->
+                </div>
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
@@ -451,13 +365,14 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Closing Remarks by
-                            <span class="font-title">
-                                Shazurawati Abd Karim,
-                            </span>
-                            <span class="text-xl">
-                                Executive Vice President TM One
-                            </span>
+                            <span class="font-body">Closing Remarks by </span>
+                            <span class="font-title"
+                                >Shazurawati Abd Karim,</span
+                            >
+                            <br />
+                            <span class="text-2xl font-body"
+                                >Executive Vice President TM One</span
+                            >
                         </p>
                     </dd>
                 </div>
@@ -469,24 +384,12 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            TM One
+                            <span class="font-body">TM One </span>
                             <span class="font-title">PWR TEAM</span>
-                            Winner Announcement
+                            <span class="font-body"> Winner Announcement</span>
                         </p>
                     </dd>
                 </div>
-                <!-- <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
-                    <dt
-                        class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
-                    >
-                        17:15
-                    </dt>
-                    <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
-                            Photo Session
-                        </p>
-                    </dd>
-                </div> -->
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
@@ -494,7 +397,7 @@
                         17:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
-                        <p class="text-2xl leading-7 text-gray-900">
+                        <p class="text-2xl leading-7 text-gray-900 font-body">
                             Asar Prayer
                         </p>
                     </dd>
@@ -507,7 +410,7 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Departure to
+                            <span class="font-body">Departure to </span>
                             <span class="font-title"
                                 >Genting Premium Outlet / TM Annexe 1 / TM
                                 Campus</span
@@ -523,10 +426,10 @@
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
-                            Arrival at
-                            <span class="font-title">
-                                TM Annexe 1 / TM Campus
-                            </span>
+                            <span class="font-body">Arrival at </span>
+                            <span class="font-title"
+                                >TM Annexe 1 / TM Campus</span
+                            >
                         </p>
                     </dd>
                 </div>

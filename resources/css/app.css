@@ -12,8 +12,19 @@
     src: url("../../public/fonts/Roboto-Regular.ttf");
 }
 
+@font-face {
+    font-family: "HKGrotesk-SemiBold";
+    src: url("../../public/fonts/HKGrotesk-SemiBold.otf");
+}
+
+@font-face {
+    font-family: "HKGroteskWide-Bold";
+    src: url("../../public/fonts/HKGroteskWide-Black.otf");
+}
+
 .bg-tmone {
-    background: url("../../public/images/BG-01-Plain.jpg") no-repeat center center fixed;
+    background: url("../../public/images/BG-01-Plain.jpg") no-repeat center
+        center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
