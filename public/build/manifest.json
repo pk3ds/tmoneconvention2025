@@ -658,7 +658,7 @@
     "src": "resources/js/Pages/Committees/Index.vue"
   },
   "resources/js/Pages/Committees/Partials/Awards.vue": {
-    "file": "assets/Awards-m_zi0CK1.js",
+    "file": "assets/Awards-XWyXuUs7.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2145,7 +2145,7 @@
     "src": "resources/js/Pages/Users/Index.vue"
   },
   "resources/js/Pages/Users/Partials/Awards.vue": {
-    "file": "assets/Awards-XWyXuUs7.js",
+    "file": "assets/Awards-m_zi0CK1.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2203,14 +2203,13 @@
     "src": "resources/js/Pages/Users/Partials/Details.vue"
   },
   "resources/js/Pages/Welcome/Index.vue": {
-    "file": "assets/Index-QTI7dKzf.js",
+    "file": "assets/Index-R6b8Fwqd.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_flowbite-0yPYSvbH.js",
       "_@vue-ioZSKZPS.js",
       "resources/js/Pages/Welcome/Partials/Agenda.vue",
       "resources/js/Pages/Welcome/Partials/Hero.vue",
-      "resources/js/Pages/Welcome/Partials/Countdown.vue",
       "resources/js/Pages/Welcome/Partials/Attire.vue",
       "resources/js/Pages/Welcome/Partials/Leaderboard.vue",
       "_axios-mNEckKTA.js",
@@ -2706,7 +2705,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-g8-_N-Ys.js",
+    "file": "assets/app-QXjufwkY.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
