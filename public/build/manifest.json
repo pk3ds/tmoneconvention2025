@@ -2203,7 +2203,7 @@
     "src": "resources/js/Pages/Users/Partials/Details.vue"
   },
   "resources/js/Pages/Welcome/Index.vue": {
-    "file": "assets/Index-rKW8Bs4Q.js",
+    "file": "assets/Index-FYQouvim.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_flowbite-0yPYSvbH.js",
@@ -2238,7 +2238,7 @@
     "src": "resources/js/Pages/Welcome/Index.vue"
   },
   "resources/js/Pages/Welcome/Partials/Agenda.vue": {
-    "file": "assets/Agenda-jbwHQJ_R.js",
+    "file": "assets/Agenda-8dk-c65F.js",
     "imports": [
       "__plugin-vue_export-helper-x3n3nnut.js",
       "_@vue-ioZSKZPS.js"
@@ -2706,7 +2706,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-jOSiMK13.js",
+    "file": "assets/app-rqPMHyI-.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
