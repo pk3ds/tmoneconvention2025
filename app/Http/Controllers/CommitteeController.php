@@ -129,10 +129,13 @@ class CommitteeController extends Controller
             $staffId = strtoupper($user['Staff ID']);
             $staffId = trim($staffId);
 
+            $pickupInfo = $this->processTransportInfo($user['Pick Up Point'] ?? null);
+            $dropoffInfo = $this->processTransportInfo($user['Drop Off Point'] ?? null);
+
             $createdUser = User::create([
                 'name' => $user['Name'] ?? 'Unknown',
                 'staff_id' => $staffId,
-                'phone_no' => $user['Contact No'] ?? null,
+                'phone_no' => $user['Phone'] ?? null,
                 'email' => $user['Email'] ?? null,
                 'pickup_location' => $user['Pickup Point'] ?? null,
                 'password' => Hash::make('password'),
@@ -148,11 +151,41 @@ class CommitteeController extends Controller
                 'room_type' => $user['Type of Room'] ?? null,
                 'check_in' => $user['Check In'] ?? null,
                 'check_out' => $user['Check Out'] ?? null,
+                'pickup_route' => $pickupInfo['route'],
+                'dropoff_route' => $dropoffInfo['route'],
+                'pickup_bus_no' => $user['Bus Number(Pick Up Point)'] ?? null,
+                'dropoff_bus_no' => $user['Bus Number(Drop Off Point)'] ?? null,
+                'pickup_date' => $pickupInfo['date_string'],
+                'dropoff_date' => $dropoffInfo['date_string'],
             ])->assignRole('committee');
         }
 
         DB::commit();
         return redirect()->back()->with('success', 'Users uploaded successfully');
+    }
+
+    private function processTransportInfo($transportString)
+    {
+        if (!$transportString || $transportString === 'Own Transport') {
+            return [
+                'route' => 'Own Transport',
+                'date_string' => null
+            ];
+        }
+
+        // Extract route and date from string like "TMA1 - WYN (14hb)"
+        if (preg_match('/^(.*?)\s*\((\d+)hb\)$/', $transportString, $matches)) {
+            return [
+                'route' => trim($matches[1]),
+                'date_string' => $matches[2] . " Jan 2025"  // Returns "14 Jan 2025" format
+            ];
+        }
+
+        // Return defaults if the string doesn't match expected formats
+        return [
+            'route' => $transportString,
+            'date_string' => null
+        ];
     }
 
     /**
