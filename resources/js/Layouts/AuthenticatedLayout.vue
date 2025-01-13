@@ -226,7 +226,7 @@ watch(
                                 <span
                                     class="flex-1 tracking-tighter ms-3 whitespace-nowrap"
                                 >
-                                    PWRMEMBERS
+                                    PWRTEAM
                                 </span>
                             </Link>
                         </li>
