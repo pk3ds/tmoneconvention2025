@@ -45,7 +45,7 @@ import { Link } from "@inertiajs/vue3";
             <h1
                 class="my-6 text-2xl font-bold tracking-tight text-black uppercase font-title sm:text-3xl"
             >
-                14<sup>th</sup> - 15<sup>th</sup> January 2025
+                14 - 15 January 2025
 
                 <br />
                 <span class="text-lg text-black sm:text-2xl">
