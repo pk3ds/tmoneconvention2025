@@ -51,6 +51,13 @@ class User extends Authenticatable
         'check_out',
         'activated_at',
         'use_password',
+        'pickup_route',
+        'dropoff_route',
+        'pickup_bus_no',
+        'dropoff_bus_no',
+        'pickup_date',
+        'dropoff_date',
+        'group_no',
     ];
 
     /**
@@ -69,6 +76,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'use_password' => 'boolean',
         'password' => 'hashed',
+        'pickup_date' => 'string',
+        'dropoff_date' => 'string',
     ];
 
     public function scopeSearch($query)
@@ -91,6 +100,12 @@ class User extends Authenticatable
             'room_no',
             'points',
             'pickup_location',
+            'pickup_route',
+            'dropoff_route',
+            'pickup_bus_no',
+            'dropoff_bus_no',
+            'pickup_date',
+            'dropoff_date',
         ])->dontSubmitEmptyLogs();
     }
 
