@@ -298,6 +298,9 @@
                             <span class="font-title">NEXT LEAP PWR RACE</span>
                             <span class="font-body"> Briefing</span>
                         </p>
+                        <p class="text-xl italic text-gray-600 mt-2">
+                            Ion Majestic Grand Ballroom, Level 50
+                        </p>
                     </dd>
                 </div>
                 <div class="pt-8 lg:grid lg:grid-cols-8 lg:gap-8">
@@ -383,6 +386,9 @@
                             <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
                             <span class="font-body"> Pitch</span>
+                        </p>
+                        <p class="text-xl italic text-gray-600 mt-2">
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
