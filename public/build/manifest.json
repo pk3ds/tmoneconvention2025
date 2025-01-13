@@ -225,6 +225,10 @@
   "_xlsx-SQTGUauO.js": {
     "file": "assets/xlsx-SQTGUauO.js"
   },
+  "public/fonts/HKGrotesk-SemiBold.otf": {
+    "file": "assets/HKGrotesk-SemiBold-q7aNAJwA.otf",
+    "src": "public/fonts/HKGrotesk-SemiBold.otf"
+  },
   "public/fonts/HKGroteskWide-Black.otf": {
     "file": "assets/HKGroteskWide-Black-76Bkrfdp.otf",
     "src": "public/fonts/HKGroteskWide-Black.otf"
@@ -2199,7 +2203,7 @@
     "src": "resources/js/Pages/Users/Partials/Details.vue"
   },
   "resources/js/Pages/Welcome/Index.vue": {
-    "file": "assets/Index-2K7yN2Qr.js",
+    "file": "assets/Index-08tT03Q7.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_flowbite-0yPYSvbH.js",
@@ -2234,7 +2238,7 @@
     "src": "resources/js/Pages/Welcome/Index.vue"
   },
   "resources/js/Pages/Welcome/Partials/Agenda.vue": {
-    "file": "assets/Agenda-yFgbo8XF.js",
+    "file": "assets/Agenda-A4TrTg5r.js",
     "imports": [
       "__plugin-vue_export-helper-x3n3nnut.js",
       "_@vue-ioZSKZPS.js"
@@ -2612,10 +2616,11 @@
     "assets": [
       "assets/HKGroteskWide-Black-76Bkrfdp.otf",
       "assets/Roboto-Regular-R3gZys7A.ttf",
+      "assets/HKGrotesk-SemiBold-q7aNAJwA.otf",
       "assets/BG-01-Plain-B9GXJNGz.jpg"
     ],
     "css": [
-      "assets/app--NaMoOuw.css"
+      "assets/app-Qp-6d_NE.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/Auth/ConfirmPassword.vue",
@@ -2701,7 +2706,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-0Wzk_Oor.js",
+    "file": "assets/app-YObxPkZI.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
