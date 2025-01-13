@@ -41,7 +41,7 @@
                         <p class="text-2xl text-gray-900 font-body">
                             Arrival, Registration & Welcoming Refreshment
                             <br />
-                            Ballroom
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -61,6 +61,8 @@
                             <span class="text-2xl font-body"
                                 >Executive Vice President TM One</span
                             >
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -73,6 +75,8 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
                             <b>Powergizer</b>
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -92,6 +96,8 @@
                             <span class="text-2xl font-body">
                                 Group Chief Executive Officer TM</span
                             >
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -108,6 +114,8 @@
                                 >Amar Huzaimi Md Deris</span
                             >
                             <span class="font-body"> & Leaders</span>
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -132,6 +140,8 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
                             <b>Powergizer</b>
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -185,6 +195,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </div>
                     </dd>
                 </div>
@@ -197,6 +209,8 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
                             Tea Break & Asar Prayer
+                            <br />
+                            Foyer, Level 50
                         </p>
                     </dd>
                 </div>
@@ -214,6 +228,8 @@
                             <span class="font-body">
                                 "Theme Celestial Soirée : A Night Among The
                                 Stars"
+                                <br />
+                                Ion Majestic Grand Ballroom, Level 50
                             </span>
                         </p>
                     </dd>
@@ -239,6 +255,8 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
                             Breakfast
+                            <br />
+                            Ambrosia, Level 12
                         </p>
                     </dd>
                 </div>
@@ -290,6 +308,7 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
+                            <br />Level 50,13,12,11 & Foyer, level G
                         </p>
                     </dd>
                 </div>
@@ -303,7 +322,10 @@
                         <p class="text-2xl leading-7 text-gray-900">
                             <span class="font-body">TM One </span>
                             <span class="font-title">NEXT LEAP PWR RACE</span>
-                            <span class="font-body"> Challenge Debrief</span>
+                            <span class="font-body">
+                                Challenge Debrief<br />
+                                Ion Majestic Grand Ballroom, Level 50
+                            </span>
                         </p>
                     </dd>
                 </div>
@@ -370,9 +392,11 @@
                                 >Shazurawati Abd Karim,</span
                             >
                             <br />
-                            <span class="text-2xl font-body"
-                                >Executive Vice President TM One</span
-                            >
+                            <span class="text-2xl font-body">
+                                Executive Vice President TM One
+                            </span>
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -387,6 +411,8 @@
                             <span class="font-body">TM One </span>
                             <span class="font-title">PWR TEAM</span>
                             <span class="font-body"> Winner Announcement</span>
+                            <br />
+                            Ion Majestic Grand Ballroom, Level 50
                         </p>
                     </dd>
                 </div>
@@ -411,10 +437,9 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
                             <span class="font-body">Departure to </span>
-                            <span class="font-title"
-                                >Genting Premium Outlet / TM Annexe 1 / TM
-                                Campus</span
-                            >
+                            <span class="font-title">
+                                Genting Premium Outlet / TM Annexe 1 / TM Campus
+                            </span>
                         </p>
                     </dd>
                 </div>
@@ -427,9 +452,9 @@
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900">
                             <span class="font-body">Arrival at </span>
-                            <span class="font-title"
-                                >TM Annexe 1 / TM Campus</span
-                            >
+                            <span class="font-title">
+                                TM Annexe 1 / TM Campus
+                            </span>
                         </p>
                     </dd>
                 </div>
