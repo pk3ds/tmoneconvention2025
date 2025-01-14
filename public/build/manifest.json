@@ -237,13 +237,13 @@
     "file": "assets/Roboto-Regular-R3gZys7A.ttf",
     "src": "public/fonts/Roboto-Regular.ttf"
   },
+  "public/images/BG-01-2025.jpg": {
+    "file": "assets/BG-01-2025-JGLordKH.jpg",
+    "src": "public/images/BG-01-2025.jpg"
+  },
   "public/images/BG-01-Plain.jpg": {
     "file": "assets/BG-01-Plain-B9GXJNGz.jpg",
     "src": "public/images/BG-01-Plain.jpg"
-  },
-  "public/images/BG-01.jpg": {
-    "file": "assets/BG-01-iXg1HFQe.jpg",
-    "src": "public/images/BG-01.jpg"
   },
   "public/images/BG-Chevron-02.png": {
     "file": "assets/BG-Chevron-02-FXA_RVkP.png",
@@ -2481,12 +2481,12 @@
   },
   "resources/js/Pages/Winners/LuckyDraw.vue": {
     "assets": [
-      "assets/BG-01-iXg1HFQe.jpg"
+      "assets/BG-01-2025-JGLordKH.jpg"
     ],
     "css": [
-      "assets/LuckyDraw-uqnuq36i.css"
+      "assets/LuckyDraw-0gty4912.css"
     ],
-    "file": "assets/LuckyDraw-FHgIsekN.js",
+    "file": "assets/LuckyDraw-UGiSim3y.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2514,12 +2514,12 @@
   },
   "resources/js/Pages/Winners/MultipleDraw.vue": {
     "assets": [
-      "assets/BG-01-iXg1HFQe.jpg"
+      "assets/BG-01-2025-JGLordKH.jpg"
     ],
     "css": [
-      "assets/LuckyDraw-uqnuq36i.css"
+      "assets/LuckyDraw-0gty4912.css"
     ],
-    "file": "assets/MultipleDraw-6FH9UrFw.js",
+    "file": "assets/MultipleDraw-O2viuLJ5.js",
     "imports": [
       "_@vue-ioZSKZPS.js",
       "_@inertiajs-bduIXNZ8.js",
@@ -2547,12 +2547,12 @@
   },
   "resources/js/Pages/Winners/SingleDraw.vue": {
     "assets": [
-      "assets/BG-01-iXg1HFQe.jpg"
+      "assets/BG-01-2025-JGLordKH.jpg"
     ],
     "css": [
-      "assets/LuckyDraw-uqnuq36i.css"
+      "assets/LuckyDraw-0gty4912.css"
     ],
-    "file": "assets/SingleDraw-Tg_HA8V1.js",
+    "file": "assets/SingleDraw--a53WVQG.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_axios-mNEckKTA.js",
@@ -2705,7 +2705,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-ckP0tiOl.js",
+    "file": "assets/app-7w2ptCiX.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
