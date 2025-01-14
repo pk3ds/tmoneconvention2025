@@ -43,7 +43,15 @@ class WinnerController extends Controller
     public function storeSingle(Request $request)
     {
         $winners = Winner::all()->pluck('user_id');
-        $users = User::whereNotNull('activated_at')->whereNotIn('id', $winners)->get();
+
+        // Get users who are checked in for session 36 and haven't won yet
+        $users = User::whereNotNull('activated_at')
+            ->whereNotIn('id', $winners)
+            ->whereHas('sessions', function($query) {
+                // FIXME hardcoding session_id dinner for now
+                $query->where('session_id', 36);
+            })
+            ->get();
 
         if ($users->count() == 0) {
             return ['name' => 'No more users'];
@@ -65,12 +73,21 @@ class WinnerController extends Controller
     {
         $number = $request->numbers;
         $winners = Winner::all()->pluck('user_id');
-        $users = User::whereNotNull('activated_at')->whereNotIn('id', $winners)->get();
+
+        // Get users who are checked in for session 36 and haven't won yet
+        $users = User::whereNotNull('activated_at')
+            ->whereNotIn('id', $winners)
+            ->whereHas('sessions', function($query) {
+                $query->where('session_id', 36);
+            })
+            ->get();
 
         if ($users->count() == 0) {
             return [['name' => 'No more users']];
         }
 
+        // Make sure we don't try to select more winners than available users
+        $number = min($number, $users->count());
         $winners = $users->random($number);
 
         foreach ($winners as $winner) {
