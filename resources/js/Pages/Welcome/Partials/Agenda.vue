@@ -158,7 +158,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        15:00
+                        15:30
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <div class="text-2xl leading-7 text-gray-900">
@@ -214,7 +214,7 @@
                     <dt
                         class="text-xl font-extrabold leading-7 font-title text-ultramarine lg:col-span-2"
                     >
-                        16:30
+                        17:00
                     </dt>
                     <dd class="mt-4 lg:col-span-6 lg:mt-0">
                         <p class="text-2xl leading-7 text-gray-900 font-body">
