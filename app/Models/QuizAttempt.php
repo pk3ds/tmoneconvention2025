@@ -23,67 +23,84 @@ class QuizAttempt extends BaseQuizAttempt
     ];
 
     public function calculateMarks()
-    {
-        $totalMarks = 0;
-        $correctAnswers = 0;
-        $totalQuestions = $this->quiz->questions->count();
+{
+    $totalMarks = 0;
+    $correctAnswers = 0;
+    $totalQuestions = $this->quiz->questions->count();
 
-        // Group answers by quiz question
-        $answersGroupedByQuestion = $this->answers->groupBy('quiz_question_id');
+    // Group answers by quiz question
+    $answersGroupedByQuestion = $this->answers->groupBy('quiz_question_id');
 
-        foreach ($this->quiz->questions as $quizQuestion) {
-            $question = $quizQuestion->question;
-            $userAnswers = $answersGroupedByQuestion->get($quizQuestion->id, collect([]));
+    foreach ($this->quiz->questions as $quizQuestion) {
+        $question = $quizQuestion->question;
+        $userAnswers = $answersGroupedByQuestion->get($quizQuestion->id, collect([]));
 
-            // Get all correct options for this question
-            $correctOptions = $question->options->where('is_correct', true);
-            $userSelectedOptionIds = $userAnswers->pluck('question_option_id')->toArray();
+        // Get all correct options for this question
+        $correctOptions = $question->options->where('is_correct', true);
+        $userSelectedOptionIds = $userAnswers->pluck('question_option_id')->toArray();
+        $correctOptionIds = $correctOptions->pluck('id')->toArray();
 
-            $isCorrect = false;
+        $isCorrect = false;
 
-            if ($question->question_type_id === 1) {
-                // Single select question - only one answer should be selected
-                if ($userAnswers->count() === 1 && $userAnswers->first()->question_option->is_correct) {
-                    $isCorrect = true;
-                }
-            } else {
-                // Multiple select question - all correct options must be selected and no incorrect ones
-                $correctOptionIds = $correctOptions->pluck('id')->toArray();
-
-                // Check if user selected ALL correct options AND ONLY the correct options
-                $isCorrect = count(array_diff($userSelectedOptionIds, $correctOptionIds)) === 0
-                    && count(array_diff($correctOptionIds, $userSelectedOptionIds)) === 0;
+        if ($question->question_type_id === 1) {
+            // Single select question - only one answer should be selected
+            if ($userAnswers->count() === 1 && $userAnswers->first()->question_option->is_correct) {
+                $isCorrect = true;
             }
+        } else {
+            // Multiple select question - must select all correct options and no incorrect ones
+            $correctSelections = 0;
+            $wrongSelections = 0;
 
-            if ($isCorrect) {
-                $totalMarks += $quizQuestion->marks;
-                $correctAnswers++;
-            } else if ($userAnswers->isNotEmpty() && $this->quiz->negative_marking_settings['enable_negative_marks']) {
-                // Apply negative marking only if an answer was attempted
-                if ($this->quiz->negative_marking_settings['negative_marking_type'] === Quiz::FIXED_NEGATIVE_TYPE) {
-                    $totalMarks -= $quizQuestion->negative_marks;
+            foreach ($userSelectedOptionIds as $selectedId) {
+                if (in_array($selectedId, $correctOptionIds)) {
+                    $correctSelections++;
                 } else {
-                    $totalMarks -= ($quizQuestion->marks * $quizQuestion->negative_marks / 100);
+                    $wrongSelections++;
                 }
+            }
+
+            $missingCorrect = count($correctOptionIds) - $correctSelections;
+
+            if ($wrongSelections === 0 && $missingCorrect === 0) {
+                $isCorrect = true;
             }
         }
 
-        // Calculate points based on marks
-        $pointsEarned = 0;
-        if ($totalMarks > 0) {
-            // For example: Every 100 marks = 1 point
-            $pointsEarned = ceil($totalMarks / 100);
+        if ($isCorrect) {
+            $totalMarks += $quizQuestion->marks;
+            $correctAnswers++;
+        } else if ($userAnswers->isNotEmpty() && $this->quiz->negative_marking_settings['enable_negative_marks']) {
+            if ($this->quiz->negative_marking_settings['negative_marking_type'] === Quiz::FIXED_NEGATIVE_TYPE) {
+                $totalMarks -= $quizQuestion->negative_marks;
+            } else {
+                $totalMarks -= ($quizQuestion->marks * $quizQuestion->negative_marks / 100);
+            }
         }
-
-        $this->marks_obtained = max(0, $totalMarks);
-        $this->is_passed = $this->marks_obtained >= $this->quiz->pass_marks;
-        $this->correct_answers = $correctAnswers;
-        $this->total_questions = $totalQuestions;
-        $this->points_earned = $pointsEarned;
-        $this->save();
-
-        return $this;
     }
+
+    // Simplified points calculation - if all answers are correct, give 1000 points
+    $pointsEarned = 0;
+    if ($totalMarks > 0) {
+        // If they got all questions right (100% score), give 1000 points
+        if ($correctAnswers === $totalQuestions) {
+            $pointsEarned = 1000;
+        } else {
+            // Calculate percentage of correct answers and scale to 1000
+            $percentage = ($correctAnswers / $totalQuestions) * 100;
+            $pointsEarned = round(($percentage / 100) * 1000);
+        }
+    }
+
+    $this->marks_obtained = max(0, $totalMarks);
+    $this->is_passed = $this->marks_obtained >= $this->quiz->pass_marks;
+    $this->correct_answers = $correctAnswers;
+    $this->total_questions = $totalQuestions;
+    $this->points_earned = $pointsEarned;
+    $this->save();
+
+    return $this;
+}
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

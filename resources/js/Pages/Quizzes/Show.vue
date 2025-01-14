@@ -160,11 +160,11 @@ const isOptionSelected = (questionId, optionId, attempt) => {
 
                             <!-- Show attempt results -->
                             <div class="mt-6 p-4 bg-gray-50 rounded-lg">
-                                <p class="font-medium">
+                                <!-- <p class="font-medium">
                                     Score:
                                     {{ getUserAttempt().marks_obtained }}
-                                    / {{ quiz.total_marks }}
-                                </p>
+                                    / 100
+                                </p> -->
                                 <p>
                                     Correct Answers:
                                     {{ getUserAttempt().correct_answers }}
