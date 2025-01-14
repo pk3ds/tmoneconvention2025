@@ -658,7 +658,7 @@
     "src": "resources/js/Pages/Committees/Index.vue"
   },
   "resources/js/Pages/Committees/Partials/Awards.vue": {
-    "file": "assets/Awards-XWyXuUs7.js",
+    "file": "assets/Awards-m_zi0CK1.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -1430,7 +1430,7 @@
     "src": "resources/js/Pages/Quizzes/Partials/Questions.vue"
   },
   "resources/js/Pages/Quizzes/Show.vue": {
-    "file": "assets/Show-5rBj8rcj.js",
+    "file": "assets/Show-1KrzqLsM.js",
     "imports": [
       "_@vue-ioZSKZPS.js",
       "_@inertiajs-bduIXNZ8.js",
@@ -2145,7 +2145,7 @@
     "src": "resources/js/Pages/Users/Index.vue"
   },
   "resources/js/Pages/Users/Partials/Awards.vue": {
-    "file": "assets/Awards-m_zi0CK1.js",
+    "file": "assets/Awards-XWyXuUs7.js",
     "imports": [
       "_@inertiajs-bduIXNZ8.js",
       "_@vue-ioZSKZPS.js",
@@ -2705,7 +2705,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-ymTfydau.js",
+    "file": "assets/app-3zG5OOlR.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
