@@ -38,8 +38,8 @@ const props = defineProps({
             <Map />
         </div> -->
 
-        <!-- <div class="py-12" id="pwrteam">
+        <div class="py-12" id="pwrteam">
             <Leaderboard :leaderboards="leaderboards" :groups="groups" />
-        </div> -->
+        </div>
     </SiteLayout>
 </template>

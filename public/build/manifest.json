@@ -53,10 +53,6 @@
       "_flowbite-0yPYSvbH.js"
     ]
   },
-  "_Leaderboard.vue_vue_type_style_index_0_lang-!~{01$}~.js": {
-    "file": "assets/Leaderboard-XD5V59yr.css",
-    "src": "_Leaderboard.vue_vue_type_style_index_0_lang-!~{01$}~.js"
-  },
   "_Modal-fJIveHeL.js": {
     "file": "assets/Modal-fJIveHeL.js",
     "imports": [
@@ -662,7 +658,7 @@
     "src": "resources/js/Pages/Committees/Index.vue"
   },
   "resources/js/Pages/Committees/Partials/Awards.vue": {
-    "file": "assets/Awards-8F_1WLtL.js",
+    "file": "assets/Awards-9hmQlVub.js",
     "imports": [
       "_@inertiajs-ssfLaM5f.js",
       "_@vue-r-HUGdoc.js",
@@ -2281,7 +2277,7 @@
     "src": "resources/js/Pages/Users/Index.vue"
   },
   "resources/js/Pages/Users/Partials/Awards.vue": {
-    "file": "assets/Awards-9hmQlVub.js",
+    "file": "assets/Awards-8F_1WLtL.js",
     "imports": [
       "_@inertiajs-ssfLaM5f.js",
       "_@vue-r-HUGdoc.js",
@@ -2339,13 +2335,7 @@
     "src": "resources/js/Pages/Users/Partials/Details.vue"
   },
   "resources/js/Pages/Welcome/Index.vue": {
-    "assets": [
-      "assets/BG-Chevron-02-FXA_RVkP.png"
-    ],
-    "css": [
-      "assets/Leaderboard-XD5V59yr.css"
-    ],
-    "file": "assets/Index-R5PDb1Mz.js",
+    "file": "assets/Index-6HQBZaJq.js",
     "imports": [
       "_@inertiajs-ssfLaM5f.js",
       "_flowbite-0yPYSvbH.js",
@@ -2353,6 +2343,7 @@
       "resources/js/Pages/Welcome/Partials/Agenda.vue",
       "resources/js/Pages/Welcome/Partials/Hero.vue",
       "resources/js/Pages/Welcome/Partials/Attire.vue",
+      "resources/js/Pages/Welcome/Partials/Leaderboard.vue",
       "_axios-mNEckKTA.js",
       "_deepmerge-LjH1GvcH.js",
       "_call-bind-C9g98eDj.js",
@@ -2437,7 +2428,7 @@
     "css": [
       "assets/Leaderboard-XD5V59yr.css"
     ],
-    "file": "assets/Leaderboard-vV5MuNyk.js",
+    "file": "assets/Leaderboard-vO-NJHg6.js",
     "imports": [
       "_@vue-r-HUGdoc.js"
     ],
@@ -2850,7 +2841,7 @@
       "resources/js/Pages/Winners/SingleDraw.vue",
       "resources/js/Pages/Winners/Winners.vue"
     ],
-    "file": "assets/app-AwUZUbge.js",
+    "file": "assets/app-xV73TMNp.js",
     "imports": [
       "_axios-mNEckKTA.js",
       "_flowbite-0yPYSvbH.js",
