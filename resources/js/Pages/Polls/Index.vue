@@ -264,12 +264,8 @@ const hasVoted = (poll) => {
 
                                         <Link
                                             v-if="
-                                                $page.props.auth.user.group
-                                                    ?.id &&
-                                                !poll.deleted_at &&
-                                                !$page.props.permissions.includes(
-                                                    'manage surveys'
-                                                )
+                                                $page.props.auth.user &&
+                                                !poll.deleted_at
                                             "
                                             :href="route('polls.show', poll)"
                                         >
