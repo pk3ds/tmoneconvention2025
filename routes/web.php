@@ -17,6 +17,7 @@ use App\Http\Controllers\StationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\PassportController;
 use App\Http\Controllers\CommitteeController;
+use App\Http\Controllers\PollController;
 use App\Http\Controllers\SurveyController;
 
 /*
@@ -212,6 +213,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/surveys', [SurveyController::class, 'index'])->name('surveys.index');
     Route::get('/surveys/{survey}', [SurveyController::class, 'show'])->name('surveys.show');
     Route::post('/surveys/{survey}/submit', [SurveyController::class, 'submit'])->name('surveys.submit');
+
+    Route::resource('polls', PollController::class)->middleware('can:manage surveys');
+
+    Route::get('/polls', [PollController::class, 'index'])->name('polls.index');
+    Route::get('polls/{poll}', [PollController::class, 'show'])->name('polls.show');
+    Route::post('/polls/{poll}/vote', [PollController::class, 'vote'])->name('polls.vote');
 });
 
 require __DIR__ . '/auth.php';

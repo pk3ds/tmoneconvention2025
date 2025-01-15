@@ -599,6 +599,32 @@ watch(
                         </li>
                         <li>
                             <Link
+                                :href="route('polls.index')"
+                                :class="{
+                                    'bg-gray-100 dark:bg-gray-600':
+                                        route().current('polls.index'),
+                                }"
+                                data-drawer-hide="drawer-navigation"
+                                aria-controls="drawer-navigation"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            >
+                                <svg
+                                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h320V96H64zm0 96V416H384V192H64zM208 272h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H208c-8.8 0-16-7.2-16-16V288c0-8.8 7.2-16 16-16z"
+                                    />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">
+                                    Polls
+                                </span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 :href="route('surveys.index')"
                                 :class="{
                                     'bg-gray-100 dark:bg-gray-600':
