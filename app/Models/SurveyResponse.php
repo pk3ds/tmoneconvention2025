@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use App\Models\User;
 
 class SurveyResponse extends Model
 {
@@ -30,5 +31,10 @@ class SurveyResponse extends Model
             ->logOnly(['survey_id', 'points_earned', 'user_id'])
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

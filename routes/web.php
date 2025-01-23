@@ -207,7 +207,13 @@ Route::middleware('auth')->group(function () {
         ->name('quizzes.unlink');
     Route::post('/station/{station}/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
     Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
+    Route::get('/quizzes/{quiz}/download-reports', [QuizController::class, 'downloadReports'])
+        ->name('quizzes.download-reports')
+        ->middleware(['auth', 'can:manage questions']);
     Route::resource('surveys', SurveyController::class)->middleware('can:manage surveys');
+    Route::get('/surveys/{survey}/download-responses', [SurveyController::class, 'downloadResponses'])
+        ->name('surveys.download-responses')
+        ->middleware(['auth', 'can:manage surveys']);
     Route::put('surveys/{id}/restore', [SurveyController::class, 'restore'])->name('surveys.restore');
 
     Route::get('/surveys', [SurveyController::class, 'index'])->name('surveys.index');

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Survey;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class SurveyController extends Controller
 {
@@ -24,7 +26,7 @@ class SurveyController extends Controller
 
         $query = Survey::orderBy('title')
             ->search()
-            ->with(['responses' => function($query) {
+            ->with(['responses' => function ($query) {
                 $query->where('user_id', auth()->id());
             }, 'questions']);
 
@@ -111,7 +113,7 @@ class SurveyController extends Controller
     {
         $this->authorize('manage surveys');
 
-        $survey->load(['questions' => function($query) {
+        $survey->load(['questions' => function ($query) {
             $query->orderBy('order');
         }]);
 
@@ -270,7 +272,6 @@ class SurveyController extends Controller
 
             DB::commit();
             return redirect()->back()->with('success', 'Thank you for your feedback!');
-
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Survey submission failed', [
@@ -298,5 +299,50 @@ class SurveyController extends Controller
         $survey->restore();
 
         return redirect()->back()->with('success', 'Survey ' . $survey->name . ' restored successfully');
+    }
+
+    public function downloadResponses(Survey $survey)
+    {
+        $this->authorize('manage surveys');
+
+        $responses = $survey->responses()
+            ->with(['answers.question', 'user'])
+            ->get();
+
+        $filename = Str::slug($survey->title) . '_responses_' . now()->format('Y-m-d') . '.csv';
+
+        return response()->streamDownload(function () use ($responses, $survey) {
+            $handle = fopen('php://output', 'w');
+            fputs($handle, "\xEF\xBB\xBF"); // BOM for Excel
+
+            $questions = $survey->questions()->orderBy('order')->get();
+
+            // Headers
+            $headers = ['Respondent', 'Submitted At'];
+            foreach ($questions as $question) {
+                $headers[] = $question->question;
+            }
+            fputcsv($handle, $headers);
+
+            // Data
+            foreach ($responses as $response) {
+                $row = [
+                    $response->user->name ?? 'Anonymous',
+                    $response->created_at->format('Y-m-d H:i:s'),
+                ];
+
+                $answerMap = $response->answers->pluck('answer', 'survey_question_id');
+                foreach ($questions as $question) {
+                    $row[] = $answerMap[$question->id] ?? '';
+                }
+
+                fputcsv($handle, $row);
+            }
+
+            fclose($handle);
+        }, $filename, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"{$filename}\"",
+        ]);
     }
 }

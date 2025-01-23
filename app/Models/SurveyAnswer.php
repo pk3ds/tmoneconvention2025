@@ -10,4 +10,9 @@ class SurveyAnswer extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['survey_response_id', 'survey_question_id', 'answer'];
+
+    public function question()
+    {
+        return $this->belongsTo(SurveyQuestion::class, 'survey_question_id');
+    }
 }
