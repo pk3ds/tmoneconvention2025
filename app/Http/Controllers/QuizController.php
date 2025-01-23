@@ -29,7 +29,7 @@ class QuizController extends Controller
 
         $query = Quiz::orderBy('name')
             ->search()
-            ->with(['attempts' => function($query) {
+            ->with(['attempts' => function ($query) {
                 $query->where('participant_id', auth()->id())
                     ->where('participant_type', User::class);
             }]);
@@ -102,10 +102,10 @@ class QuizController extends Controller
         return Inertia::render('Quizzes/Show', [
             'quiz' => $quiz->load([
                 'questions.question.options',
-                'attempts' => function($query) {
+                'attempts' => function ($query) {
                     $query->where('participant_id', auth()->id())
                         ->where('participant_type', User::class)
-                        ->with(['answers' => function($q) {
+                        ->with(['answers' => function ($q) {
                             $q->with(['quiz_question', 'question_option']);
                         }]);
                 }
@@ -236,97 +236,96 @@ class QuizController extends Controller
     }
 
     public function submit(Request $request, Quiz $quiz)
-{
-    $existingAttempt = $quiz->attempts()
-        ->where('participant_id', auth()->id())
-        ->where('participant_type', get_class(auth()->user()))
-        ->first();
+    {
+        $existingAttempt = $quiz->attempts()
+            ->where('participant_id', auth()->id())
+            ->where('participant_type', get_class(auth()->user()))
+            ->first();
 
-    if ($existingAttempt) {
-        return redirect()->back()->with('error', 'You have already attempted this quiz');
-    }
-
-    DB::beginTransaction();
-    try {
-        $attempt = $quiz->attempts()->create([
-            'participant_id' => auth()->id(),
-            'participant_type' => get_class(auth()->user()),
-            'quiz_id' => $quiz->id,
-        ]);
-
-        foreach($request->answers as $questionId => $answerIds) {
-            $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
-
-            // Handle both single answer (string/integer) and multiple answers (array)
-            $answerIds = is_array($answerIds) ? $answerIds : [$answerIds];
-
-            foreach ($answerIds as $answerId) {
-                $option = QuestionOption::find($answerId);
-
-                if ($option) {
-                    $attempt->answers()->create([
-                        'quiz_question_id' => $quizQuestion->id,
-                        'question_option_id' => $answerId,
-                        'answer' => $option->name
-                    ]);
-                }
-            }
+        if ($existingAttempt) {
+            return redirect()->back()->with('error', 'You have already attempted this quiz');
         }
 
-        $attempt->calculateMarks();
+        DB::beginTransaction();
+        try {
+            $attempt = $quiz->attempts()->create([
+                'participant_id' => auth()->id(),
+                'participant_type' => get_class(auth()->user()),
+                'quiz_id' => $quiz->id,
+            ]);
 
-        $user = Auth::user();
-        $user->disableLogging();
-        $user->update([
-            'points' => $user->points + $attempt->points_earned,
-        ]);
+            foreach ($request->answers as $questionId => $answerIds) {
+                $quizQuestion = $quiz->questions()->where('question_id', $questionId)->first();
 
-        if ($attempt->points_earned > 0) {
-            activity()
-                ->causedBy($user)
-                ->performedOn($user)
-                ->withProperties([
-                    'points' => $attempt->points_earned,
-                    'quiz_name' => $quiz->name,
-                    'marks_obtained' => $attempt->marks_obtained,
-                    'correct_answers' => $attempt->correct_answers,
-                    'total_questions' => $attempt->total_questions
-                ])
-                ->event('Quiz completion')
-                ->log('points earned');
+                // Handle both single answer (string/integer) and multiple answers (array)
+                $answerIds = is_array($answerIds) ? $answerIds : [$answerIds];
 
-            if ($group = $user->group) {
-                $group->disableLogging();
-                $group->update([
-                    'points' => $group->points + $attempt->points_earned,
-                ]);
+                foreach ($answerIds as $answerId) {
+                    $option = QuestionOption::find($answerId);
 
+                    if ($option) {
+                        $attempt->answers()->create([
+                            'quiz_question_id' => $quizQuestion->id,
+                            'question_option_id' => $answerId,
+                            'answer' => $option->name
+                        ]);
+                    }
+                }
+            }
+
+            $attempt->calculateMarks();
+
+            $user = Auth::user();
+            $user->disableLogging();
+            $user->update([
+                'points' => $user->points + $attempt->points_earned,
+            ]);
+
+            if ($attempt->points_earned > 0) {
                 activity()
                     ->causedBy($user)
-                    ->performedOn($group)
+                    ->performedOn($user)
                     ->withProperties([
                         'points' => $attempt->points_earned,
                         'quiz_name' => $quiz->name,
-                        'user_name' => $user->name
+                        'marks_obtained' => $attempt->marks_obtained,
+                        'correct_answers' => $attempt->correct_answers,
+                        'total_questions' => $attempt->total_questions
                     ])
-                    ->event('Group points from quiz')
+                    ->event('Quiz completion')
                     ->log('points earned');
-                $group->enableLogging();
+
+                if ($group = $user->group) {
+                    $group->disableLogging();
+                    $group->update([
+                        'points' => $group->points + $attempt->points_earned,
+                    ]);
+
+                    activity()
+                        ->causedBy($user)
+                        ->performedOn($group)
+                        ->withProperties([
+                            'points' => $attempt->points_earned,
+                            'quiz_name' => $quiz->name,
+                            'user_name' => $user->name
+                        ])
+                        ->event('Group points from quiz')
+                        ->log('points earned');
+                    $group->enableLogging();
+                }
             }
+            $user->enableLogging();
+
+            DB::commit();
+            return redirect()->back()->with('success', "Quiz completed! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!");
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // For development, you might want to log the error instead of dd()
+            \Log::error('Quiz submission error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
         }
-        $user->enableLogging();
-
-        DB::commit();
-        return redirect()->back()->with('success', "Quiz completed! You scored {$attempt->marks_obtained} marks and earned {$attempt->points_earned} points!");
-
-    } catch (\Exception $e) {
-        DB::rollBack();
-
-        // For development, you might want to log the error instead of dd()
-        \Log::error('Quiz submission error: ' . $e->getMessage());
-        return redirect()->back()->with('error', 'Something went wrong. Please try again.');
     }
-}
 
     public function attempts(Quiz $quiz)
     {
@@ -338,5 +337,63 @@ class QuizController extends Controller
             'quiz' => $quiz,
             'attempts' => $attempts,
         ]);
+    }
+
+    public function downloadReports(Quiz $quiz)
+    {
+        $this->authorize('manage questions');
+
+        $filename = Str::slug($quiz->name) . '_reports_' . now()->format('Y-m-d') . '.csv';
+
+        return response()->streamDownload(function () use ($quiz) {
+            $handle = fopen('php://output', 'w');
+            fputs($handle, "\xEF\xBB\xBF");
+
+            $headers = [
+                'Participant Name',
+                'Question',
+                'Selected Answer',
+                'Correct Answer',
+                'Status',
+                'Points',
+                'Date'
+            ];
+            fputcsv($handle, $headers);
+
+            $attempts = $quiz->attempts()
+                ->with([
+                    'participant',
+                    'answers.quiz_question',
+                    'answers.quiz_question.question',
+                    'answers.question_option',
+                    'answers.quiz_question.question.options' => function ($q) {
+                        $q->where('is_correct', true);
+                    }
+                ])
+                ->get();
+
+            foreach ($attempts as $attempt) {
+                foreach ($attempt->answers as $answer) {
+                    if (!$answer->quiz_question || !$answer->quiz_question->question) {
+                        continue;
+                    }
+
+                    $question = $answer->quiz_question->question;
+                    $correctAnswer = $question->options->first();
+
+                    fputcsv($handle, [
+                        $attempt->participant->name ?? 'Unknown',
+                        $question->name ?? 'Unknown Question',
+                        $answer->question_option->name ?? 'No Answer',
+                        $correctAnswer ? $correctAnswer->name : 'No Correct Answer',
+                        $answer->question_option->is_correct ? 'Correct' : 'Incorrect',
+                        $attempt->points_earned,
+                        $attempt->created_at->format('Y-m-d H:i:s')
+                    ]);
+                }
+            }
+
+            fclose($handle);
+        }, $filename);
     }
 }
