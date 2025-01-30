@@ -31,17 +31,22 @@ use App\Http\Controllers\SurveyController;
 |
 */
 
+// Temp for survey
+// Route::get('/', function () {
+//     return Inertia::render('Welcome/Index', [
+//         'event' => [
+//             'card' => 'player',
+//             'title' => 'TM One Convention 2025',
+//             'image' => '/images/Banner-01-2025.jpg',
+//             'description' => 'Powering The Next',
+//         ],
+//         'leaderboards' => Group::orderBy('points', 'desc')->with('awards')->limit(3)->get(),
+//         'groups' => Group::orderBy('points', 'desc')->get(),
+//     ]);
+// })->name('/');
+
 Route::get('/', function () {
-    return Inertia::render('Welcome/Index', [
-        'event' => [
-            'card' => 'player',
-            'title' => 'TM One Convention 2025',
-            'image' => '/images/Banner-01-2025.jpg',
-            'description' => 'Powering The Next',
-        ],
-        'leaderboards' => Group::orderBy('points', 'desc')->with('awards')->limit(3)->get(),
-        'groups' => Group::orderBy('points', 'desc')->get(),
-    ]);
+    return Inertia::render('Welcome/Temp');
 })->name('/');
 
 Route::get('/lucky-draw', function () {
