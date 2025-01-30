@@ -19,6 +19,7 @@ use App\Http\Controllers\PassportController;
 use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\SurveyController;
+use App\Models\Survey;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +46,26 @@ use App\Http\Controllers\SurveyController;
 //     ]);
 // })->name('/');
 
+// In routes/web.php
 Route::get('/', function () {
-    return Inertia::render('Welcome/Temp');
+    $user = Auth::user();
+
+    $surveys = [
+        'physical' => '47087682-5f28-427f-8ae5-3b3914dc7e80',
+        'online' => '764d3ea3-d6b4-43ad-b475-762724c6e31e'
+    ];
+
+    $responses = [];
+    if ($user) {
+        foreach ($surveys as $type => $uuid) {
+            $survey = Survey::where('uuid', $uuid)->with('responses')->first();
+            $responses[$type] = $survey ? $survey->responses()->where('user_id', $user->id)->exists() : false;
+        }
+    }
+
+    return Inertia::render('Welcome/Temp', [
+        'responses' => $responses
+    ]);
 })->name('/');
 
 Route::get('/lucky-draw', function () {
